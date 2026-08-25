@@ -380,6 +380,10 @@ select:focus-visible {
     transform: rotate(-0.25deg);
 }
 
+.book-card-pluto {
+    transform: rotate(0.35deg);
+}
+
 .book-jacket {
     position: relative;
     isolation: isolate;
@@ -449,6 +453,10 @@ select:focus-visible {
 
 .book-card-moonlit .book-jacket img {
     object-position: 62% center;
+}
+
+.book-card-pluto .book-jacket img {
+    object-position: 60% center;
 }
 
 .book-jacket:hover img,
@@ -921,6 +929,15 @@ select:focus-visible {
     line-height: 0.9;
 }
 
+.pluto-cover-copy {
+    width: min(60rem, 62vw);
+}
+
+.pluto-cover-copy .cover-title {
+    font-size: clamp(2.2rem, 4.8vw, 5.4rem);
+    line-height: 0.9;
+}
+
 .dek {
     max-width: 50ch;
     margin: clamp(1rem, 2vw, 1.75rem) 0 0;
@@ -973,7 +990,8 @@ select:focus-visible {
     width: min(34rem, 40vw);
 }
 
-.moonlit-story-copy {
+.moonlit-story-copy,
+.pluto-story-copy {
     width: min(43rem, 48vw);
     max-height: 66vh;
     overflow-y: auto;
@@ -982,7 +1000,8 @@ select:focus-visible {
     scrollbar-width: thin;
 }
 
-.moonlit-story-copy .copy-move-tools {
+.moonlit-story-copy .copy-move-tools,
+.pluto-story-copy .copy-move-tools {
     top: 0.65rem;
 }
 
@@ -1140,18 +1159,21 @@ select:focus-visible {
     font-style: italic;
 }
 
-.moonlit-story-copy h2 {
+.moonlit-story-copy h2,
+.pluto-story-copy h2 {
     font-size: clamp(1.7rem, 3vw, 3.35rem);
     line-height: 1;
 }
 
-.moonlit-story-copy p:not(.page-kicker, .planet-badge, .pirate-badge) {
+.moonlit-story-copy p:not(.page-kicker, .planet-badge, .pirate-badge),
+.pluto-story-copy p:not(.page-kicker, .planet-badge, .pirate-badge) {
     margin-top: 0.68rem;
     font-size: clamp(0.84rem, 1.12vw, 1.02rem);
     line-height: 1.42;
 }
 
-.moonlit-story-copy .spoken-line {
+.moonlit-story-copy .spoken-line,
+.pluto-story-copy .spoken-line {
     padding-top: 0.62rem;
 }
 
@@ -1291,7 +1313,8 @@ select:focus-visible {
         width: min(38rem, 49vw);
     }
 
-    .moonlit-story-copy {
+    .moonlit-story-copy,
+    .pluto-story-copy {
         width: min(42rem, 53vw);
     }
 }
@@ -1346,7 +1369,8 @@ select:focus-visible {
 
     .book-card-planets,
     .book-card-doughnut,
-    .book-card-moonlit {
+    .book-card-moonlit,
+    .book-card-pluto {
         transform: none;
     }
 
@@ -1406,6 +1430,11 @@ select:focus-visible {
         line-height: 0.92;
     }
 
+    .pluto-cover-copy .cover-title {
+        font-size: clamp(1.95rem, 9vw, 4rem);
+        line-height: 0.92;
+    }
+
     .story-copy,
     .story-copy-compact,
     .story-copy-left,
@@ -1439,11 +1468,13 @@ select:focus-visible {
         line-height: 1.42;
     }
 
-    .moonlit-story-copy h2 {
+    .moonlit-story-copy h2,
+    .pluto-story-copy h2 {
         font-size: clamp(1.65rem, 7.5vw, 3rem);
     }
 
-    .moonlit-story-copy p:not(.page-kicker, .planet-badge, .pirate-badge) {
+    .moonlit-story-copy p:not(.page-kicker, .planet-badge, .pirate-badge),
+    .pluto-story-copy p:not(.page-kicker, .planet-badge, .pirate-badge) {
         font-size: clamp(0.82rem, 3.3vw, 0.98rem);
         line-height: 1.38;
     }
@@ -1576,6 +1607,10 @@ select:focus-visible {
         font-size: clamp(1.8rem, 8.6vw, 3.5rem);
     }
 
+    .pluto-cover-copy .cover-title {
+        font-size: clamp(1.65rem, 8vw, 3.3rem);
+    }
+
     .begin-button,
     .again-button {
         margin-top: 0.8rem;
@@ -1636,6 +1671,10 @@ select:focus-visible {
         font-size: clamp(2rem, 4.5vw, 3.85rem);
     }
 
+    .pluto-cover-copy .cover-title {
+        font-size: clamp(1.9rem, 4.2vw, 3.65rem);
+    }
+
     .dek {
         margin-top: 0.7rem;
         font-size: 0.92rem;
@@ -1661,7 +1700,8 @@ select:focus-visible {
         line-height: 1.35;
     }
 
-    .moonlit-story-copy p:not(.page-kicker, .planet-badge, .pirate-badge) {
+    .moonlit-story-copy p:not(.page-kicker, .planet-badge, .pirate-badge),
+    .pluto-story-copy p:not(.page-kicker, .planet-badge, .pirate-badge) {
         margin-top: 0.48rem;
         font-size: 0.78rem;
         line-height: 1.3;

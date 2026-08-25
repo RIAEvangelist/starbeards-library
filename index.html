@@ -82,7 +82,7 @@
                 <section class="bookshelf library-collection library-collection-starbeard" aria-labelledby="starbeard-uni-title">
                     <div class="shelf-heading">
                         <div>
-                            <p class="shelf-kicker">Collection two · 1 book</p>
+                            <p class="shelf-kicker">Collection two · 2 books</p>
                             <h2 id="starbeard-uni-title">The Adventures of Starbeard and Uni</h2>
                         </div>
                         <p class="shelf-hint">Every completed Starbeard-and-Uni book will join this shelf in reading order.</p>
@@ -103,6 +103,23 @@
                                     <p>A missing note leads the crew through a singing forest to a treasure that can only be given.</p>
                                 </div>
                                 <button class="shelf-read-button" type="button" data-open-book="moonlit">Read this book</button>
+                            </div>
+                        </article>
+
+                        <article class="book-card book-card-pluto">
+                            <button class="book-jacket" type="button" data-open-book="pluto" aria-label="Open The Treasure of Pluto and the Luminous Labyrinth">
+                                <img src="./assets/book-pluto-labyrinth-cover.png" alt="Starbeard and Uni sail toward frozen Pluto while a golden maze glows among the stars.">
+                                <span class="book-jacket-shade" aria-hidden="true"></span>
+                                <span class="book-volume">Starbeard &amp; Uni · Book three</span>
+                                <span class="book-open-prompt">Open book <span aria-hidden="true">→</span></span>
+                            </button>
+                            <div class="book-details">
+                                <div>
+                                    <p class="book-tag book-tag-new">The Adventures of Starbeard and Uni · 10 spreads</p>
+                                    <h3>The Treasure of Pluto and the Luminous Labyrinth</h3>
+                                    <p>Frozen treasure, new friends, and a golden maze reveal what an explorer carries home.</p>
+                                </div>
+                                <button class="shelf-read-button" type="button" data-open-book="pluto">Read this book</button>
                             </div>
                         </article>
                     </div>
@@ -664,6 +681,161 @@
                 <p class="story-ending" data-narrate>The End</p>
                 <button class="again-button" type="button" data-story-action="again">
                     Sing it again
+                    <span aria-hidden="true">↺</span>
+                </button>
+            </div>
+        </section>
+    </template>
+
+    <template id="book-pluto-template">
+        <section class="story-page cover-page pluto-cover is-current" data-page-label="Cover" aria-labelledby="pluto-cover-title">
+            <img class="page-art" src="./assets/book-pluto-labyrinth-cover.png" alt="Starbeard and Uni sail toward frozen Pluto while a golden maze glows among the stars.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy cover-copy pluto-cover-copy">
+                <p class="eyebrow" data-narrate>The Adventures of Starbeard and Uni · Book Three</p>
+                <h2 class="cover-title" id="pluto-cover-title" data-narrate>The Treasure of Pluto<br>and the Luminous Labyrinth</h2>
+                <p class="dek" data-narrate>Starbeard and his best friend Uni travel to frozen Pluto in search of diamonds and rubies. But beyond the treasure wait new friends, a doorway in space, and a golden maze filled with memories.</p>
+                <button class="begin-button" type="button" data-story-action="begin">
+                    Follow the starlight
+                    <span aria-hidden="true">→</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The asteroids" aria-labelledby="pluto-page-2-title">
+            <img class="page-art" src="./assets/pluto-asteroids.png" alt="Starbeard steers through an asteroid field while Uni bounces through the colorful starship bridge.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy pluto-story-copy story-copy-right">
+                <p class="page-kicker" data-narrate>Beyond the familiar planets</p>
+                <h2 id="pluto-page-2-title" data-narrate>Pluto was waiting beyond the asteroids.</h2>
+                <p data-narrate>Starbeard was not a pirate. He was the captain of a starship—and somewhere beneath Pluto’s frozen surface waited diamonds and rubies.</p>
+                <p data-narrate>Starbeard checked the coordinates. Uni checked the snack cabinet. Then she checked it again.</p>
+                <p class="story-sound" data-narrate>Engines ready. WHOOOOOOOM!</p>
+                <p data-narrate>Alarms cried BEEP! BEEP! BEEP! Starbeard dipped beneath one asteroid, twisted around another, and squeezed between two enormous boulders with barely a moonbeam to spare. Uni bounced around the bridge, her purple mane standing straight up.</p>
+                <p data-narrate>When they burst into clear space, they noticed the mysterious little animal clinging to Starbeard’s chair. “Oh! Right! You’re here too!”</p>
+                <p class="spoken-line" data-narrate>Five minutes later, they forgot again.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Pluto" aria-labelledby="pluto-page-3-title">
+            <img class="page-art" src="./assets/pluto-treasure.png" alt="Starbeard, Uni, and a robed Sensei discover a chest of diamonds and rubies beneath Pluto’s ice.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy pluto-story-copy story-copy-left">
+                <p class="planet-badge" data-narrate>Pluto</p>
+                <h2 id="pluto-page-3-title" data-narrate>Beneath the blue ice waited a treasure—and a teacher.</h2>
+                <p data-narrate>Their boots and hooves crunched across Pluto’s glittering blue ice. Ahead stood a robed stranger carrying a sword made of light.</p>
+                <p class="spoken-line" data-narrate>“I am the Sensei.”</p>
+                <p data-narrate>He taught Starbeard the ancient ways of the Space Samurai: how to stand, how to move, how to watch, and how to know when to fight—and when not to.</p>
+                <p data-narrate>When shadowy crystal creatures blocked the frozen caverns, Starbeard lowered his sword, listened to their warning hum, and found a peaceful path around them.</p>
+                <p data-narrate>Beyond a doorway buried in the ice sparkled thousands of diamonds and brilliant red rubies. They filled a treasure chest, but Starbeard already knew the finest part of the journey was exploring with his best friend.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The alien planet" aria-labelledby="pluto-page-4-title">
+            <img class="page-art" src="./assets/lumi-festival.png" alt="Starbeard and Uni dance with rainbow Lumi beside a river of starlight.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy pluto-story-copy story-copy-right">
+                <p class="planet-badge" data-narrate>The Festival of Light</p>
+                <h2 id="pluto-page-4-title" data-narrate>The strange signal was an invitation.</h2>
+                <p data-narrate>After Pluto, a strange signal led them to a planet that was not on any map. Blue plants glowed beside rivers of liquid starlight.</p>
+                <p class="story-sound" data-narrate>Something rustled. POP!</p>
+                <p data-narrate>A tiny rainbow creature appeared. Then another. Then twenty more. “Greetings! We are the Lumi!”</p>
+                <p data-narrate>That evening, thousands of Lumi gathered beneath ribbons of pink, blue, green, and gold. They sang. They danced. Uni danced particularly enthusiastically.</p>
+                <p data-narrate>Before the explorers left, a gentle Lumi elder gave them glowing crystals. “These will help guide you on journeys yet to come.”</p>
+                <p class="story-lesson" data-narrate>It was another treasure—but this one was a gift from friends.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The asteroid station" aria-labelledby="pluto-page-5-title">
+            <img class="page-art" src="./assets/zogo-station.png" alt="A cheerful green alien named Zogo welcomes Starbeard and Uni with a basket of blue fuel crystals.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy pluto-story-copy story-copy-left">
+                <p class="page-kicker" data-narrate>Dangerously low</p>
+                <h2 id="pluto-page-5-title" data-narrate>Their fuel was low, but Zogo had a plan.</h2>
+                <p data-narrate>The fuel gauge fell from half full… to quarter full… to dangerously low. Behind a giant asteroid, Uni spotted a tiny station belonging to a cheerful green alien named Zogo.</p>
+                <p class="spoken-line" data-narrate>“I can refuel your ship! But the special blue crystals are trapped among the asteroids.”</p>
+                <p data-narrate>Starbeard and Uni climbed into a little shuttle. Starbeard piloted between tumbling rocks while Uni’s magical horn revealed one hidden crystal after another.</p>
+                <p data-narrate>Back at the station, Zogo placed the crystals inside the engines.</p>
+                <p class="story-sound" data-narrate>WHOOOOOOOM! The whole ship glowed blue.</p>
+                <p data-narrate>“Full tank!” Zogo announced. He gave them one small humming crystal as a souvenir, and off they went again.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The cosmic café" aria-labelledby="pluto-page-6-title">
+            <img class="page-art" src="./assets/cosmic-cafe.png" alt="Starbeard, Uni, and their mysterious tiny companion sip sparkling drinks in a café among the stars.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy pluto-story-copy story-copy-right">
+                <p class="page-kicker" data-narrate>A sparkling rest stop</p>
+                <h2 id="pluto-page-6-title" data-narrate>Even great explorers need sparkling star juice.</h2>
+                <p data-narrate>Eventually, even great explorers need a break. And Uni was thirsty.</p>
+                <p data-narrate>Fortunately, floating nearby was a café in space. Inside were enormous windows, pink couches, blue chairs, purple lights, and drinks that sparkled.</p>
+                <p data-narrate>Starbeard and Uni sipped star juice and talked about Pluto, the Sensei, the Lumi, and Zogo.</p>
+                <p data-narrate>Then Starbeard frowned. “Didn’t someone else come with us?” Uni tilted her head. “Unicorn?”</p>
+                <p data-narrate>Beside their table, the mysterious little animal lowered its third straw and sighed. Starbeard finally looked down. “Oh! There you are!”</p>
+                <p class="spoken-line" data-narrate>Somehow, five minutes later, they forgot about it again.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The Celestial Isles" aria-labelledby="pluto-page-7-title">
+            <img class="page-art" src="./assets/celestial-isles.png" alt="Estrella guides Starbeard and Uni across a bridge of light toward floating celestial islands.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy pluto-story-copy story-copy-right">
+                <p class="planet-badge" data-narrate>The Celestial Isles</p>
+                <h2 id="pluto-page-7-title" data-narrate>A doorway in space opened onto islands of light.</h2>
+                <p data-narrate>After the café, the Lumi crystals joined their light into a map. It led to an enormous doorway floating in space.</p>
+                <p data-narrate>Beyond it were islands among clouds, glowing mushrooms, rivers of stardust, and bridges made entirely of light.</p>
+                <p data-narrate>A tall guardian named Estrella welcomed them. She guided Starbeard and Uni to an enormous glowing sphere called the Heart of the Isles.</p>
+                <p data-narrate>When Uni touched it, pictures appeared all around them: Pluto, the treasure, the Lumi, Zogo, and every adventure they had shared.</p>
+                <p data-narrate>Then the map glowed again. A new destination appeared:</p>
+                <p class="story-sound" data-narrate>THE LUMINOUS LABYRINTH.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The Luminous Labyrinth" aria-labelledby="pluto-page-8-title">
+            <img class="page-art" src="./assets/luminous-labyrinth.png" alt="Uni reveals a glowing path while Starbeard holds the star crystal at the center of a golden cosmic maze.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy pluto-story-copy story-copy-left">
+                <p class="planet-badge" data-narrate>The Luminous Labyrinth</p>
+                <h2 id="pluto-page-8-title" data-narrate>The maze remembered every step of their journey.</h2>
+                <p data-narrate>The labyrinth floated in space, its golden walls twisting through pink, purple, and blue stardust.</p>
+                <p data-narrate>Inside, left became right. Right became left. Doors appeared and disappeared. Plants changed color, and crystals hummed little songs.</p>
+                <p data-narrate>In a hall of mirrors, Starbeard and Uni saw memories instead of reflections: Pluto’s blue ice, the Lumi festival, Zogo’s smile, and Estrella’s shining bridge.</p>
+                <p data-narrate>Then Uni dipped one hoof into a pool of stardust.</p>
+                <p class="story-sound" data-narrate>PLOOP. Golden symbols revealed the correct path.</p>
+                <p data-narrate>At the maze’s center, a star-shaped crystal settled gently into Starbeard’s hands, and the entire labyrinth shone brighter. They had completed the maze. Now it was time to go home.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Home base" aria-labelledby="pluto-page-9-title">
+            <img class="page-art" src="./assets/home-base-treasures.png" alt="Starbeard and a yawning Uni cuddle by the fire among the glowing treasures from their journey.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy pluto-story-copy story-copy-left">
+                <p class="page-kicker" data-narrate>Home base</p>
+                <h2 id="pluto-page-9-title" data-narrate>The finest treasure was a warm place to share it.</h2>
+                <p data-narrate>At home, Starbeard unpacked the diamonds of Pluto, the red rubies, the color-changing Lumi crystals, Zogo’s humming fuel crystal, and the star crystal from the labyrinth.</p>
+                <p data-narrate>Uni gave a gigantic unicorn yawn. Soon they were wrapped in a thick stitched blanket beside the fireplace, with hot cocoa and marshmallows nearby.</p>
+                <p data-narrate>Their treasures glowed softly around them—blue, red, rainbow, and gold.</p>
+                <p data-narrate>Nearby, the mysterious little animal was already asleep on a cushion. “Oh,” Starbeard whispered. “There you are.” Then he forgot again.</p>
+                <p class="story-sound" data-narrate>Pop. Crackle. Pop.</p>
+                <p data-narrate>Starbeard and Uni closed their eyes.</p>
+            </div>
+        </section>
+
+        <section class="story-page ending-page" data-page-label="The shared dream" aria-labelledby="pluto-page-10-title">
+            <img class="page-art" src="./assets/shared-dream.png" alt="Starbeard and Uni dream of a cosmic elder offering them two tiny stars beside a stardust castle.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy pluto-story-copy ending-copy story-copy-left">
+                <p class="page-kicker" data-narrate>The shared dream</p>
+                <h2 id="pluto-page-10-title" data-narrate>There would always be more stars tomorrow.</h2>
+                <p data-narrate>That night, Starbeard and Uni dreamed the same dream. They floated along a river of starlight to a castle built from stardust.</p>
+                <p data-narrate>An ancient cosmic elder with galaxies in his eyes showed them moving pictures of their adventures. “You have collected many treasures,” he said. “But these are treasures too.”</p>
+                <p class="story-lesson" data-narrate>Their memories. Their friends. And each other.</p>
+                <p data-narrate>The elder gave them one tiny star each for their next journey. Then the dream softened, and they drifted home again. Beside the fireplace, the labyrinth crystal gave one quiet pulse.</p>
+                <p class="story-sound" data-narrate>Glow.</p>
+                <p data-narrate>Outside, shooting stars crossed the sky as the universe whispered, “Good night, Starbeard. Good night, Uni. Sleep well, little explorers.”</p>
+                <p class="story-ending" data-narrate>The end… for tonight.</p>
+                <button class="again-button" type="button" data-story-action="again">
+                    Dream it again
                     <span aria-hidden="true">↺</span>
                 </button>
             </div>

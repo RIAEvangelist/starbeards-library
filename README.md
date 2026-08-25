@@ -14,6 +14,7 @@ Only completed books are added to the library. Each finished book belongs to one
 ### The Adventures of Starbeard and Uni
 
 - **Book One — The Song of the Moonlit Blossom Planet:** the complete twenty-one-page tale of a missing note, a singing forest, and the friendship hidden inside every true treasure.
+- **Book Three — The Treasure of Pluto and the Luminous Labyrinth:** a ten-spread journey through frozen treasure caverns, the Festival of Light, the Celestial Isles, and a maze made from memories.
 
 ### Other Stories
 

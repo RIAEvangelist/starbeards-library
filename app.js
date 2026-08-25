@@ -19,6 +19,12 @@ const BOOKS = Object.freeze(
                 title: 'The Song of the Moonlit Blossom Planet',
                 templateId: 'book-moonlit-template'
             }
+        ),
+        pluto: Object.freeze(
+            {
+                title: 'The Treasure of Pluto and the Luminous Labyrinth',
+                templateId: 'book-pluto-template'
+            }
         )
     }
 );
