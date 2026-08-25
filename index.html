@@ -22,6 +22,12 @@
                     <p class="library-kicker">The little library between stars</p>
                     <h1>Juliet’s<br>Grand Adventures</h1>
                     <p class="library-intro">Choose a shelf, choose a book, cuddle in, and turn the galaxy one illustrated page at a time.</p>
+                    <div class="library-music-slot" id="library-music-slot">
+                        <button class="music-button" id="music-button" type="button" aria-label="Play background music" aria-pressed="false" aria-busy="false" aria-describedby="music-status">
+                            <span class="music-button-icon" id="music-button-icon" aria-hidden="true">♪</span>
+                            <span class="music-button-label" id="music-button-label">Play music</span>
+                        </button>
+                    </div>
                 </div>
                 <div class="library-orbit" aria-hidden="true">
                     <span class="orbit-ring orbit-ring-one"></span>
@@ -196,6 +202,7 @@
                     <span id="read-button-label">Read this page</span>
                 </button>
                 <p class="visually-hidden" id="narration-status" aria-live="polite">Ready to read with Heart.</p>
+                <div class="reader-music-slot" id="reader-music-slot"></div>
             </div>
         </header>
 
@@ -214,6 +221,9 @@
             </button>
         </nav>
     </main>
+
+    <audio id="background-music" src="./assets/the-little-library-between-stars.mp3" loop preload="metadata" hidden></audio>
+    <p class="visually-hidden" id="music-status" aria-live="polite">Background music is paused.</p>
 
     <template id="book-planets-template">
         <section class="story-page cover-page is-current" data-page-label="Cover" aria-labelledby="planets-cover-title">

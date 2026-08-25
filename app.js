@@ -45,6 +45,13 @@ const libraryButton = document.querySelector('#library-button');
 const readerBrandButton = document.querySelector('#reader-brand-button');
 const readButton = document.querySelector('#read-button');
 const readButtonLabel = document.querySelector('#read-button-label');
+const musicButton = document.querySelector('#music-button');
+const musicButtonIcon = document.querySelector('#music-button-icon');
+const musicButtonLabel = document.querySelector('#music-button-label');
+const musicStatus = document.querySelector('#music-status');
+const backgroundMusic = document.querySelector('#background-music');
+const libraryMusicSlot = document.querySelector('#library-music-slot');
+const readerMusicSlot = document.querySelector('#reader-music-slot');
 const voiceControl = document.querySelector('#voice-control');
 const voiceSelect = document.querySelector('#voice-select');
 const narrationStatus = document.querySelector('#narration-status');
@@ -69,6 +76,7 @@ const browserNarrationSupported = 'speechSynthesis' in window
     && 'SpeechSynthesisUtterance' in window;
 const narrationSupported = kokoroNarrationSupported
     || browserNarrationSupported;
+const BACKGROUND_MUSIC_VOLUME = 0.08;
 const VOICE_STORAGE_KEY = 'juju-grand-adventures.kokoro-voice';
 const SPEECH_REQUEST_TIMEOUT_MS = 10 * 60 * 1000;
 
@@ -88,6 +96,58 @@ let lastOpenButton = null;
 let activeCopyDrag = null;
 
 const speechRequests = new Map();
+
+function moveMusicButton(targetSlot) {
+    if (musicButton.parentElement !== targetSlot) {
+        targetSlot.append(musicButton);
+    }
+}
+
+function updateMusicButton() {
+    const isPlaying = !backgroundMusic.paused;
+
+    musicButton.setAttribute(
+        'aria-label',
+        isPlaying ? 'Pause background music' : 'Play background music'
+    );
+    musicButton.setAttribute('aria-pressed', isPlaying ? 'true' : 'false');
+    musicButtonLabel.textContent = isPlaying ? 'Pause music' : 'Play music';
+    musicButtonIcon.textContent = isPlaying ? '❚❚' : '♪';
+}
+
+function handleBackgroundMusicPlay() {
+    musicButton.setAttribute('aria-busy', 'false');
+    updateMusicButton();
+    musicStatus.textContent = 'Background music is playing softly.';
+}
+
+function handleBackgroundMusicPause() {
+    musicButton.setAttribute('aria-busy', 'false');
+    updateMusicButton();
+    musicStatus.textContent = 'Background music is paused.';
+}
+
+function handleBackgroundMusicError() {
+    musicButton.setAttribute('aria-busy', 'false');
+    updateMusicButton();
+    musicStatus.textContent = 'Background music could not start. Please try again.';
+}
+
+async function handleMusicButtonClick() {
+    if (!backgroundMusic.paused) {
+        backgroundMusic.pause();
+        return;
+    }
+
+    musicButton.setAttribute('aria-busy', 'true');
+    musicStatus.textContent = 'Starting background music.';
+
+    try {
+        await backgroundMusic.play();
+    } catch (error) {
+        handleBackgroundMusicError();
+    }
+}
 
 function createProgressDots() {
     const fragment = document.createDocumentFragment();
@@ -926,6 +986,7 @@ function openBookById(bookId, sourceButton) {
         return;
     }
 
+    moveMusicButton(readerMusicSlot);
     stopNarration();
     lastOpenButton = sourceButton || lastOpenButton;
     currentBookId = bookId;
@@ -957,6 +1018,7 @@ function returnToLibrary() {
 
     stopNarration();
     cancelCopyDrag();
+    moveMusicButton(libraryMusicSlot);
     readerView.hidden = true;
     libraryView.hidden = false;
     pageBody.classList.remove('is-reading');
@@ -1181,6 +1243,7 @@ function ignoreAudioCloseError() {
 function handlePageHide() {
     stopNarration();
     destroySpeechWorker('The story page closed.');
+    backgroundMusic.pause();
 
     if (audioContext) {
         audioContext.close().catch(ignoreAudioCloseError);
@@ -1200,6 +1263,14 @@ function handleResize() {
 for (let index = 0; index < openBookButtons.length; index += 1) {
     openBookButtons[index].addEventListener('click', handleOpenBookClick);
 }
+
+backgroundMusic.volume = BACKGROUND_MUSIC_VOLUME;
+musicButton.addEventListener('click', handleMusicButtonClick);
+backgroundMusic.addEventListener('play', handleBackgroundMusicPlay);
+backgroundMusic.addEventListener('pause', handleBackgroundMusicPause);
+backgroundMusic.addEventListener('ended', handleBackgroundMusicPause);
+backgroundMusic.addEventListener('error', handleBackgroundMusicError);
+updateMusicButton();
 
 if (!narrationSupported) {
     readButton.hidden = true;
