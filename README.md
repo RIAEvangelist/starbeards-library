@@ -10,6 +10,7 @@ Only completed books are added to the library. Each finished book belongs to one
 
 - **The Three Little Planets:** an eight-spread journey guided by the magical map hidden in Starbeard’s beard.
 - **Starbeard and the Doughnut Planet Map:** an eight-spread rescue guided by the golden map hidden in Juliet’s marmalade, with Starbeard becoming more space-pirate-like along the way.
+- **Starbeard and the Starwater:** an eight-spread treasure hunt about preparing carefully, digging patiently, sharing clear cosmic water, and carrying kindness home.
 
 ### The Adventures of Starbeard and Uni
 
@@ -18,7 +19,7 @@ Only completed books are added to the library. Each finished book belongs to one
 
 ### Other Stories
 
-- **Starbeard and the Starwater:** an eight-spread treasure hunt about preparing carefully, digging patiently, sharing clear cosmic water, and carrying kindness home.
+Completed stories outside the two adventure collections will be added here.
 
 Each book opens in the same full-screen horizontal reader with touch swiping, keyboard navigation, page controls, and optional local Kokoro read-aloud. The voice menu beside **Read this page** offers American and British voices and remembers the selected voice in that browser.
 
