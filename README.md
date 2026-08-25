@@ -4,7 +4,7 @@ A build-free illustrated library starring Juliet, Uni, and Starbeard.
 
 ## Library sections
 
-Only completed books are added to the library. Each finished book belongs to one of three sections.
+Only completed books are added to the library. Each finished book belongs to one of three sections and gives every story page its own relevant illustration; page art is not reused within a book.
 
 ### Juliet’s Grand Adventures
 
@@ -13,7 +13,7 @@ Only completed books are added to the library. Each finished book belongs to one
 
 ### The Adventures of Starbeard and Uni
 
-- **Book One — The Song of the Moonlit Blossom Planet:** the complete twenty-one-page tale of a missing note, a singing forest, and the friendship hidden inside every true treasure.
+- **Book One — The Song of the Moonlit Blossom Planet:** a complete twenty-one-page, individually illustrated tale of a missing note, a singing forest, and the friendship hidden inside every true treasure.
 - **Book Three — The Treasure of Pluto and the Luminous Labyrinth:** a ten-spread journey through frozen treasure caverns, the Festival of Light, the Celestial Isles, and a maze made from memories.
 
 ### Other Stories
