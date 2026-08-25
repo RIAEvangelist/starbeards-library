@@ -25,6 +25,12 @@ const BOOKS = Object.freeze(
                 title: 'The Treasure of Pluto and the Luminous Labyrinth',
                 templateId: 'book-pluto-template'
             }
+        ),
+        starwater: Object.freeze(
+            {
+                title: 'Starbeard and the Starwater',
+                templateId: 'book-starwater-template'
+            }
         )
     }
 );

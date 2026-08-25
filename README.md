@@ -18,7 +18,7 @@ Only completed books are added to the library. Each finished book belongs to one
 
 ### Other Stories
 
-Completed stories outside the two adventure collections will be added here.
+- **Starbeard and the Starwater:** an eight-spread treasure hunt about preparing carefully, digging patiently, sharing clear cosmic water, and carrying kindness home.
 
 Each book opens in the same full-screen horizontal reader with touch swiping, keyboard navigation, page controls, and optional local Kokoro read-aloud. The voice menu beside **Read this page** offers American and British voices and remembers the selected voice in that browser.
 

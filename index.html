@@ -129,15 +129,29 @@
                 <section class="bookshelf library-collection library-collection-other" aria-labelledby="other-stories-title">
                     <div class="shelf-heading">
                         <div>
-                            <p class="shelf-kicker">Collection three</p>
+                            <p class="shelf-kicker">Collection three · 1 book</p>
                             <h2 id="other-stories-title">Other Stories</h2>
                         </div>
                         <p class="shelf-hint">Finished stories beyond the two adventure collections will live here.</p>
                     </div>
 
-                    <div class="shelf-empty" role="note">
-                        <span class="shelf-empty-star" aria-hidden="true">✦</span>
-                        <p><strong>This shelf is waiting for its first finished story.</strong> When another tale is complete, its book will appear here.</p>
+                    <div class="book-grid">
+                        <article class="book-card book-card-starwater">
+                            <button class="book-jacket" type="button" data-open-book="starwater" aria-label="Open Starbeard and the Starwater">
+                                <img src="./assets/book-starwater-cover.png" alt="Starbeard, Juliet, and Uni discover a glowing crystal bottle beneath the moon-sand.">
+                                <span class="book-jacket-shade" aria-hidden="true"></span>
+                                <span class="book-volume">A gentle space-pirate tale</span>
+                                <span class="book-open-prompt">Open book <span aria-hidden="true">→</span></span>
+                            </button>
+                            <div class="book-details">
+                                <div>
+                                    <p class="book-tag book-tag-new">Other Stories · 8 spreads</p>
+                                    <h3>Starbeard and the Starwater</h3>
+                                    <p>A patient treasure hunt uncovers a bottle of gentle light and a reminder that the finest treasures help us feel our best.</p>
+                                </div>
+                                <button class="shelf-read-button" type="button" data-open-book="starwater">Read this book</button>
+                            </div>
+                        </article>
                     </div>
                     <div class="shelf-plank" aria-hidden="true"></div>
                 </section>
@@ -836,6 +850,112 @@
                 <p class="story-ending" data-narrate>The end… for tonight.</p>
                 <button class="again-button" type="button" data-story-action="again">
                     Dream it again
+                    <span aria-hidden="true">↺</span>
+                </button>
+            </div>
+        </section>
+    </template>
+
+    <template id="book-starwater-template">
+        <section class="story-page cover-page is-current" data-page-label="Cover" aria-labelledby="starwater-cover-title">
+            <img class="page-art" src="./assets/book-starwater-cover.png" alt="Starbeard, Juliet, and Uni discover a glowing crystal bottle beneath the moon-sand.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy cover-copy">
+                <p class="eyebrow" data-narrate>A gentle space-pirate adventure</p>
+                <h2 class="cover-title" id="starwater-cover-title" data-narrate>Starbeard and the<br>Starwater</h2>
+                <p class="dek" data-narrate>A buried bottle of gentle light teaches Juliet, Uni, and Starbeard that the finest treasures help every adventurer feel their best.</p>
+                <button class="begin-button" type="button" data-story-action="begin">
+                    Dig into the adventure
+                    <span aria-hidden="true">→</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Treasure Rule No. 1" aria-labelledby="starwater-page-2-title">
+            <img class="page-art" src="./assets/starwater-tool-search.png" alt="Starbeard, Juliet, and Uni search near a singing cactus and a sleepy space crab for a digging tool.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy story-copy-right">
+                <p class="page-kicker" data-narrate>Prepare before you plunder</p>
+                <h2 id="starwater-page-2-title" data-narrate>Every treasure hunt needs a tool.</h2>
+                <p data-narrate>“Arrr, little treasure hunter,” said Starbeard, pointing his silver spyglass toward a glittering patch of moon-sand. “Ye can’t claim the treasure with empty hands!”</p>
+                <p data-narrate>Juliet checked the path while Uni stamped one shiny hoof and gave a tiny sparkle-snort. They needed a trusty shovel, scoop, or space-spade before anyone could dig.</p>
+                <p class="spoken-line" data-narrate>“First we prepare,” Starbeard said. “Then we plunder!”</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Search high and low" aria-labelledby="starwater-page-3-title">
+            <img class="page-art" src="./assets/starwater-tool-found.png" alt="Uni finds a silver space-spade beneath a cluster of humming star-shells.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy story-copy-left">
+                <p class="page-kicker" data-narrate>Look closely</p>
+                <h2 id="starwater-page-3-title" data-narrate>They searched behind, beneath, and beside.</h2>
+                <p data-narrate>The crew looked behind a singing cactus, beneath a sleepy space crab, and beside old treasure stones where silver moss twinkled in the dark.</p>
+                <p data-narrate>Near a pile of star-shells that hummed a lullaby, Uni nudged something with her horn. Moon-sand slipped away from a sturdy silver space-spade.</p>
+                <p class="spoken-line" data-narrate>“Arrr!” cried Starbeard. “A perfect diggin’ tool!”</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Slow and steady" aria-labelledby="starwater-page-4-title">
+            <img class="page-art" src="./assets/starwater-patient-dig.png" alt="Juliet, Uni, and Starbeard dig one neat hole while their space-pack rests safely away from the sand.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy story-copy-right">
+                <p class="page-kicker" data-narrate>Gentle hands</p>
+                <h2 id="starwater-page-4-title" data-narrate>A good pirate digs with patience.</h2>
+                <p data-narrate>Together they dug gently in the sparkling sand. Not too fast. Not too messy. And definitely not tossing sand into anyone’s special space-pack.</p>
+                <p data-narrate>Juliet loosened the moon-sand, Uni brushed it aside, and Starbeard kept their little hole neat. Then the space-spade made a soft sound.</p>
+                <p class="spoken-line" data-narrate>Clink.</p>
+                <p class="story-lesson" data-narrate>Careful work can uncover wonderful things.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Mystery found" aria-labelledby="starwater-page-5-title">
+            <img class="page-art" src="./assets/starwater-bottle-reveal.png" alt="The three treasure hunters gaze at a crystal bottle of glowing water resting in the moon-sand.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy story-copy-left story-copy-compact">
+                <p class="page-kicker" data-narrate>What could it be?</p>
+                <h2 id="starwater-page-5-title" data-narrate>The treasure was not gold.</h2>
+                <p data-narrate>It was not jewels, and it was not even a cookie chest. Beneath the sand waited a crystal bottle filled with glowing water. Tiny lights swirled inside it like friendly galaxies.</p>
+                <p data-narrate>“Is it star beer?” Juliet asked. “Nay.” Uni tilted her head. “Star energy?” “Nay.” Juliet grinned. “Cyberpunk space soda?”</p>
+                <p class="spoken-line" data-narrate>Starbeard chuckled. “Nay—though that does sound flashy. This, me hearties, is starwater.”</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The secret of starwater" aria-labelledby="starwater-page-6-title">
+            <img class="page-art" src="./assets/starwater-questions.png" alt="Starbeard lifts the clear starwater toward the sky while Juliet and Uni watch its gentle galaxy lights.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy story-copy-right story-copy-compact">
+                <p class="page-kicker" data-narrate>Sip and shine</p>
+                <h2 id="starwater-page-6-title" data-narrate>No fizz. No tricks. Just starwater.</h2>
+                <p data-narrate>Starbeard held the bottle up to the sky. “Starwater is pure and refreshing,” he said. “It keeps a pirate’s heart bright, a unicorn’s mane shiny, and a sleepy crew ready for kind adventures.”</p>
+                <p data-narrate>It had no sugar, no fizz, no tricks, and no grumpy goblin bubbles—just clear cosmic goodness from the quiet wells between the stars.</p>
+                <p class="story-lesson" data-narrate>Water helps every adventurer feel their best.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="A sip of starlight" aria-labelledby="starwater-page-7-title">
+            <img class="page-art" src="./assets/starwater-shared-sip.png" alt="Starbeard, Juliet, and Uni share tiny cups of clear starwater beside their ship.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy story-copy-left">
+                <p class="page-kicker" data-narrate>Calm, brave, and cozy</p>
+                <h2 id="starwater-page-7-title" data-narrate>It tasted like moonlight, courage, and bedtime.</h2>
+                <p data-narrate>Starbeard poured three tiny sips. Uni drank first, very daintily, and her horn glowed softly. Juliet followed, smiling as the gentle light warmed her hands.</p>
+                <p data-narrate>Starbeard took the last sip and gave one long, happy sigh. The starwater made them feel calm, brave, and cozy all at once.</p>
+                <p class="spoken-line" data-narrate>“Aye,” he said. “Tastes like moonlight, courage, and bedtime.”</p>
+            </div>
+        </section>
+
+        <section class="story-page ending-page" data-page-label="The finest treasure" aria-labelledby="starwater-page-8-title">
+            <img class="page-art" src="./assets/starwater-homeward.png" alt="Starbeard stores the starwater safely aboard the ship as Juliet and Uni look across the peaceful moon-sand.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy ending-copy story-copy-right">
+                <p class="page-kicker" data-narrate>Carry kindness</p>
+                <h2 id="starwater-page-8-title" data-narrate>The best treasure helps you shine.</h2>
+                <p data-narrate>Starbeard tucked the bottle safely away. “Remember this, little pirates. The best treasures do not always shine like gold. Some help ye feel better, sail farther, and share kindness wherever ye go.”</p>
+                <p data-narrate>Juliet and Uni nodded. Then the crew climbed aboard their ship carrying no chest of coins, but something even better: a bottle of starwater.</p>
+                <p class="story-lesson" data-narrate>Pure, refreshing, and full of gentle light.</p>
+                <p class="spoken-line" data-narrate>Above them, the stars blinked goodnight as if they agreed.</p>
+                <button class="again-button" type="button" data-story-action="again">
+                    Find it again
                     <span aria-hidden="true">↺</span>
                 </button>
             </div>
