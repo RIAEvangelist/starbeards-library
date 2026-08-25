@@ -4,10 +4,12 @@ A dependency-free illustrated library starring Juliet, Uni, and Starbeard.
 
 ## Books on the shelf
 
-- **The Three Little Planets** — the original eight-spread voyage.
-- **Starbeard and the Doughnut Planet Map** — a new eight-spread journey through sprinkle storms and round worlds, with Starbeard becoming more space-pirate-like along the way.
+- **The Three Little Planets:** an eight-spread journey guided by the magical map hidden in Starbeard’s beard.
+- **Starbeard and the Doughnut Planet Map:** an eight-spread rescue guided by the golden map hidden in Juliet’s marmalade, with Starbeard becoming more space-pirate-like along the way.
 
 Each book opens in the same full-screen horizontal reader with touch swiping, keyboard navigation, page controls, and optional browser read-aloud.
+
+Every spread has a **Move words** handle. Drag it with a mouse or finger, or focus it and use the arrow keys. Hold Shift for larger keyboard steps, and press Home or **Reset** to restore the original position. **Shrink words** collapses the story panel into a small movable control so the full illustration can be explored; **Show words** restores the text.
 
 ## Serve locally
 

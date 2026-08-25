@@ -31,6 +31,13 @@ const chapterLabel = document.querySelector('#chapter-label');
 const statusText = document.querySelector('#page-status-text');
 const progressDots = document.querySelector('#progress-dots');
 const openBookButtons = document.querySelectorAll('[data-open-book]');
+const readerBar = document.querySelector('.reader-bar');
+const readerControls = document.querySelector('.reader-controls');
+
+const COPY_MOVE_STEP = 16;
+const COPY_MOVE_LARGE_STEP = 48;
+const COPY_EDGE_GAP = 12;
+const COPY_CONTROL_GAP = 8;
 
 const narrationSupported = 'speechSynthesis' in window
     && 'SpeechSynthesisUtterance' in window;
@@ -41,6 +48,7 @@ let currentPageIndex = 0;
 let scrollFrame = 0;
 let narrationActive = false;
 let lastOpenButton = null;
+let activeCopyDrag = null;
 
 function createProgressDots() {
     const fragment = document.createDocumentFragment();
@@ -60,6 +68,334 @@ function createProgressDots() {
     }
 
     progressDots.replaceChildren(fragment);
+}
+
+function getCopyOffset(copy, axis) {
+    const rawValue = axis === 'x'
+        ? copy.dataset.copyX
+        : copy.dataset.copyY;
+    const value = Number.parseFloat(rawValue || '0');
+
+    return Number.isFinite(value) ? value : 0;
+}
+
+function updateCopyPosition(copy, x, y) {
+    const hasMoved = Math.abs(x) > 0.5 || Math.abs(y) > 0.5;
+    const resetButton = copy.querySelector('.copy-reset-button');
+
+    copy.dataset.copyX = String(x);
+    copy.dataset.copyY = String(y);
+    copy.style.setProperty('--copy-drag-x', x + 'px');
+    copy.style.setProperty('--copy-drag-y', y + 'px');
+    copy.classList.toggle('is-moved', hasMoved);
+
+    if (resetButton) {
+        resetButton.hidden = !hasMoved;
+    }
+}
+
+function resetCopyPosition(copy) {
+    updateCopyPosition(copy, 0, 0);
+}
+
+function clampValue(value, minimum, maximum) {
+    if (minimum > maximum) {
+        return 0;
+    }
+
+    return Math.max(minimum, Math.min(value, maximum));
+}
+
+function getCopyMovementBounds(copy) {
+    const page = copy.closest('.story-page');
+    const pageBounds = page.getBoundingClientRect();
+    const copyBounds = copy.getBoundingClientRect();
+    const topBoundary = pageBounds.top
+        + readerBar.getBoundingClientRect().height
+        + COPY_CONTROL_GAP;
+    const bottomBoundary = pageBounds.bottom
+        - readerControls.getBoundingClientRect().height
+        - COPY_CONTROL_GAP;
+
+    return Object.freeze(
+        {
+            minimumX: pageBounds.left + COPY_EDGE_GAP - copyBounds.left,
+            maximumX: pageBounds.right - COPY_EDGE_GAP - copyBounds.right,
+            minimumY: topBoundary - copyBounds.top,
+            maximumY: bottomBoundary - copyBounds.bottom
+        }
+    );
+}
+
+function moveCopyBy(copy, deltaX, deltaY) {
+    const bounds = getCopyMovementBounds(copy);
+    const safeDeltaX = clampValue(
+        deltaX,
+        bounds.minimumX,
+        bounds.maximumX
+    );
+    const safeDeltaY = clampValue(
+        deltaY,
+        bounds.minimumY,
+        bounds.maximumY
+    );
+    const nextX = getCopyOffset(copy, 'x') + safeDeltaX;
+    const nextY = getCopyOffset(copy, 'y') + safeDeltaY;
+
+    updateCopyPosition(copy, nextX, nextY);
+}
+
+function handleCopyDragStart(event) {
+    if (event.pointerType === 'mouse' && event.button !== 0) {
+        return;
+    }
+
+    if (activeCopyDrag) {
+        return;
+    }
+
+    const handle = event.currentTarget;
+    const copy = handle.closest('.page-copy');
+
+    activeCopyDrag = Object.freeze(
+        {
+            pointerId: event.pointerId,
+            handle,
+            copy,
+            originClientX: event.clientX,
+            originClientY: event.clientY,
+            originCopyX: getCopyOffset(copy, 'x'),
+            originCopyY: getCopyOffset(copy, 'y'),
+            bounds: getCopyMovementBounds(copy)
+        }
+    );
+
+    if (typeof handle.setPointerCapture === 'function') {
+        handle.setPointerCapture(event.pointerId);
+    }
+
+    copy.classList.add('is-dragging');
+    pageBody.classList.add('is-moving-copy');
+    event.preventDefault();
+    event.stopPropagation();
+}
+
+function clearCopyDragState() {
+    if (!activeCopyDrag) {
+        return null;
+    }
+
+    const completedDrag = activeCopyDrag;
+
+    completedDrag.copy.classList.remove('is-dragging');
+    pageBody.classList.remove('is-moving-copy');
+    activeCopyDrag = null;
+
+    return completedDrag;
+}
+
+function handleCopyDragMove(event) {
+    if (!activeCopyDrag || event.pointerId !== activeCopyDrag.pointerId) {
+        return;
+    }
+
+    const deltaX = clampValue(
+        event.clientX - activeCopyDrag.originClientX,
+        activeCopyDrag.bounds.minimumX,
+        activeCopyDrag.bounds.maximumX
+    );
+    const deltaY = clampValue(
+        event.clientY - activeCopyDrag.originClientY,
+        activeCopyDrag.bounds.minimumY,
+        activeCopyDrag.bounds.maximumY
+    );
+
+    updateCopyPosition(
+        activeCopyDrag.copy,
+        activeCopyDrag.originCopyX + deltaX,
+        activeCopyDrag.originCopyY + deltaY
+    );
+    event.preventDefault();
+    event.stopPropagation();
+}
+
+function finishCopyDrag(event) {
+    if (!activeCopyDrag || event.pointerId !== activeCopyDrag.pointerId) {
+        return;
+    }
+
+    const completedDrag = clearCopyDragState();
+    const handle = completedDrag.handle;
+
+    if (
+        typeof handle.hasPointerCapture === 'function'
+        && handle.hasPointerCapture(event.pointerId)
+    ) {
+        handle.releasePointerCapture(event.pointerId);
+    }
+
+    event.preventDefault();
+    event.stopPropagation();
+}
+
+function handleCopyCaptureLost(event) {
+    if (!activeCopyDrag || event.pointerId !== activeCopyDrag.pointerId) {
+        return;
+    }
+
+    clearCopyDragState();
+}
+
+function cancelCopyDrag() {
+    const completedDrag = clearCopyDragState();
+
+    if (!completedDrag) {
+        return;
+    }
+
+    if (
+        typeof completedDrag.handle.hasPointerCapture === 'function'
+        && completedDrag.handle.hasPointerCapture(completedDrag.pointerId)
+    ) {
+        completedDrag.handle.releasePointerCapture(completedDrag.pointerId);
+    }
+}
+
+function handleCopyMoveKeydown(event) {
+    const copy = event.currentTarget.closest('.page-copy');
+    const movementStep = event.shiftKey
+        ? COPY_MOVE_LARGE_STEP
+        : COPY_MOVE_STEP;
+    let deltaX = 0;
+    let deltaY = 0;
+
+    if (event.key === 'Home') {
+        resetCopyPosition(copy);
+        event.preventDefault();
+        event.stopPropagation();
+        return;
+    }
+
+    if (event.key === 'ArrowLeft') {
+        deltaX = -movementStep;
+    } else if (event.key === 'ArrowRight') {
+        deltaX = movementStep;
+    } else if (event.key === 'ArrowUp') {
+        deltaY = -movementStep;
+    } else if (event.key === 'ArrowDown') {
+        deltaY = movementStep;
+    } else {
+        return;
+    }
+
+    moveCopyBy(copy, deltaX, deltaY);
+    event.preventDefault();
+    event.stopPropagation();
+}
+
+function handleCopyResetClick(event) {
+    const copy = event.currentTarget.closest('.page-copy');
+    const moveButton = copy.querySelector('.copy-drag-handle');
+
+    resetCopyPosition(copy);
+    moveButton.focus();
+    event.preventDefault();
+    event.stopPropagation();
+}
+
+function updateCopySizeButton(copy, isCollapsed) {
+    const sizeButton = copy.querySelector('.copy-size-button');
+
+    if (!sizeButton) {
+        return;
+    }
+
+    sizeButton.textContent = isCollapsed
+        ? 'Show words'
+        : 'Shrink words';
+    sizeButton.setAttribute('aria-expanded', String(!isCollapsed));
+    sizeButton.setAttribute(
+        'aria-label',
+        isCollapsed
+            ? 'Show all the words on this page'
+            : 'Shrink the words to a small control so more art is visible'
+    );
+}
+
+function handleCopySizeClick(event) {
+    const copy = event.currentTarget.closest('.page-copy');
+    const isCollapsed = !copy.classList.contains('is-collapsed');
+
+    copy.classList.toggle('is-collapsed', isCollapsed);
+    updateCopySizeButton(copy, isCollapsed);
+    moveCopyBy(copy, 0, 0);
+    event.preventDefault();
+    event.stopPropagation();
+}
+
+function createCopyMovementControls() {
+    const copies = storyTrack.querySelectorAll('.page-copy');
+
+    for (let index = 0; index < copies.length; index += 1) {
+        const tools = document.createElement('div');
+        const moveButton = document.createElement('button');
+        const grip = document.createElement('span');
+        const label = document.createElement('span');
+        const sizeButton = document.createElement('button');
+        const resetButton = document.createElement('button');
+
+        tools.className = 'copy-move-tools';
+        moveButton.className = 'copy-drag-handle';
+        moveButton.type = 'button';
+        moveButton.setAttribute(
+            'aria-label',
+            'Move the words on this page. Drag, use arrow keys, or press Home to reset.'
+        );
+        moveButton.title = 'Drag the words, or use the arrow keys. Hold Shift for larger steps.';
+        grip.className = 'copy-move-grip';
+        grip.setAttribute('aria-hidden', 'true');
+        grip.textContent = '✥';
+        label.className = 'copy-move-label';
+        label.textContent = 'Move words';
+        sizeButton.className = 'copy-size-button';
+        sizeButton.type = 'button';
+        sizeButton.textContent = 'Shrink words';
+        sizeButton.setAttribute('aria-expanded', 'true');
+        sizeButton.setAttribute(
+            'aria-label',
+            'Shrink the words to a small control so more art is visible'
+        );
+        resetButton.className = 'copy-reset-button';
+        resetButton.type = 'button';
+        resetButton.hidden = true;
+        resetButton.textContent = 'Reset';
+        resetButton.setAttribute(
+            'aria-label',
+            'Reset the words to their original position'
+        );
+
+        moveButton.append(grip, label);
+        tools.append(moveButton, sizeButton, resetButton);
+        copies[index].append(tools);
+        moveButton.addEventListener('pointerdown', handleCopyDragStart);
+        moveButton.addEventListener('pointermove', handleCopyDragMove);
+        moveButton.addEventListener('pointerup', finishCopyDrag);
+        moveButton.addEventListener('pointercancel', finishCopyDrag);
+        moveButton.addEventListener('lostpointercapture', handleCopyCaptureLost);
+        moveButton.addEventListener('keydown', handleCopyMoveKeydown);
+        sizeButton.addEventListener('click', handleCopySizeClick);
+        resetButton.addEventListener('click', handleCopyResetClick);
+    }
+}
+
+function keepCopyPositionsVisible() {
+    for (let index = 0; index < pages.length; index += 1) {
+        const copy = pages[index].querySelector('.page-copy');
+
+        if (copy) {
+            moveCopyBy(copy, 0, 0);
+        }
+    }
 }
 
 function updateNarrationButton(isReading) {
@@ -164,6 +500,7 @@ function openBookById(bookId, sourceButton) {
     currentPageIndex = 0;
     storyTrack.replaceChildren(template.content.cloneNode(true));
     pages = Array.from(storyTrack.querySelectorAll('.story-page'));
+    createCopyMovementControls();
     createProgressDots();
     chapterLabel.textContent = book.title;
     readerView.dataset.book = bookId;
@@ -171,7 +508,7 @@ function openBookById(bookId, sourceButton) {
     libraryView.hidden = true;
     readerView.hidden = false;
     pageBody.classList.add('is-reading');
-    document.title = book.title + ' — Juliet’s Grand Adventures';
+    document.title = book.title + ' | Juliet’s Grand Adventures';
     window.requestAnimationFrame(finishOpeningBook);
 }
 
@@ -187,6 +524,7 @@ function returnToLibrary() {
     }
 
     stopNarration();
+    cancelCopyDrag();
     readerView.hidden = true;
     libraryView.hidden = false;
     pageBody.classList.remove('is-reading');
@@ -346,6 +684,7 @@ function handleResize() {
         return;
     }
 
+    keepCopyPositionsVisible();
     storyTrack.scrollLeft = storyTrack.clientWidth * currentPageIndex;
 }
 

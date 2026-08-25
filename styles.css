@@ -44,6 +44,11 @@ body.is-reading {
     overflow: hidden;
 }
 
+body.is-moving-copy {
+    cursor: grabbing;
+    user-select: none;
+}
+
 button {
     color: inherit;
     font: inherit;
@@ -701,28 +706,8 @@ a:focus-visible {
     transform: scale(1);
 }
 
-.page-art-tumble-close {
-    object-position: 34% center;
-    transform: scale(1.18);
-}
-
-.page-art-naptune-close {
-    object-position: 42% 48%;
-    transform: scale(1.14);
-}
-
-.page-art-map-close {
-    object-position: 39% center;
-    transform: scale(1.12);
-}
-
 .page-art-doughnut-arrival {
     object-position: 52% center;
-}
-
-.page-art-rescue-close {
-    object-position: 47% center;
-    transform: scale(1.12);
 }
 
 .art-shade {
@@ -747,6 +732,8 @@ a:focus-visible {
 }
 
 .page-copy {
+    --copy-drag-x: 0px;
+    --copy-drag-y: 0px;
     position: absolute;
     z-index: 2;
     color: var(--ink);
@@ -757,7 +744,11 @@ a:focus-visible {
     top: 50%;
     left: clamp(1.4rem, 7vw, 8rem);
     width: min(48rem, 55vw);
-    transform: translateY(-48%);
+    padding-top: 2.2rem;
+    transform: translate(
+        var(--copy-drag-x),
+        calc(-48% + var(--copy-drag-y))
+    );
 }
 
 .eyebrow {
@@ -819,7 +810,10 @@ a:focus-visible {
     background: linear-gradient(145deg, rgba(8, 15, 42, 0.8), rgba(5, 10, 30, 0.58));
     box-shadow: 0 24px 65px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(10px);
-    transform: translateY(-48%);
+    transform: translate(
+        var(--copy-drag-x),
+        calc(-48% + var(--copy-drag-y))
+    );
 }
 
 .story-copy-left {
@@ -832,6 +826,105 @@ a:focus-visible {
 
 .story-copy-compact {
     width: min(34rem, 40vw);
+}
+
+.copy-move-tools {
+    position: absolute;
+    z-index: 4;
+    top: -1.15rem;
+    right: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.4rem;
+    max-width: calc(100% - 1.7rem);
+    text-shadow: none;
+    user-select: none;
+}
+
+.copy-drag-handle,
+.copy-size-button,
+.copy-reset-button {
+    min-height: 36px;
+    padding: 0.5rem 0.72rem;
+    border: 1px solid rgba(255, 232, 161, 0.44);
+    border-radius: 999px;
+    color: var(--ink);
+    background: rgba(6, 14, 43, 0.92);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.34);
+    backdrop-filter: blur(12px);
+    font-size: 0.68rem;
+    font-weight: 900;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease;
+}
+
+.copy-drag-handle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.38rem;
+    cursor: grab;
+    touch-action: none;
+}
+
+.copy-move-grip {
+    color: var(--gold-bright);
+    font-size: 0.96rem;
+    line-height: 0;
+}
+
+.copy-drag-handle:hover,
+.copy-drag-handle:focus-visible,
+.copy-size-button:hover,
+.copy-size-button:focus-visible,
+.copy-reset-button:hover,
+.copy-reset-button:focus-visible {
+    border-color: rgba(255, 232, 161, 0.82);
+    background: rgba(35, 45, 82, 0.96);
+    transform: translateY(-1px);
+}
+
+.copy-drag-handle:active,
+.page-copy.is-dragging .copy-drag-handle {
+    cursor: grabbing;
+    transform: translateY(0) scale(0.98);
+}
+
+.copy-size-button {
+    color: rgb(255, 232, 173);
+}
+
+.copy-reset-button {
+    color: rgb(191, 234, 220);
+}
+
+.page-copy.is-dragging {
+    z-index: 6;
+    will-change: transform;
+}
+
+.page-copy.is-collapsed {
+    width: max-content;
+    max-width: calc(100vw - 2rem);
+    min-height: 0;
+    padding: 0.45rem;
+    overflow: visible;
+    border-color: transparent;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+    text-shadow: none;
+}
+
+.page-copy.is-collapsed > :not(.copy-move-tools) {
+    display: none;
+}
+
+.page-copy.is-collapsed .copy-move-tools {
+    position: static;
+    max-width: none;
 }
 
 .story-copy h2 {
@@ -1063,12 +1156,15 @@ a:focus-visible {
         bottom: max(6.6rem, 13vh);
         left: 1rem;
         width: calc(100% - 2rem);
-        padding: 1.2rem;
+        padding: 3.7rem 1.2rem 1.2rem;
         border: 1px solid rgba(255, 255, 255, 0.15);
         border-radius: 22px;
         background: rgba(4, 9, 29, 0.69);
         backdrop-filter: blur(8px);
-        transform: none;
+        transform: translate(
+            var(--copy-drag-x),
+            var(--copy-drag-y)
+        );
     }
 
     .cover-title,
@@ -1088,9 +1184,17 @@ a:focus-visible {
         width: auto;
         max-height: 60vh;
         overflow-y: auto;
-        padding: 1.15rem;
+        padding: 3.7rem 1.15rem 1.15rem;
         border-radius: 20px;
-        transform: none;
+        transform: translate(
+            var(--copy-drag-x),
+            var(--copy-drag-y)
+        );
+    }
+
+    .copy-move-tools {
+        top: 0.65rem;
+        right: 0.65rem;
     }
 
     .story-copy h2 {
@@ -1107,12 +1211,6 @@ a:focus-visible {
         background: linear-gradient(0deg, rgba(3, 7, 25, 0.94), rgba(3, 7, 25, 0.35) 58%, transparent 88%);
     }
 
-    .page-art-map-close,
-    .page-art-rescue-close,
-    .page-art-tumble-close,
-    .page-art-naptune-close {
-        transform: scale(1.04);
-    }
 }
 
 @media (max-width: 520px) {
@@ -1197,6 +1295,10 @@ a:focus-visible {
         font-size: 0.56rem;
     }
 
+    .copy-move-label {
+        display: none;
+    }
+
     .cover-copy,
     .doughnut-cover-copy,
     .story-copy,
@@ -1258,7 +1360,7 @@ a:focus-visible {
     }
 
     .story-copy {
-        padding: 1rem 1.3rem;
+        padding: 3.2rem 1.3rem 1rem;
     }
 
     .story-copy h2 {
