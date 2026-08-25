@@ -4,6 +4,9 @@ import {
 
 const KOKORO_MODEL = 'onnx-community/Kokoro-82M-v1.0-ONNX';
 const DEFAULT_VOICE = 'af_heart';
+const MAX_CHUNK_COUNT = 96;
+const MAX_CHUNK_CHARACTERS = 320;
+const MAX_SEQUENCE_CHARACTERS = 100000;
 const SUPPORTED_VOICES = new Set(
     [
         'af_heart',
@@ -29,18 +32,21 @@ function describeError(error) {
     return String(error || 'Kokoro narration failed.');
 }
 
-function postStatus(text) {
+function postStatus(text, requestId = 0, current = 0, total = 0) {
     self.postMessage(
         {
+            current,
+            id: requestId,
             kind: 'status',
             text,
+            total,
             ready: synthesizer !== null,
             loading: kokoroLoadPromise !== null
         }
     );
 }
 
-async function ensureKokoro() {
+async function ensureKokoro(requestId) {
     if (synthesizer) {
         return synthesizer;
     }
@@ -56,7 +62,10 @@ async function ensureKokoro() {
             dtype: 'q8'
         }
     );
-    postStatus('Downloading the Kokoro voice model for local narration…');
+    postStatus(
+        'Downloading the Kokoro voice model for local narration…',
+        requestId
+    );
 
     try {
         synthesizer = await kokoroLoadPromise;
@@ -68,7 +77,8 @@ async function ensureKokoro() {
         postStatus(
             synthesizer
                 ? 'Kokoro is ready.'
-                : 'Kokoro could not be prepared.'
+                : 'Kokoro could not be prepared.',
+            requestId
         );
     }
 }
@@ -93,8 +103,45 @@ function copyTransferableSamples(sourceSamples) {
     return transferableSamples;
 }
 
-async function synthesizePage(payload) {
-    const text = String(payload.text || '').trim();
+function normalizeNarrationChunks(payload) {
+    const requestedChunks = payload.chunks;
+
+    if (!Array.isArray(requestedChunks) || requestedChunks.length === 0) {
+        throw new Error('No page chunks were supplied to Kokoro.');
+    }
+
+    if (requestedChunks.length > MAX_CHUNK_COUNT) {
+        throw new Error('This page has too many narration chunks.');
+    }
+
+    const chunks = [];
+    let totalCharacters = 0;
+
+    for (let index = 0; index < requestedChunks.length; index += 1) {
+        const text = String(requestedChunks[index] || '').trim();
+
+        if (!text) {
+            throw new Error('Kokoro received an empty narration chunk.');
+        }
+
+        if (text.length > MAX_CHUNK_CHARACTERS) {
+            throw new Error('A narration chunk is too long for Kokoro.');
+        }
+
+        totalCharacters += text.length;
+
+        if (totalCharacters > MAX_SEQUENCE_CHARACTERS) {
+            throw new Error('This page is too long for local narration.');
+        }
+
+        chunks.push(text);
+    }
+
+    return chunks;
+}
+
+async function synthesizeSequence(payload, requestId) {
+    const chunks = normalizeNarrationChunks(payload);
     const requestedVoice = String(payload.voice || DEFAULT_VOICE);
     const voice = SUPPORTED_VOICES.has(requestedVoice)
         ? requestedVoice
@@ -103,27 +150,54 @@ async function synthesizePage(payload) {
     const speed = Number.isFinite(requestedSpeed)
         ? Math.max(0.5, Math.min(requestedSpeed, 2))
         : 0.95;
+    const kokoro = await ensureKokoro(requestId);
 
-    if (!text) {
-        throw new Error('No page text was supplied to Kokoro.');
+    for (let index = 0; index < chunks.length; index += 1) {
+        postStatus(
+            'Kokoro is preparing part '
+                + (index + 1)
+                + ' of '
+                + chunks.length
+                + '…',
+            requestId,
+            index + 1,
+            chunks.length
+        );
+
+        const audio = await kokoro.generate(
+            chunks[index],
+            {
+                voice,
+                speed
+            }
+        );
+        const samples = copyTransferableSamples(audio.audio);
+
+        if (
+            samples.length === 0
+            || !Number.isFinite(audio.sampling_rate)
+            || audio.sampling_rate <= 0
+        ) {
+            throw new Error('Kokoro generated invalid audio for this page.');
+        }
+
+        self.postMessage(
+            {
+                id: requestId,
+                index,
+                kind: 'chunk',
+                result: {
+                    samples,
+                    sampleRate: audio.sampling_rate
+                },
+                total: chunks.length
+            },
+            [samples.buffer]
+        );
     }
 
-    const kokoro = await ensureKokoro();
-
-    postStatus('Kokoro is preparing this page…');
-
-    const audio = await kokoro.generate(
-        text,
-        {
-            voice,
-            speed
-        }
-    );
-    const samples = copyTransferableSamples(audio.audio);
-
     return {
-        samples,
-        sampleRate: audio.sampling_rate
+        chunkCount: chunks.length
     };
 }
 
@@ -131,13 +205,16 @@ async function handleRequest(message) {
     if (
         !message
         || message.kind !== 'request'
-        || message.action !== 'synthesize'
+        || message.action !== 'synthesize-sequence'
     ) {
         return;
     }
 
     try {
-        const result = await synthesizePage(message.payload || {});
+        const result = await synthesizeSequence(
+            message.payload || {},
+            message.id
+        );
 
         self.postMessage(
             {
@@ -145,10 +222,9 @@ async function handleRequest(message) {
                 id: message.id,
                 ok: true,
                 result
-            },
-            [result.samples.buffer]
+            }
         );
-        postStatus('Kokoro is ready.');
+        postStatus('Kokoro is ready.', message.id);
     } catch (error) {
         self.postMessage(
             {

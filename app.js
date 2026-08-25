@@ -82,9 +82,18 @@ const browserNarrationSupported = 'speechSynthesis' in window
     && 'SpeechSynthesisUtterance' in window;
 const narrationSupported = kokoroNarrationSupported
     || browserNarrationSupported;
-const BACKGROUND_MUSIC_VOLUME = 0.02;
+const BACKGROUND_MUSIC_VOLUME = 0.005;
 const VOICE_STORAGE_KEY = 'juju-grand-adventures.kokoro-voice';
 const SPEECH_REQUEST_TIMEOUT_MS = 10 * 60 * 1000;
+const SPEECH_CHUNK_TIMEOUT_MS = 90 * 1000;
+const MIN_NARRATION_CHUNK_CHARACTERS = 80;
+const TARGET_NARRATION_CHUNK_CHARACTERS = 240;
+const MAX_NARRATION_CHUNK_CHARACTERS = 320;
+const MAX_NARRATION_CHUNKS = 96;
+const LINE_BREAK_PAUSE_MS = 120;
+const PASSAGE_BREAK_PAUSE_MS = 200;
+const AUDIO_SCHEDULE_LEAD_SECONDS = 0.025;
+const AUDIO_EDGE_FADE_SECONDS = 0.004;
 
 let pages = [];
 let currentBookId = '';
@@ -558,27 +567,100 @@ function destroySpeechWorker(message) {
     }
 }
 
-function handleSpeechWorkerMessage(event) {
-    const message = event.data || {};
+function hasStartedKokoroPlayback() {
+    return Boolean(
+        activeAudioPlayback
+        && activeAudioPlayback.scheduledCount > 0
+    );
+}
 
-    if (message.kind === 'status') {
-        if (narrationActive && message.loading) {
-            updateNarrationButton(true, 'Loading voice…', true);
-        } else if (narrationActive && message.ready) {
-            updateNarrationButton(true, 'Preparing page…', true);
-        }
+function handleSpeechRequestTimeout(requestId) {
+    const pendingRequest = speechRequests.get(requestId);
 
-        if (narrationActive && message.text) {
-            updateNarrationStatus(message.text);
-        }
-
+    if (!pendingRequest) {
         return;
     }
 
-    if (message.kind !== 'response') {
+    speechRequests.delete(requestId);
+    pendingRequest.reject(
+        new Error('Kokoro took too long to prepare this page.')
+    );
+    destroySpeechWorker('Kokoro narration timed out.');
+}
+
+function refreshSpeechRequestTimeout(
+    requestId,
+    timeoutMs = SPEECH_REQUEST_TIMEOUT_MS
+) {
+    const pendingRequest = speechRequests.get(requestId);
+
+    if (!pendingRequest) {
         return;
     }
 
+    window.clearTimeout(pendingRequest.timeoutId);
+    pendingRequest.timeoutId = window.setTimeout(
+        handleSpeechRequestTimeout,
+        timeoutMs,
+        requestId
+    );
+}
+
+function failSpeechRequest(requestId, pendingRequest, error) {
+    const requestError = error instanceof Error
+        ? error
+        : new Error(String(error || 'Kokoro narration failed.'));
+
+    speechRequests.delete(requestId);
+    window.clearTimeout(pendingRequest.timeoutId);
+    pendingRequest.reject(requestError);
+    destroySpeechWorker(requestError.message);
+}
+
+function handleSpeechWorkerChunk(message) {
+    const pendingRequest = speechRequests.get(message.id);
+
+    if (!pendingRequest) {
+        return;
+    }
+
+    const result = message.result || {};
+    const validChunk = Number.isInteger(message.index)
+        && message.index === pendingRequest.nextChunkIndex
+        && message.total === pendingRequest.total
+        && result.samples
+        && result.samples.length > 0
+        && Number.isFinite(result.sampleRate)
+        && result.sampleRate > 0;
+
+    if (!validChunk) {
+        failSpeechRequest(
+            message.id,
+            pendingRequest,
+            new Error('Kokoro returned an invalid narration chunk.')
+        );
+        return;
+    }
+
+    refreshSpeechRequestTimeout(
+        message.id,
+        SPEECH_CHUNK_TIMEOUT_MS
+    );
+    pendingRequest.nextChunkIndex += 1;
+
+    try {
+        pendingRequest.onChunk(
+            result,
+            message.index,
+            message.total,
+            pendingRequest.chunks[message.index].pauseMs
+        );
+    } catch (error) {
+        failSpeechRequest(message.id, pendingRequest, error);
+    }
+}
+
+function handleSpeechWorkerResponse(message) {
     const pendingRequest = speechRequests.get(message.id);
 
     if (!pendingRequest) {
@@ -591,16 +673,69 @@ function handleSpeechWorkerMessage(event) {
     if (
         message.ok
         && message.result
-        && message.result.samples
-        && Number.isFinite(message.result.sampleRate)
+        && message.result.chunkCount === pendingRequest.total
+        && pendingRequest.nextChunkIndex === pendingRequest.total
     ) {
         pendingRequest.resolve(message.result);
-    } else {
-        pendingRequest.reject(
-            new Error(
-                message.error || 'Kokoro returned an invalid audio response.'
-            )
-        );
+        return;
+    }
+
+    pendingRequest.reject(
+        new Error(
+            message.error || 'Kokoro returned an incomplete narration.'
+        )
+    );
+}
+
+function handleSpeechWorkerMessage(event) {
+    const message = event.data || {};
+
+    if (message.kind === 'status') {
+        if (message.id) {
+            refreshSpeechRequestTimeout(
+                message.id,
+                message.current > 0
+                    ? SPEECH_CHUNK_TIMEOUT_MS
+                    : SPEECH_REQUEST_TIMEOUT_MS
+            );
+        }
+
+        if (
+            narrationActive
+            && !hasStartedKokoroPlayback()
+            && message.loading
+        ) {
+            updateNarrationButton(true, 'Loading voice…', true);
+        } else if (
+            narrationActive
+            && !hasStartedKokoroPlayback()
+            && message.ready
+        ) {
+            const preparationLabel = message.current > 0
+                ? 'Preparing ' + message.current + ' of ' + message.total + '…'
+                : 'Preparing page…';
+
+            updateNarrationButton(true, preparationLabel, true);
+        }
+
+        if (
+            narrationActive
+            && !hasStartedKokoroPlayback()
+            && message.text
+        ) {
+            updateNarrationStatus(message.text);
+        }
+
+        return;
+    }
+
+    if (message.kind === 'chunk') {
+        handleSpeechWorkerChunk(message);
+        return;
+    }
+
+    if (message.kind === 'response') {
+        handleSpeechWorkerResponse(message);
     }
 }
 
@@ -636,54 +771,55 @@ function ensureSpeechWorker() {
     return speechWorker;
 }
 
-function requestKokoroSpeech(text, voice) {
+function requestKokoroChunks(chunks, voice, onChunk) {
     const worker = ensureSpeechWorker();
     const requestId = speechRequestId + 1;
+    const chunkTexts = [];
+
+    for (let index = 0; index < chunks.length; index += 1) {
+        chunkTexts.push(chunks[index].text);
+    }
 
     speechRequestId = requestId;
 
     return new Promise(
         function registerSpeechRequest(resolve, reject) {
-            function handleSpeechRequestTimeout() {
-                if (!speechRequests.has(requestId)) {
-                    return;
-                }
-
-                speechRequests.delete(requestId);
-                reject(new Error('Kokoro took too long to prepare this page.'));
-                destroySpeechWorker('Kokoro narration timed out.');
-            }
-
-            const timeoutId = window.setTimeout(
-                handleSpeechRequestTimeout,
-                SPEECH_REQUEST_TIMEOUT_MS
-            );
-
             speechRequests.set(
                 requestId,
                 {
+                    chunks,
+                    nextChunkIndex: 0,
+                    onChunk,
                     resolve,
                     reject,
-                    timeoutId
+                    timeoutId: 0,
+                    total: chunks.length
                 }
             );
+            refreshSpeechRequestTimeout(requestId);
 
             try {
                 worker.postMessage(
                     {
                         kind: 'request',
                         id: requestId,
-                        action: 'synthesize',
+                        action: 'synthesize-sequence',
                         payload: {
-                            text,
+                            chunks: chunkTexts,
                             voice,
                             speed: 0.95
                         }
                     }
                 );
             } catch (error) {
+                const pendingRequest = speechRequests.get(requestId);
+
                 speechRequests.delete(requestId);
-                window.clearTimeout(timeoutId);
+
+                if (pendingRequest) {
+                    window.clearTimeout(pendingRequest.timeoutId);
+                }
+
                 reject(error);
             }
         }
@@ -712,79 +848,191 @@ function stopAudioPlayback() {
     }
 
     const playback = activeAudioPlayback;
+    const scheduledSources = Array.from(playback.sources);
 
     activeAudioPlayback = null;
-    playback.source.removeEventListener('ended', playback.handleEnded);
 
-    try {
-        playback.source.stop();
-    } catch (error) {
-        // The source may already have reached its natural end.
+    for (let index = 0; index < scheduledSources.length; index += 1) {
+        const scheduledSource = scheduledSources[index];
+
+        scheduledSource.source.removeEventListener(
+            'ended',
+            scheduledSource.handleEnded
+        );
+
+        try {
+            scheduledSource.source.stop();
+        } catch (error) {
+            // A scheduled source may already have reached its natural end.
+        }
+
+        scheduledSource.source.disconnect();
+        scheduledSource.gain.disconnect();
     }
 
-    playback.source.disconnect();
-    playback.resolve();
+    playback.sources.clear();
+    settleAudioPlayback(
+        playback,
+        true
+    );
 }
 
-async function playKokoroAudio(samples, sampleRate, revision) {
-    const context = await ensureAudioContext();
+function createAudioPlayback(revision, total) {
+    let resolveCompletion = null;
+    const completion = new Promise(
+        function registerAudioPlaybackCompletion(resolve) {
+            resolveCompletion = resolve;
+        }
+    );
 
-    if (revision !== narrationRevision || !narrationActive) {
+    return {
+        completion,
+        nextStartTime: 0,
+        resolveCompletion,
+        revision,
+        scheduledCount: 0,
+        settled: false,
+        sources: new Set(),
+        total,
+        workerComplete: false
+    };
+}
+
+function settleAudioPlayback(playback, force = false) {
+    if (playback.settled) {
         return;
     }
 
-    const waveform = samples instanceof Float32Array
-        ? samples
-        : new Float32Array(samples);
-    const buffer = context.createBuffer(
+    const naturallyComplete = playback.workerComplete
+        && playback.scheduledCount === playback.total
+        && playback.sources.size === 0;
+
+    if (!force && !naturallyComplete) {
+        return;
+    }
+
+    playback.settled = true;
+
+    if (activeAudioPlayback === playback) {
+        activeAudioPlayback = null;
+    }
+
+    playback.resolveCompletion();
+}
+
+function finishScheduledAudioSource(playback, scheduledSource) {
+    if (!playback.sources.has(scheduledSource)) {
+        return;
+    }
+
+    scheduledSource.source.removeEventListener(
+        'ended',
+        scheduledSource.handleEnded
+    );
+    scheduledSource.source.disconnect();
+    scheduledSource.gain.disconnect();
+    playback.sources.delete(scheduledSource);
+    settleAudioPlayback(playback);
+}
+
+function scheduleKokoroAudioChunk(
+    result,
+    chunkIndex,
+    total,
+    pauseMs,
+    revision
+) {
+    const playback = activeAudioPlayback;
+
+    if (
+        !playback
+        || playback.revision !== revision
+        || revision !== narrationRevision
+        || !narrationActive
+    ) {
+        return;
+    }
+
+    if (
+        total !== playback.total
+        || chunkIndex !== playback.scheduledCount
+    ) {
+        throw new Error('Kokoro returned narration chunks out of order.');
+    }
+
+    const waveform = result.samples instanceof Float32Array
+        ? result.samples
+        : new Float32Array(result.samples);
+    const buffer = audioContext.createBuffer(
         1,
         waveform.length,
-        sampleRate
+        result.sampleRate
     );
-    const source = context.createBufferSource();
+    const source = audioContext.createBufferSource();
+    const gain = audioContext.createGain();
+    const startTime = Math.max(
+        playback.nextStartTime,
+        audioContext.currentTime + AUDIO_SCHEDULE_LEAD_SECONDS
+    );
+    const endTime = startTime + buffer.duration;
+    const fadeDuration = Math.min(
+        AUDIO_EDGE_FADE_SECONDS,
+        buffer.duration / 4
+    );
+    const fadeOutTime = Math.max(
+        startTime + fadeDuration,
+        endTime - fadeDuration
+    );
+    const scheduledSource = {
+        gain,
+        handleEnded: null,
+        source
+    };
 
+    function handleScheduledAudioEnd() {
+        finishScheduledAudioSource(playback, scheduledSource);
+    }
+
+    scheduledSource.handleEnded = handleScheduledAudioEnd;
     buffer.copyToChannel(waveform, 0);
     source.buffer = buffer;
-    source.connect(context.destination);
-
-    await new Promise(
-        function awaitPlayback(resolve, reject) {
-            function finishPlayback() {
-                if (
-                    activeAudioPlayback
-                    && activeAudioPlayback.source === source
-                ) {
-                    activeAudioPlayback = null;
-                }
-
-                source.disconnect();
-                resolve();
-            }
-
-            activeAudioPlayback = {
-                source,
-                handleEnded: finishPlayback,
-                resolve
-            };
-            source.addEventListener('ended', finishPlayback, { once: true });
-
-            try {
-                source.start();
-            } catch (error) {
-                source.removeEventListener('ended', finishPlayback);
-                source.disconnect();
-
-                if (
-                    activeAudioPlayback
-                    && activeAudioPlayback.source === source
-                ) {
-                    activeAudioPlayback = null;
-                }
-
-                reject(error);
-            }
+    source.connect(gain);
+    gain.connect(audioContext.destination);
+    gain.gain.setValueAtTime(0, startTime);
+    gain.gain.linearRampToValueAtTime(1, startTime + fadeDuration);
+    gain.gain.setValueAtTime(1, fadeOutTime);
+    gain.gain.linearRampToValueAtTime(0, endTime);
+    source.addEventListener(
+        'ended',
+        handleScheduledAudioEnd,
+        {
+            once: true
         }
     );
+    playback.sources.add(scheduledSource);
+
+    try {
+        source.start(startTime);
+    } catch (error) {
+        finishScheduledAudioSource(playback, scheduledSource);
+        throw error;
+    }
+
+    playback.scheduledCount += 1;
+    playback.nextStartTime = endTime + Math.max(0, pauseMs) / 1000;
+
+    if (playback.scheduledCount === 1) {
+        updateNarrationButton(true, 'Stop reading');
+        updateNarrationStatus(
+            getSelectedVoiceLabel()
+            + ' is reading while the next parts are prepared.'
+        );
+    }
+}
+
+function markAudioPlaybackWorkerComplete(playback) {
+    playback.workerComplete = true;
+    settleAudioPlayback(playback);
 }
 
 function handleNativeNarrationEnd() {
@@ -812,7 +1060,25 @@ function speakWithBrowserNarrator(text, revision) {
     window.speechSynthesis.speak(utterance);
 }
 
-async function beginKokoroNarration(text, voice, revision) {
+async function beginKokoroNarration(chunks, voice, revision) {
+    const narrationText = joinNarrationChunks(chunks);
+    let playback = null;
+
+    function handleSynthesizedChunk(
+        result,
+        chunkIndex,
+        total,
+        pauseMs
+    ) {
+        scheduleKokoroAudioChunk(
+            result,
+            chunkIndex,
+            total,
+            pauseMs,
+            revision
+        );
+    }
+
     try {
         await ensureAudioContext();
 
@@ -820,15 +1086,21 @@ async function beginKokoroNarration(text, voice, revision) {
             return;
         }
 
-        const result = await requestKokoroSpeech(text, voice);
+        playback = createAudioPlayback(revision, chunks.length);
+        activeAudioPlayback = playback;
+
+        await requestKokoroChunks(
+            chunks,
+            voice,
+            handleSynthesizedChunk
+        );
 
         if (revision !== narrationRevision || !narrationActive) {
             return;
         }
 
-        updateNarrationButton(true, 'Stop reading');
-        updateNarrationStatus(getSelectedVoiceLabel() + ' is reading this page.');
-        await playKokoroAudio(result.samples, result.sampleRate, revision);
+        markAudioPlaybackWorkerComplete(playback);
+        await playback.completion;
 
         if (revision === narrationRevision) {
             handleNarrationEnd();
@@ -838,19 +1110,28 @@ async function beginKokoroNarration(text, voice, revision) {
             return;
         }
 
+        const playbackStarted = Boolean(
+            playback
+            && playback.scheduledCount > 0
+        );
+
+        stopAudioPlayback();
         destroySpeechWorker('Kokoro narration failed.');
 
-        if (browserNarrationSupported) {
+        if (!playbackStarted && browserNarrationSupported) {
             updateNarrationStatus(
                 'Kokoro is unavailable, so this browser’s voice is reading instead.'
             );
-            speakWithBrowserNarrator(text, revision);
+            speakWithBrowserNarrator(narrationText, revision);
             return;
         }
 
+        narrationRevision += 1;
         updateNarrationButton(false);
         updateNarrationStatus(
-            'Read aloud could not start. Check the connection and try again.'
+            playbackStarted
+                ? 'Kokoro stopped before finishing this page. Please try again.'
+                : 'Read aloud could not start. Check the connection and try again.'
         );
     }
 }
@@ -1143,21 +1424,186 @@ function handleTrackScroll() {
     scrollFrame = window.requestAnimationFrame(syncPageFromScroll);
 }
 
-function collectNarration(page) {
+function findNarrationChunkBreak(text) {
+    const maximumBreakIndex = Math.min(
+        MAX_NARRATION_CHUNK_CHARACTERS,
+        text.length - 1
+    );
+    const searchIndex = maximumBreakIndex - 1;
+    const softBoundaries = [',', ';', ':', '—', '–'];
+    let breakIndex = -1;
+
+    for (let index = 0; index < softBoundaries.length; index += 1) {
+        const boundaryIndex = text.lastIndexOf(
+            softBoundaries[index],
+            searchIndex
+        );
+
+        if (boundaryIndex >= MIN_NARRATION_CHUNK_CHARACTERS) {
+            breakIndex = Math.max(breakIndex, boundaryIndex + 1);
+        }
+    }
+
+    if (breakIndex < MIN_NARRATION_CHUNK_CHARACTERS) {
+        breakIndex = text.lastIndexOf(' ', searchIndex);
+    }
+
+    return breakIndex >= MIN_NARRATION_CHUNK_CHARACTERS
+        ? breakIndex
+        : maximumBreakIndex;
+}
+
+function appendBoundedNarrationText(parts, text) {
+    let joinWithSpace = /^\s/.test(text);
+    let remainingText = text.trim();
+
+    while (remainingText.length > MAX_NARRATION_CHUNK_CHARACTERS) {
+        const breakIndex = findNarrationChunkBreak(remainingText);
+        const boundedText = remainingText.slice(0, breakIndex).trim();
+        const followingText = remainingText.slice(breakIndex);
+
+        if (boundedText) {
+            parts.push(
+                {
+                    joinWithSpace,
+                    text: boundedText
+                }
+            );
+        }
+
+        joinWithSpace = /^\s/.test(followingText);
+        remainingText = followingText.trim();
+    }
+
+    if (remainingText) {
+        parts.push(
+            {
+                joinWithSpace,
+                text: remainingText
+            }
+        );
+    }
+}
+
+function splitNarrationLine(line) {
+    const punctuationSegments = line.match(
+        /[^.!?…;:,—–]+(?:[.!?…;:,—–]+[”’"'»)\]]*|$)/g
+    ) || [line];
+    const boundedSegments = [];
+    const chunks = [];
+    let bufferedText = '';
+
+    for (let index = 0; index < punctuationSegments.length; index += 1) {
+        appendBoundedNarrationText(
+            boundedSegments,
+            punctuationSegments[index]
+        );
+    }
+
+    for (let index = 0; index < boundedSegments.length; index += 1) {
+        const segment = boundedSegments[index];
+        const separator = bufferedText && segment.joinWithSpace
+            ? ' '
+            : '';
+        const combinedLength = bufferedText
+            ? bufferedText.length + segment.text.length + separator.length
+            : segment.text.length;
+
+        if (
+            bufferedText
+            && (
+                combinedLength > MAX_NARRATION_CHUNK_CHARACTERS
+                || (
+                    bufferedText.length >= MIN_NARRATION_CHUNK_CHARACTERS
+                    && combinedLength > TARGET_NARRATION_CHUNK_CHARACTERS
+                )
+            )
+        ) {
+            chunks.push(bufferedText);
+            bufferedText = '';
+        }
+
+        bufferedText = bufferedText
+            ? bufferedText + separator + segment.text
+            : segment.text;
+
+        if (
+            bufferedText.length >= MIN_NARRATION_CHUNK_CHARACTERS
+            && /[.!?…;:,—–][”’"'»)\]]*$/.test(segment.text)
+        ) {
+            chunks.push(bufferedText);
+            bufferedText = '';
+        }
+    }
+
+    if (bufferedText) {
+        chunks.push(bufferedText);
+    }
+
+    return chunks;
+}
+
+function collectNarrationChunks(page) {
     const passages = page.querySelectorAll('[data-narrate]');
-    const narration = [];
+    const chunks = [];
 
     for (let index = 0; index < passages.length; index += 1) {
         const passage = passages[index].cloneNode(true);
         const lineBreaks = passage.querySelectorAll('br');
 
         for (let breakIndex = 0; breakIndex < lineBreaks.length; breakIndex += 1) {
-            lineBreaks[breakIndex].replaceWith(' ');
+            lineBreaks[breakIndex].replaceWith('\n');
         }
 
-        narration.push(
-            passage.textContent.replace(/\s+/g, ' ').trim()
-        );
+        const passageText = passage.textContent
+            .replace(/\r\n?/g, '\n')
+            .replace(/[^\S\n]+/g, ' ')
+            .replace(/ *\n+ */g, '\n')
+            .trim();
+        const lines = passageText.split(/\n+/);
+        const passageStartIndex = chunks.length;
+
+        for (let lineIndex = 0; lineIndex < lines.length; lineIndex += 1) {
+            const lineChunks = splitNarrationLine(lines[lineIndex].trim());
+            const lineStartIndex = chunks.length;
+
+            for (let chunkIndex = 0; chunkIndex < lineChunks.length; chunkIndex += 1) {
+                chunks.push(
+                    {
+                        text: lineChunks[chunkIndex],
+                        pauseMs: 0
+                    }
+                );
+            }
+
+            if (
+                chunks.length > lineStartIndex
+                && lineIndex < lines.length - 1
+            ) {
+                chunks[chunks.length - 1].pauseMs = LINE_BREAK_PAUSE_MS;
+            }
+        }
+
+        if (chunks.length > passageStartIndex) {
+            chunks[chunks.length - 1].pauseMs = Math.max(
+                chunks[chunks.length - 1].pauseMs,
+                PASSAGE_BREAK_PAUSE_MS
+            );
+        }
+    }
+
+    if (chunks.length > 0) {
+        chunks[chunks.length - 1].pauseMs = 0;
+    }
+
+    return chunks;
+}
+
+function joinNarrationChunks(chunks) {
+    const narration = [];
+
+    for (let index = 0; index < chunks.length; index += 1) {
+        narration.push(chunks[index].text);
     }
 
     return narration.join(' ');
@@ -1178,12 +1624,21 @@ function handleReadClick() {
         return;
     }
 
-    const pageNarration = collectNarration(pages[currentPageIndex]);
+    const narrationChunks = collectNarrationChunks(pages[currentPageIndex]);
+    const pageNarration = joinNarrationChunks(narrationChunks);
     const revision = narrationRevision + 1;
+
+    if (!pageNarration) {
+        updateNarrationStatus('This page has no text to read.');
+        return;
+    }
 
     narrationRevision = revision;
 
-    if (kokoroNarrationSupported) {
+    if (
+        kokoroNarrationSupported
+        && narrationChunks.length <= MAX_NARRATION_CHUNKS
+    ) {
         const selectedVoice = voiceSelect
             ? voiceSelect.value
             : 'af_heart';
@@ -1193,10 +1648,17 @@ function handleReadClick() {
             'Preparing ' + getSelectedVoiceLabel() + ' locally. The first use downloads the voice model.'
         );
         beginKokoroNarration(
-            pageNarration,
+            narrationChunks,
             selectedVoice,
             revision
         ).catch(handleUnexpectedNarrationFailure);
+        return;
+    }
+
+    if (!browserNarrationSupported) {
+        updateNarrationStatus(
+            'This page has too many sections for local read aloud.'
+        );
         return;
     }
 
@@ -1276,6 +1738,7 @@ backgroundMusic.addEventListener('play', handleBackgroundMusicPlay);
 backgroundMusic.addEventListener('pause', handleBackgroundMusicPause);
 backgroundMusic.addEventListener('ended', handleBackgroundMusicPause);
 backgroundMusic.addEventListener('error', handleBackgroundMusicError);
+backgroundMusic.play();
 updateMusicButton();
 
 if (!narrationSupported) {
