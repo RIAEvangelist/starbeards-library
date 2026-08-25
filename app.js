@@ -76,7 +76,7 @@ const browserNarrationSupported = 'speechSynthesis' in window
     && 'SpeechSynthesisUtterance' in window;
 const narrationSupported = kokoroNarrationSupported
     || browserNarrationSupported;
-const BACKGROUND_MUSIC_VOLUME = 0.08;
+const BACKGROUND_MUSIC_VOLUME = 0.02;
 const VOICE_STORAGE_KEY = 'juju-grand-adventures.kokoro-voice';
 const SPEECH_REQUEST_TIMEOUT_MS = 10 * 60 * 1000;
 
