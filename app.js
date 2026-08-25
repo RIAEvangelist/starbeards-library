@@ -13,6 +13,12 @@ const BOOKS = Object.freeze(
                 title: 'Starbeard and the Doughnut Planet Map',
                 templateId: 'book-doughnut-template'
             }
+        ),
+        moonlit: Object.freeze(
+            {
+                title: 'The Song of the Moonlit Blossom Planet',
+                templateId: 'book-moonlit-template'
+            }
         )
     }
 );
@@ -421,11 +427,29 @@ function updateReaderState(index) {
     }
 
     currentPageIndex = Math.max(0, Math.min(index, pages.length - 1));
+    const focusedPage = document.activeElement
+        ? document.activeElement.closest('.story-page')
+        : null;
+
+    if (focusedPage && focusedPage !== pages[currentPageIndex]) {
+        readerView.focus(
+            {
+                preventScroll: true
+            }
+        );
+    }
 
     for (let pageIndex = 0; pageIndex < pages.length; pageIndex += 1) {
+        const isCurrent = pageIndex === currentPageIndex;
+
         pages[pageIndex].classList.toggle(
             'is-current',
-            pageIndex === currentPageIndex
+            isCurrent
+        );
+        pages[pageIndex].toggleAttribute('inert', !isCurrent);
+        pages[pageIndex].setAttribute(
+            'aria-hidden',
+            isCurrent ? 'false' : 'true'
         );
     }
 
@@ -438,6 +462,17 @@ function updateReaderState(index) {
         dots[dotIndex].setAttribute(
             'aria-current',
             isCurrent ? 'page' : 'false'
+        );
+    }
+
+    const activeDot = dots[currentPageIndex];
+
+    if (activeDot) {
+        activeDot.scrollIntoView(
+            {
+                block: 'nearest',
+                inline: 'nearest'
+            }
         );
     }
 
@@ -648,7 +683,16 @@ function collectNarration(page) {
     const narration = [];
 
     for (let index = 0; index < passages.length; index += 1) {
-        narration.push(passages[index].textContent.trim());
+        const passage = passages[index].cloneNode(true);
+        const lineBreaks = passage.querySelectorAll('br');
+
+        for (let breakIndex = 0; breakIndex < lineBreaks.length; breakIndex += 1) {
+            lineBreaks[breakIndex].replaceWith(' ');
+        }
+
+        narration.push(
+            passage.textContent.replace(/\s+/g, ' ').trim()
+        );
     }
 
     return narration.join(' ');

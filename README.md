@@ -6,6 +6,7 @@ A dependency-free illustrated library starring Juliet, Uni, and Starbeard.
 
 - **The Three Little Planets:** an eight-spread journey guided by the magical map hidden in Starbeard’s beard.
 - **Starbeard and the Doughnut Planet Map:** an eight-spread rescue guided by the golden map hidden in Juliet’s marmalade, with Starbeard becoming more space-pirate-like along the way.
+- **The Adventures of Starbeard and Uni, Book One — The Song of the Moonlit Blossom Planet:** the complete twenty-one-page tale of a missing note, a singing forest, and the friendship hidden inside every true treasure.
 
 Each book opens in the same full-screen horizontal reader with touch swiping, keyboard navigation, page controls, and optional browser read-aloud.
 

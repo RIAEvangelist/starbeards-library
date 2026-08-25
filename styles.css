@@ -287,7 +287,7 @@ a:focus-visible {
 
 .book-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     align-items: start;
     gap: clamp(1rem, 2.5vw, 2.4rem);
 }
@@ -307,6 +307,10 @@ a:focus-visible {
 
 .book-card-doughnut {
     transform: rotate(0.55deg);
+}
+
+.book-card-moonlit {
+    transform: rotate(-0.25deg);
 }
 
 .book-jacket {
@@ -374,6 +378,10 @@ a:focus-visible {
 
 .book-card-doughnut .book-jacket img {
     object-position: 58% center;
+}
+
+.book-card-moonlit .book-jacket img {
+    object-position: 62% center;
 }
 
 .book-jacket:hover img,
@@ -710,6 +718,22 @@ a:focus-visible {
     object-position: 52% center;
 }
 
+.page-art-moonlit-compass-close {
+    object-position: 30% center;
+}
+
+.page-art-moonlit-meadow-close,
+.page-art-moonlit-forest-close,
+.page-art-moonlit-first-flower-close,
+.page-art-moonlit-home-close {
+    object-position: 74% center;
+}
+
+.page-art-moonlit-melodians-close,
+.page-art-moonlit-lullaby-close {
+    object-position: 28% center;
+}
+
 .art-shade {
     position: absolute;
     z-index: -3;
@@ -776,6 +800,15 @@ a:focus-visible {
     line-height: 0.88;
 }
 
+.moonlit-cover-copy {
+    width: min(58rem, 61vw);
+}
+
+.moonlit-cover-copy .cover-title {
+    font-size: clamp(2.35rem, 5.15vw, 5.75rem);
+    line-height: 0.9;
+}
+
 .dek {
     max-width: 50ch;
     margin: clamp(1rem, 2vw, 1.75rem) 0 0;
@@ -826,6 +859,19 @@ a:focus-visible {
 
 .story-copy-compact {
     width: min(34rem, 40vw);
+}
+
+.moonlit-story-copy {
+    width: min(43rem, 48vw);
+    max-height: 66vh;
+    overflow-y: auto;
+    padding-top: 3.6rem;
+    scrollbar-color: rgba(255, 226, 150, 0.7) rgba(8, 15, 42, 0.45);
+    scrollbar-width: thin;
+}
+
+.moonlit-story-copy .copy-move-tools {
+    top: 0.65rem;
 }
 
 .copy-move-tools {
@@ -982,6 +1028,40 @@ a:focus-visible {
     font-style: italic;
 }
 
+.moonlit-story-copy h2 {
+    font-size: clamp(1.7rem, 3vw, 3.35rem);
+    line-height: 1;
+}
+
+.moonlit-story-copy p:not(.page-kicker, .planet-badge, .pirate-badge) {
+    margin-top: 0.68rem;
+    font-size: clamp(0.84rem, 1.12vw, 1.02rem);
+    line-height: 1.42;
+}
+
+.moonlit-story-copy .spoken-line {
+    padding-top: 0.62rem;
+}
+
+.story-copy .story-sound {
+    color: rgb(255, 226, 150);
+    font-weight: 900;
+    letter-spacing: 0.035em;
+}
+
+.story-copy .story-lullaby {
+    color: rgb(222, 213, 255);
+    font-style: italic;
+}
+
+.story-copy p.story-ending {
+    color: var(--gold-bright);
+    font-size: 0.82em;
+    font-weight: 900;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
 .ending-copy {
     border-color: rgba(255, 219, 139, 0.32);
 }
@@ -1016,12 +1096,21 @@ a:focus-visible {
 
 .progress-dots {
     display: flex;
+    max-width: min(64vw, 34rem);
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 0.45rem;
+    overflow-x: auto;
+    padding: 0.25rem;
+    scrollbar-width: none;
+}
+
+.progress-dots::-webkit-scrollbar {
+    display: none;
 }
 
 .progress-dots button {
+    flex: 0 0 auto;
     width: 9px;
     height: 9px;
     padding: 0;
@@ -1069,6 +1158,10 @@ a:focus-visible {
         font-size: clamp(3.25rem, 9vw, 6.4rem);
     }
 
+    .book-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     .book-details {
         display: block;
         min-height: 210px;
@@ -1084,6 +1177,10 @@ a:focus-visible {
 
     .story-copy-compact {
         width: min(38rem, 49vw);
+    }
+
+    .moonlit-story-copy {
+        width: min(42rem, 53vw);
     }
 }
 
@@ -1126,7 +1223,8 @@ a:focus-visible {
     }
 
     .book-card-planets,
-    .book-card-doughnut {
+    .book-card-doughnut,
+    .book-card-moonlit {
         transform: none;
     }
 
@@ -1173,6 +1271,11 @@ a:focus-visible {
         line-height: 0.86;
     }
 
+    .moonlit-cover-copy .cover-title {
+        font-size: clamp(2.05rem, 9.6vw, 4.25rem);
+        line-height: 0.92;
+    }
+
     .story-copy,
     .story-copy-compact,
     .story-copy-left,
@@ -1204,6 +1307,15 @@ a:focus-visible {
     .story-copy p:not(.page-kicker, .planet-badge, .pirate-badge) {
         font-size: clamp(0.88rem, 3.6vw, 1.05rem);
         line-height: 1.42;
+    }
+
+    .moonlit-story-copy h2 {
+        font-size: clamp(1.65rem, 7.5vw, 3rem);
+    }
+
+    .moonlit-story-copy p:not(.page-kicker, .planet-badge, .pirate-badge) {
+        font-size: clamp(0.82rem, 3.3vw, 0.98rem);
+        line-height: 1.38;
     }
 
     .art-shade-left,
@@ -1245,6 +1357,10 @@ a:focus-visible {
 
     .book-jacket-title-long {
         font-size: clamp(1.15rem, 6.9vw, 2rem);
+    }
+
+    .book-card-moonlit .book-jacket-title-long {
+        font-size: clamp(1rem, 5.8vw, 1.75rem);
     }
 
     .book-details {
@@ -1316,6 +1432,10 @@ a:focus-visible {
         line-height: 1.38;
     }
 
+    .moonlit-cover-copy .cover-title {
+        font-size: clamp(1.8rem, 8.6vw, 3.5rem);
+    }
+
     .begin-button,
     .again-button {
         margin-top: 0.8rem;
@@ -1348,6 +1468,10 @@ a:focus-visible {
         font-size: clamp(2.4rem, 5.5vw, 4.7rem);
     }
 
+    .moonlit-cover-copy .cover-title {
+        font-size: clamp(2rem, 4.5vw, 3.85rem);
+    }
+
     .dek {
         margin-top: 0.7rem;
         font-size: 0.92rem;
@@ -1371,6 +1495,12 @@ a:focus-visible {
         margin-top: 0.6rem;
         font-size: 0.9rem;
         line-height: 1.35;
+    }
+
+    .moonlit-story-copy p:not(.page-kicker, .planet-badge, .pirate-badge) {
+        margin-top: 0.48rem;
+        font-size: 0.78rem;
+        line-height: 1.3;
     }
 }
 

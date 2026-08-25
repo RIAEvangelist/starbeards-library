@@ -35,7 +35,7 @@
                 <div class="shelf-heading">
                     <div>
                         <p class="shelf-kicker">On the shelf</p>
-                        <h2 id="bookshelf-title">Two voyages are ready</h2>
+                        <h2 id="bookshelf-title">Three voyages are ready</h2>
                     </div>
                     <p class="shelf-hint">Swipe the pages, move or shrink the words, or let the browser read aloud.</p>
                 </div>
@@ -74,6 +74,24 @@
                                 <p>A round clue, a storm of sprinkles, and a cozy explorer growing into a proper space-pirate captain.</p>
                             </div>
                             <button class="shelf-read-button" type="button" data-open-book="doughnut">Read this book</button>
+                        </div>
+                    </article>
+
+                    <article class="book-card book-card-moonlit">
+                        <button class="book-jacket" type="button" data-open-book="moonlit" aria-label="Open The Song of the Moonlit Blossom Planet">
+                            <img src="./assets/book-moonlit-blossom-cover.png" alt="Juliet, Uni, and Starbeard sail toward a luminous flower planet beneath three moons.">
+                            <span class="book-jacket-shade" aria-hidden="true"></span>
+                            <span class="book-volume">Starbeard &amp; Uni · Book one</span>
+                            <span class="book-jacket-title book-jacket-title-long">The Song of the<br>Moonlit Blossom Planet</span>
+                            <span class="book-open-prompt">Open book <span aria-hidden="true">→</span></span>
+                        </button>
+                        <div class="book-details">
+                            <div>
+                                <p class="book-tag book-tag-new">The Adventures of Starbeard and Uni · 21 pages</p>
+                                <h3>The Song of the Moonlit Blossom Planet</h3>
+                                <p>A missing note leads the crew through a singing forest to a treasure that can only be given.</p>
+                            </div>
+                            <button class="shelf-read-button" type="button" data-open-book="moonlit">Read this book</button>
                         </div>
                     </article>
                 </div>
@@ -326,6 +344,284 @@
                 <p class="spoken-line" data-narrate>“Good thing,” he said, “this crew packed plenty of toast.”</p>
                 <button class="again-button" type="button" data-story-action="again">
                     Sail it again
+                    <span aria-hidden="true">↺</span>
+                </button>
+            </div>
+        </section>
+    </template>
+
+    <template id="book-moonlit-template">
+        <section class="story-page cover-page moonlit-cover is-current" data-page-label="Cover" aria-labelledby="moonlit-cover-title">
+            <img class="page-art" src="./assets/book-moonlit-blossom-cover.png" alt="Juliet, Uni, and Starbeard sail toward a luminous purple flower planet beneath three moons.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy cover-copy moonlit-cover-copy">
+                <p class="eyebrow" data-narrate>The Adventures of Starbeard and Uni · Book One</p>
+                <h2 class="cover-title" id="moonlit-cover-title" data-narrate>The Song of the<br>Moonlit Blossom Planet</h2>
+                <p class="dek" data-narrate>Far, far away, beyond the Moon and beyond the planets, where the stars sparkle like tiny diamonds scattered across a great black sea, sailed a very unusual pirate ship.</p>
+                <button class="begin-button" type="button" data-story-action="begin">
+                    Follow the song
+                    <span aria-hidden="true">→</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The Cosmic Wanderer" aria-labelledby="moonlit-page-2-title">
+            <img class="page-art" src="./assets/moonlit-compass.png" alt="Inside the patchwork Cosmic Wanderer, Starbeard holds a glowing compass beside Juliet and Uni.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy story-copy-right">
+                <p class="page-kicker" data-narrate>Far beyond the Moon</p>
+                <h2 id="moonlit-page-2-title" data-narrate>It was a space pirate ship.</h2>
+                <p data-narrate>Its silver sails caught the light of distant stars. Its engines purred as softly as a sleeping kitten. And painted proudly upon its side were the words: The Cosmic Wanderer.</p>
+                <p data-narrate>At the helm stood Admiral Starbeard.</p>
+                <p data-narrate>Starbeard was a pirate captain—but not the sort of pirate who stole things. Oh, no. Starbeard searched for lost treasures, explored forgotten worlds, helped people in trouble, and occasionally ate far too many pancakes.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Meet the crew" aria-labelledby="moonlit-page-3-title">
+            <img class="page-art page-art-moonlit-compass-close" src="./assets/moonlit-compass.png" alt="Starbeard, Juliet, and Uni gather together on the warm, starry bridge of their ship.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy story-copy-right">
+                <p class="page-kicker" data-narrate>Aboard The Cosmic Wanderer</p>
+                <h2 id="moonlit-page-3-title" data-narrate>Meet the crew.</h2>
+                <p data-narrate>His great beard was sprinkled with tiny points of light that shimmered like stars whenever he laughed. And Starbeard laughed often.</p>
+                <p class="spoken-line" data-narrate>“HA-HA! Another beautiful night for an adventure!”</p>
+                <p data-narrate>Beside him stood his very best friend, Uni. Uni was a magical unicorn with a snowy white coat, a flowing mane that shimmered with every color of the rainbow, and a golden horn that glowed whenever magic was near.</p>
+                <p data-narrate>And traveling with them was their youngest explorer: Juliet.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Meet Juliet" aria-labelledby="moonlit-page-4-title">
+            <img class="page-art" src="./assets/moonlit-compass.png" alt="Juliet watches the stars while Starbeard’s treasure compass begins to glow beside Uni.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy story-copy-right">
+                <p class="page-kicker" data-narrate>Their youngest explorer</p>
+                <h2 id="moonlit-page-4-title" data-narrate>Juliet loved adventures.</h2>
+                <p data-narrate>She loved discovering new planets. She loved finding treasure. But most of all, she loved traveling through the galaxy with Starbeard and Uni.</p>
+                <p data-narrate>One quiet evening, Juliet was sitting beside Uni and watching the stars drift past the window when something began to blink on Starbeard’s treasure compass.</p>
+                <p class="story-sound" data-narrate>Blink. Blink. BLINK!</p>
+                <p data-narrate>Starbeard raised one enormous eyebrow. “Well, shiver me satellites.” Juliet hurried over. “What is it?” Starbeard held up the compass.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The compass points" aria-labelledby="moonlit-page-5-title">
+            <img class="page-art page-art-moonlit-compass-close" src="./assets/moonlit-compass.png" alt="The magical compass points through the round ship window toward a purple planet with three moons.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy story-copy-right">
+                <p class="page-kicker" data-narrate>A golden needle</p>
+                <h2 id="moonlit-page-5-title" data-narrate>The compass chose a mysterious world.</h2>
+                <p data-narrate>Instead of pointing north, its golden needle was spinning around and around. Then—PING! It stopped. The needle pointed toward a tiny purple planet surrounded by three glowing moons.</p>
+                <p data-narrate>Uni’s horn began to sparkle. “That,” said Uni softly, “is no ordinary planet.” Starbeard grinned. “Then I suppose we’d better go have an extraordinary look.”</p>
+                <p class="story-sound" data-narrate>And with a pull of a lever—WHOOSH!</p>
+                <p data-narrate>The Cosmic Wanderer sailed toward the mysterious world.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Planet of Flowers" aria-labelledby="moonlit-page-6-title">
+            <img class="page-art" src="./assets/moonlit-meadow.png" alt="The crew stands in a vast meadow as luminous flowers open beneath three golden moons.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy story-copy-left">
+                <p class="planet-badge" data-narrate>The Planet of Flowers</p>
+                <h2 id="moonlit-page-6-title" data-narrate>A whole planet of closed flowers.</h2>
+                <p data-narrate>As they descended through lavender clouds, Juliet pressed her nose against the window. “Whoa…” Flowers covered the entire planet.</p>
+                <p data-narrate>There were little flowers no bigger than buttons. There were flowers as tall as trees. There were enormous flowers whose petals stretched wider than The Cosmic Wanderer itself.</p>
+                <p data-narrate>But something was strange. Every flower was closed. Starbeard landed the ship in a quiet meadow. The three moons rose into the sky.</p>
+                <p class="story-sound" data-narrate>And suddenly—DING. One flower opened. Then another. DONG. Then another. TING! TONG! DING-DING!</p>
+                <p data-narrate>Thousands of flowers slowly opened beneath the moonlight.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The flowers sing" aria-labelledby="moonlit-page-7-title">
+            <img class="page-art page-art-moonlit-meadow-close" src="./assets/moonlit-meadow.png" alt="Blue, gold, pink, and enormous purple flowers glow like a moonlit orchestra around the crew.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy story-copy-left">
+                <p class="page-kicker" data-narrate>Under the three moons</p>
+                <h2 id="moonlit-page-7-title" data-narrate>Every flower had a voice.</h2>
+                <p data-narrate>And each flower made a musical note. Juliet’s eyes grew wide. “The flowers are singing!” They certainly were.</p>
+                <p data-narrate>Blue flowers chimed like little bells. Golden flowers hummed like cellos. Pink flowers whistled like flutes. And enormous purple flowers made deep, gentle sounds: BOOOOOOM.</p>
+                <p data-narrate>Starbeard stroked his beard. “I’ve heard of singing in the shower, but singing in the flower? That’s new.” Juliet giggled.</p>
+                <p class="spoken-line" data-narrate>Then they heard another sound. Someone was crying.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The Melodians" aria-labelledby="moonlit-page-8-title">
+            <img class="page-art" src="./assets/moonlit-melodians.png" alt="Three tiny long-eared Melodians greet Juliet, Uni, and a bowing Starbeard beneath a giant blue blossom.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy story-copy-right">
+                <p class="planet-badge" data-narrate>The Missing Note</p>
+                <h2 id="moonlit-page-8-title" data-narrate>The travelers from the stars had come.</h2>
+                <p data-narrate>Behind a giant blue blossom sat three tiny creatures. They had round bodies, long ears, and little antennae that bounced whenever they spoke.</p>
+                <p data-narrate>“Hello,” said Juliet. The creatures looked up. “You came!” cried one. “The travelers from the stars!” “We hoped someone would!”</p>
+                <p data-narrate>Starbeard removed his hat and bowed. “Admiral Starbeard, treasure hunter, explorer, pancake enthusiast, and pirate captain at your service.” Uni bowed. “Uni.” Juliet smiled. “And I’m Juliet.”</p>
+                <p data-narrate>The little creatures introduced themselves as Melodians, the caretakers of the Moonlit Blossom Planet.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The missing note" aria-labelledby="moonlit-page-9-title">
+            <img class="page-art page-art-moonlit-melodians-close" src="./assets/moonlit-melodians.png" alt="The worried Melodians explain the missing note while the crew listens in the glowing meadow.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy story-copy-right">
+                <p class="planet-badge" data-narrate>The Moonlight Song</p>
+                <h2 id="moonlit-page-9-title" data-narrate>A song that could not finish.</h2>
+                <p data-narrate>But something was wrong. Every night, explained the eldest Melodian, the flowers sang the Moonlight Song. The song helped the flowers sleep until the following evening.</p>
+                <p data-narrate>But tonight, one note was missing. Without it, the song could never finish. And without the finished song, the flowers could not sleep.</p>
+                <p data-narrate>Juliet looked across the meadow. Thousands of flowers were swaying restlessly.</p>
+                <p class="spoken-line" data-narrate>“We’ll help,” she said. Starbeard smiled. “That’s my kind of treasure hunt.”</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The musical path" aria-labelledby="moonlit-page-10-title">
+            <img class="page-art" src="./assets/moonlit-forest.png" alt="Juliet, Uni, and Starbeard follow glowing musical stepping stones toward a wall of flowering vines.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy story-copy-left">
+                <p class="planet-badge" data-narrate>Into the Singing Forest</p>
+                <h2 id="moonlit-page-10-title" data-narrate>The forest played beneath their feet.</h2>
+                <p data-narrate>The missing note belonged to the legendary First Flower, hidden somewhere deep inside the Singing Forest. So Juliet climbed onto Uni’s back. Starbeard adjusted his enormous hat. And together they followed a trail of glowing petals into the woods.</p>
+                <p data-narrate>The deeper they traveled, the stranger the forest became. Whenever Juliet stepped on a silver stone—TING! Whenever Starbeard stepped on one—TONG! And when Uni stepped on one—TWINKLE-TWINKLE-TING!</p>
+                <p data-narrate>Soon Juliet realized something. “It’s a song!” The stones formed a musical path. But ahead stood a wall of enormous vines. On the vines were five glowing flowers.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The vine door" aria-labelledby="moonlit-page-11-title">
+            <img class="page-art page-art-moonlit-forest-close" src="./assets/moonlit-forest.png" alt="The friends play five glowing flowers while Starbeard’s hat lifts from one enormous booming note.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy story-copy-left">
+                <p class="page-kicker" data-narrate>Five glowing flowers</p>
+                <h2 id="moonlit-page-11-title" data-narrate>The vines were a musical lock.</h2>
+                <p data-narrate>Starbeard pushed. Nothing happened. Uni tried magic. Nothing happened. Juliet looked at the flowers. “Maybe we have to play them.”</p>
+                <p data-narrate>She touched the first. Ding. Uni touched another. Dong. Starbeard carefully poked the largest. BWOOOOONG! His hat flew off. Juliet burst out laughing. Starbeard picked up his hat. “I meant to do that.”</p>
+                <p data-narrate>Together they tried again. Ding. Ding. Dong. Ding. The vines began to wiggle. They played the pattern once more. Ding. Ding. Dong. Ding! The vines lifted away.</p>
+                <p class="spoken-line" data-narrate>Starbeard pointed dramatically forward. “Crew! The path is open!” And onward they went.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The First Flower" aria-labelledby="moonlit-page-12-title">
+            <img class="page-art" src="./assets/moonlit-first-flower.png" alt="In a silent clearing, a silver-and-gold First Flower glows beside Juliet, Uni, and Starbeard.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy story-copy-left">
+                <p class="planet-badge" data-narrate>The First Flower</p>
+                <h2 id="moonlit-page-12-title" data-narrate>In the clearing, everything became quiet.</h2>
+                <p data-narrate>At last, they reached a clearing. Everything became quiet. No bells. No humming. No whistles. Only the soft night breeze.</p>
+                <p data-narrate>In the center of the clearing stood one enormous flower. Its petals were silver and gold. Tiny lights drifted around it like fireflies. Uni’s horn glowed warmly. “The First Flower,” she whispered.</p>
+                <p data-narrate>Juliet slowly walked toward it. The flower opened. Inside was a single glowing petal. Starbeard reached toward it. But Juliet noticed something carved into a stone beneath the flower:</p>
+                <p class="story-lesson" data-narrate>The greatest treasure cannot be taken. It can only be given.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The stone’s message" aria-labelledby="moonlit-page-13-title">
+            <img class="page-art page-art-moonlit-first-flower-close" src="./assets/moonlit-first-flower.png" alt="The trio listens quietly beside the radiant First Flower and its carved stone.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy story-copy-left">
+                <p class="page-kicker" data-narrate>A treasure that must be given</p>
+                <h2 id="moonlit-page-13-title" data-narrate>How could they find the missing note?</h2>
+                <p data-narrate>Starbeard stopped. “Hmmm.” Uni smiled. “I don't think we're supposed to take the petal.” “Then how do we get the missing note?” Juliet asked.</p>
+                <p data-narrate>The three friends sat quietly. They listened. The wind moved through the grass. The leaves rustled. Somewhere far away, the flowers continued their unfinished song.</p>
+                <p data-narrate>Then Juliet understood. “Maybe it wants us to sing.” Starbeard blinked. “Me?” Juliet nodded. Starbeard cleared his throat. “Arrrrr…” Uni laughed. “That isn't singing.”</p>
+                <p class="spoken-line" data-narrate>“I'm warming up.”</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="One perfect note" aria-labelledby="moonlit-page-14-title">
+            <img class="page-art" src="./assets/moonlit-first-flower.png" alt="The three friends sing together as the First Flower releases a perfect golden note across the planet.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy story-copy-left">
+                <p class="page-kicker" data-narrate>Three different voices</p>
+                <h2 id="moonlit-page-14-title" data-narrate>A note no treasure chest could hold.</h2>
+                <p data-narrate>So Juliet began with one gentle note. Uni joined her. Then Starbeard added his deep, rumbling voice. Their voices weren't exactly the same. They weren't supposed to be.</p>
+                <p data-narrate>Juliet's voice was bright. Uni's was soft and clear. Starbeard's was deep and warm. But together… they made something beautiful.</p>
+                <p class="story-sound" data-narrate>The First Flower began to glow. Brighter. And brighter. And brighter. Then—DIIIIIIIIING.</p>
+                <p data-narrate>One perfect note rang across the planet. They had found it. Except it wasn't something they could put inside a treasure chest. It was something they had made together.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The planet sings" aria-labelledby="moonlit-page-15-title">
+            <img class="page-art" src="./assets/moonlit-lullaby.png" alt="The Moonlight Song sweeps over the flower planet while the crew and three Melodians rest beneath three moons.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy story-copy-right">
+                <p class="planet-badge" data-narrate>The Moonlight Song</p>
+                <h2 id="moonlit-page-15-title" data-narrate>The note raced across the planet.</h2>
+                <p data-narrate>The note raced through the Singing Forest. Every flower it passed joined the melody. Ding… Dong… Hummmmmm… Ting-a-ling…</p>
+                <p data-narrate>Across valleys. Across mountains. Across sparkling rivers. Across fields filled with millions of moonlit blossoms. The entire planet began to sing.</p>
+                <p data-narrate>Starbeard, Uni, and Juliet hurried back toward the meadow. The Melodians were dancing. The flowers swayed gently beneath the three moons.</p>
+                <p data-narrate>And now the song became softer. And slower. And quieter. The enormous flowers began folding their petals.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="A lullaby" aria-labelledby="moonlit-page-16-title">
+            <img class="page-art page-art-moonlit-lullaby-close" src="./assets/moonlit-lullaby.png" alt="A sleepy Juliet leans against Uni while Starbeard and the dancing Melodians listen to the flowers’ lullaby.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy story-copy-right">
+                <p class="page-kicker" data-narrate>Softly · Slowly · Quietly</p>
+                <h2 id="moonlit-page-16-title" data-narrate>The flowers began to sleep.</h2>
+                <p data-narrate>The little flowers curled into tiny balls. The glowing vines dimmed their lights. Even the three moons seemed to shine a little more gently. The Moonlight Song wasn't only a song. It was a lullaby.</p>
+                <p data-narrate>Juliet yawned. Starbeard noticed. “Uh-oh.” “What?” Juliet asked sleepily. “I recognize that.” “Recognize what?” “The Extremely Dangerous Galactic Yawn.” Juliet giggled. Then she yawned again.</p>
+                <p data-narrate>Uni lowered herself beside her. Juliet leaned against Uni's warm side. Around them, the flowers whispered their sleepy song.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Under the universe" aria-labelledby="moonlit-page-17-title">
+            <img class="page-art" src="./assets/moonlit-lullaby.png" alt="Starbeard sits quietly beside Juliet and Uni beneath three moons and an enormous field of sleeping flowers.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy story-copy-right">
+                <p class="page-kicker" data-narrate>Beneath the three moons</p>
+                <h2 id="moonlit-page-17-title" data-narrate>Even Admiral Starbeard was quiet.</h2>
+                <p data-narrate>Starbeard sat beside them. For once, even the great Admiral Starbeard was quiet. Above them stretched the whole enormous universe. Millions upon millions of stars.</p>
+                <p data-narrate>So many places they had never visited. So many friends they had not met yet. So many treasures waiting to be discovered.</p>
+                <p data-narrate>Juliet looked at Starbeard. “Was the song the treasure?” Starbeard thought for a moment. “I reckon it was part of it.” “What's the other part?”</p>
+                <p class="spoken-line" data-narrate>Starbeard looked at Uni. Uni looked at Juliet. “The people you find while you're searching,” Uni said.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Friendship is treasure" aria-labelledby="moonlit-page-18-title">
+            <img class="page-art page-art-moonlit-lullaby-close" src="./assets/moonlit-lullaby.png" alt="Starbeard rests one hand over his heart while Juliet, Uni, and the Melodians share the quiet moonlit meadow.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy story-copy-right">
+                <p class="page-kicker" data-narrate>The greatest treasure</p>
+                <h2 id="moonlit-page-18-title" data-narrate>A good friend is treasure you carry right here.</h2>
+                <p data-narrate>Starbeard nodded. “Gold can be lost. Jewels can disappear. But a good friend?” He smiled. “That's treasure you carry right here.” He gently tapped his chest. Juliet smiled. The flowers continued their lullaby.</p>
+                <p class="story-lullaby" data-narrate>Softly now, the starlights gleam,<br>Silver ships sail into dream.<br>Moonflowers close, the night winds sigh,<br>Three moons wander through the sky.</p>
+                <p class="story-lullaby" data-narrate>Rest your head and close your eyes,<br>Dream of distant, starry skies.<br>Wherever tomorrow's journey may be,<br>There's always another world to see.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Home aboard" aria-labelledby="moonlit-page-19-title">
+            <img class="page-art" src="./assets/moonlit-home.png" alt="Starbeard tucks Juliet into her bunk while Uni curls nearby and the flower planet shines through a round window.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy story-copy-left">
+                <p class="planet-badge" data-narrate>Home Among the Stars</p>
+                <h2 id="moonlit-page-19-title" data-narrate>A sleepy crew returned to the ship.</h2>
+                <p data-narrate>Eventually, Starbeard carried a very sleepy Juliet back aboard The Cosmic Wanderer. Uni walked beside them, her horn glowing just enough to light the way.</p>
+                <p data-narrate>Starbeard tucked Juliet into her little bunk. It had a round window beside it, so she could watch the stars. Uni pulled the blanket up beneath Juliet's chin.</p>
+                <p class="spoken-line" data-narrate>“Are we going home now?” Juliet murmured. Starbeard smiled. “The Cosmic Wanderer is our home.”</p>
+                <p data-narrate>Juliet thought about that.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Sailing away" aria-labelledby="moonlit-page-20-title">
+            <img class="page-art page-art-moonlit-home-close" src="./assets/moonlit-home.png" alt="The sleeping flower planet and its three moons drift beyond Juliet’s round bunk window.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy story-copy-left">
+                <p class="page-kicker" data-narrate>Beyond the round window</p>
+                <h2 id="moonlit-page-20-title" data-narrate>The planet grew smaller and smaller.</h2>
+                <p data-narrate>Outside her window, the Moonlit Blossom Planet grew smaller and smaller. The flowers below were sleeping. The three moons shone peacefully. And somewhere among those flowers were new friends who would remember them whenever the Moonlight Song played.</p>
+                <p data-narrate>Starbeard returned to the helm. Uni curled up nearby. The engines made their soft nighttime hum. Hmmmmmmmmmmm…</p>
+                <p data-narrate>Starbeard turned down the cabin lights. The ship sailed gently through the darkness. Past one star. Then another. Then another.</p>
+                <p data-narrate>Juliet's eyes became heavier. She could hear Uni breathing nearby. She could hear the quiet engines.</p>
+            </div>
+        </section>
+
+        <section class="story-page ending-page" data-page-label="Safe, warm, loved" aria-labelledby="moonlit-page-21-title">
+            <img class="page-art" src="./assets/moonlit-home.png" alt="Juliet and Uni sleep safely beneath a constellation quilt while Starbeard watches over them among the stars.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy ending-copy story-copy-left">
+                <p class="page-kicker" data-narrate>Under a blanket of stars</p>
+                <h2 id="moonlit-page-21-title" data-narrate>Tomorrow would bring another adventure.</h2>
+                <p data-narrate>And she could just barely hear Starbeard humming the Moonlight Song from the bridge. Softly now, the starlights gleam… Juliet closed her eyes.</p>
+                <p data-narrate>Tomorrow there would be another planet. Perhaps there would be treasure. Perhaps there would be a mystery. Perhaps someone somewhere among the stars would need their help. But that was tomorrow.</p>
+                <p data-narrate>Tonight, the galaxy was peaceful. The Cosmic Wanderer sailed onward beneath a blanket of stars. Starbeard watched over his crew. Uni's magic glimmered softly in the darkness.</p>
+                <p class="story-lesson" data-narrate>And Juliet slept. Safe. Warm. Loved. And dreaming of wherever their adventures took them next.</p>
+                <p class="story-ending" data-narrate>The End</p>
+                <button class="again-button" type="button" data-story-action="again">
+                    Sing it again
                     <span aria-hidden="true">↺</span>
                 </button>
             </div>
