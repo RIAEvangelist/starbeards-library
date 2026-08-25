@@ -147,10 +147,24 @@
             </div>
             <div class="reader-actions">
                 <p class="chapter-label" id="chapter-label"></p>
-                <button class="read-button" id="read-button" type="button" aria-pressed="false">
+                <div class="voice-control" id="voice-control">
+                    <label for="voice-select">Voice</label>
+                    <select class="voice-select" id="voice-select" aria-describedby="narration-status">
+                        <option value="af_heart">Heart · US</option>
+                        <option value="af_bella">Bella · US</option>
+                        <option value="af_nicole">Nicole · US</option>
+                        <option value="af_nova">Nova · US</option>
+                        <option value="am_fenrir">Fenrir · US</option>
+                        <option value="am_michael">Michael · US</option>
+                        <option value="bf_emma">Emma · UK</option>
+                        <option value="bm_fable">Fable · UK</option>
+                    </select>
+                </div>
+                <button class="read-button" id="read-button" type="button" aria-pressed="false" aria-busy="false" aria-describedby="narration-status">
                     <span class="read-icon" aria-hidden="true">◖</span>
                     <span id="read-button-label">Read this page</span>
                 </button>
+                <p class="visually-hidden" id="narration-status" aria-live="polite">Ready to read with Heart.</p>
             </div>
         </header>
 

@@ -33,6 +33,9 @@ const libraryButton = document.querySelector('#library-button');
 const readerBrandButton = document.querySelector('#reader-brand-button');
 const readButton = document.querySelector('#read-button');
 const readButtonLabel = document.querySelector('#read-button-label');
+const voiceControl = document.querySelector('#voice-control');
+const voiceSelect = document.querySelector('#voice-select');
+const narrationStatus = document.querySelector('#narration-status');
 const chapterLabel = document.querySelector('#chapter-label');
 const statusText = document.querySelector('#page-status-text');
 const progressDots = document.querySelector('#progress-dots');
@@ -45,16 +48,34 @@ const COPY_MOVE_LARGE_STEP = 48;
 const COPY_EDGE_GAP = 12;
 const COPY_CONTROL_GAP = 8;
 
-const narrationSupported = 'speechSynthesis' in window
+const AudioContextConstructor = window.AudioContext
+    || window.webkitAudioContext;
+const kokoroNarrationSupported = 'Worker' in window
+    && 'WebAssembly' in window
+    && typeof AudioContextConstructor === 'function';
+const browserNarrationSupported = 'speechSynthesis' in window
     && 'SpeechSynthesisUtterance' in window;
+const narrationSupported = kokoroNarrationSupported
+    || browserNarrationSupported;
+const VOICE_STORAGE_KEY = 'juju-grand-adventures.kokoro-voice';
+const SPEECH_REQUEST_TIMEOUT_MS = 10 * 60 * 1000;
 
 let pages = [];
 let currentBookId = '';
 let currentPageIndex = 0;
 let scrollFrame = 0;
 let narrationActive = false;
+let narrationRevision = 0;
+let speechRequestId = 0;
+let speechWorker = null;
+let audioContext = null;
+let activeAudioPlayback = null;
+let nativeUtterance = null;
+let nativeNarrationRevision = 0;
 let lastOpenButton = null;
 let activeCopyDrag = null;
+
+const speechRequests = new Map();
 
 function createProgressDots() {
     const fragment = document.createDocumentFragment();
@@ -404,21 +425,385 @@ function keepCopyPositionsVisible() {
     }
 }
 
-function updateNarrationButton(isReading) {
-    narrationActive = isReading;
-    readButton.setAttribute('aria-pressed', String(isReading));
-    readButtonLabel.textContent = isReading
-        ? 'Stop reading'
-        : 'Read this page';
+function getSelectedVoiceLabel() {
+    if (!voiceSelect) {
+        return 'Kokoro';
+    }
+
+    const selectedOption = voiceSelect.options[voiceSelect.selectedIndex];
+
+    return selectedOption
+        ? selectedOption.textContent.trim()
+        : 'Kokoro';
 }
 
-function stopNarration() {
-    if (!narrationSupported) {
+function updateNarrationStatus(message) {
+    if (narrationStatus) {
+        narrationStatus.textContent = message;
+    }
+}
+
+function updateNarrationButton(isReading, label, isBusy = false) {
+    narrationActive = isReading;
+    readButton.setAttribute('aria-pressed', String(isReading));
+    readButton.setAttribute('aria-busy', String(isBusy));
+    readButtonLabel.textContent = label || (
+        isReading
+            ? 'Stop reading'
+            : 'Read this page'
+    );
+
+    if (voiceSelect) {
+        voiceSelect.disabled = isReading || !kokoroNarrationSupported;
+    }
+}
+
+function rejectSpeechRequests(message) {
+    const error = new Error(message);
+
+    for (const pendingRequest of speechRequests.values()) {
+        window.clearTimeout(pendingRequest.timeoutId);
+        pendingRequest.reject(error);
+    }
+
+    speechRequests.clear();
+}
+
+function destroySpeechWorker(message) {
+    if (speechWorker) {
+        speechWorker.terminate();
+        speechWorker = null;
+    }
+
+    if (speechRequests.size > 0) {
+        rejectSpeechRequests(message || 'Kokoro narration stopped.');
+    }
+}
+
+function handleSpeechWorkerMessage(event) {
+    const message = event.data || {};
+
+    if (message.kind === 'status') {
+        if (narrationActive && message.loading) {
+            updateNarrationButton(true, 'Loading voice…', true);
+        } else if (narrationActive && message.ready) {
+            updateNarrationButton(true, 'Preparing page…', true);
+        }
+
+        if (narrationActive && message.text) {
+            updateNarrationStatus(message.text);
+        }
+
         return;
     }
 
-    window.speechSynthesis.cancel();
+    if (message.kind !== 'response') {
+        return;
+    }
+
+    const pendingRequest = speechRequests.get(message.id);
+
+    if (!pendingRequest) {
+        return;
+    }
+
+    speechRequests.delete(message.id);
+    window.clearTimeout(pendingRequest.timeoutId);
+
+    if (
+        message.ok
+        && message.result
+        && message.result.samples
+        && Number.isFinite(message.result.sampleRate)
+    ) {
+        pendingRequest.resolve(message.result);
+    } else {
+        pendingRequest.reject(
+            new Error(
+                message.error || 'Kokoro returned an invalid audio response.'
+            )
+        );
+    }
+}
+
+function handleSpeechWorkerError(event) {
+    const message = event.message || 'Kokoro narration failed.';
+
+    destroySpeechWorker(message);
+}
+
+function handleSpeechWorkerMessageError() {
+    destroySpeechWorker('Kokoro returned unreadable audio data.');
+}
+
+function ensureSpeechWorker() {
+    if (speechWorker) {
+        return speechWorker;
+    }
+
+    speechWorker = new Worker(
+        './speech-worker.js',
+        {
+            type: 'module',
+            name: 'juju-kokoro-narrator'
+        }
+    );
+    speechWorker.addEventListener('message', handleSpeechWorkerMessage);
+    speechWorker.addEventListener('error', handleSpeechWorkerError);
+    speechWorker.addEventListener(
+        'messageerror',
+        handleSpeechWorkerMessageError
+    );
+
+    return speechWorker;
+}
+
+function requestKokoroSpeech(text, voice) {
+    const worker = ensureSpeechWorker();
+    const requestId = speechRequestId + 1;
+
+    speechRequestId = requestId;
+
+    return new Promise(
+        function registerSpeechRequest(resolve, reject) {
+            function handleSpeechRequestTimeout() {
+                if (!speechRequests.has(requestId)) {
+                    return;
+                }
+
+                speechRequests.delete(requestId);
+                reject(new Error('Kokoro took too long to prepare this page.'));
+                destroySpeechWorker('Kokoro narration timed out.');
+            }
+
+            const timeoutId = window.setTimeout(
+                handleSpeechRequestTimeout,
+                SPEECH_REQUEST_TIMEOUT_MS
+            );
+
+            speechRequests.set(
+                requestId,
+                {
+                    resolve,
+                    reject,
+                    timeoutId
+                }
+            );
+
+            try {
+                worker.postMessage(
+                    {
+                        kind: 'request',
+                        id: requestId,
+                        action: 'synthesize',
+                        payload: {
+                            text,
+                            voice,
+                            speed: 0.95
+                        }
+                    }
+                );
+            } catch (error) {
+                speechRequests.delete(requestId);
+                window.clearTimeout(timeoutId);
+                reject(error);
+            }
+        }
+    );
+}
+
+async function ensureAudioContext() {
+    if (!audioContext) {
+        audioContext = new AudioContextConstructor(
+            {
+                latencyHint: 'interactive'
+            }
+        );
+    }
+
+    if (audioContext.state === 'suspended') {
+        await audioContext.resume();
+    }
+
+    return audioContext;
+}
+
+function stopAudioPlayback() {
+    if (!activeAudioPlayback) {
+        return;
+    }
+
+    const playback = activeAudioPlayback;
+
+    activeAudioPlayback = null;
+    playback.source.removeEventListener('ended', playback.handleEnded);
+
+    try {
+        playback.source.stop();
+    } catch (error) {
+        // The source may already have reached its natural end.
+    }
+
+    playback.source.disconnect();
+    playback.resolve();
+}
+
+async function playKokoroAudio(samples, sampleRate, revision) {
+    const context = await ensureAudioContext();
+
+    if (revision !== narrationRevision || !narrationActive) {
+        return;
+    }
+
+    const waveform = samples instanceof Float32Array
+        ? samples
+        : new Float32Array(samples);
+    const buffer = context.createBuffer(
+        1,
+        waveform.length,
+        sampleRate
+    );
+    const source = context.createBufferSource();
+
+    buffer.copyToChannel(waveform, 0);
+    source.buffer = buffer;
+    source.connect(context.destination);
+
+    await new Promise(
+        function awaitPlayback(resolve, reject) {
+            function finishPlayback() {
+                if (
+                    activeAudioPlayback
+                    && activeAudioPlayback.source === source
+                ) {
+                    activeAudioPlayback = null;
+                }
+
+                source.disconnect();
+                resolve();
+            }
+
+            activeAudioPlayback = {
+                source,
+                handleEnded: finishPlayback,
+                resolve
+            };
+            source.addEventListener('ended', finishPlayback, { once: true });
+
+            try {
+                source.start();
+            } catch (error) {
+                source.removeEventListener('ended', finishPlayback);
+                source.disconnect();
+
+                if (
+                    activeAudioPlayback
+                    && activeAudioPlayback.source === source
+                ) {
+                    activeAudioPlayback = null;
+                }
+
+                reject(error);
+            }
+        }
+    );
+}
+
+function handleNativeNarrationEnd() {
+    nativeUtterance = null;
+
+    if (nativeNarrationRevision === narrationRevision) {
+        handleNarrationEnd();
+    }
+}
+
+function speakWithBrowserNarrator(text, revision) {
+    if (!browserNarrationSupported) {
+        throw new Error('Read aloud is unavailable in this browser.');
+    }
+
+    const utterance = new SpeechSynthesisUtterance(text);
+
+    nativeUtterance = utterance;
+    nativeNarrationRevision = revision;
+    utterance.rate = 0.88;
+    utterance.pitch = 1.03;
+    utterance.addEventListener('end', handleNativeNarrationEnd);
+    utterance.addEventListener('error', handleNativeNarrationEnd);
+    updateNarrationButton(true, 'Stop reading');
+    window.speechSynthesis.speak(utterance);
+}
+
+async function beginKokoroNarration(text, voice, revision) {
+    try {
+        await ensureAudioContext();
+
+        if (revision !== narrationRevision || !narrationActive) {
+            return;
+        }
+
+        const result = await requestKokoroSpeech(text, voice);
+
+        if (revision !== narrationRevision || !narrationActive) {
+            return;
+        }
+
+        updateNarrationButton(true, 'Stop reading');
+        updateNarrationStatus(getSelectedVoiceLabel() + ' is reading this page.');
+        await playKokoroAudio(result.samples, result.sampleRate, revision);
+
+        if (revision === narrationRevision) {
+            handleNarrationEnd();
+        }
+    } catch (error) {
+        if (revision !== narrationRevision || !narrationActive) {
+            return;
+        }
+
+        destroySpeechWorker('Kokoro narration failed.');
+
+        if (browserNarrationSupported) {
+            updateNarrationStatus(
+                'Kokoro is unavailable, so this browser’s voice is reading instead.'
+            );
+            speakWithBrowserNarrator(text, revision);
+            return;
+        }
+
+        updateNarrationButton(false);
+        updateNarrationStatus(
+            'Read aloud could not start. Check the connection and try again.'
+        );
+    }
+}
+
+function handleUnexpectedNarrationFailure() {
+    if (!narrationActive) {
+        return;
+    }
+
+    stopNarration();
+    updateNarrationStatus(
+        'Read aloud stopped unexpectedly. Please try again.'
+    );
+}
+
+function stopNarration() {
+    narrationRevision += 1;
+
+    if (browserNarrationSupported) {
+        window.speechSynthesis.cancel();
+        nativeUtterance = null;
+    }
+
+    stopAudioPlayback();
+
+    if (speechRequests.size > 0) {
+        destroySpeechWorker('Kokoro narration stopped.');
+    }
+
     updateNarrationButton(false);
+    updateNarrationStatus('Ready to read with ' + getSelectedVoiceLabel() + '.');
 }
 
 function updateReaderState(index) {
@@ -700,6 +1085,7 @@ function collectNarration(page) {
 
 function handleNarrationEnd() {
     updateNarrationButton(false);
+    updateNarrationStatus('Ready to read with ' + getSelectedVoiceLabel() + '.');
 }
 
 function handleReadClick() {
@@ -713,14 +1099,81 @@ function handleReadClick() {
     }
 
     const pageNarration = collectNarration(pages[currentPageIndex]);
-    const utterance = new SpeechSynthesisUtterance(pageNarration);
+    const revision = narrationRevision + 1;
 
-    utterance.rate = 0.88;
-    utterance.pitch = 1.03;
-    utterance.addEventListener('end', handleNarrationEnd);
-    utterance.addEventListener('error', handleNarrationEnd);
-    updateNarrationButton(true);
-    window.speechSynthesis.speak(utterance);
+    narrationRevision = revision;
+
+    if (kokoroNarrationSupported) {
+        const selectedVoice = voiceSelect
+            ? voiceSelect.value
+            : 'af_heart';
+
+        updateNarrationButton(true, 'Loading voice…', true);
+        updateNarrationStatus(
+            'Preparing ' + getSelectedVoiceLabel() + ' locally. The first use downloads the voice model.'
+        );
+        beginKokoroNarration(
+            pageNarration,
+            selectedVoice,
+            revision
+        ).catch(handleUnexpectedNarrationFailure);
+        return;
+    }
+
+    updateNarrationStatus('Using this browser’s built-in voice.');
+
+    try {
+        speakWithBrowserNarrator(pageNarration, revision);
+    } catch (error) {
+        handleUnexpectedNarrationFailure();
+    }
+}
+
+function restoreVoicePreference() {
+    if (!voiceSelect) {
+        return;
+    }
+
+    try {
+        const savedVoice = window.localStorage.getItem(VOICE_STORAGE_KEY);
+        const savedOption = savedVoice
+            ? voiceSelect.querySelector('option[value="' + savedVoice + '"]')
+            : null;
+
+        if (savedOption) {
+            voiceSelect.value = savedVoice;
+        }
+    } catch (error) {
+        // Voice persistence is optional when storage is unavailable.
+    }
+}
+
+function handleVoiceChange() {
+    if (narrationActive) {
+        stopNarration();
+    }
+
+    try {
+        window.localStorage.setItem(VOICE_STORAGE_KEY, voiceSelect.value);
+    } catch (error) {
+        // The current selection still works when storage is unavailable.
+    }
+
+    updateNarrationStatus('Ready to read with ' + getSelectedVoiceLabel() + '.');
+}
+
+function ignoreAudioCloseError() {
+    // The page is leaving, so there is no recovery action to present.
+}
+
+function handlePageHide() {
+    stopNarration();
+    destroySpeechWorker('The story page closed.');
+
+    if (audioContext) {
+        audioContext.close().catch(ignoreAudioCloseError);
+        audioContext = null;
+    }
 }
 
 function handleResize() {
@@ -738,6 +1191,23 @@ for (let index = 0; index < openBookButtons.length; index += 1) {
 
 if (!narrationSupported) {
     readButton.hidden = true;
+
+    if (voiceControl) {
+        voiceControl.hidden = true;
+    }
+} else {
+    restoreVoicePreference();
+
+    if (voiceSelect) {
+        voiceSelect.disabled = !kokoroNarrationSupported;
+        voiceSelect.addEventListener('change', handleVoiceChange);
+    }
+
+    if (kokoroNarrationSupported) {
+        updateNarrationStatus('Ready to read with ' + getSelectedVoiceLabel() + '.');
+    } else {
+        updateNarrationStatus('Kokoro is unavailable; the browser voice will be used.');
+    }
 }
 
 previousButton.addEventListener('click', handlePreviousClick);
@@ -756,4 +1226,4 @@ storyTrack.addEventListener(
 );
 window.addEventListener('keydown', handleKeydown);
 window.addEventListener('resize', handleResize);
-window.addEventListener('pagehide', stopNarration);
+window.addEventListener('pagehide', handlePageHide);
