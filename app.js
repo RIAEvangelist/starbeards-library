@@ -20,6 +20,12 @@ const BOOKS = Object.freeze(
                 templateId: 'book-moonlit-template'
             }
         ),
+        sockCaper: Object.freeze(
+            {
+                title: 'The Great Galactic Sock Caper',
+                templateId: 'book-sock-caper-template'
+            }
+        ),
         pluto: Object.freeze(
             {
                 title: 'The Treasure of Pluto and the Luminous Labyrinth',
