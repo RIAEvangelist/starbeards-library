@@ -240,7 +240,13 @@ a:focus-visible {
     transform: rotate(-16deg);
 }
 
+.library-collections {
+    display: grid;
+    gap: clamp(2.8rem, 6vw, 6rem);
+}
+
 .bookshelf {
+    --shelf-accent: var(--mint);
     position: relative;
     padding: clamp(1.1rem, 2.2vw, 2rem) clamp(0.9rem, 2vw, 1.7rem) 0;
     border: 1px solid rgba(255, 255, 255, 0.16);
@@ -253,6 +259,14 @@ a:focus-visible {
     backdrop-filter: blur(16px);
 }
 
+.library-collection-starbeard {
+    --shelf-accent: var(--gold-bright);
+}
+
+.library-collection-other {
+    --shelf-accent: var(--lavender);
+}
+
 .shelf-heading {
     display: flex;
     align-items: end;
@@ -263,7 +277,7 @@ a:focus-visible {
 
 .shelf-kicker {
     margin: 0 0 0.35rem;
-    color: var(--mint);
+    color: var(--shelf-accent);
     font-size: 0.68rem;
     font-weight: 800;
 }
@@ -287,9 +301,52 @@ a:focus-visible {
 
 .book-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     align-items: start;
     gap: clamp(1rem, 2.5vw, 2.4rem);
+}
+
+.shelf-empty {
+    display: grid;
+    grid-template-columns: auto minmax(0, 42rem);
+    min-height: 11rem;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    gap: 1.15rem;
+    padding: clamp(1.4rem, 4vw, 3rem);
+    border: 1px dashed rgba(193, 176, 255, 0.4);
+    border-radius: 22px 22px 8px 8px;
+    background: rgba(193, 176, 255, 0.055);
+    text-align: left;
+}
+
+.shelf-empty-star {
+    display: grid;
+    width: 3.6rem;
+    aspect-ratio: 1;
+    place-items: center;
+    border: 1px solid rgba(193, 176, 255, 0.35);
+    border-radius: 50%;
+    color: var(--lavender);
+    background: rgba(8, 16, 43, 0.72);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24);
+    font-size: 1.5rem;
+}
+
+.shelf-empty p {
+    margin: 0;
+    color: rgba(226, 224, 232, 0.76);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+    line-height: 1.55;
+}
+
+.shelf-empty strong {
+    display: block;
+    margin-bottom: 0.25rem;
+    color: var(--ink);
+    font-weight: 500;
 }
 
 .book-card {
@@ -1217,9 +1274,19 @@ a:focus-visible {
         text-align: left;
     }
 
+    .library-collections {
+        gap: 2.8rem;
+    }
+
     .book-grid {
         grid-template-columns: 1fr;
         gap: 2.2rem;
+    }
+
+    .shelf-empty {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
     }
 
     .book-card-planets,

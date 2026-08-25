@@ -21,7 +21,7 @@
                 <div class="library-heading">
                     <p class="library-kicker">The little library between stars</p>
                     <h1>Juliet’s<br>Grand Adventures</h1>
-                    <p class="library-intro">Choose a book, cuddle in, and turn the galaxy one illustrated page at a time.</p>
+                    <p class="library-intro">Choose a shelf, choose a book, cuddle in, and turn the galaxy one illustrated page at a time.</p>
                 </div>
                 <div class="library-orbit" aria-hidden="true">
                     <span class="orbit-ring orbit-ring-one"></span>
@@ -31,72 +31,100 @@
                 </div>
             </header>
 
-            <section class="bookshelf" aria-labelledby="bookshelf-title">
-                <div class="shelf-heading">
-                    <div>
-                        <p class="shelf-kicker">On the shelf</p>
-                        <h2 id="bookshelf-title">Three voyages are ready</h2>
+            <div class="library-collections">
+                <section class="bookshelf library-collection library-collection-juliet" aria-labelledby="juliet-adventures-title">
+                    <div class="shelf-heading">
+                        <div>
+                            <p class="shelf-kicker">Collection one · 2 books</p>
+                            <h2 id="juliet-adventures-title">Juliet’s Grand Adventures</h2>
+                        </div>
+                        <p class="shelf-hint">Juliet leads a gentle bedtime crew through bright planets, curious clues, and brave rescues.</p>
                     </div>
-                    <p class="shelf-hint">Swipe the pages, move or shrink the words, or let the browser read aloud.</p>
-                </div>
 
-                <div class="book-grid">
-                    <article class="book-card book-card-planets">
-                        <button class="book-jacket" type="button" data-open-book="planets" aria-label="Open The Three Little Planets">
-                            <img src="./assets/cover.png" alt="Juliet, Uni, and Starbeard beside their patchwork rocket beneath three glowing planets.">
-                            <span class="book-jacket-shade" aria-hidden="true"></span>
-                            <span class="book-volume">Volume one</span>
-                            <span class="book-jacket-title">The Three<br>Little Planets</span>
-                            <span class="book-open-prompt">Open book <span aria-hidden="true">→</span></span>
-                        </button>
-                        <div class="book-details">
-                            <div>
-                                <p class="book-tag">First voyage · 8 spreads</p>
-                                <h3>The Three Little Planets</h3>
-                                <p>Three tiny worlds need a steady hand, a listening heart, and one very gentle bedtime crew.</p>
+                    <div class="book-grid">
+                        <article class="book-card book-card-planets">
+                            <button class="book-jacket" type="button" data-open-book="planets" aria-label="Open The Three Little Planets">
+                                <img src="./assets/cover.png" alt="Juliet, Uni, and Starbeard beside their patchwork rocket beneath three glowing planets.">
+                                <span class="book-jacket-shade" aria-hidden="true"></span>
+                                <span class="book-volume">Volume one</span>
+                                <span class="book-open-prompt">Open book <span aria-hidden="true">→</span></span>
+                            </button>
+                            <div class="book-details">
+                                <div>
+                                    <p class="book-tag">First voyage · 8 spreads</p>
+                                    <h3>The Three Little Planets</h3>
+                                    <p>Three tiny worlds need a steady hand, a listening heart, and one very gentle bedtime crew.</p>
+                                </div>
+                                <button class="shelf-read-button" type="button" data-open-book="planets">Read this book</button>
                             </div>
-                            <button class="shelf-read-button" type="button" data-open-book="planets">Read this book</button>
-                        </div>
-                    </article>
+                        </article>
 
-                    <article class="book-card book-card-doughnut">
-                        <button class="book-jacket" type="button" data-open-book="doughnut" aria-label="Open Starbeard and the Doughnut Planet Map">
-                            <img src="./assets/book-doughnut-cover.png" alt="Juliet, Uni, and Starbeard sail toward a glowing doughnut-shaped planet.">
-                            <span class="book-jacket-shade" aria-hidden="true"></span>
-                            <span class="book-volume">Volume two</span>
-                            <span class="book-jacket-title book-jacket-title-long">Starbeard &amp; the<br>Doughnut Planet Map</span>
-                            <span class="book-open-prompt">Open book <span aria-hidden="true">→</span></span>
-                        </button>
-                        <div class="book-details">
-                            <div>
-                                <p class="book-tag book-tag-new">New voyage · 8 spreads</p>
-                                <h3>Starbeard and the Doughnut Planet Map</h3>
-                                <p>A round clue, a storm of sprinkles, and a cozy explorer growing into a proper space-pirate captain.</p>
+                        <article class="book-card book-card-doughnut">
+                            <button class="book-jacket" type="button" data-open-book="doughnut" aria-label="Open Starbeard and the Doughnut Planet Map">
+                                <img src="./assets/book-doughnut-cover.png" alt="Juliet, Uni, and Starbeard sail toward a glowing doughnut-shaped planet.">
+                                <span class="book-jacket-shade" aria-hidden="true"></span>
+                                <span class="book-volume">Volume two</span>
+                                <span class="book-open-prompt">Open book <span aria-hidden="true">→</span></span>
+                            </button>
+                            <div class="book-details">
+                                <div>
+                                    <p class="book-tag book-tag-new">Second voyage · 8 spreads</p>
+                                    <h3>Starbeard and the Doughnut Planet Map</h3>
+                                    <p>A round clue, a storm of sprinkles, and a cozy explorer growing into a proper space-pirate captain.</p>
+                                </div>
+                                <button class="shelf-read-button" type="button" data-open-book="doughnut">Read this book</button>
                             </div>
-                            <button class="shelf-read-button" type="button" data-open-book="doughnut">Read this book</button>
-                        </div>
-                    </article>
+                        </article>
+                    </div>
+                    <div class="shelf-plank" aria-hidden="true"></div>
+                </section>
 
-                    <article class="book-card book-card-moonlit">
-                        <button class="book-jacket" type="button" data-open-book="moonlit" aria-label="Open The Song of the Moonlit Blossom Planet">
-                            <img src="./assets/book-moonlit-blossom-cover.png" alt="Juliet, Uni, and Starbeard sail toward a luminous flower planet beneath three moons.">
-                            <span class="book-jacket-shade" aria-hidden="true"></span>
-                            <span class="book-volume">Starbeard &amp; Uni · Book one</span>
-                            <span class="book-jacket-title book-jacket-title-long">The Song of the<br>Moonlit Blossom Planet</span>
-                            <span class="book-open-prompt">Open book <span aria-hidden="true">→</span></span>
-                        </button>
-                        <div class="book-details">
-                            <div>
-                                <p class="book-tag book-tag-new">The Adventures of Starbeard and Uni · 21 pages</p>
-                                <h3>The Song of the Moonlit Blossom Planet</h3>
-                                <p>A missing note leads the crew through a singing forest to a treasure that can only be given.</p>
-                            </div>
-                            <button class="shelf-read-button" type="button" data-open-book="moonlit">Read this book</button>
+                <section class="bookshelf library-collection library-collection-starbeard" aria-labelledby="starbeard-uni-title">
+                    <div class="shelf-heading">
+                        <div>
+                            <p class="shelf-kicker">Collection two · 1 book</p>
+                            <h2 id="starbeard-uni-title">The Adventures of Starbeard and Uni</h2>
                         </div>
-                    </article>
-                </div>
-                <div class="shelf-plank" aria-hidden="true"></div>
-            </section>
+                        <p class="shelf-hint">Every completed Starbeard-and-Uni book will join this shelf in reading order.</p>
+                    </div>
+
+                    <div class="book-grid">
+                        <article class="book-card book-card-moonlit">
+                            <button class="book-jacket" type="button" data-open-book="moonlit" aria-label="Open The Song of the Moonlit Blossom Planet">
+                                <img src="./assets/book-moonlit-blossom-cover.png" alt="Juliet, Uni, and Starbeard sail toward a luminous flower planet beneath three moons.">
+                                <span class="book-jacket-shade" aria-hidden="true"></span>
+                                <span class="book-volume">Starbeard &amp; Uni · Book one</span>
+                                <span class="book-open-prompt">Open book <span aria-hidden="true">→</span></span>
+                            </button>
+                            <div class="book-details">
+                                <div>
+                                    <p class="book-tag book-tag-new">The Adventures of Starbeard and Uni · 21 pages</p>
+                                    <h3>The Song of the Moonlit Blossom Planet</h3>
+                                    <p>A missing note leads the crew through a singing forest to a treasure that can only be given.</p>
+                                </div>
+                                <button class="shelf-read-button" type="button" data-open-book="moonlit">Read this book</button>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="shelf-plank" aria-hidden="true"></div>
+                </section>
+
+                <section class="bookshelf library-collection library-collection-other" aria-labelledby="other-stories-title">
+                    <div class="shelf-heading">
+                        <div>
+                            <p class="shelf-kicker">Collection three</p>
+                            <h2 id="other-stories-title">Other Stories</h2>
+                        </div>
+                        <p class="shelf-hint">Finished stories beyond the two adventure collections will live here.</p>
+                    </div>
+
+                    <div class="shelf-empty" role="note">
+                        <span class="shelf-empty-star" aria-hidden="true">✦</span>
+                        <p><strong>This shelf is waiting for its first finished story.</strong> When another tale is complete, its book will appear here.</p>
+                    </div>
+                    <div class="shelf-plank" aria-hidden="true"></div>
+                </section>
+            </div>
 
             <footer class="library-footer">
                 <span aria-hidden="true">✦</span>
