@@ -1,145 +1,325 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-        <meta name="theme-color" content="rgb(6, 14, 43)">
-        <meta name="description" content="A read-together space adventure with Juliet, Uni, and Starbeard.">
-        <meta property="og:title" content="Juliet’s Grand Adventures">
-        <meta property="og:description" content="Juliet, Uni &amp; Starbeard explore the Three Little Planets.">
-        <meta property="og:image" content="/assets/social-card.png">
-        <meta property="og:type" content="website">
-        <meta name="twitter:card" content="summary_large_image">
-        <title>Juliet’s Grand Adventures</title>
-        <link rel="stylesheet" href="/styles.css">
-    </head>
-    <body>
-        <main class="storybook" aria-label="Juliet’s Grand Adventures">
-            <header class="reader-bar">
-                <a class="brand" id="brand-link" href="#page-1" aria-label="Return to the cover">
-                    <span class="brand-star" aria-hidden="true">✦</span>
-                    <span>Juliet’s Grand Adventures</span>
-                </a>
-                <div class="reader-actions">
-                    <p class="chapter-label">The Three Little Planets</p>
-                    <button class="read-button" id="read-button" type="button" aria-pressed="false">
-                        <span class="read-icon" aria-hidden="true">◖</span>
-                        <span id="read-button-label">Read this page</span>
-                    </button>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="rgb(6, 14, 43)">
+    <meta name="description" content="A little illustrated library of space adventures with Juliet, Uni, and Starbeard.">
+    <meta property="og:title" content="Juliet’s Grand Adventures">
+    <meta property="og:description" content="Choose a book and explore the galaxy with Juliet, Uni, and Starbeard.">
+    <meta property="og:image" content="./assets/social-card.png">
+    <meta property="og:type" content="website">
+    <title>Juliet’s Grand Adventures</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./app.js" defer></script>
+</head>
+<body>
+    <main class="library-view" id="library-view">
+        <div class="library-stars" aria-hidden="true"></div>
+        <div class="library-shell">
+            <header class="library-masthead">
+                <div class="library-heading">
+                    <p class="library-kicker">The little library between stars</p>
+                    <h1>Juliet’s<br>Grand Adventures</h1>
+                    <p class="library-intro">Choose a book, cuddle in, and turn the galaxy one illustrated page at a time.</p>
+                </div>
+                <div class="library-orbit" aria-hidden="true">
+                    <span class="orbit-ring orbit-ring-one"></span>
+                    <span class="orbit-ring orbit-ring-two"></span>
+                    <span class="orbit-star">✦</span>
+                    <span class="orbit-moon">☾</span>
                 </div>
             </header>
 
-            <div class="story-track" id="story-track">
-                <section class="story-page cover-page is-current" id="page-1" data-page="1" aria-labelledby="cover-title">
-                    <img class="page-art" src="/assets/cover.png" alt="Juliet, Starbeard, and Uni stand beside their patchwork rocket under three glowing planets.">
-                    <div class="art-shade art-shade-left" aria-hidden="true"></div>
-                    <div class="page-copy cover-copy">
-                        <p class="eyebrow" data-narrate>Tonight’s read-together adventure</p>
-                        <h1 id="cover-title" data-narrate>The Three<br>Little Planets</h1>
-                        <p class="dek" data-narrate>Juliet, Uni, and Starbeard follow one tiny star beyond the backyard—and discover three worlds that need exactly their kind of courage.</p>
-                        <button class="begin-button" id="begin-button" type="button">
-                            Begin the adventure
-                            <span aria-hidden="true">→</span>
-                        </button>
+            <section class="bookshelf" aria-labelledby="bookshelf-title">
+                <div class="shelf-heading">
+                    <div>
+                        <p class="shelf-kicker">On the shelf</p>
+                        <h2 id="bookshelf-title">Two voyages are ready</h2>
                     </div>
-                </section>
-
-                <section class="story-page" id="page-2" data-page="2" aria-labelledby="page-2-title">
-                    <img class="page-art" src="/assets/launch.png" alt="Juliet raises the cape-sail while Uni sparks the patchwork rocket and Starbeard reads a map in his glowing beard.">
-                    <div class="art-shade art-shade-bottom" aria-hidden="true"></div>
-                    <div class="page-copy story-copy story-copy-right">
-                        <p class="page-kicker" data-narrate>One starry almost-bedtime…</p>
-                        <h2 id="page-2-title" data-narrate>A cape became a sail.</h2>
-                        <p data-narrate>Juliet tied her favorite red cape to the blanket rocket. Uni tapped the mast with one golden spark. Starbeard checked the little map hidden in his whiskers.</p>
-                        <p class="spoken-line" data-narrate>“Next stop,” Juliet whispered, “somewhere no bedtime story has gone before.”</p>
-                    </div>
-                </section>
-
-                <section class="story-page" id="page-3" data-page="3" aria-labelledby="page-3-title">
-                    <img class="page-art" src="/assets/tumble-turn.png" alt="The three explorers hold hands in a glowing forest of floating bubble trees.">
-                    <div class="art-shade art-shade-left" aria-hidden="true"></div>
-                    <div class="page-copy story-copy story-copy-left">
-                        <p class="planet-badge" data-narrate>Little Planet One · Tumble-Turn</p>
-                        <h2 id="page-3-title" data-narrate>Here, up was feeling shy.</h2>
-                        <p data-narrate>Bubble trees floated overhead. Mossy paths curled upside down. And one tiny pearl-bubble was caught in the highest loop of all.</p>
-                        <p class="spoken-line" data-narrate>“Then we will turn together,” Juliet said, reaching for Uni and Starbeard.</p>
-                    </div>
-                </section>
-
-                <section class="story-page" id="page-4" data-page="4" aria-labelledby="page-4-title">
-                    <img class="page-art page-art-tumble-close" src="/assets/tumble-turn.png" alt="Juliet reaches for the baby bubble while holding Starbeard’s hand and Uni lights the way.">
-                    <div class="art-shade art-shade-bottom" aria-hidden="true"></div>
-                    <div class="page-copy story-copy story-copy-right story-copy-compact">
-                        <p class="page-kicker" data-narrate>One, two, trust!</p>
-                        <h2 id="page-4-title" data-narrate>Three brave hearts leaned the same way.</h2>
-                        <p data-narrate>Uni counted. Starbeard steadied the chain. Juliet’s cape stretched like a bright red ribbon—and the baby bubble bounced safely home.</p>
-                        <p class="story-lesson" data-narrate>Sometimes courage is simply knowing whose hand to hold.</p>
-                    </div>
-                </section>
-
-                <section class="story-page" id="page-5" data-page="5" aria-labelledby="page-5-title">
-                    <img class="page-art" src="/assets/luma-bloom.png" alt="Juliet listens beside glowing bell flowers while Uni and Starbeard join her in the quiet.">
-                    <div class="art-shade art-shade-right" aria-hidden="true"></div>
-                    <div class="page-copy story-copy story-copy-right">
-                        <p class="planet-badge" data-narrate>Little Planet Two · Luma Bloom</p>
-                        <h2 id="page-5-title" data-narrate>The flowers had forgotten their song.</h2>
-                        <p data-narrate>Uni tried a silver note. Starbeard jingled his constellation beard. Nothing. So Juliet closed her eyes and listened for the quietest sound.</p>
-                        <p class="spoken-line" data-narrate>A tiny seed hummed. Juliet hummed back. Soon the whole planet was singing.</p>
-                    </div>
-                </section>
-
-                <section class="story-page" id="page-6" data-page="6" aria-labelledby="page-6-title">
-                    <img class="page-art" src="/assets/naptune.png" alt="Juliet and Uni float through cloud rings toward a sleepy crescent moon while Starbeard keeps them safe with a glowing rope.">
-                    <div class="art-shade art-shade-left" aria-hidden="true"></div>
-                    <div class="page-copy story-copy story-copy-left">
-                        <p class="planet-badge" data-narrate>Little Planet Three · Naptune</p>
-                        <h2 id="page-6-title" data-narrate>The moon could not fall asleep.</h2>
-                        <p data-narrate>Its golden dream seed had rolled into a nest of drifting cloud rings. Juliet and Uni floated after it while Starbeard anchored them with a rope of stars.</p>
-                        <p class="spoken-line" data-narrate>“We do not need louder,” Juliet said. “We need gentler.”</p>
-                    </div>
-                </section>
-
-                <section class="story-page" id="page-7" data-page="7" aria-labelledby="page-7-title">
-                    <img class="page-art page-art-naptune-close" src="/assets/naptune.png" alt="Juliet carries the glowing dream seed to the peaceful crescent moon as Uni and Starbeard help.">
-                    <div class="art-shade art-shade-bottom" aria-hidden="true"></div>
-                    <div class="page-copy story-copy story-copy-right story-copy-compact">
-                        <p class="page-kicker" data-narrate>Softly home</p>
-                        <h2 id="page-7-title" data-narrate>Juliet tucked the seed inside her cape.</h2>
-                        <p data-narrate>When she placed it beside the moon, Naptune gave one enormous yawn. Every star snuggled into place.</p>
-                        <p class="spoken-line" data-narrate>“Take one dream seed for your own sky,” the moon whispered.</p>
-                    </div>
-                </section>
-
-                <section class="story-page ending-page" id="page-8" data-page="8" aria-labelledby="page-8-title">
-                    <img class="page-art" src="/assets/home.png" alt="At dawn, Juliet, Starbeard, and Uni cuddle beneath the cape beside a tiny glowing starflower.">
-                    <div class="art-shade art-shade-right" aria-hidden="true"></div>
-                    <div class="page-copy story-copy ending-copy story-copy-right">
-                        <p class="page-kicker" data-narrate>Home again</p>
-                        <h2 id="page-8-title" data-narrate>Home is a planet, too.</h2>
-                        <p data-narrate>At dawn they planted the dream seed beside their blanket fort. It opened into one tiny starflower—proof that wonder can travel all the way home.</p>
-                        <p class="spoken-line" data-narrate>And beneath Juliet’s cape, three explorers dreamed of the next grand adventure.</p>
-                        <button class="again-button" id="again-button" type="button">
-                            Read it again
-                            <span aria-hidden="true">↺</span>
-                        </button>
-                    </div>
-                </section>
-            </div>
-
-            <nav class="reader-controls" aria-label="Story pages">
-                <button class="round-button" id="previous-button" type="button" aria-label="Previous page" disabled>
-                    <span aria-hidden="true">←</span>
-                </button>
-                <div class="page-status" aria-live="polite">
-                    <div class="progress-dots" id="progress-dots" aria-label="Choose a story page"></div>
-                    <span id="page-status-text">Cover · 1 of 8</span>
+                    <p class="shelf-hint">Swipe the pages, use the arrows, or let the browser read aloud.</p>
                 </div>
-                <button class="round-button" id="next-button" type="button" aria-label="Next page">
+
+                <div class="book-grid">
+                    <article class="book-card book-card-planets">
+                        <button class="book-jacket" type="button" data-open-book="planets" aria-label="Open The Three Little Planets">
+                            <img src="./assets/cover.png" alt="Juliet, Uni, and Starbeard beside their patchwork rocket beneath three glowing planets.">
+                            <span class="book-jacket-shade" aria-hidden="true"></span>
+                            <span class="book-volume">Volume one</span>
+                            <span class="book-jacket-title">The Three<br>Little Planets</span>
+                            <span class="book-open-prompt">Open book <span aria-hidden="true">→</span></span>
+                        </button>
+                        <div class="book-details">
+                            <div>
+                                <p class="book-tag">First voyage · 8 spreads</p>
+                                <h3>The Three Little Planets</h3>
+                                <p>Three tiny worlds need a steady hand, a listening heart, and one very gentle bedtime crew.</p>
+                            </div>
+                            <button class="shelf-read-button" type="button" data-open-book="planets">Read this book</button>
+                        </div>
+                    </article>
+
+                    <article class="book-card book-card-doughnut">
+                        <button class="book-jacket" type="button" data-open-book="doughnut" aria-label="Open Starbeard and the Doughnut Planet Map">
+                            <img src="./assets/book-doughnut-cover.png" alt="Juliet, Uni, and Starbeard sail toward a glowing doughnut-shaped planet.">
+                            <span class="book-jacket-shade" aria-hidden="true"></span>
+                            <span class="book-volume">Volume two</span>
+                            <span class="book-jacket-title book-jacket-title-long">Starbeard &amp; the<br>Doughnut Planet Map</span>
+                            <span class="book-open-prompt">Open book <span aria-hidden="true">→</span></span>
+                        </button>
+                        <div class="book-details">
+                            <div>
+                                <p class="book-tag book-tag-new">New voyage · 8 spreads</p>
+                                <h3>Starbeard and the Doughnut Planet Map</h3>
+                                <p>A round clue, a storm of sprinkles, and a cozy explorer growing into a proper space-pirate captain.</p>
+                            </div>
+                            <button class="shelf-read-button" type="button" data-open-book="doughnut">Read this book</button>
+                        </div>
+                    </article>
+                </div>
+                <div class="shelf-plank" aria-hidden="true"></div>
+            </section>
+
+            <footer class="library-footer">
+                <span aria-hidden="true">✦</span>
+                <p>Made for reading together, wherever the next almost-bedtime adventure begins.</p>
+            </footer>
+        </div>
+    </main>
+
+    <main class="storybook" id="reader-view" hidden tabindex="-1">
+        <header class="reader-bar">
+            <div class="reader-identity">
+                <button class="library-button" id="library-button" type="button">
+                    <span aria-hidden="true">←</span>
+                    <span>Library</span>
+                </button>
+                <button class="reader-brand" id="reader-brand-button" type="button" aria-label="Return to this book’s cover">
+                    <span class="brand-star" aria-hidden="true">✦</span>
+                    <span>Juliet’s Grand Adventures</span>
+                </button>
+            </div>
+            <div class="reader-actions">
+                <p class="chapter-label" id="chapter-label"></p>
+                <button class="read-button" id="read-button" type="button" aria-pressed="false">
+                    <span class="read-icon" aria-hidden="true">◖</span>
+                    <span id="read-button-label">Read this page</span>
+                </button>
+            </div>
+        </header>
+
+        <div class="story-track" id="story-track"></div>
+
+        <nav class="reader-controls" aria-label="Story pages">
+            <button class="round-button" id="previous-button" type="button" aria-label="Previous page" disabled>
+                <span aria-hidden="true">←</span>
+            </button>
+            <div class="page-status" aria-live="polite">
+                <div class="progress-dots" id="progress-dots" aria-label="Choose a story page"></div>
+                <span id="page-status-text"></span>
+            </div>
+            <button class="round-button" id="next-button" type="button" aria-label="Next page">
+                <span aria-hidden="true">→</span>
+            </button>
+        </nav>
+    </main>
+
+    <template id="book-planets-template">
+        <section class="story-page cover-page is-current" data-page-label="Cover" aria-labelledby="planets-cover-title">
+            <img class="page-art" src="./assets/cover.png" alt="Juliet, Starbeard, and Uni stand beside their patchwork rocket under three glowing planets.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy cover-copy">
+                <p class="eyebrow" data-narrate>Tonight’s read-together adventure</p>
+                <h2 class="cover-title" id="planets-cover-title" data-narrate>The Three<br>Little Planets</h2>
+                <p class="dek" data-narrate>Juliet, Uni, and Starbeard follow one tiny star beyond the backyard—and discover three worlds that need exactly their kind of courage.</p>
+                <button class="begin-button" type="button" data-story-action="begin">
+                    Begin the adventure
                     <span aria-hidden="true">→</span>
                 </button>
-            </nav>
-        </main>
+            </div>
+        </section>
 
-        <script type="module" src="/app.js"></script>
-    </body>
+        <section class="story-page" data-page-label="A cape became a sail" aria-labelledby="planets-page-2-title">
+            <img class="page-art" src="./assets/launch.png" alt="Juliet raises the cape-sail while Uni sparks the patchwork rocket and Starbeard reads a map in his glowing beard.">
+            <div class="art-shade art-shade-bottom" aria-hidden="true"></div>
+            <div class="page-copy story-copy story-copy-right">
+                <p class="page-kicker" data-narrate>One starry almost-bedtime…</p>
+                <h2 id="planets-page-2-title" data-narrate>A cape became a sail.</h2>
+                <p data-narrate>Juliet tied her favorite red cape to the blanket rocket. Uni tapped the mast with one golden spark. Starbeard checked the little map hidden in his whiskers.</p>
+                <p class="spoken-line" data-narrate>“Next stop,” Juliet whispered, “somewhere no bedtime story has gone before.”</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Tumble-Turn" aria-labelledby="planets-page-3-title">
+            <img class="page-art" src="./assets/tumble-turn.png" alt="The three explorers hold hands in a glowing forest of floating bubble trees.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy story-copy-left">
+                <p class="planet-badge" data-narrate>Little Planet One · Tumble-Turn</p>
+                <h2 id="planets-page-3-title" data-narrate>Here, up was feeling shy.</h2>
+                <p data-narrate>Bubble trees floated overhead. Mossy paths curled upside down. And one tiny pearl-bubble was caught in the highest loop of all.</p>
+                <p class="spoken-line" data-narrate>“Then we will turn together,” Juliet said, reaching for Uni and Starbeard.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="One, two, trust" aria-labelledby="planets-page-4-title">
+            <img class="page-art page-art-tumble-close" src="./assets/tumble-turn.png" alt="Juliet reaches for the baby bubble while holding Starbeard’s hand and Uni lights the way.">
+            <div class="art-shade art-shade-bottom" aria-hidden="true"></div>
+            <div class="page-copy story-copy story-copy-right story-copy-compact">
+                <p class="page-kicker" data-narrate>One, two, trust!</p>
+                <h2 id="planets-page-4-title" data-narrate>Three brave hearts leaned the same way.</h2>
+                <p data-narrate>Uni counted. Starbeard steadied the chain. Juliet’s cape stretched like a bright red ribbon—and the baby bubble bounced safely home.</p>
+                <p class="story-lesson" data-narrate>Sometimes courage is simply knowing whose hand to hold.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Luma Bloom" aria-labelledby="planets-page-5-title">
+            <img class="page-art" src="./assets/luma-bloom.png" alt="Juliet listens beside glowing bell flowers while Uni and Starbeard join her in the quiet.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy story-copy-right">
+                <p class="planet-badge" data-narrate>Little Planet Two · Luma Bloom</p>
+                <h2 id="planets-page-5-title" data-narrate>The flowers had forgotten their song.</h2>
+                <p data-narrate>Uni tried a silver note. Starbeard jingled his constellation beard. Nothing. So Juliet closed her eyes and listened for the quietest sound.</p>
+                <p class="spoken-line" data-narrate>A tiny seed hummed. Juliet hummed back. Soon the whole planet was singing.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Naptune" aria-labelledby="planets-page-6-title">
+            <img class="page-art" src="./assets/naptune.png" alt="Juliet and Uni float through cloud rings toward a sleepy crescent moon while Starbeard keeps them safe with a glowing rope.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy story-copy-left">
+                <p class="planet-badge" data-narrate>Little Planet Three · Naptune</p>
+                <h2 id="planets-page-6-title" data-narrate>The moon could not fall asleep.</h2>
+                <p data-narrate>Its golden dream seed had rolled into a nest of drifting cloud rings. Juliet and Uni floated after it while Starbeard anchored them with a rope of stars.</p>
+                <p class="spoken-line" data-narrate>“We do not need louder,” Juliet said. “We need gentler.”</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Softly home" aria-labelledby="planets-page-7-title">
+            <img class="page-art page-art-naptune-close" src="./assets/naptune.png" alt="Juliet carries the glowing dream seed to the peaceful crescent moon as Uni and Starbeard help.">
+            <div class="art-shade art-shade-bottom" aria-hidden="true"></div>
+            <div class="page-copy story-copy story-copy-right story-copy-compact">
+                <p class="page-kicker" data-narrate>Softly home</p>
+                <h2 id="planets-page-7-title" data-narrate>Juliet tucked the seed inside her cape.</h2>
+                <p data-narrate>When she placed it beside the moon, Naptune gave one enormous yawn. Every star snuggled into place.</p>
+                <p class="spoken-line" data-narrate>“Take one dream seed for your own sky,” the moon whispered.</p>
+            </div>
+        </section>
+
+        <section class="story-page ending-page" data-page-label="Home again" aria-labelledby="planets-page-8-title">
+            <img class="page-art" src="./assets/home.png" alt="At dawn, Juliet, Starbeard, and Uni cuddle beneath the cape beside a tiny glowing starflower.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy ending-copy story-copy-right">
+                <p class="page-kicker" data-narrate>Home again</p>
+                <h2 id="planets-page-8-title" data-narrate>Home is a planet, too.</h2>
+                <p data-narrate>At dawn they planted the dream seed beside their blanket fort. It opened into one tiny starflower—proof that wonder can travel all the way home.</p>
+                <p class="spoken-line" data-narrate>And beneath Juliet’s cape, three explorers dreamed of the next grand adventure.</p>
+                <button class="again-button" type="button" data-story-action="again">
+                    Read it again
+                    <span aria-hidden="true">↺</span>
+                </button>
+            </div>
+        </section>
+    </template>
+
+    <template id="book-doughnut-template">
+        <section class="story-page cover-page doughnut-cover is-current" data-page-label="Cover" aria-labelledby="doughnut-cover-title">
+            <img class="page-art" src="./assets/book-doughnut-cover.png" alt="Juliet, Uni, and Starbeard sail their patchwork star-sloop toward a glowing doughnut planet.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy cover-copy doughnut-cover-copy">
+                <p class="eyebrow" data-narrate>A round-horizon adventure</p>
+                <h2 class="cover-title" id="doughnut-cover-title" data-narrate>Starbeard &amp; the<br>Doughnut Planet Map</h2>
+                <p class="dek" data-narrate>A curious clue sends Juliet, Uni, and Starbeard through a storm of sprinkles—while one cozy explorer grows into a proper space-pirate captain.</p>
+                <button class="begin-button" type="button" data-story-action="begin">
+                    Follow the round map
+                    <span aria-hidden="true">→</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The map in the marmalade" aria-labelledby="doughnut-page-2-title">
+            <img class="page-art" src="./assets/doughnut-map.png" alt="A glowing ring-shaped star map rises from Juliet’s marmalade while Uni and Starbeard look on.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy story-copy-right">
+                <p class="page-kicker" data-narrate>Breakfast aboard the star-sloop</p>
+                <h2 id="doughnut-page-2-title" data-narrate>The map was hiding in the marmalade.</h2>
+                <p data-narrate>Juliet made one slow circle with her spoon. Up rose a golden ring of stars, with a blinking crumb-trail straight through the galaxy.</p>
+                <p class="spoken-line" data-narrate>“That,” said Uni, “is the roundest clue I have ever seen.”</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Captain in the making" aria-labelledby="doughnut-page-3-title">
+            <img class="page-art page-art-map-close" src="./assets/doughnut-map.png" alt="Starbeard studies the glowing map in a captain sash while Juliet and Uni choose their course.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy story-copy-right story-copy-compact">
+                <p class="pirate-badge" data-narrate>Starbeard’s captain look · One</p>
+                <h2 id="doughnut-page-3-title" data-narrate>First came the sash. Then came the captain voice.</h2>
+                <p data-narrate>Starbeard tied midnight blue across his cardigan, pinned on a brass compass, and lifted his spyglass.</p>
+                <p class="spoken-line" data-narrate>“Crew,” he announced, “our course is wonderfully round.”</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The Sprinkle Belt" aria-labelledby="doughnut-page-4-title">
+            <img class="page-art" src="./assets/sprinkle-belt.png" alt="The crew sails through a sparkling belt of colorful sprinkle-shaped asteroids.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy story-copy-left">
+                <p class="pirate-badge" data-narrate>Starbeard’s captain look · Two</p>
+                <h2 id="doughnut-page-4-title" data-narrate>The Sprinkle Belt tumbled every which way.</h2>
+                <p data-narrate>Juliet held the star-wheel steady. Uni nudged the biggest sprinkles with a golden beam. Starbeard’s cardigan stretched into a long, brass-buttoned coat as he called the clear path.</p>
+                <p class="spoken-line" data-narrate>Port past the purple! Starboard round the blue!</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The roundest horizon" aria-labelledby="doughnut-page-5-title">
+            <img class="page-art page-art-doughnut-arrival" src="./assets/book-doughnut-cover.png" alt="The crew gazes toward a rose-gold ring world with icing-like clouds and tiny moonlets.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy story-copy-left">
+                <p class="planet-badge" data-narrate>Doughnut Planet · Rosegold Ring</p>
+                <h2 id="doughnut-page-5-title" data-narrate>At last, the horizon curved all the way around.</h2>
+                <p data-narrate>Glaze seas shimmered below icing-clouds. Sprinkle forests chimed in the wind. Yet the tides stood still, and every moonlet pointed toward the empty middle.</p>
+                <p class="spoken-line" data-narrate>“Something small is missing from somewhere very big,” Juliet said.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The moon in the middle" aria-labelledby="doughnut-page-6-title">
+            <img class="page-art" src="./assets/doughnut-rescue.png" alt="Juliet, Uni, and Captain Starbeard free a little golden moon from the center of the doughnut planet.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy story-copy-right">
+                <p class="pirate-badge" data-narrate>Starbeard’s captain look · Complete</p>
+                <h2 id="doughnut-page-6-title" data-narrate>A little moon was caught in the middle.</h2>
+                <p data-narrate>Juliet opened her cape into a sail. Uni loosened the raspberry nebula with warm light. And Starbeard—hat, brass buttons, star-beads and all—anchored their shining rope.</p>
+                <p class="spoken-line" data-narrate>“A captain holds steady,” he said, “but the crew chooses the way.”</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="One round rescue" aria-labelledby="doughnut-page-7-title">
+            <img class="page-art page-art-rescue-close" src="./assets/doughnut-rescue.png" alt="The golden moon lifts free in Juliet’s cape while Uni shines and Starbeard holds the rope.">
+            <div class="art-shade art-shade-bottom" aria-hidden="true"></div>
+            <div class="page-copy story-copy story-copy-right story-copy-compact">
+                <p class="page-kicker" data-narrate>One cape, one horn, one steady rope</p>
+                <h2 id="doughnut-page-7-title" data-narrate>The moon popped free with a tiny, happy whoop.</h2>
+                <p data-narrate>It rolled into its orbit. The glaze seas began to sparkle, the sprinkle forests danced, and a ring-shaped compass appeared in Juliet’s hands.</p>
+                <p class="story-lesson" data-narrate>The best treasure is a way to find one another again.</p>
+            </div>
+        </section>
+
+        <section class="story-page ending-page" data-page-label="Round horizons" aria-labelledby="doughnut-page-8-title">
+            <img class="page-art" src="./assets/doughnut-horizons.png" alt="Juliet, Uni, and Captain Starbeard sail toward a galaxy filled with distant ring-shaped worlds.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy ending-copy story-copy-left">
+                <p class="page-kicker" data-narrate>A galaxy of round horizons</p>
+                <h2 id="doughnut-page-8-title" data-narrate>One doughnut planet became a whole trail of them.</h2>
+                <p data-narrate>The rescued moon drew a glowing circle in the sky. Beyond it waited blueberry rings, peach-gold rings, and lavender rings no map had named yet.</p>
+                <p class="spoken-line" data-narrate>Starbeard tipped his captain hat. “Good thing this coat has room for more maps.”</p>
+                <button class="again-button" type="button" data-story-action="again">
+                    Sail it again
+                    <span aria-hidden="true">↺</span>
+                </button>
+            </div>
+        </section>
+    </template>
+
+    <noscript>
+        <p class="noscript-message">This sliding storybook needs JavaScript enabled in your browser. It uses only the local files in this folder.</p>
+    </noscript>
+</body>
 </html>

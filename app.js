@@ -1,37 +1,73 @@
+'use strict';
+
+const BOOKS = Object.freeze(
+    {
+        planets: Object.freeze(
+            {
+                title: 'The Three Little Planets',
+                templateId: 'book-planets-template'
+            }
+        ),
+        doughnut: Object.freeze(
+            {
+                title: 'Starbeard and the Doughnut Planet Map',
+                templateId: 'book-doughnut-template'
+            }
+        )
+    }
+);
+
+const pageBody = document.body;
+const libraryView = document.querySelector('#library-view');
+const readerView = document.querySelector('#reader-view');
 const storyTrack = document.querySelector('#story-track');
-const pages = Array.from(document.querySelectorAll('.story-page'));
 const previousButton = document.querySelector('#previous-button');
 const nextButton = document.querySelector('#next-button');
-const beginButton = document.querySelector('#begin-button');
-const againButton = document.querySelector('#again-button');
-const brandLink = document.querySelector('#brand-link');
+const libraryButton = document.querySelector('#library-button');
+const readerBrandButton = document.querySelector('#reader-brand-button');
 const readButton = document.querySelector('#read-button');
 const readButtonLabel = document.querySelector('#read-button-label');
+const chapterLabel = document.querySelector('#chapter-label');
 const statusText = document.querySelector('#page-status-text');
 const progressDots = document.querySelector('#progress-dots');
+const openBookButtons = document.querySelectorAll('[data-open-book]');
 
-const narrationSupported = 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
+const narrationSupported = 'speechSynthesis' in window
+    && 'SpeechSynthesisUtterance' in window;
 
+let pages = [];
+let currentBookId = '';
 let currentPageIndex = 0;
 let scrollFrame = 0;
 let narrationActive = false;
+let lastOpenButton = null;
 
 function createProgressDots() {
-    pages.forEach(function createDot(page, index) {
+    const fragment = document.createDocumentFragment();
+
+    for (let index = 0; index < pages.length; index += 1) {
         const dot = document.createElement('button');
-        dot.className = index === 0 ? 'progress-dot is-current' : 'progress-dot';
+        const pageLabel = pages[index].dataset.pageLabel || 'Page ' + (index + 1);
+
+        dot.className = index === 0
+            ? 'progress-dot is-current'
+            : 'progress-dot';
         dot.type = 'button';
-        dot.dataset.index = String(index);
-        dot.setAttribute('aria-label', index === 0 ? 'Go to the cover' : 'Go to page ' + (index + 1));
+        dot.dataset.pageIndex = String(index);
+        dot.setAttribute('aria-label', 'Go to ' + pageLabel);
         dot.setAttribute('aria-current', index === 0 ? 'page' : 'false');
-        progressDots.append(dot);
-    });
+        fragment.append(dot);
+    }
+
+    progressDots.replaceChildren(fragment);
 }
 
 function updateNarrationButton(isReading) {
     narrationActive = isReading;
     readButton.setAttribute('aria-pressed', String(isReading));
-    readButtonLabel.textContent = isReading ? 'Stop reading' : 'Read this page';
+    readButtonLabel.textContent = isReading
+        ? 'Stop reading'
+        : 'Read this page';
 }
 
 function stopNarration() {
@@ -44,30 +80,130 @@ function stopNarration() {
 }
 
 function updateReaderState(index) {
+    if (pages.length === 0) {
+        return;
+    }
+
     currentPageIndex = Math.max(0, Math.min(index, pages.length - 1));
 
-    pages.forEach(function updatePageClass(page, pageIndex) {
-        page.classList.toggle('is-current', pageIndex === currentPageIndex);
-    });
+    for (let pageIndex = 0; pageIndex < pages.length; pageIndex += 1) {
+        pages[pageIndex].classList.toggle(
+            'is-current',
+            pageIndex === currentPageIndex
+        );
+    }
 
-    Array.from(progressDots.children).forEach(function updateDot(dot, dotIndex) {
+    const dots = progressDots.children;
+
+    for (let dotIndex = 0; dotIndex < dots.length; dotIndex += 1) {
         const isCurrent = dotIndex === currentPageIndex;
-        dot.classList.toggle('is-current', isCurrent);
-        dot.setAttribute('aria-current', isCurrent ? 'page' : 'false');
-    });
+
+        dots[dotIndex].classList.toggle('is-current', isCurrent);
+        dots[dotIndex].setAttribute(
+            'aria-current',
+            isCurrent ? 'page' : 'false'
+        );
+    }
+
+    const currentLabel = pages[currentPageIndex].dataset.pageLabel
+        || 'Page ' + (currentPageIndex + 1);
 
     previousButton.disabled = currentPageIndex === 0;
     nextButton.disabled = currentPageIndex === pages.length - 1;
-    statusText.textContent = currentPageIndex === 0
-        ? 'Cover · 1 of ' + pages.length
-        : 'Page ' + (currentPageIndex + 1) + ' of ' + pages.length;
+    statusText.textContent = currentLabel
+        + ' · '
+        + (currentPageIndex + 1)
+        + ' of '
+        + pages.length;
 }
 
-function goToPage(index) {
+function goToPage(index, useSmoothScroll = true) {
+    if (pages.length === 0) {
+        return;
+    }
+
     const safeIndex = Math.max(0, Math.min(index, pages.length - 1));
+    const pageWidth = storyTrack.clientWidth;
+
     stopNarration();
-    pages[safeIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+    storyTrack.scrollTo(
+        {
+            left: pageWidth * safeIndex,
+            behavior: useSmoothScroll ? 'smooth' : 'auto'
+        }
+    );
     updateReaderState(safeIndex);
+}
+
+function finishOpeningBook() {
+    storyTrack.scrollLeft = 0;
+    updateReaderState(0);
+    readerView.focus(
+        {
+            preventScroll: true
+        }
+    );
+}
+
+function openBookById(bookId, sourceButton) {
+    const book = BOOKS[bookId];
+
+    if (!book) {
+        return;
+    }
+
+    const template = document.querySelector('#' + book.templateId);
+
+    if (!template) {
+        return;
+    }
+
+    stopNarration();
+    lastOpenButton = sourceButton || lastOpenButton;
+    currentBookId = bookId;
+    currentPageIndex = 0;
+    storyTrack.replaceChildren(template.content.cloneNode(true));
+    pages = Array.from(storyTrack.querySelectorAll('.story-page'));
+    createProgressDots();
+    chapterLabel.textContent = book.title;
+    readerView.dataset.book = bookId;
+    readerView.setAttribute('aria-label', book.title + ' story reader');
+    libraryView.hidden = true;
+    readerView.hidden = false;
+    pageBody.classList.add('is-reading');
+    document.title = book.title + ' — Juliet’s Grand Adventures';
+    window.requestAnimationFrame(finishOpeningBook);
+}
+
+function focusLastOpenButton() {
+    if (lastOpenButton) {
+        lastOpenButton.focus();
+    }
+}
+
+function returnToLibrary() {
+    if (readerView.hidden) {
+        return;
+    }
+
+    stopNarration();
+    readerView.hidden = true;
+    libraryView.hidden = false;
+    pageBody.classList.remove('is-reading');
+    storyTrack.replaceChildren();
+    progressDots.replaceChildren();
+    pages = [];
+    currentBookId = '';
+    currentPageIndex = 0;
+    document.title = 'Juliet’s Grand Adventures';
+    window.requestAnimationFrame(focusLastOpenButton);
+}
+
+function handleOpenBookClick(event) {
+    openBookById(
+        event.currentTarget.dataset.openBook,
+        event.currentTarget
+    );
 }
 
 function handlePreviousClick() {
@@ -78,17 +214,28 @@ function handleNextClick() {
     goToPage(currentPageIndex + 1);
 }
 
-function handleBeginClick() {
-    goToPage(1);
+function handleLibraryClick() {
+    returnToLibrary();
 }
 
-function handleAgainClick() {
+function handleReaderBrandClick() {
     goToPage(0);
 }
 
-function handleBrandClick(event) {
-    event.preventDefault();
-    goToPage(0);
+function handleStoryActionClick(event) {
+    const control = event.target.closest('[data-story-action]');
+
+    if (!control) {
+        return;
+    }
+
+    if (control.dataset.storyAction === 'begin') {
+        goToPage(1);
+    }
+
+    if (control.dataset.storyAction === 'again') {
+        goToPage(0);
+    }
 }
 
 function handleProgressClick(event) {
@@ -98,10 +245,20 @@ function handleProgressClick(event) {
         return;
     }
 
-    goToPage(Number(dot.dataset.index));
+    goToPage(Number(dot.dataset.pageIndex));
 }
 
 function handleKeydown(event) {
+    if (readerView.hidden) {
+        return;
+    }
+
+    if (event.key === 'Escape') {
+        event.preventDefault();
+        returnToLibrary();
+        return;
+    }
+
     if (event.key === 'ArrowRight' || event.key === 'PageDown') {
         event.preventDefault();
         goToPage(currentPageIndex + 1);
@@ -125,9 +282,10 @@ function handleKeydown(event) {
 
 function syncPageFromScroll() {
     scrollFrame = 0;
+
     const pageWidth = storyTrack.clientWidth;
 
-    if (pageWidth === 0) {
+    if (pageWidth === 0 || pages.length === 0) {
         return;
     }
 
@@ -148,11 +306,14 @@ function handleTrackScroll() {
 }
 
 function collectNarration(page) {
-    const passages = Array.from(page.querySelectorAll('[data-narrate]'));
+    const passages = page.querySelectorAll('[data-narrate]');
+    const narration = [];
 
-    return passages.map(function collectPassage(passage) {
-        return passage.textContent.trim();
-    }).join(' ');
+    for (let index = 0; index < passages.length; index += 1) {
+        narration.push(passages[index].textContent.trim());
+    }
+
+    return narration.join(' ');
 }
 
 function handleNarrationEnd() {
@@ -160,7 +321,7 @@ function handleNarrationEnd() {
 }
 
 function handleReadClick() {
-    if (!narrationSupported) {
+    if (!narrationSupported || pages.length === 0) {
         return;
     }
 
@@ -169,7 +330,9 @@ function handleReadClick() {
         return;
     }
 
-    const utterance = new SpeechSynthesisUtterance(collectNarration(pages[currentPageIndex]));
+    const pageNarration = collectNarration(pages[currentPageIndex]);
+    const utterance = new SpeechSynthesisUtterance(pageNarration);
+
     utterance.rate = 0.88;
     utterance.pitch = 1.03;
     utterance.addEventListener('end', handleNarrationEnd);
@@ -179,11 +342,16 @@ function handleReadClick() {
 }
 
 function handleResize() {
-    pages[currentPageIndex].scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'start' });
+    if (readerView.hidden || pages.length === 0) {
+        return;
+    }
+
+    storyTrack.scrollLeft = storyTrack.clientWidth * currentPageIndex;
 }
 
-createProgressDots();
-updateReaderState(0);
+for (let index = 0; index < openBookButtons.length; index += 1) {
+    openBookButtons[index].addEventListener('click', handleOpenBookClick);
+}
 
 if (!narrationSupported) {
     readButton.hidden = true;
@@ -191,12 +359,18 @@ if (!narrationSupported) {
 
 previousButton.addEventListener('click', handlePreviousClick);
 nextButton.addEventListener('click', handleNextClick);
-beginButton.addEventListener('click', handleBeginClick);
-againButton.addEventListener('click', handleAgainClick);
-brandLink.addEventListener('click', handleBrandClick);
+libraryButton.addEventListener('click', handleLibraryClick);
+readerBrandButton.addEventListener('click', handleReaderBrandClick);
 readButton.addEventListener('click', handleReadClick);
 progressDots.addEventListener('click', handleProgressClick);
-storyTrack.addEventListener('scroll', handleTrackScroll, { passive: true });
+storyTrack.addEventListener('click', handleStoryActionClick);
+storyTrack.addEventListener(
+    'scroll',
+    handleTrackScroll,
+    {
+        passive: true
+    }
+);
 window.addEventListener('keydown', handleKeydown);
 window.addEventListener('resize', handleResize);
 window.addEventListener('pagehide', stopNarration);

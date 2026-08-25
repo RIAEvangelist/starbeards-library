@@ -1,23 +1,33 @@
 # Juliet’s Grand Adventures
 
-An illustrated, read-together storybook starring Juliet, Uni, and Starbeard. “The Three Little Planets” is presented as a full-screen horizontal reader with touch scrolling, keyboard navigation, page controls, and optional browser read-aloud.
+A dependency-free illustrated library starring Juliet, Uni, and Starbeard.
 
-## Local development
+## Books on the shelf
 
-```powershell
-npm install
-npm run dev
+- **The Three Little Planets** — the original eight-spread voyage.
+- **Starbeard and the Doughnut Planet Map** — a new eight-spread journey through sprinkle storms and round worlds, with Starbeard becoming more space-pirate-like along the way.
+
+Each book opens in the same full-screen horizontal reader with touch swiping, keyboard navigation, page controls, and optional browser read-aloud.
+
+## Serve locally
+
+The project directory is:
+
+```text
+C:\Users\codex\Documents\ChatGPT\JuJu's Grand Adventures
 ```
 
-Create the selected Sites release output with:
+From PowerShell:
 
 ```powershell
-npm run build
+cd "C:\Users\codex\Documents\ChatGPT\JuJu's Grand Adventures"
+py -m http.server 8000
 ```
 
-## Architecture and privacy
+Then open `http://127.0.0.1:8000/` in a browser.
 
-- The experience uses plain HTML, CSS, and JavaScript. There is no TypeScript, TSX, React, database, or application state service.
-- The story, illustrations, reading controls, and speech-synthesis enhancement are specific to this standalone storybook. No Arcane OS or Arcane SDK shared-runtime capability is changed or duplicated.
-- Private family photos were used only as off-site image-generation references. The original photos are not copied into this repository or its deployable assets.
-- Published artwork is AI-generated picture-book illustration stored under `public/assets/`.
+There is no package manager, build step, framework, backend, database, or module installation. The site is only `index.html`, `styles.css`, `app.js`, and local files under `assets/`.
+
+## Privacy
+
+Private family photos were used only as references for the generated picture-book illustrations. The original photos are not copied into this repository or the site assets.
