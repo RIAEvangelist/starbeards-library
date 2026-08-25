@@ -105,7 +105,7 @@
                 <section class="bookshelf library-collection library-collection-starbeard" aria-labelledby="starbeard-uni-title">
                     <div class="shelf-heading">
                         <div>
-                            <p class="shelf-kicker">Collection two · 2 books</p>
+                            <p class="shelf-kicker">Collection two · 3 books</p>
                             <h2 id="starbeard-uni-title">The Adventures of Starbeard and Uni</h2>
                         </div>
                         <p class="shelf-hint">Every completed Starbeard-and-Uni book will join this shelf in reading order.</p>
@@ -126,6 +126,23 @@
                                     <p>A missing note leads the crew through a singing forest to a treasure that can only be given.</p>
                                 </div>
                                 <button class="shelf-read-button" type="button" data-open-book="moonlit">Read this book</button>
+                            </div>
+                        </article>
+
+                        <article class="book-card book-card-sock-caper">
+                            <button class="book-jacket" type="button" data-open-book="sockCaper" aria-label="Open The Great Galactic Sock Caper">
+                                <img src="./assets/book-sock-caper-cover.png" alt="Starbeard and Uni dodge swirling laundry while a purple star sock drifts toward Starbeard and Admiral Pigeon watches from the round window.">
+                                <span class="book-jacket-shade" aria-hidden="true"></span>
+                                <span class="book-volume">Starbeard &amp; Uni · Book two</span>
+                                <span class="book-open-prompt">Open book <span aria-hidden="true">→</span></span>
+                            </button>
+                            <div class="book-details">
+                                <div>
+                                    <p class="book-tag book-tag-new">The Adventures of Starbeard and Uni · 12 pages</p>
+                                    <h3>The Great Galactic Sock Caper</h3>
+                                    <p>A missing purple sock turns laundry day into a quiet galactic mystery—and an adventure exactly big enough for today.</p>
+                                </div>
+                                <button class="shelf-read-button" type="button" data-open-book="sockCaper">Read this book</button>
                             </div>
                         </article>
 
@@ -708,6 +725,205 @@
                 <p class="story-ending" data-narrate>The End</p>
                 <button class="again-button" type="button" data-story-action="again">
                     Sing it again
+                    <span aria-hidden="true">↺</span>
+                </button>
+            </div>
+        </section>
+    </template>
+
+    <template id="book-sock-caper-template">
+        <section class="story-page cover-page sock-caper-cover is-current" data-page-label="Cover" aria-labelledby="sock-caper-cover-title">
+            <img class="page-art" src="./assets/book-sock-caper-cover.png" alt="Starbeard and Uni dodge swirling laundry while a purple star sock drifts toward Starbeard and Admiral Pigeon watches from the round window.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy cover-copy sock-caper-cover-copy">
+                <p class="eyebrow" data-narrate>The Adventures of Starbeard and Uni · Book Two</p>
+                <h2 class="cover-title" id="sock-caper-cover-title" data-narrate>The Great Galactic<br>Sock Caper</h2>
+                <p class="dek" data-narrate>A missing purple sock leads Uni and Starbeard through silver clues, a laundry-room wormhole, and one adventure exactly big enough for today.</p>
+                <button class="begin-button" type="button" data-story-action="begin">
+                    Follow the silver fluff
+                    <span aria-hidden="true">→</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The morning after" aria-labelledby="sock-caper-page-2-title">
+            <img class="page-art" src="./assets/sock-caper-victory-sneeze.png" alt="Uni sneezes sparkles while landing in a basket of clean laundry as Starbeard smiles beside her.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy sock-caper-story-copy story-copy-right">
+                <p class="page-kicker" data-narrate>The morning after</p>
+                <h2 id="sock-caper-page-2-title" data-narrate>Uni was completely better. Mostly.</h2>
+                <p data-narrate>The next morning, aboard <em>The Starlight Wanderer</em>, Uni opened one eye. Then the other. Then all at once she sprang from beneath her blanket and shouted: “I AM COMPLETELY BETTER!”</p>
+                <p data-narrate>She leaped from the couch. She spun through the air. She landed directly in a basket of clean laundry. Then she sneezed.</p>
+                <p data-narrate>Starbeard looked at her. Uni looked back. “Victory sneeze,” she explained. “Aye,” said Starbeard. “Naturally.”</p>
+                <p data-narrate>Uni climbed from the basket wearing a pillowcase like a cape. Her throat was less scratchy. Her nose was less stuffy. Her tummy had stopped feeling strange. And her hoof only itched a tiny bit.</p>
+                <p class="spoken-line" data-narrate>“I am ready for the biggest adventure in the entire galaxy,” she announced. Starbeard nodded gravely. “Excellent. Our first mission is laundry.”</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Mission number one" aria-labelledby="sock-caper-page-3-title">
+            <img class="page-art" src="./assets/sock-caper-laundry-mission.png" alt="Starbeard holds up an ordinary gray sock like a dangerous object while Uni leans away beside neat piles of laundry.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy sock-caper-story-copy story-copy-left">
+                <p class="page-kicker" data-narrate>Mission number one</p>
+                <h2 id="sock-caper-page-3-title" data-narrate>Clean socks are treasure.</h2>
+                <p data-narrate>Uni stared at him. “Laundry is not an adventure.”</p>
+                <p data-narrate>“Spoken like someone who has never faced the Folding Fields of Flannel Seven.”</p>
+                <p data-narrate>“I want treasure.” “Clean socks are treasure.” “I want danger.”</p>
+                <p data-narrate>Starbeard held up one of his socks. Uni leaned away. “Fine,” she said. “Laundry is dangerous.”</p>
+                <p data-narrate>Together they sorted the basket. Shirts in one pile. Towels in another. Starbeard’s trousers in a pile that immediately fell over.</p>
+                <p class="spoken-line" data-narrate>At last they reached Uni’s favorite socks. They were purple, with tiny silver stars and golden toes.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="One sock missing" aria-labelledby="sock-caper-page-4-title">
+            <img class="page-art" src="./assets/sock-caper-one-sock-missing.png" alt="Uni searches a laundry basket as Starbeard holds the one remaining purple star sock and the brass communicator glows.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy sock-caper-story-copy story-copy-right">
+                <p class="page-kicker" data-narrate>A sock-related irregularity</p>
+                <h2 id="sock-caper-page-4-title" data-narrate>One royal hoof-warmer was gone.</h2>
+                <p data-narrate>Starbeard held up the first sock. “One royal hoof-warmer.” Uni searched the basket. She moved a towel. She lifted a shirt. She shook the pillowcase off her head. Nothing. “Where’s the other one?” she asked.</p>
+                <p data-narrate>They searched again. Slowly. Carefully. Twice. The second sock was gone. Uni’s eyes grew wide.</p>
+                <p data-narrate>“Starbeard?” “Aye?” “You once told me you escaped the Great Galactic Sock Thief of Sector Nine.” Starbeard became very still. “I did.” “Did you catch him?” “No.” “Then he could still be out there.”</p>
+                <p data-narrate>Starbeard looked toward the door. The door looked back. Or it would have, if doors had eyes.</p>
+                <p data-narrate>The communicator on the table crackled. “Captain Starbeard,” came Starblaze’s voice. “My instruments have detected a sock-related irregularity.” Uni grabbed the communicator. “How irregular?” “One-sock irregular.” Uni gasped.</p>
+                <p data-narrate>Starbeard stroked his beard. “Crew, we have a mystery.” He stood dramatically and pointed toward the ceiling. “We shall begin Operation: Locate and Return One Slightly Damp Hoof-Warmer!”</p>
+                <p class="spoken-line" data-narrate>Uni frowned. “That is the worst mission name in the galaxy.” “Have ye a better one?” Uni raised the lone sock like a flag. “Operation Great Galactic Sock Caper.” Starblaze answered at once. “Much better.”</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Every possibility" aria-labelledby="sock-caper-page-5-title">
+            <img class="page-art" src="./assets/sock-caper-room-investigation.png" alt="Uni questions a pillow while Starbeard searches beneath the couch and silver fluff leads toward the door.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy sock-caper-story-copy story-copy-left">
+                <p class="page-kicker" data-narrate>Every possibility</p>
+                <h2 id="sock-caper-page-5-title" data-narrate>The clues began beside the door.</h2>
+                <p data-narrate>The investigation began inside the hotel room—or, depending on how much imagination one happened to possess, inside the laundry deck of <em>The Starlight Wanderer</em>.</p>
+                <p data-narrate>They searched beneath the couch. They found three crumbs, a blue crayon, and a coin from a distant planet that looked suspiciously like a quarter. They searched behind the chair. Nothing. They searched inside Starbeard’s hat. Also nothing.</p>
+                <p data-narrate>“I told you,” said Uni. “Socks don’t hide in hats.” “Space pirates must investigate every possibility.”</p>
+                <p data-narrate>They questioned a suspicious pillow. “Where were you between bedtime and breakfast?” Uni demanded. The pillow said nothing. “Very suspicious,” said Starbeard.</p>
+                <p data-narrate>Then Uni noticed something beside the door. A tiny piece of silver fluff. And beyond it... Another. And another. A trail.</p>
+                <p class="spoken-line" data-narrate>“The Sock Thief,” Uni whispered.</p>
+                <p data-narrate>Before leaving, Uni put on both horseshoes. Then she checked them twice. Hotel carpet had lost her trust.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The Celestial Passageway" aria-labelledby="sock-caper-page-6-title">
+            <img class="page-art" src="./assets/sock-caper-celestial-passageway.png" alt="Uni and Starbeard follow silver fluff past a housekeeping moon rover toward the glowing elevator.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy sock-caper-story-copy story-copy-right">
+                <p class="page-kicker" data-narrate>Beyond the hotel room</p>
+                <h2 id="sock-caper-page-6-title" data-narrate>The hallway became a celestial passage.</h2>
+                <p data-narrate>Starbeard brought the laundry basket. Uni carried the communicator. Together they followed the silver trail into the Celestial Passageway.</p>
+                <p data-narrate>It looked very much like an ordinary hotel hallway. But ordinary hotel hallways do not lead to galactic sock thieves. Probably.</p>
+                <p data-narrate>The trail curved past a housekeeping cart. Uni stopped. “Moon rover.” “Aye.”</p>
+                <p data-narrate>It continued to the elevator. The doors slid open with a ding. “Teleportation chamber,” said Starbeard.</p>
+                <p data-narrate>They stepped inside. The doors closed. Soft music began playing. Uni listened. “Why does teleportation have such boring music?” “Safety regulation.” “That doesn’t make sense.” “Then it must be an official regulation.”</p>
+                <p class="story-sound" data-narrate>The chamber carried them down one floor. Ding.</p>
+                <p class="spoken-line" data-narrate>The silver trail led straight to the hotel laundry room.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The laundry deck" aria-labelledby="sock-caper-page-7-title">
+            <img class="page-art" src="./assets/sock-caper-warm-underwear-wormhole.png" alt="Starbeard and Uni investigate closed laundry machines as enormous underpants float behind one round glass door.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy sock-caper-story-copy story-copy-left">
+                <p class="page-kicker" data-narrate>The laundry deck</p>
+                <h2 id="sock-caper-page-7-title" data-narrate>They entered the Wormhole of Warm Underwear.</h2>
+                <p data-narrate>Inside, great round machines spun behind glass doors. Shirts tumbled. Towels twisted. One pair of enormous underpants floated past a window like a ghost.</p>
+                <p data-narrate>Uni pointed. “The Wormhole of Warm Underwear.” “A fearsome place,” said Starbeard.</p>
+                <p data-narrate>Starblaze’s voice crackled from the communicator. “Strange fact: washing machines do not actually eat socks.”</p>
+                <p data-narrate>“That is exactly what a washing machine would want us to believe,” said Starbeard.</p>
+                <p data-narrate>“Also,” Starblaze continued, “small clothes can hide inside larger clothes. And dry socks sometimes cling to other things because of static electricity.” Uni narrowed her eyes at the machines. “Or because of thieves.” “Also possible,” Starblaze admitted.</p>
+                <p data-narrate>They searched around the folding table. Behind the laundry basket. Beside the quiet machines.</p>
+                <p class="spoken-line" data-narrate>Starbeard made one rule perfectly clear: No pirate, unicorn, space explorer, or anyone else ever climbs inside a washing machine or dryer. Even during an emergency. Especially during an emergency.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The wrong sock" aria-labelledby="sock-caper-page-8-title">
+            <img class="page-art" src="./assets/sock-caper-wrong-sock-rescue.png" alt="Uni lifts an oversized red-and-white striped sock from beneath a chair while Starbeard holds the basket.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy sock-caper-story-copy story-copy-right">
+                <p class="page-kicker" data-narrate>A successful rescue</p>
+                <h2 id="sock-caper-page-8-title" data-narrate>They found the wrong sock.</h2>
+                <p data-narrate>Beneath a chair, Uni spotted a sock. “FOUND IT!” She reached down and pulled it free.</p>
+                <p data-narrate>It was red. It had white stripes. It was far too large for Uni.</p>
+                <p data-narrate>“That’s not mine.” She dropped it into the basket. Then she looked at it again.</p>
+                <p data-narrate>“Do you think someone is searching for this one too?” “Perhaps,” said Starbeard.</p>
+                <p data-narrate>Uni smoothed the striped sock flat. “Then we should take it to the Lost-and-Found Planet.”</p>
+                <p class="spoken-line" data-narrate>“First Mate’s Log,” said Starblaze. “One sock rescued. Wrong sock, but still a successful rescue.”</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Admiral Pigeon" aria-labelledby="sock-caper-page-9-title">
+            <img class="page-art" src="./assets/sock-caper-admiral-pigeon-clue.png" alt="Admiral Pigeon leads Starbeard and Uni from the laundry-room window toward the sunny courtyard.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy sock-caper-story-copy story-copy-left">
+                <p class="page-kicker" data-narrate>A familiar messenger</p>
+                <h2 id="sock-caper-page-9-title" data-narrate>Admiral Pigeon had a clue.</h2>
+                <p data-narrate>Their trail of silver fluff had ended. No purple sock. No thief. No treasure. Uni’s shoulders drooped.</p>
+                <p class="story-sound" data-narrate>Then something tapped against the laundry-room window. Tap. Tap-tap.</p>
+                <p data-narrate>Outside stood a pigeon with his chest puffed out. Uni hurried to the glass. “Admiral Pigeon!”</p>
+                <p data-narrate>The pigeon took three steps. Stopped. Looked backward. Took three more steps. Stopped. Looked backward again.</p>
+                <p class="spoken-line" data-narrate>“He has a clue,” said Uni.</p>
+                <p data-narrate>Starbeard and Uni followed him into the little courtyard, but not far. Uni was feeling better. She was not feeling invincible.</p>
+                <p class="story-lesson" data-narrate>Adventures do not become less important when someone needs to go slowly.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Exactly big enough" aria-labelledby="sock-caper-page-10-title">
+            <img class="page-art" src="./assets/sock-caper-exactly-big-enough.png" alt="A tired Uni leans against Starbeard on a courtyard bench after a purple streamer proves to be a false clue.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy sock-caper-story-copy story-copy-right">
+                <p class="page-kicker" data-narrate>A quiet place to pause</p>
+                <h2 id="sock-caper-page-10-title" data-narrate>Getting better was not something to prove.</h2>
+                <p data-narrate>Near a bush, something purple fluttered. Uni rushed toward it. “My sock!” But it was only a piece of party streamer caught on a branch.</p>
+                <p data-narrate>Uni stopped. Her legs felt heavy. Her nose felt stuffy again. The enormous adventure she had planned for herself suddenly felt too enormous.</p>
+                <p data-narrate>Starbeard sat beside her on a bench. For a little while, neither of them spoke. Admiral Pigeon pecked at the ground nearby.</p>
+                <p data-narrate>At last Uni said, “I wanted to have a giant adventure.” “Aye.” “So everybody would know I’m not the sick unicorn anymore.” Starbeard nodded.</p>
+                <p data-narrate>“Getting better is not something ye have to prove.” “But I’m tired again.” “Then ye are a tired unicorn who is getting better.”</p>
+                <p data-narrate>“Can I still be an adventurer?” “Some of the finest adventurers I know take breaks.”</p>
+                <p class="spoken-line" data-narrate>Uni leaned against him. “Do they complain dramatically?” “Constantly.” That made her smile.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The thief unmasked" aria-labelledby="sock-caper-page-11-title">
+            <img class="page-art" src="./assets/sock-caper-static-reveal.png" alt="Uni pulls her purple star sock from Starbeard’s cape in a tiny blue static spark while Admiral Pigeon watches.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy sock-caper-story-copy story-copy-left">
+                <p class="page-kicker" data-narrate>The thief unmasked</p>
+                <h2 id="sock-caper-page-11-title" data-narrate>The culprit had a beard.</h2>
+                <p data-narrate>Across the courtyard, Admiral Pigeon stopped pecking. He stared at Starbeard. Then he tilted his head. And stared some more.</p>
+                <p data-narrate>“Why is he looking at you?” asked Uni. “Perhaps he admires my hat.” “You’re not wearing your hat.” “Then perhaps he admires my beard.”</p>
+                <p data-narrate>Uni followed the pigeon’s gaze. Behind Starbeard’s shoulder, something purple was peeking from his cape. A tiny golden toe.</p>
+                <p data-narrate>Uni stood. Her eyes widened. She reached behind Starbeard and pulled. The missing sock came free with a tiny:</p>
+                <p class="story-sound" data-narrate>POP! A blue spark jumped between them.</p>
+                <p data-narrate>“YOU HAD IT THE WHOLE TIME!” Starbeard twisted around. “I did?” “You’re the Sock Thief!” “I object to this accusation.” “You were carrying stolen sock property.”</p>
+                <p data-narrate>The communicator crackled. “Static electricity,” Starblaze explained. “The sock clung to Starbeard’s cape after it came out of the dryer.”</p>
+                <p data-narrate>Starbeard stroked his beard thoughtfully. “Static Cling,” he said. “First cousin to the Great Galactic Sock Thief of Sector Nine.”</p>
+                <p class="spoken-line" data-narrate>Uni stared at him. Starbeard stared back. Then they both began to laugh. Admiral Pigeon puffed out his chest. “Coo,” he said. “A fine point,” Starbeard replied.</p>
+            </div>
+        </section>
+
+        <section class="story-page ending-page" data-page-label="Big enough for today" aria-labelledby="sock-caper-page-12-title">
+            <img class="page-art" src="./assets/sock-caper-cozy-ending.png" alt="Uni rests beneath a blanket in both purple star socks while Starbeard folds a mountain of towels and Admiral Pigeon watches from the window.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy sock-caper-story-copy ending-copy story-copy-left">
+                <p class="page-kicker" data-narrate>Back aboard The Starlight Wanderer</p>
+                <h2 id="sock-caper-page-12-title" data-narrate>The adventure was exactly big enough for today.</h2>
+                <p data-narrate>Back aboard <em>The Starlight Wanderer</em>, Uni delivered the striped sock to the Lost-and-Found Planet. Then she climbed beneath her blanket with both purple socks safely on her feet.</p>
+                <p data-narrate>Starbeard folded the rest of the laundry. This was partly because he was captain. And partly because Uni had sentenced him to it.</p>
+                <p data-narrate>“Starbeard?” “Aye?” “That adventure wasn’t very enormous.” “No.”</p>
+                <p data-narrate>Uni thought about the silver trail. The teleportation chamber. The wrong sock waiting for its crew. Admiral Pigeon’s clue. And the purple sock that had traveled the whole galaxy on Starbeard’s back.</p>
+                <p class="spoken-line" data-narrate>She smiled. “It was exactly big enough for today.” Starbeard smiled too.</p>
+                <p data-narrate>From the communicator came Starblaze’s voice. “First Mate’s Log: missing sock recovered. Lost sock rescued. Captain suspiciously fuzzy.”</p>
+                <p data-narrate>Starbeard frowned. “Please remove that last part from the official record.” “Request denied.”</p>
+                <p data-narrate>Outside the window, Admiral Pigeon cooed. “What did he say?” asked Uni. Starbeard looked at the mountain of unfolded laundry. “Apparently, I still have to fold the towels.”</p>
+                <p data-narrate>Uni closed her eyes. The Starlight Wanderer sailed onward beneath a bright Earth sky. Its crew had followed clues. They had rescued the wrong sock. They had unmasked a most unexpected criminal.</p>
+                <p class="story-lesson" data-narrate>And Uni had learned that an adventure did not have to be the biggest in the galaxy. It only had to be big enough for the adventurer having it.</p>
+                <p class="story-ending" data-narrate>The end...</p>
+                <p class="story-ending" data-narrate>...until the next load of laundry.</p>
+                <button class="again-button" type="button" data-story-action="again">
+                    Solve it again
                     <span aria-hidden="true">↺</span>
                 </button>
             </div>
