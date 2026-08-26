@@ -22,9 +22,9 @@ Only completed books are added to the library. Each finished book belongs to one
 
 Completed stories outside the two adventure collections will be added here.
 
-Each book opens in the same full-screen horizontal reader with touch swiping, keyboard navigation, page controls, and optional local Kokoro read-aloud. The voice menu beside **Read this page** offers American and British voices and remembers the selected voice in that browser.
+Each book opens in the same full-screen horizontal reader with touch swiping, keyboard navigation, and page controls. The existing read-aloud and voice controls remain visible for a future approved local speech authority, but are currently disabled.
 
-Kokoro loads only after **Read this page** is pressed. On first use, the browser downloads the pinned `kokoro-js@1.2.1` web bundle, its ONNX Runtime Web WASM dependencies, the Kokoro q8 model (roughly 92 MB), and the selected voice data; browser caching makes later reads lighter. Speech is generated locally in a dedicated browser worker. If Kokoro cannot run or download, the reader falls back to the browser’s built-in speech voice when available.
+The site imports the published `arcane-os@0.2.0` browser-speech contract through its public `arcane-os/ai/browser-speech` entry. That SDK supplies provider and Worker machinery but no Kokoro runtime, model, or voices. Because this repository has no approved immutable speech authority, the fail-closed consumer disables narration, does not construct a provider, does not download speech artifacts, and does not fall back to another speech service. The legacy one-off worker remains unchanged in source for now but is not activated by the disabled controls.
 
 Every spread has a **Move words** handle. Drag it with a mouse or finger, or focus it and use the arrow keys. Hold Shift for larger keyboard steps, and press Home or **Reset** to restore the original position. **Shrink words** collapses the story panel into a small movable control so the full illustration can be explored; **Show words** restores the text.
 
@@ -45,10 +45,10 @@ py -m http.server 8000
 
 Then open `http://127.0.0.1:8000/` in a browser.
 
-The repository now pins the local `arcane-os@0.2.0` SDK dependency in `package.json` and `package-lock.json`, but the currently shipped site does not yet activate it. The site still has no build step, framework, backend, or database; it uses `index.html`, `styles.css`, `app.js`, the retained `speech-worker.js`, local files under `assets/`, and the pinned browser-loaded Kokoro runtime described above while the consumable SDK/runtime authority boundary is completed.
+The repository pins the local `arcane-os@0.2.0` SDK dependency in `package.json` and `package-lock.json`. The site still has no build step, framework, backend, or database; it uses `index.html`, `styles.css`, `app.js`, `speech-consumer.mjs`, local files under `assets/`, and the installed SDK’s public browser-speech entry.
 
 ## Privacy
 
 Private family photos were used only as references for the generated picture-book illustrations. The original photos are not copied into this repository or the site assets.
 
-Page narration text stays in the browser and is synthesized locally after the runtime/model files are downloaded from jsDelivr and Hugging Face.
+Page narration text is not sent to a provider while speech authority is unavailable. No speech runtime, model, voice, or CDN asset is downloaded by the current consumer.
