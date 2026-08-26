@@ -45,7 +45,7 @@ py -m http.server 8000
 
 Then open `http://127.0.0.1:8000/` in a browser.
 
-There is no package manager, build step, framework, backend, database, or local module installation. The site uses `index.html`, `styles.css`, `app.js`, `speech-worker.js`, local files under `assets/`, and the pinned browser-loaded Kokoro runtime described above.
+The repository now pins the local `arcane-os@0.2.0` SDK dependency in `package.json` and `package-lock.json`, but the currently shipped site does not yet activate it. The site still has no build step, framework, backend, or database; it uses `index.html`, `styles.css`, `app.js`, the retained `speech-worker.js`, local files under `assets/`, and the pinned browser-loaded Kokoro runtime described above while the consumable SDK/runtime authority boundary is completed.
 
 ## Privacy
 
