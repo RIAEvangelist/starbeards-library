@@ -1,0 +1,7 @@
+{
+  "name": "juju-grand-adventures",
+  "private": true,
+  "dependencies": {
+    "arcane-os": "0.2.0"
+  }
+}
