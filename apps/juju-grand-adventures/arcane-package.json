@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "juju-grand-adventures",
+  "displayName": "Juliet’s Grand Adventures",
+  "version": "0.1.0",
+  "entry": "index.html",
+  "strategy": "static",
+  "security": {
+    "connectOrigins": [],
+    "frameOrigins": [],
+    "mediaOrigins": []
+  },
+  "include": [
+    "app.js",
+    "assets",
+    "index.html",
+    "manifest.json",
+    "modules",
+    "speech-consumer.mjs",
+    "styles.css"
+  ],
+  "exclude": [],
+  "shared": [
+    "browser-runtime"
+  ]
+}

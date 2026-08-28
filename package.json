@@ -1,7 +1,22 @@
 {
   "name": "juju-grand-adventures",
   "private": true,
+  "type": "module",
+  "scripts": {
+    "doctor": "arcane doctor --app juju-grand-adventures",
+    "dev": "arcane dev --app juju-grand-adventures",
+    "sdk:materialize": "node ./scripts/materialize-installed-sdk-runtime.mjs",
+    "import-map": "arcane import-map --app juju-grand-adventures",
+    "package": "npm run sdk:materialize && arcane package --app juju-grand-adventures",
+    "verify": "arcane verify --app juju-grand-adventures",
+    "bundle": "arcane bundle --app juju-grand-adventures",
+    "build": "npm run sdk:materialize && arcane build --target browser --app juju-grand-adventures",
+    "run": "arcane run --target browser --app juju-grand-adventures"
+  },
   "dependencies": {
     "arcane-os": "0.3.1"
+  },
+  "engines": {
+    "node": ">=22.23.2"
   }
 }

@@ -2,30 +2,122 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <base href="../../">
+    <script type="importmap" data-arcane-import-map>
+{
+  "imports": {
+    "#arcane/persistent-ai-chat-session": "./arcane/modules/PersistentAIChatSession.js",
+    "./node_modules/strong-type/index.js": "./arcane/dependencies/strong-type/index.js",
+    "arcane-os/ai/browser-speech": "./arcane/sdk/ai/browser-speech.mjs",
+    "arcane-os/ai/browser-wasm": "./arcane/sdk/ai/browser-wasm.mjs",
+    "arcane-os/event-manager": "./arcane/sdk/event-manager.mjs",
+    "arcane/AI": "./arcane/modules/AI.js",
+    "arcane/AIPreferenceRuntime": "./arcane/modules/AIPreferenceRuntime.js",
+    "arcane/AIPreferenceTuple": "./arcane/modules/AIPreferenceTuple.js",
+    "arcane/AIProviderRuntime": "./arcane/modules/AIProviderRuntime.js",
+    "arcane/AIResponseLength": "./arcane/modules/AIResponseLength.js",
+    "arcane/AIResponseURLPolicy": "./arcane/modules/AIResponseURLPolicy.js",
+    "arcane/AIRuntimeState": "./arcane/modules/AIRuntimeState.js",
+    "arcane/AnsiText": "./arcane/modules/AnsiText.js",
+    "arcane/ApiModelDatabase": "./arcane/modules/ApiModelDatabase.js",
+    "arcane/AppDataScope": "./arcane/modules/AppDataScope.js",
+    "arcane/AppearancePreferences": "./arcane/modules/AppearancePreferences.js",
+    "arcane/ArcaneCommunicationBridge": "./arcane/modules/ArcaneCommunicationBridge.js",
+    "arcane/ArcaneNavigationPolicy": "./arcane/modules/ArcaneNavigationPolicy.js",
+    "arcane/ArcaneNetworkPolicy": "./arcane/modules/ArcaneNetworkPolicy.js",
+    "arcane/AsyncBoundary": "./arcane/modules/AsyncBoundary.js",
+    "arcane/BrowserTestSuite": "./arcane/modules/BrowserTestSuite.js",
+    "arcane/CalculatorEngine": "./arcane/modules/CalculatorEngine.js",
+    "arcane/ChartLibrary": "./arcane/modules/ChartLibrary.js",
+    "arcane/ChatRecords": "./arcane/modules/ChatRecords.js",
+    "arcane/CommunicationAppController": "./arcane/modules/CommunicationAppController.js",
+    "arcane/CommunicationHub": "./arcane/modules/CommunicationHub.js",
+    "arcane/CommunicationPreferences": "./arcane/modules/CommunicationPreferences.js",
+    "arcane/CommunicationProviderRegistry": "./arcane/modules/CommunicationProviderRegistry.js",
+    "arcane/ComponentContracts": "./arcane/modules/ComponentContracts.js",
+    "arcane/ConfiguredAIChatSession": "./arcane/modules/ConfiguredAIChatSession.js",
+    "arcane/ConversationActionItems": "./arcane/modules/ConversationActionItems.js",
+    "arcane/ConversationClosingReport": "./arcane/modules/ConversationClosingReport.js",
+    "arcane/ConversationTimebox": "./arcane/modules/ConversationTimebox.js",
+    "arcane/CoreLocalModelCatalog": "./arcane/modules/CoreLocalModelCatalog.js",
+    "arcane/DBLS": "./arcane/modules/DBLS.js",
+    "arcane/DBOPFS": "./arcane/modules/DBOPFS.js",
+    "arcane/DBOPFSDocumentLibrary": "./arcane/modules/DBOPFSDocumentLibrary.js",
+    "arcane/DataMaintenance": "./arcane/modules/DataMaintenance.js",
+    "arcane/DevelopmentWorkspace": "./arcane/modules/DevelopmentWorkspace.js",
+    "arcane/DirectoryPicker": "./arcane/modules/DirectoryPicker.js",
+    "arcane/DocumentLexicalSearch": "./arcane/modules/DocumentLexicalSearch.js",
+    "arcane/DocumentNavigation": "./arcane/modules/DocumentNavigation.js",
+    "arcane/Errors": "./arcane/modules/Errors.js",
+    "arcane/GifEncoder": "./arcane/modules/GifEncoder.js",
+    "arcane/HTMLImport": "./arcane/modules/HTMLImport.js",
+    "arcane/InMemoryCommunicationProvider": "./arcane/modules/InMemoryCommunicationProvider.js",
+    "arcane/IsolatedModelQuestionRunner": "./arcane/modules/IsolatedModelQuestionRunner.js",
+    "arcane/LocalAIReadiness": "./arcane/modules/LocalAIReadiness.js",
+    "arcane/LocalAIReadinessController": "./arcane/modules/LocalAIReadinessController.js",
+    "arcane/MD": "./arcane/modules/MD.js",
+    "arcane/Mail": "./arcane/modules/Mail.js",
+    "arcane/MailOutbox": "./arcane/modules/MailOutbox.mjs",
+    "arcane/MailTransport": "./arcane/modules/MailTransport.mjs",
+    "arcane/Marked.min": "./arcane/modules/Marked.min.js",
+    "arcane/MemoryRecords": "./arcane/modules/MemoryRecords.js",
+    "arcane/MessageAdvisory": "./arcane/modules/MessageAdvisory.js",
+    "arcane/ModelDefinition": "./arcane/modules/ModelDefinition.js",
+    "arcane/Ollama": "./arcane/modules/Ollama.js",
+    "arcane/OllamaModelIdentifier": "./arcane/modules/OllamaModelIdentifier.js",
+    "arcane/OllamaSettings": "./arcane/modules/OllamaSettings.js",
+    "arcane/OpenMeteoWeatherProvider": "./arcane/modules/OpenMeteoWeatherProvider.js",
+    "arcane/PersistentAIChatSession": "./arcane/modules/PersistentAIChatSession.js",
+    "arcane/PreferenceStore": "./arcane/modules/PreferenceStore.js",
+    "arcane/Questionnaire": "./arcane/modules/Questionnaire.js",
+    "arcane/RecordLinkIndex": "./arcane/modules/RecordLinkIndex.js",
+    "arcane/RecordPassageIndex": "./arcane/modules/RecordPassageIndex.js",
+    "arcane/RecordReviewStore": "./arcane/modules/RecordReviewStore.js",
+    "arcane/RevocableProjectionLedger": "./arcane/modules/RevocableProjectionLedger.js",
+    "arcane/RiskSignalAnalyzer": "./arcane/modules/RiskSignalAnalyzer.js",
+    "arcane/ScamRiskPolicy": "./arcane/modules/ScamRiskPolicy.js",
+    "arcane/ScopedOPFSCache": "./arcane/modules/ScopedOPFSCache.js",
+    "arcane/ScreenCapture": "./arcane/modules/ScreenCapture.js",
+    "arcane/SpeechPlayback": "./arcane/modules/SpeechPlayback.js",
+    "arcane/StaticDocumentCatalog": "./arcane/modules/StaticDocumentCatalog.js",
+    "arcane/SystemAppearance": "./arcane/modules/SystemAppearance.js",
+    "arcane/SystemToolRegistry": "./arcane/modules/SystemToolRegistry.js",
+    "arcane/TerminalClient": "./arcane/modules/TerminalClient.js",
+    "arcane/TerminalCommandRegistry": "./arcane/modules/TerminalCommandRegistry.js",
+    "arcane/ThemeBootstrap": "./arcane/modules/ThemeBootstrap.js",
+    "arcane/ThemeManager": "./arcane/modules/ThemeManager.js",
+    "arcane/TimeGuard": "./arcane/modules/TimeGuard.js",
+    "arcane/ToolCallRouter": "./arcane/modules/ToolCallRouter.js",
+    "arcane/WaitForComponent": "./arcane/modules/WaitForComponent.js",
+    "arcane/YouTubeMedia": "./arcane/modules/YouTubeMedia.js",
+    "arcane/entities/ApiModelRecord": "./arcane/entities/ApiModelRecord.js",
+    "arcane/entities/Calculation": "./arcane/entities/Calculation.js",
+    "arcane/entities/Chat": "./arcane/entities/Chat.js",
+    "arcane/entities/CommunicationMessage": "./arcane/entities/CommunicationMessage.js",
+    "arcane/entities/CommunicationThread": "./arcane/entities/CommunicationThread.js",
+    "arcane/entities/Preference": "./arcane/entities/Preference.js",
+    "arcane/entities/TerminalSession": "./arcane/entities/TerminalSession.js",
+    "arcane/entities/Theme": "./arcane/entities/Theme.js",
+    "arcane/entities/User": "./arcane/entities/User.js",
+    "arcane/entities/Weather": "./arcane/entities/Weather.js",
+    "event-pubsub": "./arcane/sdk/dependencies/event-pubsub/index.js"
+  }
+}
+</script>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="rgb(6, 14, 43)">
     <meta name="description" content="A little illustrated library of space adventures with Juliet, Uni, and Starbeard.">
     <meta name="arcane-app-id" content="juju-grand-adventures">
     <meta property="og:title" content="Juliet’s Grand Adventures">
     <meta property="og:description" content="Choose a book and explore the galaxy with Juliet, Uni, and Starbeard.">
-    <meta property="og:image" content="./assets/social-card.png">
+    <meta property="og:image" content="./apps/juju-grand-adventures/assets/social-card.png">
     <meta property="og:type" content="website">
     <title>Juliet’s Grand Adventures</title>
-    <link rel="stylesheet" href="./styles.css">
-    <script type="importmap">
-        {
-            "imports": {
-                "./node_modules/arcane-os/runtime/node_modules/strong-type/index.js": "./node_modules/arcane-os/runtime/strong-type/index.js",
-                "arcane-os/ai/browser-speech": "./node_modules/arcane-os/browser-runtime/ai/browser-speech.mjs",
-                "arcane-os/event-manager": "./node_modules/arcane-os/browser-runtime/event-manager.mjs",
-                "arcane/AI": "./node_modules/arcane-os/runtime/arcane/modules/AI.js",
-                "arcane/DBOPFS": "./node_modules/arcane-os/runtime/arcane/modules/DBOPFS.js",
-                "arcane/SpeechPlayback": "./node_modules/arcane-os/runtime/arcane/modules/SpeechPlayback.js",
-                "event-pubsub": "./node_modules/arcane-os/browser-runtime/dependencies/event-pubsub/index.js"
-            }
-        }
-    </script>
-    <script type="module" src="./app.js"></script>
+    <link rel="manifest" href="./apps/juju-grand-adventures/manifest.json">
+    <link rel="stylesheet" href="./arcane/css/theme.css">
+    <link rel="stylesheet" href="./arcane/css/primitives.css">
+    <link rel="stylesheet" href="./apps/juju-grand-adventures/styles.css">
+    <script type="module" src="./apps/juju-grand-adventures/app.js"></script>
 </head>
 <body>
     <main class="library-view" id="library-view">
@@ -64,7 +156,7 @@
                     <div class="book-grid">
                         <article class="book-card book-card-planets">
                             <button class="book-jacket" type="button" data-open-book="planets" aria-label="Open The Three Little Planets">
-                                <img src="./assets/cover.png" alt="Juliet, Uni, and Starbeard beside their patchwork rocket beneath three glowing planets.">
+                                <img src="./apps/juju-grand-adventures/assets/cover.png" alt="Juliet, Uni, and Starbeard beside their patchwork rocket beneath three glowing planets.">
                                 <span class="book-jacket-shade" aria-hidden="true"></span>
                                 <span class="book-volume">Volume one</span>
                                 <span class="book-open-prompt">Open book <span aria-hidden="true">→</span></span>
@@ -81,7 +173,7 @@
 
                         <article class="book-card book-card-doughnut">
                             <button class="book-jacket" type="button" data-open-book="doughnut" aria-label="Open Starbeard and the Doughnut Planet Map">
-                                <img src="./assets/book-doughnut-cover.png" alt="Juliet, Uni, and Starbeard sail toward a glowing doughnut-shaped planet.">
+                                <img src="./apps/juju-grand-adventures/assets/book-doughnut-cover.png" alt="Juliet, Uni, and Starbeard sail toward a glowing doughnut-shaped planet.">
                                 <span class="book-jacket-shade" aria-hidden="true"></span>
                                 <span class="book-volume">Volume two</span>
                                 <span class="book-open-prompt">Open book <span aria-hidden="true">→</span></span>
@@ -98,7 +190,7 @@
 
                         <article class="book-card book-card-starwater">
                             <button class="book-jacket" type="button" data-open-book="starwater" aria-label="Open Starbeard and the Starwater">
-                                <img src="./assets/book-starwater-cover.png" alt="Starbeard, Juliet, and Uni discover a glowing crystal bottle beneath the moon-sand.">
+                                <img src="./apps/juju-grand-adventures/assets/book-starwater-cover.png" alt="Starbeard, Juliet, and Uni discover a glowing crystal bottle beneath the moon-sand.">
                                 <span class="book-jacket-shade" aria-hidden="true"></span>
                                 <span class="book-volume">Volume three</span>
                                 <span class="book-open-prompt">Open book <span aria-hidden="true">→</span></span>
@@ -128,7 +220,7 @@
                     <div class="book-grid">
                         <article class="book-card book-card-moonlit">
                             <button class="book-jacket" type="button" data-open-book="moonlit" aria-label="Open The Song of the Moonlit Blossom Planet">
-                                <img src="./assets/book-moonlit-blossom-cover.png" alt="Juliet, Uni, and Starbeard sail toward a luminous flower planet beneath three moons.">
+                                <img src="./apps/juju-grand-adventures/assets/book-moonlit-blossom-cover.png" alt="Juliet, Uni, and Starbeard sail toward a luminous flower planet beneath three moons.">
                                 <span class="book-jacket-shade" aria-hidden="true"></span>
                                 <span class="book-volume">Starbeard &amp; Uni · Book one</span>
                                 <span class="book-open-prompt">Open book <span aria-hidden="true">→</span></span>
@@ -145,7 +237,7 @@
 
                         <article class="book-card book-card-sock-caper">
                             <button class="book-jacket" type="button" data-open-book="sockCaper" aria-label="Open The Great Galactic Sock Caper">
-                                <img src="./assets/book-sock-caper-cover.png" alt="Starbeard and Uni dodge swirling laundry while a purple star sock drifts toward Starbeard and Admiral Pigeon watches from the round window.">
+                                <img src="./apps/juju-grand-adventures/assets/book-sock-caper-cover.png" alt="Starbeard and Uni dodge swirling laundry while a purple star sock drifts toward Starbeard and Admiral Pigeon watches from the round window.">
                                 <span class="book-jacket-shade" aria-hidden="true"></span>
                                 <span class="book-volume">Starbeard &amp; Uni · Book two</span>
                                 <span class="book-open-prompt">Open book <span aria-hidden="true">→</span></span>
@@ -162,7 +254,7 @@
 
                         <article class="book-card book-card-pluto">
                             <button class="book-jacket" type="button" data-open-book="pluto" aria-label="Open The Treasure of Pluto and the Luminous Labyrinth">
-                                <img src="./assets/book-pluto-labyrinth-cover.png" alt="Starbeard and Uni sail toward frozen Pluto while a golden maze glows among the stars.">
+                                <img src="./apps/juju-grand-adventures/assets/book-pluto-labyrinth-cover.png" alt="Starbeard and Uni sail toward frozen Pluto while a golden maze glows among the stars.">
                                 <span class="book-jacket-shade" aria-hidden="true"></span>
                                 <span class="book-volume">Starbeard &amp; Uni · Book three</span>
                                 <span class="book-open-prompt">Open book <span aria-hidden="true">→</span></span>
@@ -256,12 +348,12 @@
         </nav>
     </main>
 
-    <audio id="background-music" src="./assets/the-little-library-between-stars.mp3" loop preload="metadata" hidden></audio>
+    <audio id="background-music" src="./apps/juju-grand-adventures/assets/the-little-library-between-stars.mp3" loop preload="metadata" hidden></audio>
     <p class="visually-hidden" id="music-status" aria-live="polite">Background music is paused.</p>
 
     <template id="book-planets-template">
         <section class="story-page cover-page is-current" data-page-label="Cover" aria-labelledby="planets-cover-title">
-            <img class="page-art" src="./assets/cover.png" alt="Juliet, Starbeard, and Uni stand beside their patchwork rocket under three glowing planets.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/cover.png" alt="Juliet, Starbeard, and Uni stand beside their patchwork rocket under three glowing planets.">
             <div class="art-shade art-shade-left" aria-hidden="true"></div>
             <div class="page-copy cover-copy">
                 <p class="eyebrow" data-narrate>Tonight’s read-together adventure</p>
@@ -275,7 +367,7 @@
         </section>
 
         <section class="story-page" data-page-label="The beard-map wakes" aria-labelledby="planets-page-2-title">
-            <img class="page-art" src="./assets/launch.png" alt="Juliet raises the cape-sail while Uni sparks the patchwork rocket and Starbeard reads a map in his glowing beard.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/launch.png" alt="Juliet raises the cape-sail while Uni sparks the patchwork rocket and Starbeard reads a map in his glowing beard.">
             <div class="art-shade art-shade-bottom" aria-hidden="true"></div>
             <div class="page-copy story-copy story-copy-right">
                 <p class="page-kicker" data-narrate>One starry almost-bedtime…</p>
@@ -287,7 +379,7 @@
         </section>
 
         <section class="story-page" data-page-label="Tumble-Turn" aria-labelledby="planets-page-3-title">
-            <img class="page-art" src="./assets/tumble-turn.png" alt="The three explorers hold hands in a glowing forest of floating bubble trees.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/tumble-turn.png" alt="The three explorers hold hands in a glowing forest of floating bubble trees.">
             <div class="art-shade art-shade-left" aria-hidden="true"></div>
             <div class="page-copy story-copy story-copy-left">
                 <p class="planet-badge" data-narrate>Little Planet One · Tumble-Turn</p>
@@ -299,7 +391,7 @@
         </section>
 
         <section class="story-page" data-page-label="The first path" aria-labelledby="planets-page-4-title">
-            <img class="page-art" src="./assets/tumble-turn-rescue.png" alt="Uni anchors the rocket while Starbeard holds a rope of stars and Juliet returns the pearl-bubble to its floating tree.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/tumble-turn-rescue.png" alt="Uni anchors the rocket while Starbeard holds a rope of stars and Juliet returns the pearl-bubble to its floating tree.">
             <div class="art-shade art-shade-bottom" aria-hidden="true"></div>
             <div class="page-copy story-copy story-copy-right story-copy-compact">
                 <p class="page-kicker" data-narrate>The first path</p>
@@ -311,7 +403,7 @@
         </section>
 
         <section class="story-page" data-page-label="Luma Bloom" aria-labelledby="planets-page-5-title">
-            <img class="page-art" src="./assets/luma-bloom.png" alt="Juliet listens beside glowing bell flowers while Uni and Starbeard join her in the quiet.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/luma-bloom.png" alt="Juliet listens beside glowing bell flowers while Uni and Starbeard join her in the quiet.">
             <div class="art-shade art-shade-right" aria-hidden="true"></div>
             <div class="page-copy story-copy story-copy-right">
                 <p class="planet-badge" data-narrate>Little Planet Two · Luma Bloom</p>
@@ -323,7 +415,7 @@
         </section>
 
         <section class="story-page" data-page-label="Naptune" aria-labelledby="planets-page-6-title">
-            <img class="page-art" src="./assets/naptune.png" alt="Juliet and Uni float through cloud rings toward a sleepy crescent moon while Starbeard keeps them safe with a glowing rope.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/naptune.png" alt="Juliet and Uni float through cloud rings toward a sleepy crescent moon while Starbeard keeps them safe with a glowing rope.">
             <div class="art-shade art-shade-left" aria-hidden="true"></div>
             <div class="page-copy story-copy story-copy-left">
                 <p class="planet-badge" data-narrate>Little Planet Three · Naptune</p>
@@ -335,7 +427,7 @@
         </section>
 
         <section class="story-page" data-page-label="The third path" aria-labelledby="planets-page-7-title">
-            <img class="page-art" src="./assets/naptune-dream.png" alt="Juliet carries the glowing dream seed to the yawning crescent moon while Uni and Starbeard guide her through the clouds.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/naptune-dream.png" alt="Juliet carries the glowing dream seed to the yawning crescent moon while Uni and Starbeard guide her through the clouds.">
             <div class="art-shade art-shade-bottom" aria-hidden="true"></div>
             <div class="page-copy story-copy story-copy-right story-copy-compact">
                 <p class="page-kicker" data-narrate>The third path</p>
@@ -347,7 +439,7 @@
         </section>
 
         <section class="story-page ending-page" data-page-label="Home again" aria-labelledby="planets-page-8-title">
-            <img class="page-art" src="./assets/home.png" alt="At dawn, Juliet, Starbeard, and Uni cuddle beneath the cape beside a tiny glowing starflower.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/home.png" alt="At dawn, Juliet, Starbeard, and Uni cuddle beneath the cape beside a tiny glowing starflower.">
             <div class="art-shade art-shade-right" aria-hidden="true"></div>
             <div class="page-copy story-copy ending-copy story-copy-right">
                 <p class="page-kicker" data-narrate>Home again</p>
@@ -365,7 +457,7 @@
 
     <template id="book-doughnut-template">
         <section class="story-page cover-page doughnut-cover is-current" data-page-label="Cover" aria-labelledby="doughnut-cover-title">
-            <img class="page-art" src="./assets/book-doughnut-cover.png" alt="Juliet, Uni, and Starbeard sail their patchwork star-sloop toward a glowing doughnut planet.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/book-doughnut-cover.png" alt="Juliet, Uni, and Starbeard sail their patchwork star-sloop toward a glowing doughnut planet.">
             <div class="art-shade art-shade-left" aria-hidden="true"></div>
             <div class="page-copy cover-copy doughnut-cover-copy">
                 <p class="eyebrow" data-narrate>A marmalade-map adventure</p>
@@ -379,7 +471,7 @@
         </section>
 
         <section class="story-page" data-page-label="The map in the marmalade" aria-labelledby="doughnut-page-2-title">
-            <img class="page-art" src="./assets/doughnut-map.png" alt="A glowing ring-shaped star map rises from Juliet’s marmalade while Uni and Starbeard look on.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/doughnut-map.png" alt="A glowing ring-shaped star map rises from Juliet’s marmalade while Uni and Starbeard look on.">
             <div class="art-shade art-shade-right" aria-hidden="true"></div>
             <div class="page-copy story-copy story-copy-right">
                 <p class="page-kicker" data-narrate>Breakfast aboard the patchwork star-sloop</p>
@@ -391,7 +483,7 @@
         </section>
 
         <section class="story-page" data-page-label="Captain in the making" aria-labelledby="doughnut-page-3-title">
-            <img class="page-art" src="./assets/doughnut-course.png" alt="Juliet plots the golden crumb-trail at the star-wheel while Uni warms the engine and Starbeard ties on his first captain sash.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/doughnut-course.png" alt="Juliet plots the golden crumb-trail at the star-wheel while Uni warms the engine and Starbeard ties on his first captain sash.">
             <div class="art-shade art-shade-right" aria-hidden="true"></div>
             <div class="page-copy story-copy story-copy-right story-copy-compact">
                 <p class="pirate-badge" data-narrate>Starbeard’s captain look · The sash and compass</p>
@@ -403,7 +495,7 @@
         </section>
 
         <section class="story-page" data-page-label="The Sprinkle Belt" aria-labelledby="doughnut-page-4-title">
-            <img class="page-art" src="./assets/sprinkle-belt.png" alt="The crew sails through a sparkling belt of colorful sprinkle-shaped asteroids.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/sprinkle-belt.png" alt="The crew sails through a sparkling belt of colorful sprinkle-shaped asteroids.">
             <div class="art-shade art-shade-left" aria-hidden="true"></div>
             <div class="page-copy story-copy story-copy-left">
                 <p class="pirate-badge" data-narrate>Starbeard’s captain look · The long coat</p>
@@ -415,7 +507,7 @@
         </section>
 
         <section class="story-page" data-page-label="The roundest horizon" aria-labelledby="doughnut-page-5-title">
-            <img class="page-art page-art-doughnut-arrival" src="./assets/doughnut-arrival.png" alt="The patchwork star-sloop approaches a silent rose-gold ring world while worried moonlets point toward its stormy middle.">
+            <img class="page-art page-art-doughnut-arrival" src="./apps/juju-grand-adventures/assets/doughnut-arrival.png" alt="The patchwork star-sloop approaches a silent rose-gold ring world while worried moonlets point toward its stormy middle.">
             <div class="art-shade art-shade-left" aria-hidden="true"></div>
             <div class="page-copy story-copy story-copy-left">
                 <p class="planet-badge" data-narrate>Doughnut Planet · Rosegold Ring</p>
@@ -427,7 +519,7 @@
         </section>
 
         <section class="story-page" data-page-label="The moon in the middle" aria-labelledby="doughnut-page-6-title">
-            <img class="page-art" src="./assets/doughnut-rescue.png" alt="Juliet, Uni, and Captain Starbeard free a little golden moon from the center of the doughnut planet.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/doughnut-rescue.png" alt="Juliet, Uni, and Captain Starbeard free a little golden moon from the center of the doughnut planet.">
             <div class="art-shade art-shade-right" aria-hidden="true"></div>
             <div class="page-copy story-copy story-copy-right">
                 <p class="pirate-badge" data-narrate>Starbeard’s captain look · The starry hat</p>
@@ -439,7 +531,7 @@
         </section>
 
         <section class="story-page" data-page-label="One round rescue" aria-labelledby="doughnut-page-7-title">
-            <img class="page-art" src="./assets/doughnut-homeward.png" alt="Juliet’s marmalade compass draws a shining orbit that guides the rescued golden moon above the waking Doughnut Planet.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/doughnut-homeward.png" alt="Juliet’s marmalade compass draws a shining orbit that guides the rescued golden moon above the waking Doughnut Planet.">
             <div class="art-shade art-shade-bottom" aria-hidden="true"></div>
             <div class="page-copy story-copy story-copy-right story-copy-compact">
                 <p class="page-kicker" data-narrate>One cape, one horn, one steady rope</p>
@@ -451,7 +543,7 @@
         </section>
 
         <section class="story-page ending-page" data-page-label="Round horizons" aria-labelledby="doughnut-page-8-title">
-            <img class="page-art" src="./assets/doughnut-horizons.png" alt="Juliet, Uni, and Captain Starbeard sail toward a galaxy filled with distant ring-shaped worlds.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/doughnut-horizons.png" alt="Juliet, Uni, and Captain Starbeard sail toward a galaxy filled with distant ring-shaped worlds.">
             <div class="art-shade art-shade-left" aria-hidden="true"></div>
             <div class="page-copy story-copy ending-copy story-copy-left">
                 <p class="page-kicker" data-narrate>A galaxy of round horizons</p>
@@ -469,7 +561,7 @@
 
     <template id="book-moonlit-template">
         <section class="story-page cover-page moonlit-cover is-current" data-page-label="Cover" aria-labelledby="moonlit-cover-title">
-            <img class="page-art" src="./assets/book-moonlit-blossom-cover.png" alt="Juliet, Uni, and Starbeard sail toward a luminous purple flower planet beneath three moons.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/book-moonlit-blossom-cover.png" alt="Juliet, Uni, and Starbeard sail toward a luminous purple flower planet beneath three moons.">
             <div class="art-shade art-shade-left" aria-hidden="true"></div>
             <div class="page-copy cover-copy moonlit-cover-copy">
                 <p class="eyebrow" data-narrate>The Adventures of Starbeard and Uni · Book One</p>
@@ -483,7 +575,7 @@
         </section>
 
         <section class="story-page" data-page-label="The Cosmic Wanderer" aria-labelledby="moonlit-page-2-title">
-            <img class="page-art" src="./assets/moonlit-cosmic-wanderer.png" alt="The patchwork Cosmic Wanderer sails through deep space with Starbeard, Juliet, and Uni together at the helm.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/moonlit-cosmic-wanderer.png" alt="The patchwork Cosmic Wanderer sails through deep space with Starbeard, Juliet, and Uni together at the helm.">
             <div class="art-shade art-shade-right" aria-hidden="true"></div>
             <div class="page-copy story-copy moonlit-story-copy story-copy-right">
                 <p class="page-kicker" data-narrate>Far beyond the Moon</p>
@@ -495,7 +587,7 @@
         </section>
 
         <section class="story-page" data-page-label="Meet the crew" aria-labelledby="moonlit-page-3-title">
-            <img class="page-art" src="./assets/moonlit-meet-the-crew.png" alt="Starbeard’s beard sparkles as he laughs beside Juliet and Uni on the warm, quilted bridge.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/moonlit-meet-the-crew.png" alt="Starbeard’s beard sparkles as he laughs beside Juliet and Uni on the warm, quilted bridge.">
             <div class="art-shade art-shade-right" aria-hidden="true"></div>
             <div class="page-copy story-copy moonlit-story-copy story-copy-right">
                 <p class="page-kicker" data-narrate>Aboard The Cosmic Wanderer</p>
@@ -508,7 +600,7 @@
         </section>
 
         <section class="story-page" data-page-label="Meet Juliet" aria-labelledby="moonlit-page-4-title">
-            <img class="page-art" src="./assets/moonlit-juliet-stargazing.png" alt="Juliet and Uni watch stars through the round window as Starbeard’s treasure compass begins to blink nearby.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/moonlit-juliet-stargazing.png" alt="Juliet and Uni watch stars through the round window as Starbeard’s treasure compass begins to blink nearby.">
             <div class="art-shade art-shade-right" aria-hidden="true"></div>
             <div class="page-copy story-copy moonlit-story-copy story-copy-right">
                 <p class="page-kicker" data-narrate>Their youngest explorer</p>
@@ -521,7 +613,7 @@
         </section>
 
         <section class="story-page" data-page-label="The compass points" aria-labelledby="moonlit-page-5-title">
-            <img class="page-art page-art-moonlit-compass-close" src="./assets/moonlit-compass.png" alt="The magical compass points through the round ship window toward a purple planet with three moons.">
+            <img class="page-art page-art-moonlit-compass-close" src="./apps/juju-grand-adventures/assets/moonlit-compass.png" alt="The magical compass points through the round ship window toward a purple planet with three moons.">
             <div class="art-shade art-shade-right" aria-hidden="true"></div>
             <div class="page-copy story-copy moonlit-story-copy story-copy-right">
                 <p class="page-kicker" data-narrate>A golden needle</p>
@@ -534,7 +626,7 @@
         </section>
 
         <section class="story-page" data-page-label="Planet of Flowers" aria-labelledby="moonlit-page-6-title">
-            <img class="page-art" src="./assets/moonlit-meadow.png" alt="The crew stands in a vast meadow as luminous flowers open beneath three golden moons.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/moonlit-meadow.png" alt="The crew stands in a vast meadow as luminous flowers open beneath three golden moons.">
             <div class="art-shade art-shade-left" aria-hidden="true"></div>
             <div class="page-copy story-copy moonlit-story-copy story-copy-left">
                 <p class="planet-badge" data-narrate>The Planet of Flowers</p>
@@ -548,7 +640,7 @@
         </section>
 
         <section class="story-page" data-page-label="The flowers sing" aria-labelledby="moonlit-page-7-title">
-            <img class="page-art" src="./assets/moonlit-flower-orchestra.png" alt="Blue, gold, pink, and enormous purple flowers perform in glowing rings around the delighted crew.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/moonlit-flower-orchestra.png" alt="Blue, gold, pink, and enormous purple flowers perform in glowing rings around the delighted crew.">
             <div class="art-shade art-shade-left" aria-hidden="true"></div>
             <div class="page-copy story-copy moonlit-story-copy story-copy-left">
                 <p class="page-kicker" data-narrate>Under the three moons</p>
@@ -561,7 +653,7 @@
         </section>
 
         <section class="story-page" data-page-label="The Melodians" aria-labelledby="moonlit-page-8-title">
-            <img class="page-art" src="./assets/moonlit-melodians.png" alt="Three tiny long-eared Melodians greet Juliet, Uni, and a bowing Starbeard beneath a giant blue blossom.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/moonlit-melodians.png" alt="Three tiny long-eared Melodians greet Juliet, Uni, and a bowing Starbeard beneath a giant blue blossom.">
             <div class="art-shade art-shade-right" aria-hidden="true"></div>
             <div class="page-copy story-copy moonlit-story-copy story-copy-right">
                 <p class="planet-badge" data-narrate>The Missing Note</p>
@@ -574,7 +666,7 @@
         </section>
 
         <section class="story-page" data-page-label="The missing note" aria-labelledby="moonlit-page-9-title">
-            <img class="page-art" src="./assets/moonlit-missing-note.png" alt="Three worried Melodians show the crew a glowing ribbon of song with one dark gap.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/moonlit-missing-note.png" alt="Three worried Melodians show the crew a glowing ribbon of song with one dark gap.">
             <div class="art-shade art-shade-right" aria-hidden="true"></div>
             <div class="page-copy story-copy moonlit-story-copy story-copy-right">
                 <p class="planet-badge" data-narrate>The Moonlight Song</p>
@@ -587,7 +679,7 @@
         </section>
 
         <section class="story-page" data-page-label="The musical path" aria-labelledby="moonlit-page-10-title">
-            <img class="page-art" src="./assets/moonlit-musical-path.png" alt="Juliet rides Uni while Starbeard follows silver stones that ripple with golden light toward a flowering vine wall.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/moonlit-musical-path.png" alt="Juliet rides Uni while Starbeard follows silver stones that ripple with golden light toward a flowering vine wall.">
             <div class="art-shade art-shade-left" aria-hidden="true"></div>
             <div class="page-copy story-copy moonlit-story-copy story-copy-left">
                 <p class="planet-badge" data-narrate>Into the Singing Forest</p>
@@ -599,7 +691,7 @@
         </section>
 
         <section class="story-page" data-page-label="The vine door" aria-labelledby="moonlit-page-11-title">
-            <img class="page-art page-art-moonlit-forest-close" src="./assets/moonlit-forest.png" alt="The friends play five glowing flowers while Starbeard’s hat lifts from one enormous booming note.">
+            <img class="page-art page-art-moonlit-forest-close" src="./apps/juju-grand-adventures/assets/moonlit-forest.png" alt="The friends play five glowing flowers while Starbeard’s hat lifts from one enormous booming note.">
             <div class="art-shade art-shade-left" aria-hidden="true"></div>
             <div class="page-copy story-copy moonlit-story-copy story-copy-left">
                 <p class="page-kicker" data-narrate>Five glowing flowers</p>
@@ -612,7 +704,7 @@
         </section>
 
         <section class="story-page" data-page-label="The First Flower" aria-labelledby="moonlit-page-12-title">
-            <img class="page-art" src="./assets/moonlit-first-flower-clearing.png" alt="Juliet approaches the newly opened silver-and-gold First Flower while Uni and Starbeard pause beside its carved stone.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/moonlit-first-flower-clearing.png" alt="Juliet approaches the newly opened silver-and-gold First Flower while Uni and Starbeard pause beside its carved stone.">
             <div class="art-shade art-shade-left" aria-hidden="true"></div>
             <div class="page-copy story-copy moonlit-story-copy story-copy-left">
                 <p class="planet-badge" data-narrate>The First Flower</p>
@@ -625,7 +717,7 @@
         </section>
 
         <section class="story-page" data-page-label="The stone’s message" aria-labelledby="moonlit-page-13-title">
-            <img class="page-art" src="./assets/moonlit-stone-message.png" alt="Juliet, Uni, and Starbeard sit quietly beside the First Flower and listen for the meaning of its carved stone.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/moonlit-stone-message.png" alt="Juliet, Uni, and Starbeard sit quietly beside the First Flower and listen for the meaning of its carved stone.">
             <div class="art-shade art-shade-left" aria-hidden="true"></div>
             <div class="page-copy story-copy moonlit-story-copy story-copy-left">
                 <p class="page-kicker" data-narrate>A treasure that must be given</p>
@@ -638,7 +730,7 @@
         </section>
 
         <section class="story-page" data-page-label="One perfect note" aria-labelledby="moonlit-page-14-title">
-            <img class="page-art" src="./assets/moonlit-first-flower.png" alt="The three friends sing together as the First Flower releases a perfect golden note across the planet.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/moonlit-first-flower.png" alt="The three friends sing together as the First Flower releases a perfect golden note across the planet.">
             <div class="art-shade art-shade-left" aria-hidden="true"></div>
             <div class="page-copy story-copy moonlit-story-copy story-copy-left">
                 <p class="page-kicker" data-narrate>Three different voices</p>
@@ -651,7 +743,7 @@
         </section>
 
         <section class="story-page" data-page-label="The planet sings" aria-labelledby="moonlit-page-15-title">
-            <img class="page-art" src="./assets/moonlit-planet-song.png" alt="A golden wave of song races across forests, rivers, valleys, and millions of blossoms as the crew and Melodians hurry through the meadow.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/moonlit-planet-song.png" alt="A golden wave of song races across forests, rivers, valleys, and millions of blossoms as the crew and Melodians hurry through the meadow.">
             <div class="art-shade art-shade-right" aria-hidden="true"></div>
             <div class="page-copy story-copy moonlit-story-copy story-copy-right">
                 <p class="planet-badge" data-narrate>The Moonlight Song</p>
@@ -664,7 +756,7 @@
         </section>
 
         <section class="story-page" data-page-label="A lullaby" aria-labelledby="moonlit-page-16-title">
-            <img class="page-art page-art-moonlit-lullaby-close" src="./assets/moonlit-lullaby.png" alt="A sleepy Juliet leans against Uni while Starbeard and the dancing Melodians listen to the flowers’ lullaby.">
+            <img class="page-art page-art-moonlit-lullaby-close" src="./apps/juju-grand-adventures/assets/moonlit-lullaby.png" alt="A sleepy Juliet leans against Uni while Starbeard and the dancing Melodians listen to the flowers’ lullaby.">
             <div class="art-shade art-shade-right" aria-hidden="true"></div>
             <div class="page-copy story-copy moonlit-story-copy story-copy-right">
                 <p class="page-kicker" data-narrate>Softly · Slowly · Quietly</p>
@@ -676,7 +768,7 @@
         </section>
 
         <section class="story-page" data-page-label="Under the universe" aria-labelledby="moonlit-page-17-title">
-            <img class="page-art" src="./assets/moonlit-under-universe.png" alt="Juliet, Uni, and Starbeard sit together beneath three moons and an enormous sky above the sleeping flower meadow.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/moonlit-under-universe.png" alt="Juliet, Uni, and Starbeard sit together beneath three moons and an enormous sky above the sleeping flower meadow.">
             <div class="art-shade art-shade-right" aria-hidden="true"></div>
             <div class="page-copy story-copy moonlit-story-copy story-copy-right">
                 <p class="page-kicker" data-narrate>Beneath the three moons</p>
@@ -689,7 +781,7 @@
         </section>
 
         <section class="story-page" data-page-label="Friendship is treasure" aria-labelledby="moonlit-page-18-title">
-            <img class="page-art" src="./assets/moonlit-friendship-treasure.png" alt="Starbeard rests one hand over his heart while Juliet and Uni smile beside him in the softly glowing meadow.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/moonlit-friendship-treasure.png" alt="Starbeard rests one hand over his heart while Juliet and Uni smile beside him in the softly glowing meadow.">
             <div class="art-shade art-shade-right" aria-hidden="true"></div>
             <div class="page-copy story-copy moonlit-story-copy story-copy-right">
                 <p class="page-kicker" data-narrate>The greatest treasure</p>
@@ -701,7 +793,7 @@
         </section>
 
         <section class="story-page" data-page-label="Home aboard" aria-labelledby="moonlit-page-19-title">
-            <img class="page-art" src="./assets/moonlit-home-aboard.png" alt="Starbeard tucks sleepy Juliet into her bunk while Uni pulls up the constellation quilt with her softly glowing horn.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/moonlit-home-aboard.png" alt="Starbeard tucks sleepy Juliet into her bunk while Uni pulls up the constellation quilt with her softly glowing horn.">
             <div class="art-shade art-shade-left" aria-hidden="true"></div>
             <div class="page-copy story-copy moonlit-story-copy story-copy-left">
                 <p class="planet-badge" data-narrate>Home Among the Stars</p>
@@ -714,7 +806,7 @@
         </section>
 
         <section class="story-page" data-page-label="Sailing away" aria-labelledby="moonlit-page-20-title">
-            <img class="page-art" src="./assets/moonlit-sailing-away.png" alt="Juliet watches the flower planet and its three moons recede while Starbeard steers and Uni sleeps near the helm.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/moonlit-sailing-away.png" alt="Juliet watches the flower planet and its three moons recede while Starbeard steers and Uni sleeps near the helm.">
             <div class="art-shade art-shade-left" aria-hidden="true"></div>
             <div class="page-copy story-copy moonlit-story-copy story-copy-left">
                 <p class="page-kicker" data-narrate>Beyond the round window</p>
@@ -727,7 +819,7 @@
         </section>
 
         <section class="story-page ending-page" data-page-label="Safe, warm, loved" aria-labelledby="moonlit-page-21-title">
-            <img class="page-art" src="./assets/moonlit-home.png" alt="Juliet and Uni sleep safely beneath a constellation quilt while Starbeard watches over them among the stars.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/moonlit-home.png" alt="Juliet and Uni sleep safely beneath a constellation quilt while Starbeard watches over them among the stars.">
             <div class="art-shade art-shade-left" aria-hidden="true"></div>
             <div class="page-copy story-copy moonlit-story-copy ending-copy story-copy-left">
                 <p class="page-kicker" data-narrate>Under a blanket of stars</p>
@@ -747,7 +839,7 @@
 
     <template id="book-sock-caper-template">
         <section class="story-page cover-page sock-caper-cover is-current" data-page-label="Cover" aria-labelledby="sock-caper-cover-title">
-            <img class="page-art" src="./assets/book-sock-caper-cover.png" alt="Starbeard and Uni dodge swirling laundry while a purple star sock drifts toward Starbeard and Admiral Pigeon watches from the round window.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/book-sock-caper-cover.png" alt="Starbeard and Uni dodge swirling laundry while a purple star sock drifts toward Starbeard and Admiral Pigeon watches from the round window.">
             <div class="art-shade art-shade-left" aria-hidden="true"></div>
             <div class="page-copy cover-copy sock-caper-cover-copy">
                 <p class="eyebrow" data-narrate>The Adventures of Starbeard and Uni · Book Two</p>
@@ -761,7 +853,7 @@
         </section>
 
         <section class="story-page" data-page-label="The morning after" aria-labelledby="sock-caper-page-2-title">
-            <img class="page-art" src="./assets/sock-caper-victory-sneeze.png" alt="Uni sneezes sparkles while landing in a basket of clean laundry as Starbeard smiles beside her.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/sock-caper-victory-sneeze.png" alt="Uni sneezes sparkles while landing in a basket of clean laundry as Starbeard smiles beside her.">
             <div class="art-shade art-shade-right" aria-hidden="true"></div>
             <div class="page-copy story-copy sock-caper-story-copy story-copy-right">
                 <p class="page-kicker" data-narrate>The morning after</p>
@@ -775,7 +867,7 @@
         </section>
 
         <section class="story-page" data-page-label="Mission number one" aria-labelledby="sock-caper-page-3-title">
-            <img class="page-art" src="./assets/sock-caper-laundry-mission.png" alt="Starbeard holds up an ordinary gray sock like a dangerous object while Uni leans away beside neat piles of laundry.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/sock-caper-laundry-mission.png" alt="Starbeard holds up an ordinary gray sock like a dangerous object while Uni leans away beside neat piles of laundry.">
             <div class="art-shade art-shade-left" aria-hidden="true"></div>
             <div class="page-copy story-copy sock-caper-story-copy story-copy-left">
                 <p class="page-kicker" data-narrate>Mission number one</p>
@@ -790,7 +882,7 @@
         </section>
 
         <section class="story-page" data-page-label="One sock missing" aria-labelledby="sock-caper-page-4-title">
-            <img class="page-art" src="./assets/sock-caper-one-sock-missing.png" alt="Uni searches a laundry basket as Starbeard holds the one remaining purple star sock and the brass communicator glows.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/sock-caper-one-sock-missing.png" alt="Uni searches a laundry basket as Starbeard holds the one remaining purple star sock and the brass communicator glows.">
             <div class="art-shade art-shade-right" aria-hidden="true"></div>
             <div class="page-copy story-copy sock-caper-story-copy story-copy-right">
                 <p class="page-kicker" data-narrate>A sock-related irregularity</p>
@@ -806,7 +898,7 @@
         </section>
 
         <section class="story-page" data-page-label="Every possibility" aria-labelledby="sock-caper-page-5-title">
-            <img class="page-art" src="./assets/sock-caper-room-investigation.png" alt="Uni questions a pillow while Starbeard searches beneath the couch and silver fluff leads toward the door.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/sock-caper-room-investigation.png" alt="Uni questions a pillow while Starbeard searches beneath the couch and silver fluff leads toward the door.">
             <div class="art-shade art-shade-left" aria-hidden="true"></div>
             <div class="page-copy story-copy sock-caper-story-copy story-copy-left">
                 <p class="page-kicker" data-narrate>Every possibility</p>
@@ -822,7 +914,7 @@
         </section>
 
         <section class="story-page" data-page-label="The Celestial Passageway" aria-labelledby="sock-caper-page-6-title">
-            <img class="page-art" src="./assets/sock-caper-celestial-passageway.png" alt="Uni and Starbeard follow silver fluff past a housekeeping moon rover toward the glowing elevator.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/sock-caper-celestial-passageway.png" alt="Uni and Starbeard follow silver fluff past a housekeeping moon rover toward the glowing elevator.">
             <div class="art-shade art-shade-right" aria-hidden="true"></div>
             <div class="page-copy story-copy sock-caper-story-copy story-copy-right">
                 <p class="page-kicker" data-narrate>Beyond the hotel room</p>
@@ -838,7 +930,7 @@
         </section>
 
         <section class="story-page" data-page-label="The laundry deck" aria-labelledby="sock-caper-page-7-title">
-            <img class="page-art" src="./assets/sock-caper-warm-underwear-wormhole.png" alt="Starbeard and Uni investigate closed laundry machines as enormous underpants float behind one round glass door.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/sock-caper-warm-underwear-wormhole.png" alt="Starbeard and Uni investigate closed laundry machines as enormous underpants float behind one round glass door.">
             <div class="art-shade art-shade-left" aria-hidden="true"></div>
             <div class="page-copy story-copy sock-caper-story-copy story-copy-left">
                 <p class="page-kicker" data-narrate>The laundry deck</p>
@@ -854,7 +946,7 @@
         </section>
 
         <section class="story-page" data-page-label="The wrong sock" aria-labelledby="sock-caper-page-8-title">
-            <img class="page-art" src="./assets/sock-caper-wrong-sock-rescue.png" alt="Uni lifts an oversized red-and-white striped sock from beneath a chair while Starbeard holds the basket.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/sock-caper-wrong-sock-rescue.png" alt="Uni lifts an oversized red-and-white striped sock from beneath a chair while Starbeard holds the basket.">
             <div class="art-shade art-shade-right" aria-hidden="true"></div>
             <div class="page-copy story-copy sock-caper-story-copy story-copy-right">
                 <p class="page-kicker" data-narrate>A successful rescue</p>
@@ -869,7 +961,7 @@
         </section>
 
         <section class="story-page" data-page-label="Admiral Pigeon" aria-labelledby="sock-caper-page-9-title">
-            <img class="page-art" src="./assets/sock-caper-admiral-pigeon-clue.png" alt="Admiral Pigeon leads Starbeard and Uni from the laundry-room window toward the sunny courtyard.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/sock-caper-admiral-pigeon-clue.png" alt="Admiral Pigeon leads Starbeard and Uni from the laundry-room window toward the sunny courtyard.">
             <div class="art-shade art-shade-left" aria-hidden="true"></div>
             <div class="page-copy story-copy sock-caper-story-copy story-copy-left">
                 <p class="page-kicker" data-narrate>A familiar messenger</p>
@@ -885,7 +977,7 @@
         </section>
 
         <section class="story-page" data-page-label="Exactly big enough" aria-labelledby="sock-caper-page-10-title">
-            <img class="page-art" src="./assets/sock-caper-exactly-big-enough.png" alt="A tired Uni leans against Starbeard on a courtyard bench after a purple streamer proves to be a false clue.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/sock-caper-exactly-big-enough.png" alt="A tired Uni leans against Starbeard on a courtyard bench after a purple streamer proves to be a false clue.">
             <div class="art-shade art-shade-right" aria-hidden="true"></div>
             <div class="page-copy story-copy sock-caper-story-copy story-copy-right">
                 <p class="page-kicker" data-narrate>A quiet place to pause</p>
@@ -901,7 +993,7 @@
         </section>
 
         <section class="story-page" data-page-label="The thief unmasked" aria-labelledby="sock-caper-page-11-title">
-            <img class="page-art" src="./assets/sock-caper-static-reveal.png" alt="Uni pulls her purple star sock from Starbeard’s cape in a tiny blue static spark while Admiral Pigeon watches.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/sock-caper-static-reveal.png" alt="Uni pulls her purple star sock from Starbeard’s cape in a tiny blue static spark while Admiral Pigeon watches.">
             <div class="art-shade art-shade-left" aria-hidden="true"></div>
             <div class="page-copy story-copy sock-caper-story-copy story-copy-left">
                 <p class="page-kicker" data-narrate>The thief unmasked</p>
@@ -919,7 +1011,7 @@
         </section>
 
         <section class="story-page ending-page" data-page-label="Big enough for today" aria-labelledby="sock-caper-page-12-title">
-            <img class="page-art" src="./assets/sock-caper-cozy-ending.png" alt="Uni rests beneath a blanket in both purple star socks while Starbeard folds a mountain of towels and Admiral Pigeon watches from the window.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/sock-caper-cozy-ending.png" alt="Uni rests beneath a blanket in both purple star socks while Starbeard folds a mountain of towels and Admiral Pigeon watches from the window.">
             <div class="art-shade art-shade-left" aria-hidden="true"></div>
             <div class="page-copy story-copy sock-caper-story-copy ending-copy story-copy-left">
                 <p class="page-kicker" data-narrate>Back aboard The Starlight Wanderer</p>
@@ -946,7 +1038,7 @@
 
     <template id="book-pluto-template">
         <section class="story-page cover-page pluto-cover is-current" data-page-label="Cover" aria-labelledby="pluto-cover-title">
-            <img class="page-art" src="./assets/book-pluto-labyrinth-cover.png" alt="Starbeard and Uni sail toward frozen Pluto while a golden maze glows among the stars.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/book-pluto-labyrinth-cover.png" alt="Starbeard and Uni sail toward frozen Pluto while a golden maze glows among the stars.">
             <div class="art-shade art-shade-left" aria-hidden="true"></div>
             <div class="page-copy cover-copy pluto-cover-copy">
                 <p class="eyebrow" data-narrate>The Adventures of Starbeard and Uni · Book Three</p>
@@ -960,7 +1052,7 @@
         </section>
 
         <section class="story-page" data-page-label="The asteroids" aria-labelledby="pluto-page-2-title">
-            <img class="page-art" src="./assets/pluto-asteroids.png" alt="Starbeard steers through an asteroid field while Uni bounces through the colorful starship bridge.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/pluto-asteroids.png" alt="Starbeard steers through an asteroid field while Uni bounces through the colorful starship bridge.">
             <div class="art-shade art-shade-right" aria-hidden="true"></div>
             <div class="page-copy story-copy pluto-story-copy story-copy-right">
                 <p class="page-kicker" data-narrate>Beyond the familiar planets</p>
@@ -975,7 +1067,7 @@
         </section>
 
         <section class="story-page" data-page-label="Pluto" aria-labelledby="pluto-page-3-title">
-            <img class="page-art" src="./assets/pluto-treasure.png" alt="Starbeard, Uni, and a robed Sensei discover a chest of diamonds and rubies beneath Pluto’s ice.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/pluto-treasure.png" alt="Starbeard, Uni, and a robed Sensei discover a chest of diamonds and rubies beneath Pluto’s ice.">
             <div class="art-shade art-shade-left" aria-hidden="true"></div>
             <div class="page-copy story-copy pluto-story-copy story-copy-left">
                 <p class="planet-badge" data-narrate>Pluto</p>
@@ -989,7 +1081,7 @@
         </section>
 
         <section class="story-page" data-page-label="The alien planet" aria-labelledby="pluto-page-4-title">
-            <img class="page-art" src="./assets/lumi-festival.png" alt="Starbeard and Uni dance with rainbow Lumi beside a river of starlight.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/lumi-festival.png" alt="Starbeard and Uni dance with rainbow Lumi beside a river of starlight.">
             <div class="art-shade art-shade-right" aria-hidden="true"></div>
             <div class="page-copy story-copy pluto-story-copy story-copy-right">
                 <p class="planet-badge" data-narrate>The Festival of Light</p>
@@ -1004,7 +1096,7 @@
         </section>
 
         <section class="story-page" data-page-label="The asteroid station" aria-labelledby="pluto-page-5-title">
-            <img class="page-art" src="./assets/zogo-station.png" alt="A cheerful green alien named Zogo welcomes Starbeard and Uni with a basket of blue fuel crystals.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/zogo-station.png" alt="A cheerful green alien named Zogo welcomes Starbeard and Uni with a basket of blue fuel crystals.">
             <div class="art-shade art-shade-left" aria-hidden="true"></div>
             <div class="page-copy story-copy pluto-story-copy story-copy-left">
                 <p class="page-kicker" data-narrate>Dangerously low</p>
@@ -1019,7 +1111,7 @@
         </section>
 
         <section class="story-page" data-page-label="The cosmic café" aria-labelledby="pluto-page-6-title">
-            <img class="page-art" src="./assets/cosmic-cafe.png" alt="Starbeard, Uni, and their mysterious tiny companion sip sparkling drinks in a café among the stars.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/cosmic-cafe.png" alt="Starbeard, Uni, and their mysterious tiny companion sip sparkling drinks in a café among the stars.">
             <div class="art-shade art-shade-right" aria-hidden="true"></div>
             <div class="page-copy story-copy pluto-story-copy story-copy-right">
                 <p class="page-kicker" data-narrate>A sparkling rest stop</p>
@@ -1034,7 +1126,7 @@
         </section>
 
         <section class="story-page" data-page-label="The Celestial Isles" aria-labelledby="pluto-page-7-title">
-            <img class="page-art" src="./assets/celestial-isles.png" alt="Estrella guides Starbeard and Uni across a bridge of light toward floating celestial islands.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/celestial-isles.png" alt="Estrella guides Starbeard and Uni across a bridge of light toward floating celestial islands.">
             <div class="art-shade art-shade-right" aria-hidden="true"></div>
             <div class="page-copy story-copy pluto-story-copy story-copy-right">
                 <p class="planet-badge" data-narrate>The Celestial Isles</p>
@@ -1049,7 +1141,7 @@
         </section>
 
         <section class="story-page" data-page-label="The Luminous Labyrinth" aria-labelledby="pluto-page-8-title">
-            <img class="page-art" src="./assets/luminous-labyrinth.png" alt="Uni reveals a glowing path while Starbeard holds the star crystal at the center of a golden cosmic maze.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/luminous-labyrinth.png" alt="Uni reveals a glowing path while Starbeard holds the star crystal at the center of a golden cosmic maze.">
             <div class="art-shade art-shade-left" aria-hidden="true"></div>
             <div class="page-copy story-copy pluto-story-copy story-copy-left">
                 <p class="planet-badge" data-narrate>The Luminous Labyrinth</p>
@@ -1064,7 +1156,7 @@
         </section>
 
         <section class="story-page" data-page-label="Home base" aria-labelledby="pluto-page-9-title">
-            <img class="page-art" src="./assets/home-base-treasures.png" alt="Starbeard and a yawning Uni cuddle by the fire among the glowing treasures from their journey.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/home-base-treasures.png" alt="Starbeard and a yawning Uni cuddle by the fire among the glowing treasures from their journey.">
             <div class="art-shade art-shade-left" aria-hidden="true"></div>
             <div class="page-copy story-copy pluto-story-copy story-copy-left">
                 <p class="page-kicker" data-narrate>Home base</p>
@@ -1079,7 +1171,7 @@
         </section>
 
         <section class="story-page ending-page" data-page-label="The shared dream" aria-labelledby="pluto-page-10-title">
-            <img class="page-art" src="./assets/shared-dream.png" alt="Starbeard and Uni dream of a cosmic elder offering them two tiny stars beside a stardust castle.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/shared-dream.png" alt="Starbeard and Uni dream of a cosmic elder offering them two tiny stars beside a stardust castle.">
             <div class="art-shade art-shade-left" aria-hidden="true"></div>
             <div class="page-copy story-copy pluto-story-copy ending-copy story-copy-left">
                 <p class="page-kicker" data-narrate>The shared dream</p>
@@ -1101,7 +1193,7 @@
 
     <template id="book-starwater-template">
         <section class="story-page cover-page is-current" data-page-label="Cover" aria-labelledby="starwater-cover-title">
-            <img class="page-art" src="./assets/book-starwater-cover.png" alt="Starbeard, Juliet, and Uni discover a glowing crystal bottle beneath the moon-sand.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/book-starwater-cover.png" alt="Starbeard, Juliet, and Uni discover a glowing crystal bottle beneath the moon-sand.">
             <div class="art-shade art-shade-left" aria-hidden="true"></div>
             <div class="page-copy cover-copy">
                 <p class="eyebrow" data-narrate>A gentle space-pirate adventure</p>
@@ -1115,7 +1207,7 @@
         </section>
 
         <section class="story-page" data-page-label="Treasure Rule No. 1" aria-labelledby="starwater-page-2-title">
-            <img class="page-art" src="./assets/starwater-tool-search.png" alt="Starbeard, Juliet, and Uni search near a singing cactus and a sleepy space crab for a digging tool.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/starwater-tool-search.png" alt="Starbeard, Juliet, and Uni search near a singing cactus and a sleepy space crab for a digging tool.">
             <div class="art-shade art-shade-right" aria-hidden="true"></div>
             <div class="page-copy story-copy story-copy-right">
                 <p class="page-kicker" data-narrate>Prepare before you plunder</p>
@@ -1127,7 +1219,7 @@
         </section>
 
         <section class="story-page" data-page-label="Search high and low" aria-labelledby="starwater-page-3-title">
-            <img class="page-art" src="./assets/starwater-tool-found.png" alt="Uni finds a silver space-spade beneath a cluster of humming star-shells.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/starwater-tool-found.png" alt="Uni finds a silver space-spade beneath a cluster of humming star-shells.">
             <div class="art-shade art-shade-left" aria-hidden="true"></div>
             <div class="page-copy story-copy story-copy-left">
                 <p class="page-kicker" data-narrate>Look closely</p>
@@ -1139,7 +1231,7 @@
         </section>
 
         <section class="story-page" data-page-label="Slow and steady" aria-labelledby="starwater-page-4-title">
-            <img class="page-art" src="./assets/starwater-patient-dig.png" alt="Juliet, Uni, and Starbeard dig one neat hole while their space-pack rests safely away from the sand.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/starwater-patient-dig.png" alt="Juliet, Uni, and Starbeard dig one neat hole while their space-pack rests safely away from the sand.">
             <div class="art-shade art-shade-right" aria-hidden="true"></div>
             <div class="page-copy story-copy story-copy-right">
                 <p class="page-kicker" data-narrate>Gentle hands</p>
@@ -1152,7 +1244,7 @@
         </section>
 
         <section class="story-page" data-page-label="Mystery found" aria-labelledby="starwater-page-5-title">
-            <img class="page-art" src="./assets/starwater-bottle-reveal.png" alt="The three treasure hunters gaze at a crystal bottle of glowing water resting in the moon-sand.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/starwater-bottle-reveal.png" alt="The three treasure hunters gaze at a crystal bottle of glowing water resting in the moon-sand.">
             <div class="art-shade art-shade-left" aria-hidden="true"></div>
             <div class="page-copy story-copy story-copy-left story-copy-compact">
                 <p class="page-kicker" data-narrate>What could it be?</p>
@@ -1164,7 +1256,7 @@
         </section>
 
         <section class="story-page" data-page-label="The secret of starwater" aria-labelledby="starwater-page-6-title">
-            <img class="page-art" src="./assets/starwater-questions.png" alt="Starbeard lifts the clear starwater toward the sky while Juliet and Uni watch its gentle galaxy lights.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/starwater-questions.png" alt="Starbeard lifts the clear starwater toward the sky while Juliet and Uni watch its gentle galaxy lights.">
             <div class="art-shade art-shade-right" aria-hidden="true"></div>
             <div class="page-copy story-copy story-copy-right story-copy-compact">
                 <p class="page-kicker" data-narrate>Sip and shine</p>
@@ -1176,7 +1268,7 @@
         </section>
 
         <section class="story-page" data-page-label="A sip of starlight" aria-labelledby="starwater-page-7-title">
-            <img class="page-art" src="./assets/starwater-shared-sip.png" alt="Starbeard, Juliet, and Uni share tiny cups of clear starwater beside their ship.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/starwater-shared-sip.png" alt="Starbeard, Juliet, and Uni share tiny cups of clear starwater beside their ship.">
             <div class="art-shade art-shade-left" aria-hidden="true"></div>
             <div class="page-copy story-copy story-copy-left">
                 <p class="page-kicker" data-narrate>Calm, brave, and cozy</p>
@@ -1188,7 +1280,7 @@
         </section>
 
         <section class="story-page ending-page" data-page-label="The finest treasure" aria-labelledby="starwater-page-8-title">
-            <img class="page-art" src="./assets/starwater-homeward.png" alt="Starbeard stores the starwater safely aboard the ship as Juliet and Uni look across the peaceful moon-sand.">
+            <img class="page-art" src="./apps/juju-grand-adventures/assets/starwater-homeward.png" alt="Starbeard stores the starwater safely aboard the ship as Juliet and Uni look across the peaceful moon-sand.">
             <div class="art-shade art-shade-right" aria-hidden="true"></div>
             <div class="page-copy story-copy ending-copy story-copy-right">
                 <p class="page-kicker" data-narrate>Carry kindness</p>
@@ -1205,8 +1297,6 @@
         </section>
     </template>
 
-    <noscript>
-        <p class="noscript-message">This sliding storybook needs JavaScript enabled in your browser. It uses only the local files in this folder.</p>
-    </noscript>
+    <p class="noscript-message" id="javascript-required-message">This sliding storybook needs JavaScript enabled in your browser. It uses only the local files in this folder.</p>
 </body>
 </html>

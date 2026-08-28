@@ -1,9 +1,13 @@
+import arcaneThemeReady from 'arcane/ThemeBootstrap';
 import {
     createJuJuSpeech,
     JUJU_SPEECH_MAX_PARTS
 } from './speech-consumer.mjs';
 
 'use strict';
+
+document.querySelector('#javascript-required-message')?.remove();
+await arcaneThemeReady;
 
 const BOOKS = Object.freeze(
     {

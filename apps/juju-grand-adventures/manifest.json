@@ -1,0 +1,9 @@
+{
+  "name": "Juliet’s Grand Adventures",
+  "short_name": "Juliet’s Adventures",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "rgb(6, 14, 43)",
+  "theme_color": "rgb(6, 14, 43)",
+  "icons": []
+}
