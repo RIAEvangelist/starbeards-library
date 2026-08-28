@@ -1,132 +1,364 @@
+import AI, {
+    AI_BROWSER_SPEECH_CONFIGURATION_PROTOCOL
+} from 'arcane/AI';
+import DBOPFS from 'arcane/DBOPFS';
+import SpeechPlayback, {
+    MAX_SPEECH_CHUNKS
+} from 'arcane/SpeechPlayback';
+
 export const JUJU_SPEECH_AUTHORITY_REQUIRED = 'ARCANE_AI_MODEL_AUTHORITY_REQUIRED';
+export const JUJU_SPEECH_MAX_PARTS = MAX_SPEECH_CHUNKS;
 
-const UNAVAILABLE_MESSAGE = 'Read aloud is unavailable until an approved local speech runtime, model, and voice authority is configured.';
-const UNAVAILABLE_STATUS = Object.freeze(
-    {
-        available: false,
-        code: JUJU_SPEECH_AUTHORITY_REQUIRED,
-        message: UNAVAILABLE_MESSAGE
-    }
-);
-let browserSpeechContractPromise = null;
+const ARCANE_SDK_VERSION = '0.3.1';
+const CONFIGURATION_ID = 'juju-grand-adventures-browser-speech';
+const DEFAULT_SPEED = 0.95;
 
-function loadBrowserSpeechContract() {
-    browserSpeechContractPromise ||= import('arcane-os/ai/browser-speech');
-    return browserSpeechContractPromise;
-}
+function createJuJuSpeechError(code, message, cause) {
+    const error = cause === undefined
+        ? new Error(message)
+        : new Error(message, {cause});
 
-function createAuthorityRequiredError() {
-    const error = new Error(UNAVAILABLE_MESSAGE);
-
-    error.name = 'JuJuSpeechAuthorityError';
-    error.code = JUJU_SPEECH_AUTHORITY_REQUIRED;
+    error.name = 'JuJuSpeechError';
+    error.code = code;
     return error;
 }
 
-export function inspectJuJuSpeechConsumer() {
-    return UNAVAILABLE_STATUS;
-}
+function requireBrowserSpeechCapabilities() {
+    const supported = typeof globalThis.fetch === 'function'
+        && typeof globalThis.Worker === 'function'
+        && typeof globalThis.WebAssembly === 'object'
+        && typeof globalThis.Blob === 'function'
+        && typeof globalThis.URL?.createObjectURL === 'function'
+        && typeof globalThis.navigator?.storage?.getDirectory === 'function'
+        && typeof globalThis.navigator?.locks?.request === 'function';
 
-export async function createJuJuKokoroProvider(options = {}) {
-    if (
-        !options
-        || typeof options !== 'object'
-        || Array.isArray(options)
-        || !options.model
-        || !options.runtime
-        || !options.store
-    ) {
-        throw createAuthorityRequiredError();
-    }
-
-    const browserSpeechContract = await loadBrowserSpeechContract();
-
-    if (typeof browserSpeechContract.createBrowserKokoroProvider !== 'function') {
-        throw new TypeError('The Arcane browser Kokoro provider contract is unavailable.');
-    }
-
-    return browserSpeechContract.createBrowserKokoroProvider(options);
-}
-
-function applySpeechUnavailableStatus(status) {
-    const readButton = document.querySelector('#read-button');
-    const readButtonLabel = document.querySelector('#read-button-label');
-    const voiceControl = document.querySelector('#voice-control');
-    const voiceSelect = document.querySelector('#voice-select');
-    const narrationStatus = document.querySelector('#narration-status');
-
-    if (readButton) {
-        readButton.disabled = true;
-        readButton.setAttribute('aria-pressed', 'false');
-        readButton.setAttribute('aria-busy', 'false');
-        readButton.setAttribute('aria-label', 'Read aloud unavailable');
-        readButton.title = status.message;
-    }
-
-    if (readButtonLabel) {
-        readButtonLabel.textContent = 'Read aloud unavailable';
-    }
-
-    if (voiceControl) {
-        voiceControl.setAttribute('aria-disabled', 'true');
-    }
-
-    if (voiceSelect) {
-        voiceSelect.disabled = true;
-    }
-
-    if (narrationStatus) {
-        narrationStatus.dataset.speechStatusCode = status.code;
-        narrationStatus.textContent = status.message;
-    }
-}
-
-async function initializeJuJuSpeechConsumer() {
-    applySpeechUnavailableStatus(UNAVAILABLE_STATUS);
-
-    try {
-        const browserSpeechContract = await loadBrowserSpeechContract();
-
-        if (typeof browserSpeechContract.createBrowserKokoroProvider !== 'function') {
-            throw new TypeError('The Arcane browser Kokoro provider contract is unavailable.');
-        }
-    } catch (error) {
-        applySpeechUnavailableStatus(
-            Object.freeze(
-                {
-                    available: false,
-                    code: 'ARCANE_AI_SDK_UNAVAILABLE',
-                    message: 'Read aloud is unavailable because the Arcane speech consumer could not load.'
-                }
-            )
+    if (!supported) {
+        throw createJuJuSpeechError(
+            'ARCANE_AI_BROWSER_SPEECH_UNAVAILABLE',
+            'This browser does not provide the local storage, Worker, and WebAssembly features required for read aloud.'
         );
     }
 }
 
-function startJuJuSpeechConsumer() {
-    initializeJuJuSpeechConsumer().catch(
-        function handleSpeechConsumerInitializationFailure() {
-            applySpeechUnavailableStatus(
-                Object.freeze(
-                    {
-                        available: false,
-                        code: 'ARCANE_AI_SDK_UNAVAILABLE',
-                        message: 'Read aloud is unavailable because the Arcane speech consumer could not load.'
-                    }
-                )
-            );
-        }
-    );
+function requireSpeechAuthority(authority) {
+    if (!authority) {
+        throw createJuJuSpeechError(
+            JUJU_SPEECH_AUTHORITY_REQUIRED,
+            'Read aloud is waiting for an explicitly approved local runtime, model, and voice authority.'
+        );
+    }
+
+    if (
+        typeof authority !== 'object'
+        || Array.isArray(authority)
+        || authority.sdkVersion !== ARCANE_SDK_VERSION
+        || typeof authority.providerId !== 'string'
+        || !authority.providerId.trim()
+        || !authority.model
+        || typeof authority.model !== 'object'
+        || !authority.runtime
+        || typeof authority.runtime !== 'object'
+        || typeof authority.defaultVoice !== 'string'
+        || !authority.defaultVoice
+        || !Array.isArray(authority.voices)
+        || !authority.voices.includes(authority.defaultVoice)
+    ) {
+        throw createJuJuSpeechError(
+            'ARCANE_AI_MODEL_AUTHORITY_INVALID',
+            'The supplied JuJu speech authority does not match the Arcane SDK 0.3.1 consumer contract.'
+        );
+    }
+
+    return authority;
 }
 
-if (document.readyState === 'complete') {
-    startJuJuSpeechConsumer();
-} else {
-    document.addEventListener(
-        'DOMContentLoaded',
-        startJuJuSpeechConsumer,
+function defaultSpeechStateObserver() {}
+
+export function createJuJuSpeech({
+    authority = null,
+    onState = defaultSpeechStateObserver
+} = {}) {
+    if (typeof onState !== 'function') {
+        throw new TypeError('JuJu speech onState must be a function.');
+    }
+
+    let configurationPromise = null;
+    let disposed = false;
+    let generation = 0;
+    let runtime = null;
+
+    function assertActive() {
+        if (disposed) {
+            throw createJuJuSpeechError(
+                'ARCANE_AI_PROVIDER_DISPOSED',
+                'JuJu read aloud has been disposed.'
+            );
+        }
+    }
+
+    async function configureSpeechRuntime(selectedAuthority) {
+        requireBrowserSpeechCapabilities();
+
+        const dbopfs = new DBOPFS();
+        const ai = globalThis.ai || new AI(
+            'OPENAI',
+            'OPENAI',
+            selectedAuthority.providerId,
+            'OPENAI',
+            selectedAuthority.model.id,
+            'OPENAI'
+        );
+
+        const audio = document.createElement('audio');
+
+        audio.dataset.jujuNarration = 'sdk';
+        audio.hidden = true;
+        audio.preload = 'none';
+        document.body.append(audio);
+
+        const playback = new SpeechPlayback(
+            {
+                audio,
+                speech: ai,
+                model: selectedAuthority.model.id,
+                voice: selectedAuthority.defaultVoice,
+                responseFormat: 'wav',
+                speed: DEFAULT_SPEED,
+                onState,
+                messages: {
+                    unavailable: 'Local read aloud is not ready.',
+                    preparing: 'Preparing this page with Kokoro…',
+                    queued: 'Waiting to prepare this page…',
+                    ready: 'Narration is ready.',
+                    playing: 'Reading this page.',
+                    pausing: 'Turning to the next passage…',
+                    buffering: 'Preparing the next passage…',
+                    paused: 'Narration is paused.',
+                    ended: 'Narration finished.',
+                    stopped: 'Narration stopped.',
+                    preparationStopped: 'Narration preparation stopped.',
+                    autoplayBlocked: 'Narration is ready. Select Play narration to begin.',
+                    playbackError: 'The prepared narration could not be played.',
+                    fallbackError: 'Local read aloud stopped unexpectedly.'
+                }
+            }
+        );
+
+        const configuration = Object.freeze(
+            {
+                protocol: AI_BROWSER_SPEECH_CONFIGURATION_PROTOCOL,
+                id: CONFIGURATION_ID,
+                dbopfs,
+                tts: Object.freeze(
+                    {
+                        providerId: selectedAuthority.providerId,
+                        model: selectedAuthority.model,
+                        runtime: selectedAuthority.runtime,
+                        security: selectedAuthority.security,
+                        offline: false
+                    }
+                )
+            }
+        );
+
+        try {
+            await dbopfs.readyPromise;
+            assertActive();
+            await ai.configureBrowserSpeech(configuration);
+            assertActive();
+        } catch (error) {
+            playback.destroy();
+            audio.remove();
+
+            if (
+                ai.browserSpeechDescriptor?.configurationId
+                === CONFIGURATION_ID
+            ) {
+                try {
+                    await ai.disposeBrowserSpeech();
+                } catch (cleanupError) {
+                    throw createJuJuSpeechError(
+                        'ARCANE_AI_BROWSER_SPEECH_CLEANUP_FAILED',
+                        'JuJu read aloud could not cleanly release a failed browser-speech configuration.',
+                        new AggregateError(
+                            [error, cleanupError],
+                            'Browser-speech setup and cleanup both failed.'
+                        )
+                    );
+                }
+            }
+
+            throw error;
+        }
+
+        return Object.freeze(
+            {
+                ai,
+                audio,
+                playback,
+                authority: selectedAuthority,
+                voices: new Set(selectedAuthority.voices)
+            }
+        );
+    }
+
+    async function initialize() {
+        assertActive();
+
+        if (!configurationPromise) {
+            configurationPromise = Promise.resolve().then(
+                async function configureAuthorizedBrowserSpeech() {
+                    const selectedAuthority = requireSpeechAuthority(authority);
+
+                    runtime = await configureSpeechRuntime(selectedAuthority);
+                    return runtime.ai.browserSpeechDescriptor;
+                }
+            ).catch(
+                function clearRejectedConfiguration(error) {
+                    configurationPromise = null;
+                    throw error;
+                }
+            );
+        }
+
+        return configurationPromise;
+    }
+
+    async function read({
+        key,
+        parts,
+        voice,
+        speed = DEFAULT_SPEED
+    } = {}) {
+        assertActive();
+
+        const operationGeneration = generation + 1;
+
+        generation = operationGeneration;
+        await initialize();
+
+        if (operationGeneration !== generation || disposed) {
+            return Object.freeze(
+                {
+                    ready: false,
+                    played: false,
+                    cancelled: true
+                }
+            );
+        }
+
+        const selectedVoice = String(voice || runtime.authority.defaultVoice);
+
+        if (!runtime.voices.has(selectedVoice)) {
+            throw createJuJuSpeechError(
+                'ARCANE_AI_TTS_VOICE_INVALID',
+                'The selected JuJu narration voice is not available.'
+            );
+        }
+
+        if (runtime.playback.hasAudio(key)) {
+            const played = await runtime.playback.replay();
+
+            return Object.freeze(
+                {
+                    ready: true,
+                    played,
+                    replayed: true
+                }
+            );
+        }
+
+        await runtime.ai.setSpeechMuted(false);
+
+        if (operationGeneration !== generation || disposed) {
+            await runtime.ai.setSpeechMuted(true);
+            return Object.freeze(
+                {
+                    ready: false,
+                    played: false,
+                    cancelled: true
+                }
+            );
+        }
+
+        return runtime.playback.prepare(
+            {
+                key,
+                parts,
+                model: runtime.authority.model.id,
+                voice: selectedVoice,
+                responseFormat: 'wav',
+                speed,
+                autoplay: true
+            }
+        );
+    }
+
+    function stop() {
+        generation += 1;
+
+        if (!runtime) {
+            return Promise.resolve(false);
+        }
+
+        runtime.playback.stop();
+
+        const status = runtime.ai.providerRuntime.status('tts');
+
+        if (status.state === 'loading') {
+            return runtime.ai.setSpeechMuted(true);
+        }
+
+        return Promise.resolve(status);
+    }
+
+    async function dispose() {
+        if (disposed) {
+            return false;
+        }
+
+        disposed = true;
+        generation += 1;
+
+        if (!runtime) {
+            return true;
+        }
+
+        runtime.playback.destroy();
+        runtime.audio.remove();
+        await runtime.ai.disposeBrowserSpeech();
+        runtime = null;
+        return true;
+    }
+
+    function inspect() {
+        return Object.freeze(
+            {
+                sdkVersion: ARCANE_SDK_VERSION,
+                configured: Boolean(runtime?.ai.browserSpeechDescriptor?.tts),
+                provider: runtime
+                    ? runtime.ai.providerRuntime.status('tts')
+                    : null,
+                playback: runtime
+                    ? Object.freeze(
+                        {
+                            state: runtime.playback.state,
+                            key: runtime.playback.key,
+                            hasAudio: runtime.playback.hasAudio()
+                        }
+                    )
+                    : null
+            }
+        );
+    }
+
+    return Object.freeze(
         {
-            once: true
+            initialize,
+            read,
+            stop,
+            dispose,
+            inspect
         }
     );
 }
