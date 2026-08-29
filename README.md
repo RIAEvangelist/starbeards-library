@@ -24,15 +24,15 @@ Completed stories outside the two adventure collections will be added here.
 
 Each book opens in the same full-screen horizontal reader with touch swiping, keyboard navigation, page controls, and JuJu’s existing eight-voice read-aloud controls.
 
-The app pins published `arcane-os@0.3.1` and uses its public browser-speech, AI, DBOPFS, event, and `SpeechPlayback` contracts. JuJu owns story narration, voice choice, and presentation; the SDK owns provider registration, loading, cancellation, Worker isolation, WAV normalization, cached artifact materialization, playback, and the single `globalThis.arcaneEvents` authority. The legacy app-local `speech-worker.js`, direct CDN import, AudioContext scheduler, and browser-speech fallback have been retired.
+The app pins published `arcane-os@0.3.1` and uses its public browser-speech, AI, DBOPFS, event, and `SpeechPlayback` contracts. JuJu owns story narration, voice choice, and presentation; the SDK owns provider registration, loading, cancellation, Worker lifecycle, WAV normalization, runtime asset loading, playback, and the single `globalThis.arcaneEvents` authority. The legacy app-local `speech-worker.js`, direct CDN import, AudioContext scheduler, and browser-speech fallback have been retired.
 
-The consumer currently remains fail-closed at the external runtime/model/voice authority boundary. No non-RIA browser speech package, model, voice, or CDN fetch is enabled until that exact selected closure is explicitly authorized. This is an honest pending integration state, not functional speech proof; the visual stories remain available and the UI reports why narration is unavailable.
+No external browser speech runtime, model, voice, or CDN source is configured because that dependency closure has not been authorized. This is an honest pending integration state, not functional speech proof; the visual stories remain available and the UI reports why narration is unavailable.
 
 Every spread has a **Move words** handle. Drag it with a mouse or finger, or focus it and use the arrow keys. Hold Shift for larger keyboard steps, and press Home or **Reset** to restore the original position. **Shrink words** collapses the story panel into a small movable control so the full illustration can be explored; **Show words** restores the text.
 
 ## Arcane island boundary
 
-JuJu declares exact `arcane-os@0.3.1` in its own `package.json`; a normal project-root `npm install` resolves the public package into this repository’s own physical `node_modules`. Application source lives under `apps/juju-grand-adventures/`, and the authenticated SDK runtime is materialized under the repository-local `arcane/` projection. No global install, symlink, Arcane checkout, live source mount, or update poll is part of the package or runtime contract.
+JuJu declares exact `arcane-os@0.3.1` in its own `package.json`; a normal project-root `npm install` resolves the public package into this repository’s own physical `node_modules`. Application source lives under `apps/juju-grand-adventures/`, and the installed SDK runtime is materialized under the repository-local `arcane/` projection. No global install, symlink, Arcane checkout, live source mount, or update poll is part of the package or runtime contract.
 
 Create the one selected, independently runnable browser artifact with:
 
@@ -40,7 +40,7 @@ Create the one selected, independently runnable browser artifact with:
 npm run package
 ```
 
-That command reauthenticates and atomically refreshes the installed SDK projection before the SDK packages JuJu, its managed import map, the complete runtime/browser closure, and Arcane licensing into `dist/juju-grand-adventures/`. The generated release remains browser-only and does not claim a native launcher or publisher signature.
+That command packages JuJu with its checked-in installed SDK projection, managed import map, complete runtime/browser closure, and Arcane licensing into `dist/juju-grand-adventures/`. The generated release remains browser-only and does not claim a native launcher or publisher signature.
 
 ## Serve locally
 

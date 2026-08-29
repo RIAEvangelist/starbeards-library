@@ -2,12 +2,9 @@ import AI, {
     AI_BROWSER_SPEECH_CONFIGURATION_PROTOCOL
 } from 'arcane/AI';
 import DBOPFS from 'arcane/DBOPFS';
-import SpeechPlayback, {
-    MAX_SPEECH_CHUNKS
-} from 'arcane/SpeechPlayback';
+import SpeechPlayback from 'arcane/SpeechPlayback';
 
 export const JUJU_SPEECH_AUTHORITY_REQUIRED = 'ARCANE_AI_MODEL_AUTHORITY_REQUIRED';
-export const JUJU_SPEECH_MAX_PARTS = MAX_SPEECH_CHUNKS;
 
 const ARCANE_SDK_VERSION = '0.3.1';
 const CONFIGURATION_ID = 'juju-grand-adventures-browser-speech';
@@ -23,49 +20,11 @@ function createJuJuSpeechError(code, message, cause) {
     return error;
 }
 
-function requireBrowserSpeechCapabilities() {
-    const supported = typeof globalThis.fetch === 'function'
-        && typeof globalThis.Worker === 'function'
-        && typeof globalThis.WebAssembly === 'object'
-        && typeof globalThis.Blob === 'function'
-        && typeof globalThis.URL?.createObjectURL === 'function'
-        && typeof globalThis.navigator?.storage?.getDirectory === 'function'
-        && typeof globalThis.navigator?.locks?.request === 'function';
-
-    if (!supported) {
-        throw createJuJuSpeechError(
-            'ARCANE_AI_BROWSER_SPEECH_UNAVAILABLE',
-            'This browser does not provide the local storage, Worker, and WebAssembly features required for read aloud.'
-        );
-    }
-}
-
 function requireSpeechAuthority(authority) {
     if (!authority) {
         throw createJuJuSpeechError(
             JUJU_SPEECH_AUTHORITY_REQUIRED,
             'Read aloud is waiting for an explicitly approved local runtime, model, and voice authority.'
-        );
-    }
-
-    if (
-        typeof authority !== 'object'
-        || Array.isArray(authority)
-        || authority.sdkVersion !== ARCANE_SDK_VERSION
-        || typeof authority.providerId !== 'string'
-        || !authority.providerId.trim()
-        || !authority.model
-        || typeof authority.model !== 'object'
-        || !authority.runtime
-        || typeof authority.runtime !== 'object'
-        || typeof authority.defaultVoice !== 'string'
-        || !authority.defaultVoice
-        || !Array.isArray(authority.voices)
-        || !authority.voices.includes(authority.defaultVoice)
-    ) {
-        throw createJuJuSpeechError(
-            'ARCANE_AI_MODEL_AUTHORITY_INVALID',
-            'The supplied JuJu speech authority does not match the Arcane SDK 0.3.1 consumer contract.'
         );
     }
 
@@ -97,8 +56,6 @@ export function createJuJuSpeech({
     }
 
     async function configureSpeechRuntime(selectedAuthority) {
-        requireBrowserSpeechCapabilities();
-
         const dbopfs = new DBOPFS();
         const ai = globalThis.ai || new AI(
             'OPENAI',
@@ -144,22 +101,20 @@ export function createJuJuSpeech({
             }
         );
 
-        const configuration = Object.freeze(
-            {
-                protocol: AI_BROWSER_SPEECH_CONFIGURATION_PROTOCOL,
-                id: CONFIGURATION_ID,
-                dbopfs,
-                tts: Object.freeze(
-                    {
-                        providerId: selectedAuthority.providerId,
-                        model: selectedAuthority.model,
-                        runtime: selectedAuthority.runtime,
-                        security: selectedAuthority.security,
-                        offline: false
-                    }
-                )
+        const configuration = {
+            protocol: AI_BROWSER_SPEECH_CONFIGURATION_PROTOCOL,
+            id: CONFIGURATION_ID,
+            dbopfs,
+            tts: {
+                providerId: selectedAuthority.providerId,
+                model: selectedAuthority.model,
+                runtime: selectedAuthority.runtime,
+                security: {
+                    secure: false
+                },
+                offline: false
             }
-        );
+        };
 
         try {
             await dbopfs.readyPromise;
@@ -191,15 +146,12 @@ export function createJuJuSpeech({
             throw error;
         }
 
-        return Object.freeze(
-            {
-                ai,
-                audio,
-                playback,
-                authority: selectedAuthority,
-                voices: new Set(selectedAuthority.voices)
-            }
-        );
+        return {
+            ai,
+            audio,
+            playback,
+            authority: selectedAuthority
+        };
     }
 
     async function initialize() {
@@ -238,47 +190,34 @@ export function createJuJuSpeech({
         await initialize();
 
         if (operationGeneration !== generation || disposed) {
-            return Object.freeze(
-                {
-                    ready: false,
-                    played: false,
-                    cancelled: true
-                }
-            );
+            return {
+                ready: false,
+                played: false,
+                cancelled: true
+            };
         }
 
         const selectedVoice = String(voice || runtime.authority.defaultVoice);
 
-        if (!runtime.voices.has(selectedVoice)) {
-            throw createJuJuSpeechError(
-                'ARCANE_AI_TTS_VOICE_INVALID',
-                'The selected JuJu narration voice is not available.'
-            );
-        }
-
-        if (runtime.playback.hasAudio(key)) {
+        if (runtime.playback.hasAudio()) {
             const played = await runtime.playback.replay();
 
-            return Object.freeze(
-                {
-                    ready: true,
-                    played,
-                    replayed: true
-                }
-            );
+            return {
+                ready: true,
+                played,
+                replayed: true
+            };
         }
 
         await runtime.ai.setSpeechMuted(false);
 
         if (operationGeneration !== generation || disposed) {
             await runtime.ai.setSpeechMuted(true);
-            return Object.freeze(
-                {
-                    ready: false,
-                    played: false,
-                    cancelled: true
-                }
-            );
+            return {
+                ready: false,
+                played: false,
+                cancelled: true
+            };
         }
 
         return runtime.playback.prepare(
@@ -332,33 +271,27 @@ export function createJuJuSpeech({
     }
 
     function inspect() {
-        return Object.freeze(
-            {
-                sdkVersion: ARCANE_SDK_VERSION,
-                configured: Boolean(runtime?.ai.browserSpeechDescriptor?.tts),
-                provider: runtime
-                    ? runtime.ai.providerRuntime.status('tts')
-                    : null,
-                playback: runtime
-                    ? Object.freeze(
-                        {
-                            state: runtime.playback.state,
-                            key: runtime.playback.key,
-                            hasAudio: runtime.playback.hasAudio()
-                        }
-                    )
-                    : null
-            }
-        );
+        return {
+            sdkVersion: ARCANE_SDK_VERSION,
+            configured: Boolean(runtime?.ai.browserSpeechDescriptor?.tts),
+            provider: runtime
+                ? runtime.ai.providerRuntime.status('tts')
+                : null,
+            playback: runtime
+                ? {
+                    state: runtime.playback.state,
+                    key: runtime.playback.key,
+                    hasAudio: runtime.playback.hasAudio()
+                }
+                : null
+        };
     }
 
-    return Object.freeze(
-        {
-            initialize,
-            read,
-            stop,
-            dispose,
-            inspect
-        }
-    );
+    return {
+        initialize,
+        read,
+        stop,
+        dispose,
+        inspect
+    };
 }

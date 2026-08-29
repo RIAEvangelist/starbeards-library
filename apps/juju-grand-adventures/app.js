@@ -1,7 +1,6 @@
 import arcaneThemeReady from 'arcane/ThemeBootstrap';
 import {
-    createJuJuSpeech,
-    JUJU_SPEECH_MAX_PARTS
+    createJuJuSpeech
 } from './speech-consumer.mjs';
 
 'use strict';
@@ -9,46 +8,32 @@ import {
 document.querySelector('#javascript-required-message')?.remove();
 await arcaneThemeReady;
 
-const BOOKS = Object.freeze(
-    {
-        planets: Object.freeze(
-            {
-                title: 'The Three Little Planets',
-                templateId: 'book-planets-template'
-            }
-        ),
-        doughnut: Object.freeze(
-            {
-                title: 'Starbeard and the Doughnut Planet Map',
-                templateId: 'book-doughnut-template'
-            }
-        ),
-        moonlit: Object.freeze(
-            {
-                title: 'The Song of the Moonlit Blossom Planet',
-                templateId: 'book-moonlit-template'
-            }
-        ),
-        sockCaper: Object.freeze(
-            {
-                title: 'The Great Galactic Sock Caper',
-                templateId: 'book-sock-caper-template'
-            }
-        ),
-        pluto: Object.freeze(
-            {
-                title: 'The Treasure of Pluto and the Luminous Labyrinth',
-                templateId: 'book-pluto-template'
-            }
-        ),
-        starwater: Object.freeze(
-            {
-                title: 'Starbeard and the Starwater',
-                templateId: 'book-starwater-template'
-            }
-        )
+const BOOKS = {
+    planets: {
+        title: 'The Three Little Planets',
+        templateId: 'book-planets-template'
+    },
+    doughnut: {
+        title: 'Starbeard and the Doughnut Planet Map',
+        templateId: 'book-doughnut-template'
+    },
+    moonlit: {
+        title: 'The Song of the Moonlit Blossom Planet',
+        templateId: 'book-moonlit-template'
+    },
+    sockCaper: {
+        title: 'The Great Galactic Sock Caper',
+        templateId: 'book-sock-caper-template'
+    },
+    pluto: {
+        title: 'The Treasure of Pluto and the Luminous Labyrinth',
+        templateId: 'book-pluto-template'
+    },
+    starwater: {
+        title: 'Starbeard and the Starwater',
+        templateId: 'book-starwater-template'
     }
-);
+};
 
 const pageBody = document.body;
 const libraryView = document.querySelector('#library-view');
@@ -87,7 +72,6 @@ const VOICE_STORAGE_KEY = 'juju-grand-adventures.kokoro-voice';
 const MIN_NARRATION_CHUNK_CHARACTERS = 80;
 const TARGET_NARRATION_CHUNK_CHARACTERS = 240;
 const MAX_NARRATION_CHUNK_CHARACTERS = 320;
-const MAX_NARRATION_CHUNKS = JUJU_SPEECH_MAX_PARTS;
 const LINE_BREAK_PAUSE_MS = 120;
 const PASSAGE_BREAK_PAUSE_MS = 200;
 
@@ -152,6 +136,7 @@ async function handleMusicButtonClick() {
         await backgroundMusic.play();
     } catch (error) {
         handleBackgroundMusicError();
+        reportApplicationError(error);
     }
 }
 
@@ -222,14 +207,12 @@ function getCopyMovementBounds(copy) {
         - readerControls.getBoundingClientRect().height
         - COPY_CONTROL_GAP;
 
-    return Object.freeze(
-        {
-            minimumX: pageBounds.left + COPY_EDGE_GAP - copyBounds.left,
-            maximumX: pageBounds.right - COPY_EDGE_GAP - copyBounds.right,
-            minimumY: topBoundary - copyBounds.top,
-            maximumY: bottomBoundary - copyBounds.bottom
-        }
-    );
+    return {
+        minimumX: pageBounds.left + COPY_EDGE_GAP - copyBounds.left,
+        maximumX: pageBounds.right - COPY_EDGE_GAP - copyBounds.right,
+        minimumY: topBoundary - copyBounds.top,
+        maximumY: bottomBoundary - copyBounds.bottom
+    };
 }
 
 function moveCopyBy(copy, deltaX, deltaY) {
@@ -262,18 +245,16 @@ function handleCopyDragStart(event) {
     const handle = event.currentTarget;
     const copy = handle.closest('.page-copy');
 
-    activeCopyDrag = Object.freeze(
-        {
-            pointerId: event.pointerId,
-            handle,
-            copy,
-            originClientX: event.clientX,
-            originClientY: event.clientY,
-            originCopyX: getCopyOffset(copy, 'x'),
-            originCopyY: getCopyOffset(copy, 'y'),
-            bounds: getCopyMovementBounds(copy)
-        }
-    );
+    activeCopyDrag = {
+        pointerId: event.pointerId,
+        handle,
+        copy,
+        originClientX: event.clientX,
+        originClientY: event.clientY,
+        originCopyX: getCopyOffset(copy, 'x'),
+        originCopyY: getCopyOffset(copy, 'y'),
+        bounds: getCopyMovementBounds(copy)
+    };
 
     if (typeof handle.setPointerCapture === 'function') {
         handle.setPointerCapture(event.pointerId);
@@ -550,7 +531,7 @@ function clearNarrationError() {
     }
 }
 
-function reportNarrationError(error) {
+function reportApplicationError(error) {
     if (typeof globalThis.reportError === 'function') {
         globalThis.reportError(error);
         return;
@@ -561,7 +542,7 @@ function reportNarrationError(error) {
 
 function narrationFailureMessage(error) {
     const message = typeof error?.message === 'string'
-        ? error.message.trim()
+        ? error.message
         : '';
 
     return message || 'Local read aloud stopped unexpectedly.';
@@ -650,19 +631,13 @@ function handleSpeechPlaybackState(detail) {
 }
 
 async function beginKokoroNarration(chunks, voice, revision) {
-    const key = currentBookId
-        + ':'
-        + currentPageIndex
-        + ':'
-        + voice;
+    const key = 'juju-narration:' + revision;
     const parts = chunks.map(
         function createSpeechPlaybackPart(chunk) {
-            return Object.freeze(
-                {
-                    input: chunk.text,
-                    pauseAfterMs: chunk.pauseMs
-                }
-            );
+            return {
+                input: chunk.text,
+                pauseAfterMs: chunk.pauseMs
+            };
         }
     );
 
@@ -709,7 +684,7 @@ async function beginKokoroNarration(chunks, voice, revision) {
             narrationFailureMessage(error)
             + ' The visual story remains available; check the connection and try again.'
         );
-        reportNarrationError(error);
+        reportApplicationError(error);
     }
 }
 
@@ -722,7 +697,7 @@ function handleUnexpectedNarrationFailure(error) {
     updateNarrationStatus(
         'Read aloud stopped unexpectedly. Please try again.'
     );
-    reportNarrationError(error);
+    reportApplicationError(error);
 }
 
 function handleNarrationStopFailure(error) {
@@ -731,7 +706,7 @@ function handleNarrationStopFailure(error) {
     updateNarrationStatus(
         'Read aloud could not finish stopping cleanly. Reload the story before trying again.'
     );
-    reportNarrationError(error);
+    reportApplicationError(error);
 }
 
 function stopNarration() {
@@ -1208,13 +1183,6 @@ function handleReadClick() {
         return;
     }
 
-    if (narrationChunks.length > MAX_NARRATION_CHUNKS) {
-        updateNarrationStatus(
-            'This page has too many passages for local read aloud.'
-        );
-        return;
-    }
-
     const selectedVoice = voiceSelect
         ? voiceSelect.value
         : 'af_heart';
@@ -1250,6 +1218,7 @@ function restoreVoicePreference() {
         }
     } catch (error) {
         // Voice persistence is optional when storage is unavailable.
+        reportApplicationError(error);
     }
 }
 
@@ -1262,6 +1231,7 @@ function handleVoiceChange() {
         window.localStorage.setItem(VOICE_STORAGE_KEY, voiceSelect.value);
     } catch (error) {
         // The current selection still works when storage is unavailable.
+        reportApplicationError(error);
     }
 
     updateNarrationStatus('Ready to read with ' + getSelectedVoiceLabel() + '.');
@@ -1313,7 +1283,7 @@ async function initializeNarration() {
         );
     } catch (error) {
         applyNarrationUnavailable(error);
-        reportNarrationError(error);
+        reportApplicationError(error);
     } finally {
         readButton.setAttribute('aria-busy', 'false');
     }
