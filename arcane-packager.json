@@ -14,8 +14,7 @@
           "entities",
           "img",
           "modules",
-          "sdk",
-          "security"
+          "sdk"
         ],
         "exclude": []
       },

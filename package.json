@@ -4,15 +4,16 @@
   "type": "module",
   "scripts": {
     "doctor": "arcane doctor --app juju-grand-adventures",
-    "dev": "arcane dev --app juju-grand-adventures",
-    "import-map": "arcane import-map --app juju-grand-adventures",
-    "package": "arcane package --app juju-grand-adventures",
+    "sdk:materialize": "node ./scripts/materialize-installed-sdk-runtime.mjs",
+    "dev": "npm run import-map && arcane dev --app juju-grand-adventures",
+    "import-map": "npm run sdk:materialize && arcane import-map --app juju-grand-adventures",
+    "package": "npm run import-map && arcane package --app juju-grand-adventures",
     "verify": "arcane verify --app juju-grand-adventures",
-    "bundle": "arcane bundle --app juju-grand-adventures",
-    "build": "arcane build --target browser --app juju-grand-adventures",
-    "run": "arcane run --target browser --app juju-grand-adventures"
+    "bundle": "npm run import-map && arcane bundle --app juju-grand-adventures",
+    "build": "npm run import-map && arcane build --target browser --app juju-grand-adventures",
+    "run": "npm run import-map && arcane run --target browser --app juju-grand-adventures"
   },
   "dependencies": {
-    "arcane-os": "0.3.1"
+    "arcane-os": "0.3.4"
   }
 }

@@ -69,10 +69,6 @@ const COPY_CONTROL_GAP = 8;
 
 const BACKGROUND_MUSIC_VOLUME = 0.005;
 const VOICE_STORAGE_KEY = 'juju-grand-adventures.kokoro-voice';
-const MIN_NARRATION_CHUNK_CHARACTERS = 80;
-const TARGET_NARRATION_CHUNK_CHARACTERS = 240;
-const MAX_NARRATION_CHUNK_CHARACTERS = 320;
-const LINE_BREAK_PAUSE_MS = 120;
 const PASSAGE_BREAK_PAUSE_MS = 200;
 
 let pages = [];
@@ -630,13 +626,13 @@ function handleSpeechPlaybackState(detail) {
     }
 }
 
-async function beginKokoroNarration(chunks, voice, revision) {
+async function beginKokoroNarration(passages, voice, revision) {
     const key = 'juju-narration:' + revision;
-    const parts = chunks.map(
-        function createSpeechPlaybackPart(chunk) {
+    const parts = passages.map(
+        function createSpeechPlaybackPart(passage) {
             return {
-                input: chunk.text,
-                pauseAfterMs: chunk.pauseMs
+                input: passage.text,
+                pauseAfterMs: passage.pauseMs
             };
         }
     );
@@ -984,128 +980,9 @@ function handleTrackScroll() {
     scrollFrame = window.requestAnimationFrame(syncPageFromScroll);
 }
 
-function findNarrationChunkBreak(text) {
-    const maximumBreakIndex = Math.min(
-        MAX_NARRATION_CHUNK_CHARACTERS,
-        text.length - 1
-    );
-    const searchIndex = maximumBreakIndex - 1;
-    const softBoundaries = [',', ';', ':', '—', '–'];
-    let breakIndex = -1;
-
-    for (let index = 0; index < softBoundaries.length; index += 1) {
-        const boundaryIndex = text.lastIndexOf(
-            softBoundaries[index],
-            searchIndex
-        );
-
-        if (boundaryIndex >= MIN_NARRATION_CHUNK_CHARACTERS) {
-            breakIndex = Math.max(breakIndex, boundaryIndex + 1);
-        }
-    }
-
-    if (breakIndex < MIN_NARRATION_CHUNK_CHARACTERS) {
-        breakIndex = text.lastIndexOf(' ', searchIndex);
-    }
-
-    return breakIndex >= MIN_NARRATION_CHUNK_CHARACTERS
-        ? breakIndex
-        : maximumBreakIndex;
-}
-
-function appendBoundedNarrationText(parts, text) {
-    let joinWithSpace = /^\s/.test(text);
-    let remainingText = text.trim();
-
-    while (remainingText.length > MAX_NARRATION_CHUNK_CHARACTERS) {
-        const breakIndex = findNarrationChunkBreak(remainingText);
-        const boundedText = remainingText.slice(0, breakIndex).trim();
-        const followingText = remainingText.slice(breakIndex);
-
-        if (boundedText) {
-            parts.push(
-                {
-                    joinWithSpace,
-                    text: boundedText
-                }
-            );
-        }
-
-        joinWithSpace = /^\s/.test(followingText);
-        remainingText = followingText.trim();
-    }
-
-    if (remainingText) {
-        parts.push(
-            {
-                joinWithSpace,
-                text: remainingText
-            }
-        );
-    }
-}
-
-function splitNarrationLine(line) {
-    const punctuationSegments = line.match(
-        /[^.!?…;:,—–]+(?:[.!?…;:,—–]+[”’"'»)\]]*|$)/g
-    ) || [line];
-    const boundedSegments = [];
-    const chunks = [];
-    let bufferedText = '';
-
-    for (let index = 0; index < punctuationSegments.length; index += 1) {
-        appendBoundedNarrationText(
-            boundedSegments,
-            punctuationSegments[index]
-        );
-    }
-
-    for (let index = 0; index < boundedSegments.length; index += 1) {
-        const segment = boundedSegments[index];
-        const separator = bufferedText && segment.joinWithSpace
-            ? ' '
-            : '';
-        const combinedLength = bufferedText
-            ? bufferedText.length + segment.text.length + separator.length
-            : segment.text.length;
-
-        if (
-            bufferedText
-            && (
-                combinedLength > MAX_NARRATION_CHUNK_CHARACTERS
-                || (
-                    bufferedText.length >= MIN_NARRATION_CHUNK_CHARACTERS
-                    && combinedLength > TARGET_NARRATION_CHUNK_CHARACTERS
-                )
-            )
-        ) {
-            chunks.push(bufferedText);
-            bufferedText = '';
-        }
-
-        bufferedText = bufferedText
-            ? bufferedText + separator + segment.text
-            : segment.text;
-
-        if (
-            bufferedText.length >= MIN_NARRATION_CHUNK_CHARACTERS
-            && /[.!?…;:,—–][”’"'»)\]]*$/.test(segment.text)
-        ) {
-            chunks.push(bufferedText);
-            bufferedText = '';
-        }
-    }
-
-    if (bufferedText) {
-        chunks.push(bufferedText);
-    }
-
-    return chunks;
-}
-
-function collectNarrationChunks(page) {
+function collectNarrationPassages(page) {
     const passages = page.querySelectorAll('[data-narrate]');
-    const chunks = [];
+    const narrationPassages = [];
 
     for (let index = 0; index < passages.length; index += 1) {
         const passage = passages[index].cloneNode(true);
@@ -1120,43 +997,22 @@ function collectNarrationChunks(page) {
             .replace(/[^\S\n]+/g, ' ')
             .replace(/ *\n+ */g, '\n')
             .trim();
-        const lines = passageText.split(/\n+/);
-        const passageStartIndex = chunks.length;
 
-        for (let lineIndex = 0; lineIndex < lines.length; lineIndex += 1) {
-            const lineChunks = splitNarrationLine(lines[lineIndex].trim());
-            const lineStartIndex = chunks.length;
-
-            for (let chunkIndex = 0; chunkIndex < lineChunks.length; chunkIndex += 1) {
-                chunks.push(
-                    {
-                        text: lineChunks[chunkIndex],
-                        pauseMs: 0
-                    }
-                );
-            }
-
-            if (
-                chunks.length > lineStartIndex
-                && lineIndex < lines.length - 1
-            ) {
-                chunks[chunks.length - 1].pauseMs = LINE_BREAK_PAUSE_MS;
-            }
-        }
-
-        if (chunks.length > passageStartIndex) {
-            chunks[chunks.length - 1].pauseMs = Math.max(
-                chunks[chunks.length - 1].pauseMs,
-                PASSAGE_BREAK_PAUSE_MS
+        if (passageText) {
+            narrationPassages.push(
+                {
+                    text: passageText,
+                    pauseMs: PASSAGE_BREAK_PAUSE_MS
+                }
             );
         }
     }
 
-    if (chunks.length > 0) {
-        chunks[chunks.length - 1].pauseMs = 0;
+    if (narrationPassages.length > 0) {
+        narrationPassages[narrationPassages.length - 1].pauseMs = 0;
     }
 
-    return chunks;
+    return narrationPassages;
 }
 
 function handleNarrationEnd() {
@@ -1175,10 +1031,10 @@ function handleReadClick() {
         return;
     }
 
-    const narrationChunks = collectNarrationChunks(pages[currentPageIndex]);
+    const narrationPassages = collectNarrationPassages(pages[currentPageIndex]);
     const revision = narrationRevision + 1;
 
-    if (narrationChunks.length === 0) {
+    if (narrationPassages.length === 0) {
         updateNarrationStatus('This page has no text to read.');
         return;
     }
@@ -1196,7 +1052,7 @@ function handleReadClick() {
         + ' locally. The first use downloads and caches the selected voice model.'
     );
     beginKokoroNarration(
-        narrationChunks,
+        narrationPassages,
         selectedVoice,
         revision
     ).catch(handleUnexpectedNarrationFailure);

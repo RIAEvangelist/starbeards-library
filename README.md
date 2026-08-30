@@ -24,15 +24,15 @@ Completed stories outside the two adventure collections will be added here.
 
 Each book opens in the same full-screen horizontal reader with touch swiping, keyboard navigation, page controls, and JuJu’s existing eight-voice read-aloud controls.
 
-The app pins published `arcane-os@0.3.1` and uses its public browser-speech, AI, DBOPFS, event, and `SpeechPlayback` contracts. JuJu owns story narration, voice choice, and presentation; the SDK owns provider registration, loading, cancellation, Worker lifecycle, WAV normalization, runtime asset loading, playback, and the single `globalThis.arcaneEvents` authority. The legacy app-local `speech-worker.js`, direct CDN import, AudioContext scheduler, and browser-speech fallback have been retired.
+The app pins published `arcane-os@0.3.4` and uses its public browser-speech, AI, DBOPFS, event, and `arcane-os/speech-playback` contracts. JuJu owns story narration, voice choice, and presentation; the SDK owns provider registration, loading, cancellation, Worker lifecycle, WAV normalization, runtime asset loading, playback, and the single `globalThis.arcaneEvents` authority. The legacy app-local `speech-worker.js`, direct CDN import, AudioContext scheduler, and browser-speech fallback have been retired.
 
-No external browser speech runtime, model, voice, or CDN source is configured because that dependency closure has not been authorized. This is an honest pending integration state, not functional speech proof; the visual stories remain available and the UI reports why narration is unavailable.
+The SDK package does not include a Kokoro runtime, model, or voice artifact. JuJu does not currently configure those external sources, so the visual stories remain available while read aloud reports the missing configuration honestly.
 
 Every spread has a **Move words** handle. Drag it with a mouse or finger, or focus it and use the arrow keys. Hold Shift for larger keyboard steps, and press Home or **Reset** to restore the original position. **Shrink words** collapses the story panel into a small movable control so the full illustration can be explored; **Show words** restores the text.
 
 ## Arcane island boundary
 
-JuJu declares exact `arcane-os@0.3.1` in its own `package.json`; a normal project-root `npm install` resolves the public package into this repository’s own physical `node_modules`. Application source lives under `apps/juju-grand-adventures/`, and the installed SDK runtime is materialized under the repository-local `arcane/` projection. No global install, symlink, Arcane checkout, live source mount, or update poll is part of the package or runtime contract.
+JuJu declares exact `arcane-os@0.3.4` in its own `package.json`; a normal project-root `npm install` resolves the public package into this repository’s own physical `node_modules`. The app-owned ESM materializer projects the installed SDK into the repository-local `arcane/` tree before the public import-map, development, build, bundle, run, or packaging path uses it. No global install, symlink, Arcane checkout, live source mount, or update poll is part of the package or runtime contract.
 
 Create the one selected, independently runnable browser artifact with:
 
@@ -40,7 +40,7 @@ Create the one selected, independently runnable browser artifact with:
 npm run package
 ```
 
-That command packages JuJu with its checked-in installed SDK projection, managed import map, complete runtime/browser closure, and Arcane licensing into `dist/juju-grand-adventures/`. The generated release remains browser-only and does not claim a native launcher or publisher signature.
+That command refreshes JuJu’s installed SDK projection and managed import map, then packages the complete runtime/browser closure and Arcane licensing into `dist/juju-grand-adventures/`. The generated release remains browser-only.
 
 ## Serve locally
 
@@ -64,4 +64,4 @@ Open the loopback URL printed by the SDK development server. The app has no fram
 
 Private family photos were used only as references for the generated picture-book illustrations. The original photos are not copied into this repository or the site assets.
 
-Page narration text is not sent to a provider while speech authority is unavailable. No speech runtime, model, voice, or CDN asset is downloaded by the current consumer, and there is no native or cloud fallback.
+Page narration text is not sent to a provider while the Kokoro runtime, model, and voice configuration is absent. No speech runtime, model, voice, or CDN asset is downloaded by the current consumer, and there is no native or cloud fallback.

@@ -2,11 +2,11 @@ import AI, {
     AI_BROWSER_SPEECH_CONFIGURATION_PROTOCOL
 } from 'arcane/AI';
 import DBOPFS from 'arcane/DBOPFS';
-import SpeechPlayback from 'arcane/SpeechPlayback';
+import SpeechPlayback from 'arcane-os/speech-playback';
 
 export const JUJU_SPEECH_AUTHORITY_REQUIRED = 'ARCANE_AI_MODEL_AUTHORITY_REQUIRED';
 
-const ARCANE_SDK_VERSION = '0.3.1';
+const ARCANE_SDK_VERSION = '0.3.4';
 const CONFIGURATION_ID = 'juju-grand-adventures-browser-speech';
 const DEFAULT_SPEED = 0.95;
 
@@ -24,7 +24,7 @@ function requireSpeechAuthority(authority) {
     if (!authority) {
         throw createJuJuSpeechError(
             JUJU_SPEECH_AUTHORITY_REQUIRED,
-            'Read aloud is waiting for an explicitly approved local runtime, model, and voice authority.'
+            'JuJu read aloud needs a configured Kokoro runtime, model, and voice.'
         );
     }
 
@@ -109,9 +109,6 @@ export function createJuJuSpeech({
                 providerId: selectedAuthority.providerId,
                 model: selectedAuthority.model,
                 runtime: selectedAuthority.runtime,
-                security: {
-                    secure: false
-                },
                 offline: false
             }
         };
