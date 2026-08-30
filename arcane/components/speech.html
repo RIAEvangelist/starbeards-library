@@ -149,7 +149,8 @@
         subscribeAIRuntimeState
     } = await import('../modules/AIRuntimeState.js');
     const {
-        createSTTActivationController
+        createSTTActivationController,
+        formatAIRuntimeProgress
     } = await import('../modules/ComponentContracts.js');
 
     const host = this;
@@ -333,8 +334,13 @@
     muteButton.addEventListener('click', muteToggle, lifecycleListenerOptions);
     window.addEventListener(
         'pagehide',
-        destroy,
-        { once: true, signal: runtimeStateAbortController.signal }
+        handlePageHide,
+        { signal: runtimeStateAbortController.signal }
+    );
+    window.addEventListener(
+        'pageshow',
+        handlePageShow,
+        { signal: runtimeStateAbortController.signal }
     );
 
     subscribeAIRuntimeState(
@@ -723,10 +729,10 @@
             return 'Voice release requested.';
         }
         if (ttsRole.state === 'loading') {
-            return `Voice ${formatRoleProgress(ttsRole.progress, 'loading')}; Cancel is available.`;
+            return `Voice ${formatAIRuntimeProgress(ttsRole.progress, 'loading')}; Cancel is available.`;
         }
         if (ttsRole.state === 'unloading') {
-            return `Voice ${formatRoleProgress(ttsRole.progress, 'releasing')}.`;
+            return `Voice ${formatAIRuntimeProgress(ttsRole.progress, 'releasing')}.`;
         }
         if (ttsRole.state === 'ready') {
             if (host.muted) {
@@ -744,13 +750,6 @@
             return 'Voice disposed.';
         }
         return 'Voice unavailable.';
-    }
-
-    function formatRoleProgress(progress, fallback) {
-        if (!progress) {
-            return fallback;
-        }
-        return progress.phase;
     }
 
     function visibleErrorMessage(error, fallback) {
@@ -1693,6 +1692,26 @@
         keyboardRecording = false;
     }
 
+    function handlePageHide(event) {
+        if (event.persisted === true) {
+            return;
+        }
+        destroy();
+    }
+
+    function handlePageShow(event) {
+        if (event.persisted !== true || destroyed) {
+            return;
+        }
+        restoreFromPageCache();
+    }
+
+    function restoreFromPageCache() {
+        synchronizeAIMutedState();
+        renderControls();
+        renderStatus();
+    }
+
     function destroy() {
         if (destroyed) {
             return;
@@ -1701,7 +1720,8 @@
         destroyed = true;
         runtimeStateAbortController.abort();
         sttActivationController.destroy();
-        window.removeEventListener('pagehide', destroy);
+        window.removeEventListener('pagehide', handlePageHide);
+        window.removeEventListener('pageshow', handlePageShow);
         microphonePermissionStatus?.removeEventListener?.(
             'change',
             microphonePermissionListener

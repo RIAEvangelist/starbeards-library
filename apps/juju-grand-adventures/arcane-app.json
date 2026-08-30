@@ -29,11 +29,6 @@
     "capabilities": [],
     "methods": []
   },
-  "security": {
-    "connectOrigins": [],
-    "frameOrigins": [],
-    "mediaOrigins": []
-  },
   "native": {
     "type": "app",
     "icon": null,
