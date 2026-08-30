@@ -70,6 +70,31 @@ const COPY_CONTROL_GAP = 8;
 const BACKGROUND_MUSIC_VOLUME = 0.005;
 const VOICE_STORAGE_KEY = 'juju-grand-adventures.kokoro-voice';
 const PASSAGE_BREAK_PAUSE_MS = 200;
+const JUJU_KOKORO_AUTHORITY = {
+    providerId: 'arcane-browser-kokoro',
+    defaultVoice: 'af_heart',
+    model: {
+        id: 'onnx-community/Kokoro-82M-v1.0-ONNX',
+        repository: 'onnx-community/Kokoro-82M-v1.0-ONNX',
+        revision: 'main',
+        dtype: 'q8',
+        defaultVoice: 'af_heart',
+        files: []
+    },
+    runtime: {
+        adapter: 'kokoro-js',
+        version: '1.2.1',
+        revision: '1.2.1',
+        entry: 'kokoro.web.js',
+        files: [
+            {
+                path: 'kokoro.web.js',
+                url: 'https://cdn.jsdelivr.net/npm/kokoro-js@1.2.1/dist/kokoro.web.js',
+                mediaType: 'text/javascript'
+            }
+        ]
+    }
+};
 
 let pages = [];
 let currentBookId = '';
@@ -1124,6 +1149,7 @@ async function initializeNarration() {
     try {
         jujuSpeech = createJuJuSpeech(
             {
+                authority: JUJU_KOKORO_AUTHORITY,
                 onState: handleSpeechPlaybackState
             }
         );
