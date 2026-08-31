@@ -165,11 +165,7 @@
     }
 
     function normalizeValue(value=''){
-        const next=`${value??''}`.trim();
-        if(next.length>4096||/[\u0000-\u001f\u007f]/.test(next)){
-            throw new TypeError('The directory path must be bounded plain text.');
-        }
-        return next;
+        return `${value??''}`;
     }
 
     function setDisabled(value=false){
