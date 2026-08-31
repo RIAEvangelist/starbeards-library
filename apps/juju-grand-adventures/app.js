@@ -71,7 +71,7 @@ const BACKGROUND_MUSIC_VOLUME = 0.005;
 const VOICE_STORAGE_KEY = 'juju-grand-adventures.kokoro-voice';
 const PASSAGE_BREAK_PAUSE_MS = 200;
 const JUJU_KOKORO_AUTHORITY = {
-    providerId: 'arcane-browser-kokoro',
+    providerId: 'juju-grand-adventures-kokoro',
     defaultVoice: 'af_heart',
     model: {
         id: 'onnx-community/Kokoro-82M-v1.0-ONNX',
@@ -1203,7 +1203,6 @@ backgroundMusic.addEventListener('play', handleBackgroundMusicPlay);
 backgroundMusic.addEventListener('pause', handleBackgroundMusicPause);
 backgroundMusic.addEventListener('ended', handleBackgroundMusicPause);
 backgroundMusic.addEventListener('error', handleBackgroundMusicError);
-backgroundMusic.play();
 updateMusicButton();
 
 restoreVoicePreference();

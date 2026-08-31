@@ -1,7 +1,9 @@
-import AI, {
-    AI_BROWSER_SPEECH_CONFIGURATION_PROTOCOL
+import {
+    AI_BROWSER_SPEECH_CONFIGURATION_PROTOCOL,
+    AI_READY_EVENT
 } from 'arcane/AI';
 import DBOPFS from 'arcane/DBOPFS';
+import {arcaneEvents} from 'arcane-os/event-manager';
 import SpeechPlayback from 'arcane-os/speech-playback';
 
 export const JUJU_SPEECH_AUTHORITY_REQUIRED = 'ARCANE_AI_MODEL_AUTHORITY_REQUIRED';
@@ -33,6 +35,43 @@ function requireSpeechAuthority(authority) {
 
 function defaultSpeechStateObserver() {}
 
+function readyCanonicalAI() {
+    const ai = globalThis.ai;
+
+    return ai?.ready === true ? ai : null;
+}
+
+function waitForCanonicalAI() {
+    const readyAI = readyCanonicalAI();
+
+    if (readyAI) {
+        return Promise.resolve(readyAI);
+    }
+
+    return new Promise(
+        function waitForCanonicalAIReady(resolve) {
+            let unsubscribe = null;
+
+            function resolveCanonicalAI() {
+                const ai = readyCanonicalAI();
+
+                if (!ai) {
+                    return;
+                }
+
+                unsubscribe?.();
+                resolve(ai);
+            }
+
+            unsubscribe = arcaneEvents.subscribe(
+                AI_READY_EVENT,
+                resolveCanonicalAI
+            );
+            resolveCanonicalAI();
+        }
+    );
+}
+
 export function createJuJuSpeech({
     authority = null,
     onState = defaultSpeechStateObserver
@@ -57,14 +96,14 @@ export function createJuJuSpeech({
 
     async function configureSpeechRuntime(selectedAuthority) {
         const dbopfs = new DBOPFS();
-        const ai = globalThis.ai || new AI(
-            'OPENAI',
-            'OPENAI',
-            selectedAuthority.providerId,
-            'OPENAI',
-            selectedAuthority.model.id,
-            'OPENAI'
-        );
+        const aiPromise = waitForCanonicalAI();
+
+        await dbopfs.readyPromise;
+        assertActive();
+
+        const ai = await aiPromise;
+
+        assertActive();
 
         const audio = document.createElement('audio');
 
@@ -114,7 +153,27 @@ export function createJuJuSpeech({
         };
 
         try {
-            await dbopfs.readyPromise;
+            const pendingTTSSelection = {
+                providerId: selectedAuthority.providerId,
+                modelId: selectedAuthority.model.id,
+                localOnly: null
+            };
+
+            await ai.transitionSpeechProviders(
+                {
+                    stt: {
+                        default: ai.providerRuntime.selection('stt'),
+                        localOnly: ai.providerRuntime.selection(
+                            'stt',
+                            {localOnly: true}
+                        )
+                    },
+                    tts: {
+                        default: pendingTTSSelection,
+                        localOnly: null
+                    }
+                }
+            );
             assertActive();
             await ai.configureBrowserSpeech(configuration);
             assertActive();
