@@ -8,7 +8,7 @@ import SpeechPlayback from 'arcane-os/speech-playback';
 
 export const JUJU_SPEECH_AUTHORITY_REQUIRED = 'ARCANE_AI_MODEL_AUTHORITY_REQUIRED';
 
-const ARCANE_SDK_VERSION = '0.5.5';
+const ARCANE_SDK_VERSION = '0.5.6';
 const CONFIGURATION_ID = 'juju-grand-adventures-browser-speech';
 const DEFAULT_SPEED = 0.95;
 

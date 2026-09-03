@@ -197,24 +197,57 @@ function normalizeSend(input){
             throw new TypeError('messages accepts only tool-result messages.');
         }
         let toolCallId=null;
+        let persistenceMessage=null;
+        let persistenceName=null;
+        let persistenceStatus=null;
         if(role==='tool'){
             if(typeof value.tool_call_id!=='string'||!value.tool_call_id.trim()){
                 throw new TypeError(`${label}.tool_call_id is required for tool messages.`);
             }
             toolCallId=value.tool_call_id;
+            if(value.message!==undefined){
+                if(typeof value.message!=='string'||!value.message.trim()){
+                    throw new TypeError(`${label}.message must contain user-facing text when provided.`);
+                }
+                persistenceMessage=value.message;
+            }
+            if(value.name!==undefined){
+                if(typeof value.name!=='string'||!value.name.trim()){
+                    throw new TypeError(`${label}.name must contain text when provided.`);
+                }
+                persistenceName=value.name;
+            }
+            if(value.status!==undefined){
+                if(typeof value.status!=='string'||!value.status.trim()){
+                    throw new TypeError(`${label}.status must contain text when provided.`);
+                }
+                persistenceStatus=value.status;
+            }
         }else if(value.tool_call_id!==undefined){
             throw new TypeError(`${label}.tool_call_id is supported only for tool messages.`);
         }
         const completeMessage={...value};
         delete completeMessage.persist;
+        delete completeMessage.message;
+        delete completeMessage.name;
+        delete completeMessage.status;
+        const providerMessage={
+            ...completeMessage,
+            content:value.content,
+            role,
+            ...(toolCallId?{tool_call_id:toolCallId}:{})
+        };
         return {
             persist:boolean(value.persist,`${label}.persist`,true),
-            message:{
-                ...completeMessage,
-                content:value.content,
-                role,
-                ...(toolCallId?{tool_call_id:toolCallId}:{})
-            }
+            message:providerMessage,
+            entityMessage:role==='tool'
+                ?{
+                    ...providerMessage,
+                    ...(persistenceMessage?{persistence_message:persistenceMessage}:{}),
+                    ...(persistenceName?{persistence_name:persistenceName}:{}),
+                    ...(persistenceStatus?{persistence_status:persistenceStatus}:{}),
+                }
+                :providerMessage,
         };
     });
     const messagePersist=normalizedMessages[0].persist;
@@ -245,6 +278,7 @@ function normalizeSend(input){
     if(!signalLike(input.signal)) throw new TypeError('signal must be an AbortSignal.');
     return {
         messagePersist,
+        entityRequestMessages:normalizedMessages.map(item=>item.entityMessage),
         requestMessages:normalizedMessages.map(item=>item.message),
         responsePersist,
         request:{...request},
@@ -262,7 +296,7 @@ function fileName(value){
 /**
  * Composes the configured chat session with one automatically selected
  * ChatEntity. Request-only context is delegated to ConfiguredAIChatSession;
- * per-turn persistence affects DBOPFS and memory, never the live model context.
+ * persist:false uses the turn for one request and retains it nowhere afterward.
  */
 class PersistentAIChatSession{
     #activeStream=null;
@@ -550,6 +584,11 @@ class PersistentAIChatSession{
                     );
                 }
             }
+            if(!settings.messagePersist){
+                prepared.rollback();
+                prepared=null;
+                return result;
+            }
             await this.#entity.addTurn({
                 assistantMessage:result.message,
                 extractMemory:this.#memory&&settings.messagePersist&&settings.responsePersist,
@@ -560,9 +599,9 @@ class PersistentAIChatSession{
                     })
                 ),
                 messagePersist:settings.messagePersist,
-                ...(settings.requestMessages.length===1
-                    ?{requestMessage:settings.requestMessages[0]}
-                    :{requestMessages:settings.requestMessages}),
+                ...(settings.entityRequestMessages.length===1
+                    ?{requestMessage:settings.entityRequestMessages[0]}
+                    :{requestMessages:settings.entityRequestMessages}),
                 responsePersist:settings.responsePersist,
             });
             const committed=prepared.commit();
