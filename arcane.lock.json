@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "sdk": {
     "name": "arcane-os",
-    "version": "0.5.9"
+    "version": "0.5.11"
   },
   "runtime": {
     "root": "node_modules/arcane-os/runtime"

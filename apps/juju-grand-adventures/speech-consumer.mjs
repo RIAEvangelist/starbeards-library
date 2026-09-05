@@ -1,7 +1,3 @@
-import {
-    AI_BROWSER_SPEECH_CONFIGURATION_PROTOCOL,
-    AI_READY_EVENT
-} from 'arcane/AI';
 import DBOPFS from 'arcane/DBOPFS';
 import {arcaneEvents} from 'arcane-os/event-manager';
 import SpeechPlayback, {
@@ -10,7 +6,7 @@ import SpeechPlayback, {
 
 export const JUJU_SPEECH_AUTHORITY_REQUIRED = 'ARCANE_AI_MODEL_AUTHORITY_REQUIRED';
 
-const ARCANE_SDK_VERSION = '0.5.9';
+const ARCANE_SDK_VERSION = '0.5.11';
 const CONFIGURATION_ID = 'juju-grand-adventures-browser-speech';
 const DEFAULT_SPEED = 0.95;
 
@@ -43,7 +39,7 @@ function readyCanonicalAI() {
     return ai?.ready === true ? ai : null;
 }
 
-function waitForCanonicalAI() {
+function waitForCanonicalAI(aiReadyEvent) {
     const readyAI = readyCanonicalAI();
 
     if (readyAI) {
@@ -66,7 +62,7 @@ function waitForCanonicalAI() {
             }
 
             unsubscribe = arcaneEvents.subscribe(
-                AI_READY_EVENT,
+                aiReadyEvent,
                 resolveCanonicalAI
             );
             resolveCanonicalAI();
@@ -98,12 +94,38 @@ export function createJuJuSpeech({
 
     async function configureSpeechRuntime(selectedAuthority) {
         const dbopfs = new DBOPFS();
-        const aiPromise = waitForCanonicalAI();
 
         await dbopfs.readyPromise;
         assertActive();
 
-        const ai = await aiPromise;
+        const {default: UserEntity} = await import('arcane/entities/User');
+        const user = new UserEntity();
+
+        await user.load();
+        assertActive();
+
+        const savedTuple = user.preferredModels;
+
+        // Complete the saved-provider upgrade before AI can hydrate this user.
+        if (savedTuple[0] === 'OPENAI' || savedTuple[3] === 'OPENAI') {
+            const migratedTuple = savedTuple.map(
+                function migrateProviderOrDefault(value, slot) {
+                    return (slot === 0 || slot === 3) && value === 'OPENAI'
+                        ? 'TWIN'
+                        : value;
+                }
+            );
+
+            await user.updateExplicit({preferredModels: migratedTuple});
+        }
+
+        assertActive();
+
+        const {
+            AI_BROWSER_SPEECH_CONFIGURATION_PROTOCOL,
+            AI_READY_EVENT
+        } = await import('arcane/AI');
+        const ai = await waitForCanonicalAI(AI_READY_EVENT);
 
         assertActive();
 
@@ -321,7 +343,7 @@ export function createJuJuSpeech({
             sdkVersion: ARCANE_SDK_VERSION,
             configured: Boolean(runtime?.ai.browserSpeechDescriptor?.tts),
             provider: runtime
-                ? runtime.ai.providerRuntime.status('tts')
+                ? runtime.ai.providerRuntime.status('tts', {execution: true})
                 : null,
             playback: runtime
                 ? {
