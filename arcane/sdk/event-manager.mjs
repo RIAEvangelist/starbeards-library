@@ -1,5 +1,6 @@
 import EventPubSub from 'event-pubsub';
-import {createDOMInstrumentation} from './dom-event-instrumentation.mjs';
+import {arcaneLogging} from './logging.mjs?arcaneVersion=0.5.15';
+import {createDOMInstrumentation} from './dom-event-instrumentation.mjs?arcaneVersion=0.5.15';
 
 export {
     createDOMInstrumentation,
@@ -10,7 +11,7 @@ export {
     DOM_OBSERVATION_STARTED_EVENT,
     DOM_OBSERVATION_STOPPED_EVENT,
     domSelector
-} from './dom-event-instrumentation.mjs';
+} from './dom-event-instrumentation.mjs?arcaneVersion=0.5.15';
 
 export const ARCANE_EVENT_STACK_PROTOCOL='arcane-event-stack/1';
 export const ARCANE_EVENT_AUTHORITY_PROTOCOL='arcane-event-authority/1';
@@ -1368,7 +1369,7 @@ function createArcaneEventAuthority(){
                 return;
             }
         }catch{}
-        try{globalThis.console?.error?.('Arcane event listener failed.',error);}
+        try{arcaneLogging.error('Arcane event listener failed.',error);}
         catch{}
     }
 

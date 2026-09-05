@@ -1,5 +1,6 @@
+import { arcaneLogging } from 'arcane-os/logging';
 import {createArcaneEventSource} from 'arcane-os/event-manager';
-import GifEncoder from './GifEncoder.js';
+import GifEncoder from './GifEncoder.js?arcaneVersion=0.5.15';
 
 export const SCREEN_CAPTURE_EVENT_TYPES={
     displaySelectionRequested:'capture-requesting',
@@ -252,7 +253,7 @@ function supportedRecorderType(Recorder){
 
 function reportDetachedError(error){
     if(typeof globalThis.reportError==='function')globalThis.reportError(error);
-    else globalThis.console?.error?.(error);
+    else arcaneLogging.error?.(error);
 }
 
 function monotonicNow(){

@@ -1,10 +1,10 @@
-import {AI_PREFERENCE_SLOT_KEYS} from './AIPreferenceTuple.js';
+import {AI_PREFERENCE_SLOT_KEYS} from './AIPreferenceTuple.js?arcaneVersion=0.5.15';
 import {
     getCoreLocalModelCatalog,
     isUserManagedLoopbackLocalAIStatus,
     USER_MANAGED_LOOPBACK_PROVIDER_MODE
-} from './CoreLocalModelCatalog.js';
-import {normalizeOllamaModelIdentifier} from './OllamaModelIdentifier.js';
+} from './CoreLocalModelCatalog.js?arcaneVersion=0.5.15';
+import {normalizeOllamaModelIdentifier} from './OllamaModelIdentifier.js?arcaneVersion=0.5.15';
 
 export const LOCAL_AI_BROWSER_ENDPOINTS={
     speech:'http://127.0.0.1:8011/health'

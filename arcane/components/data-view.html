@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="./arcane/css/layout.css?v=3">
+<link rel="stylesheet" href="./arcane/css/layout.css?v=3&amp;arcaneVersion=0.5.15">
 <style>
     :host{
         display:flex;
@@ -11,13 +11,15 @@
 </style>
 
 <button id="openData" type="button" aria-haspopup="dialog"></button>
-<html-import id="dataModal" class="modal" href="./arcane/components/modal.html?v=13"></html-import>
+<html-import id="dataModal" class="modal" href="./arcane/components/modal.html?v=13&amp;arcaneVersion=0.5.15"></html-import>
 
 <script type="module">
+    const {arcaneLogging}=await import('arcane-os/logging');
+
     const host=this;
     const openButton=host.shadowRoot.querySelector('#openData');
     const dataModal=host.shadowRoot.querySelector('#dataModal');
-    const {default:waitForComponent}=await import('../modules/WaitForComponent.js');
+    const {default:waitForComponent}=await import('../modules/WaitForComponent.js?arcaneVersion=0.5.15');
     const {createArcaneEventSource,projectArcaneDOMEvent}=await import('arcane-os/event-manager');
     const events=createArcaneEventSource(host,{source:'arcane.component.data-view',eventTypes:['data-view-ready']});
     const lifecycleController=new AbortController();
@@ -39,7 +41,7 @@
         ()=>openData().catch(
             error=>{
                 if(!destroyed){
-                    console.error('Unable to open data view:',error);
+                    arcaneLogging.error('Unable to open data view:',error);
                 }
             }
         ),

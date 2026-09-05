@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="./arcane/css/layout.css?v=3">
-<link rel="stylesheet" href="./arcane/css/dashboard-config.css?v=2">
+<link rel="stylesheet" href="./arcane/css/layout.css?v=3&amp;arcaneVersion=0.5.15">
+<link rel="stylesheet" href="./arcane/css/dashboard-config.css?v=2&amp;arcaneVersion=0.5.15">
 <style>
     :host{
         display:block;
@@ -7,22 +7,19 @@
 </style>
 
 <button id="openConfig" type="button" aria-haspopup="dialog" disabled></button>
-<html-import id="configModal" class="modal" href="./arcane/components/modal.html?v=13"></html-import>
+<html-import id="configModal" class="modal" href="./arcane/components/modal.html?v=13&amp;arcaneVersion=0.5.15"></html-import>
 
 <script type="module">
+    const {arcaneLogging}=await import('arcane-os/logging');
+
     const host=this;
-    const componentURL=new URL(
-        host.getAttribute('href')||'./arcane/components/dashboard-config.html',
-        document.baseURI
-    );
-    const moduleURL=name=>new URL(`../modules/${name}`,componentURL).href;
-    const {default:waitForComponent}=await import(moduleURL('WaitForComponent.js'));
+    const {default:waitForComponent}=await import('../modules/WaitForComponent.js?arcaneVersion=0.5.15');
     const {
         effectiveDashboardVisibility,
         normalizeDashboardDefinitions,
         normalizeDashboardOptions,
         normalizeDashboardVisibility
-    }=await import(moduleURL('ComponentContracts.js'));
+    }=await import('../modules/ComponentContracts.js?arcaneVersion=0.5.15');
     const {createArcaneEventSource,projectArcaneDOMEvent}=await import('arcane-os/event-manager');
     const events=createArcaneEventSource(host,{source:'arcane.component.dashboard-config',eventTypes:['dashboard-config-closed','dashboard-config-opened','dashboard-config-change','dashboard-config-ready']});
     const lifecycleController=new AbortController();
@@ -70,7 +67,7 @@
         ()=>openConfig().catch(
             error=>{
                 if(!destroyed){
-                    console.error('Unable to configure dashboard:',error);
+                    arcaneLogging.error('Unable to configure dashboard:',error);
                 }
             }
         ),
@@ -232,7 +229,7 @@
         const items=document.createElement('section');
 
         styles.rel='stylesheet';
-        styles.href='./arcane/css/dashboard-config.css?v=2';
+        styles.href=new URL('./arcane/css/dashboard-config.css?v=2&arcaneVersion=0.5.15',document.baseURI).href;
         heading.dataset.dashboardConfigHeading='';
         message.dataset.dashboardConfigDescription='';
         empty.className='dashboard-config-empty';

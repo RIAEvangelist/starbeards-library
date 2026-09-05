@@ -69,7 +69,7 @@
     const reviewHeading=shadow.querySelector('[data-review-heading]');
     const notesLabel=shadow.querySelector('[data-notes-label]');
     const saveState=shadow.querySelector('.save-state');
-    const {default:MD}=await import('../modules/MD.js');
+    const {default:MD}=await import('../modules/MD.js?arcaneVersion=0.5.15');
     const {createArcaneEventSource,projectArcaneDOMEvent}=await import('arcane-os/event-manager');
     const events=createArcaneEventSource(host,{source:'arcane.component.document-inspector',eventTypes:['document-review-change','document-inspector-ready']});
     const lifecycleController=new AbortController();

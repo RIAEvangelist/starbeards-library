@@ -338,16 +338,18 @@
 
 <input id="fileUpload" type="file" hidden multiple>
 
-<html-import id="directoryModal" class="modal" href="./arcane/components/modal.html?v=13"></html-import>
-<html-import id="fileModal" class="modal" href="./arcane/components/modal.html?v=13"></html-import>
-<html-import id="deleteModal" class="modal" href="./arcane/components/modal.html?v=13"></html-import>
+<html-import id="directoryModal" class="modal" href="./arcane/components/modal.html?v=13&amp;arcaneVersion=0.5.15"></html-import>
+<html-import id="fileModal" class="modal" href="./arcane/components/modal.html?v=13&amp;arcaneVersion=0.5.15"></html-import>
+<html-import id="deleteModal" class="modal" href="./arcane/components/modal.html?v=13&amp;arcaneVersion=0.5.15"></html-import>
 
 <script type="module">
-    import('../modules/DBOPFS.js');
+    const {arcaneLogging}=await import('arcane-os/logging');
+
+    import('../modules/DBOPFS.js?arcaneVersion=0.5.15');
     //importing Document at the end of the file to avoid blocking;
 
     const host=this;
-    const {default:waitForComponent}=await import('../modules/WaitForComponent.js');
+    const {default:waitForComponent}=await import('../modules/WaitForComponent.js?arcaneVersion=0.5.15');
     const {createArcaneEventSource,projectArcaneDOMEvent}=await import('arcane-os/event-manager');
     const events=createArcaneEventSource(host,{source:'arcane.component.file-manager',eventTypes:['file-manager-action','file-manager-select','file-manager-open','file-manager-ready']});
     const lifecycleController=new AbortController();
@@ -365,7 +367,7 @@
     const dirs=host.dataset.dirs?.split(',').map(
         directory=>directory.trim()
     ).filter(Boolean);
-    const fileEntityPromise=import('../entities/File.js');
+    const fileEntityPromise=import('../entities/File.js?arcaneVersion=0.5.15');
 
     let activeFileURL='';
     let uploadDirectory='';
@@ -461,7 +463,7 @@
         ()=>uploadFiles().catch(
             error=>{
                 if(!destroyed){
-                    console.error('Unable to upload files:',error);
+                    arcaneLogging.error('Unable to upload files:',error);
                 }
             }
         ),
@@ -481,7 +483,7 @@
                     openDirectory(directoryElement.dataset.directory).catch(
                         error=>{
                             if(!destroyed){
-                                console.error('Unable to open directory:',error);
+                                arcaneLogging.error('Unable to open directory:',error);
                             }
                         }
                     );
@@ -825,8 +827,8 @@
         icon.className='tree-entry-icon';
         icon.alt='';
         icon.src=entry.kind==='directory'
-            ?'./arcane/img/folder.svg'
-            :'./arcane/img/doc.svg';
+            ?new URL('./arcane/img/folder.svg?arcaneVersion=0.5.15',document.baseURI).href
+            :new URL('./arcane/img/doc.svg?arcaneVersion=0.5.15',document.baseURI).href;
         name.className='tree-entry-name';
         name.innerText=entry.name;
         count.className='tree-file-count';
@@ -1205,7 +1207,7 @@
                         false,
                         nextOperationId('open-error')
                     );
-                    console.error('Unable to open file:',error);
+                    arcaneLogging.error('Unable to open file:',error);
                 }
                 return false;
             }
@@ -1404,14 +1406,14 @@
         deleteButton.innerText='Delete File';
         deleteIcon.alt='';
         deleteIcon.className='action-icon';
-        deleteIcon.src='./arcane/img/trash.svg';
+        deleteIcon.src=new URL('./arcane/img/trash.svg?arcaneVersion=0.5.15',document.baseURI).href;
         deleteButton.prepend(deleteIcon);
         deleteButton.addEventListener(
             'click',
             ()=>confirmDelete(directory,fileName,true).catch(
                 error=>{
                     if(!destroyed){
-                        console.error('Unable to delete file:',error);
+                        arcaneLogging.error('Unable to delete file:',error);
                     }
                 }
             ),
@@ -1455,7 +1457,7 @@
         }catch(error){
             if(!destroyed&&generation===fileOpenGeneration){
                 status.innerText='Unable to open this file.';
-                console.error('Unable to open file:',error);
+                arcaneLogging.error('Unable to open file:',error);
             }
             return false;
         }
@@ -1610,7 +1612,7 @@
 
         fileIcon.alt='';
         fileIcon.className='icon file-icon';
-        fileIcon.src='./arcane/img/doc.svg';
+        fileIcon.src=new URL('./arcane/img/doc.svg?arcaneVersion=0.5.15',document.baseURI).href;
         fileDetails.className='file-details';
         fileLabel.className='file-name';
         fileLabel.innerText=fileName;
@@ -1633,7 +1635,7 @@
 
         deleteIcon.alt='';
         deleteIcon.className='action-icon';
-        deleteIcon.src='./arcane/img/trash.svg';
+        deleteIcon.src=new URL('./arcane/img/trash.svg?arcaneVersion=0.5.15',document.baseURI).href;
 
         openButton.addEventListener(
             'click',
@@ -1649,7 +1651,7 @@
                 }
 
                 openFile(directory,fileName).catch(
-                    error=>console.error('Unable to open file:',error)
+                    error=>arcaneLogging.error('Unable to open file:',error)
                 );
             },
             {signal:lifecycleController.signal}
@@ -1662,7 +1664,7 @@
                 }
 
                 confirmDelete(directory,fileName).catch(
-                    error=>console.error('Unable to delete file:',error)
+                    error=>arcaneLogging.error('Unable to delete file:',error)
                 );
             },
             {signal:lifecycleController.signal}
@@ -1747,7 +1749,7 @@
                         message.innerText=`Unable to delete ${fileName}.`;
                         cancelButton.disabled=false;
                         deleteButton.disabled=false;
-                        console.error('Unable to delete file:',error);
+                        arcaneLogging.error('Unable to delete file:',error);
                     }
                 }
             },
@@ -1850,7 +1852,7 @@
         }catch(error){
             if(!destroyed){
                 initialized=false;
-                console.error('Unable to initialize file manager:',error);
+                arcaneLogging.error('Unable to initialize file manager:',error);
             }
         }
     }
@@ -1933,7 +1935,7 @@
             directory.dataset.directory=tableName;
             folder.className='file folder';
             folderIcon.className='icon';
-            folderIcon.src='./arcane/img/folder.svg';
+            folderIcon.src=new URL('./arcane/img/folder.svg?arcaneVersion=0.5.15',document.baseURI).href;
             folderName.innerText=tableName;
             fileCount.className='file-count';
             fileCount.innerText=`${files.length} ${files.length===1?'file':'files'}`;

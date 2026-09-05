@@ -1,5 +1,5 @@
-import CommunicationMessage from '../entities/CommunicationMessage.js';
-import CommunicationThread from '../entities/CommunicationThread.js';
+import CommunicationMessage from '../entities/CommunicationMessage.js?arcaneVersion=0.5.15';
+import CommunicationThread from '../entities/CommunicationThread.js?arcaneVersion=0.5.15';
 
 function cleanEndpoint(value){const url=new URL(String(value||'http://127.0.0.1:8020'));if(!['http:','https:'].includes(url.protocol)) throw new TypeError('Bridge URL must use HTTP or HTTPS.');return url.href.replace(/\/$/,'');}
 

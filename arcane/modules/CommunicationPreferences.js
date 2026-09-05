@@ -1,4 +1,4 @@
-import {resolveApplicationLocalStorageKey} from './AppDataScope.js';
+import {resolveApplicationLocalStorageKey} from './AppDataScope.js?arcaneVersion=0.5.15';
 
 function adapter(){
     const native=globalThis.Arcane?.preferences;

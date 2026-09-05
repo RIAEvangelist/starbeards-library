@@ -1,4 +1,4 @@
-import CommunicationMessage from './CommunicationMessage.js';
+import CommunicationMessage from './CommunicationMessage.js?arcaneVersion=0.5.15';
 
 function required(value,label){const text=String(value??'').trim();if(!text) throw new TypeError(`${label} is required.`);return text;}
 

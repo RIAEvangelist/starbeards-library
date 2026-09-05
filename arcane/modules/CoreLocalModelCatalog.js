@@ -1,4 +1,4 @@
-import {normalizeOllamaModelIdentifier} from './OllamaModelIdentifier.js';
+import {normalizeOllamaModelIdentifier} from './OllamaModelIdentifier.js?arcaneVersion=0.5.15';
 
 const MAX_CORE_LOCAL_SPEECH_MODELS=8;
 

@@ -1,11 +1,12 @@
-import ArcaneCommunicationBridge from './ArcaneCommunicationBridge.js';
-import CommunicationHub from './CommunicationHub.js?v=2';
-import CommunicationPreferences from './CommunicationPreferences.js';
-import {loadAndApplyTheme} from './ThemeManager.js';
+import { arcaneLogging } from 'arcane-os/logging';
+import ArcaneCommunicationBridge from './ArcaneCommunicationBridge.js?arcaneVersion=0.5.15';
+import CommunicationHub from './CommunicationHub.js?v=2&arcaneVersion=0.5.15';
+import CommunicationPreferences from './CommunicationPreferences.js?arcaneVersion=0.5.15';
+import {loadAndApplyTheme} from './ThemeManager.js?arcaneVersion=0.5.15';
 import {
     inspectMessageRecords,
     unavailableMessageInspection
-} from './MessageAdvisory.js?v=3';
+} from './MessageAdvisory.js?v=3&arcaneVersion=0.5.15';
 
 export const COMMUNICATION_APP_CONTROLLER_ERROR_CODES={
     destroyed:'ARCANE_COMMUNICATION_APP_CONTROLLER_DESTROYED'
@@ -360,7 +361,7 @@ export default class CommunicationAppController{
                 hub.dispose();
             }
         }catch(error){
-            console.error('The communication hub could not be disposed cleanly.',error);
+            arcaneLogging.error('The communication hub could not be disposed cleanly.',error);
         }
     }
 

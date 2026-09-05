@@ -77,7 +77,7 @@ const JUJU_KOKORO_AUTHORITY = {
         id: 'onnx-community/Kokoro-82M-v1.0-ONNX',
         repository: 'onnx-community/Kokoro-82M-v1.0-ONNX',
         revision: 'main',
-        dtype: 'q8',
+        dtype: 'fp32',
         defaultVoice: 'af_heart',
         files: []
     },

@@ -1,9 +1,10 @@
-import { Wllama } from "./wllama/index.mjs";
+import { arcaneLogging } from '../logging.mjs?arcaneVersion=0.5.15';
+import { Wllama } from "./wllama/index.mjs?arcaneVersion=0.5.15";
 
 const completeValue = (value) => value;
 
-const MODULE_URL = new URL("./wllama/index.mjs", import.meta.url).href;
-const WASM_URL = new URL("./wllama/wllama.wasm", import.meta.url).href;
+const MODULE_URL = new URL("./wllama/index.mjs?arcaneVersion=0.5.15", import.meta.url).href;
+const WASM_URL = new URL("./wllama/wllama.wasm?arcaneVersion=0.5.15", import.meta.url).href;
 const RUNTIME_EVIDENCE_PROTOCOL = "arcane-wllama-runtime-evidence/1";
 const FULL_GPU_LAYERS = 99_999;
 const WEBGPU_ADAPTER_PATTERN = /^ggml_webgpu: adapter_info: vendor_id: (\d+) \| vendor: (.*?) \| architecture: (.*?) \| device_id: (\d+) \| name: (.*?) \| device_desc: (.*)$/u;
@@ -276,7 +277,7 @@ function initialEvidence() {
  * network or browser side effects until load() is called. Runtime URLs are
  * fixed relative to this module for npm and materialized /arcane/sdk trees.
  */
-export function createPackagedWllamaRuntime({ logger = console } = {}) {
+export function createPackagedWllamaRuntime({ logger = arcaneLogging } = {}) {
   let engine = null;
   let pending = null;
   let inferenceActive = false;

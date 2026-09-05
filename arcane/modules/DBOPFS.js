@@ -1,5 +1,6 @@
-import Is from "../../node_modules/strong-type/index.js";
-import {openApplicationDataDirectory} from './AppDataScope.js';
+import { arcaneLogging } from 'arcane-os/logging';
+import Is from "../../node_modules/strong-type/index.js?arcaneVersion=0.5.15";
+import {openApplicationDataDirectory} from './AppDataScope.js?arcaneVersion=0.5.15';
 import {
     createArcaneEventSource,
     projectArcaneDOMEvent
@@ -209,7 +210,7 @@ class DBOPFS {
 
         if(typeof this.#writeWorker?.postMessage!=='function'){
             this.#writeWorker=new Worker(
-                new URL('./DBOPFSWorker.js',import.meta.url)
+                new URL('./DBOPFSWorker.js?arcaneVersion=0.5.15',import.meta.url)
             );
         }
 
@@ -458,7 +459,7 @@ class DBOPFS {
                         );
                     }
                 }catch(error){
-                    console.error(`Error writing file '${fileName}' to table '${tableName}':`,error)
+                    arcaneLogging.error(`Error writing file '${fileName}' to table '${tableName}':`,error)
                     throw error
                 }
 
@@ -603,7 +604,7 @@ class DBOPFS {
                 const fileName=entries[index][0]
 
                 if(result.status!=='fulfilled'){
-                    console.error(`Failed to set file '${fileName}':`,result.reason)
+                    arcaneLogging.error(`Failed to set file '${fileName}':`,result.reason)
                 }
             }
         );
@@ -742,7 +743,7 @@ class DBOPFS {
             await table.removeEntry(fileName)
         }catch(error){
             if(error.name!=='NotFoundError'){
-                console.error(error)
+                arcaneLogging.error(error)
                 throw error
             }
         }
@@ -784,7 +785,7 @@ class DBOPFS {
             delete this.#tables[tableName]
             delete this.#tableHandles[tableName]
         }catch(error){
-            console.error(error)
+            arcaneLogging.error(error)
         }
 
         return true

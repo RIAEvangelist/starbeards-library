@@ -3,7 +3,7 @@ import DocumentLexicalSearch,{
     documentSearchTokens,
     normalizedDocumentSearchText,
     scoreDocumentBody,
-} from './DocumentLexicalSearch.js';
+} from './DocumentLexicalSearch.js?arcaneVersion=0.5.15';
 
 const CATALOG_SCHEMA_VERSION=1;
 function completeValue(value){return value;}

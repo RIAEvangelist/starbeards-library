@@ -1,6 +1,6 @@
 import {createArcaneEventSource} from 'arcane-os/event-manager';
-import ApiModelDatabase from './ApiModelDatabase.js';
-import {WeatherDay,WeatherLocation,WeatherObservation,WeatherSnapshot} from '../entities/Weather.js';
+import ApiModelDatabase from './ApiModelDatabase.js?arcaneVersion=0.5.15';
+import {WeatherDay,WeatherLocation,WeatherObservation,WeatherSnapshot} from '../entities/Weather.js?arcaneVersion=0.5.15';
 
 export const OPEN_METEO_ENDPOINTS={
     geocoding:'https://geocoding-api.open-meteo.com/v1/search',

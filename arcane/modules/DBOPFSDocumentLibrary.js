@@ -3,7 +3,7 @@ import DocumentLexicalSearch,{
     documentSearchTokens,
     normalizedDocumentSearchText,
     scoreDocumentBody,
-} from './DocumentLexicalSearch.js';
+} from './DocumentLexicalSearch.js?arcaneVersion=0.5.15';
 
 const SCHEMA_FIELDS=[
     'audiences','body','category','headings','id','kind','language','mediaType',

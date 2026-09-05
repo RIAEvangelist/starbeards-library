@@ -1,4 +1,4 @@
-import FileEntity from './File.js';
+import FileEntity from './File.js?arcaneVersion=0.5.15';
 
 /**
  * ImageEntity

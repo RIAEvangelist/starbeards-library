@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="./arcane/css/layout.css?v=3">
+<link rel="stylesheet" href="./arcane/css/layout.css?v=3&amp;arcaneVersion=0.5.15">
 <style>
     :host{
         display:block;
@@ -74,17 +74,14 @@
 </section>
 
 <script type="module">
+    const {arcaneLogging}=await import('arcane-os/logging');
+
     const host=this;
-    const componentURL=new URL(
-        host.getAttribute('href')||'./arcane/components/markdown-editor.html',
-        document.baseURI
-    );
-    const moduleURL=name=>new URL(`../modules/${name}`,componentURL).href;
-    const {default:MD}=await import(moduleURL('MD.js?v=2'));
+    const {default:MD}=await import('../modules/MD.js?v=2&arcaneVersion=0.5.15');
     const {
         applyMarkdownFormat,
         normalizeMarkdownOptions
-    }=await import(moduleURL('ComponentContracts.js'));
+    }=await import('../modules/ComponentContracts.js?arcaneVersion=0.5.15');
     const {createArcaneEventSource,projectArcaneDOMEvent}=await import('arcane-os/event-manager');
     const events=createArcaneEventSource(host,{source:'arcane.component.markdown-editor',eventTypes:['markdown-editor-change','markdown-editor-saved','markdown-editor-ready']});
     const lifecycleController=new AbortController();
@@ -234,7 +231,7 @@
         emit('markdown-editor-change',detail,detail);
         if(options.onChange){
             Promise.resolve(options.onChange(detail)).catch(
-                error=>console.error('Markdown change callback failed:',error)
+                error=>arcaneLogging.error('Markdown change callback failed:',error)
             );
         }
     }
@@ -334,7 +331,7 @@
                 return false;
             }
             status.innerText=options.labels.saveError;
-            console.error('Unable to save Markdown content:',error);
+            arcaneLogging.error('Unable to save Markdown content:',error);
             return false;
         }finally{
             if(saveController===controller){

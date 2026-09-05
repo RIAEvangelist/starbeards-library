@@ -1,7 +1,7 @@
 import {
     APP_LOCAL_STORAGE_PREFIX,
     resolveBrowserApplicationId
-} from './AppDataScope.js';
+} from './AppDataScope.js?arcaneVersion=0.5.15';
 import {
     createArcaneEventSource,
     projectArcaneDOMEvent

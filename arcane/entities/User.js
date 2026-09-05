@@ -1,5 +1,6 @@
-import Is from '../../node_modules/strong-type/index.js';
-import DBLS from '../modules/DBLS.js';
+import { arcaneLogging } from 'arcane-os/logging';
+import Is from '../../node_modules/strong-type/index.js?arcaneVersion=0.5.15';
+import DBLS from '../modules/DBLS.js?arcaneVersion=0.5.15';
 import {
     arcaneEvents,
     createArcaneEventSource,
@@ -22,7 +23,7 @@ import {
  *
  * The import must remain even if unused because it registers the singleton.
  */
-import DBOPFS from '../modules/DBOPFS.js';
+import DBOPFS from '../modules/DBOPFS.js?arcaneVersion=0.5.15';
 
 function createDefaultDashboard(){
     return { charts:{} };
@@ -818,7 +819,7 @@ class UserEntity {
             try {
                 this[key] = src[key];
             } catch(e){
-                console.warn(`UserEntity.explicit setter skipping invalid field ${key}: ${e.message}`);
+                arcaneLogging.warn(`UserEntity.explicit setter skipping invalid field ${key}: ${e.message}`);
             }
         }
 

@@ -1,6 +1,6 @@
-<link rel="stylesheet" href="./arcane/css/layout.css?v=3">
-<link rel="stylesheet" href="./arcane/css/theme.css?v=1">
-<link rel="stylesheet" href="./arcane/css/primitives.css?v=1">
+<link rel="stylesheet" href="./arcane/css/layout.css?v=3&amp;arcaneVersion=0.5.15">
+<link rel="stylesheet" href="./arcane/css/theme.css?v=1&amp;arcaneVersion=0.5.15">
+<link rel="stylesheet" href="./arcane/css/primitives.css?v=1&amp;arcaneVersion=0.5.15">
 
 <style>
     :host{
@@ -211,15 +211,12 @@
 </section>
 
 <script type="module">
+    const {arcaneLogging}=await import('arcane-os/logging');
+
     const host=this;
     host.ready=false;
 
-    const componentURL=new URL(
-        host.getAttribute('href')||'./arcane/components/markdown-document.html',
-        document.baseURI
-    );
-    const moduleURL=name=>new URL(`../modules/${name}`,componentURL).href;
-    const {default:MD}=await import(moduleURL('MD.js?v=2'));
+    const {default:MD}=await import('../modules/MD.js?v=2&arcaneVersion=0.5.15');
     const {createArcaneEventSource,projectArcaneDOMEvent}=await import('arcane-os/event-manager');
     const events=createArcaneEventSource(host,{source:'arcane.component.markdown-document',eventTypes:['markdown-document-state','markdown-document-empty','markdown-document-error','markdown-document-loading','markdown-document-rendered','markdown-document-navigate','markdown-document-ready']});
     const lifecycleController=new AbortController();
@@ -888,7 +885,7 @@
             Promise.resolve(options.onNavigate(detail,{signal:lifecycleController.signal,operationId})).catch(
                 error=>{
                     if(!destroyed){
-                        console.error('Markdown document navigation callback failed.',error);
+                        arcaneLogging.error('Markdown document navigation callback failed.',error);
                     }
                 }
             );
