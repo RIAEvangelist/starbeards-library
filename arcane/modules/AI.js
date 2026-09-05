@@ -16,11 +16,17 @@ import {normalizeOllamaModelIdentifier} from './OllamaModelIdentifier.js';
 const completeValue=(value)=>value;
 
 let credentials='include';
-const LEGACY_TTS_RESPONSE_FORMAT='opus';
+const DEFAULT_TTS_RESPONSE_FORMAT='opus';
 const DEFAULT_TTS_SEGMENTATION={
     punctuation:'sentence',
     wordCadence:null
 };
+const DEFAULT_BROWSER_TTS_EXECUTION={
+    device:'auto',
+    maxConcurrentRequests:2
+};
+const BROWSER_TTS_EXECUTION_DEVICES=new Set(['auto','webgpu','wasm']);
+const MAX_BROWSER_TTS_CONCURRENT_REQUESTS=4;
 const TTS_PUNCTUATION_MODES=new Set(['sentence','any','none']);
 // A complete punctuation run is a boundary unless the whole run consists of
 // apostrophe, comma, or dash punctuation joining Unicode letters or numbers.
@@ -29,7 +35,7 @@ const TTS_ANY_PUNCTUATION=/(?<!\p{P})(?:(?<![\p{L}\p{N}])\p{P}+(?!\p{P})(?=[\s\S
 const TTS_ANY_PUNCTUATION_AT_END=/(?<!\p{P})(?:(?<![\p{L}\p{N}])\p{P}+|\p{P}+(?![\p{L}\p{N}])|\p{P}*[^\P{P}'\u2019\uFF07,\u060C\u3001\uFF0C\p{Pd}]\p{P}*)(?!\p{P})/gu;
 credentials='omit';
 
-const LEGACY_AI_SERVICES=new Set(['OPENAI','OLLAMA','LOCAL_SPEACH']);
+const BUILT_IN_AI_SERVICES=new Set(['TWIN','OLLAMA','LOCAL_SPEACH']);
 const AI_REASONING_EFFORTS=new Set(['none','low','medium','high','max']);
 export const AI_READY_EVENT='ai-ready';
 const AI_TTS_FAILURE_EVENT='ai-tts-failure';
@@ -143,7 +149,7 @@ function normalizeAIReasoningEffort(value){
     return value;
 }
 
-function legacyAIProviderError(message,code,cause){
+function aiProviderError(message,code,cause){
     const error=cause===undefined
         ?new Error(message)
         :new Error(message,{cause});
@@ -535,7 +541,7 @@ function projectAIStreamChunk(value){
     return projectAIStreamData(value);
 }
 
-function createLegacyAIStreamBridge(execute,sourceSignal){
+function createBuiltInAIStreamBridge(execute,sourceSignal){
     const controller=new AbortController();
     const queue=[];
     const waiters=[];
@@ -543,34 +549,34 @@ function createLegacyAIStreamBridge(execute,sourceSignal){
     let failure=null;
     let detached=false;
 
-    function forwardLegacyAIStreamAbort(){
+    function forwardBuiltInAIStreamAbort(){
         if(!controller.signal.aborted){
             controller.abort(sourceSignal?.reason);
         }
     }
 
-    function detachLegacyAIStreamAbort(){
+    function detachBuiltInAIStreamAbort(){
         if(detached){
             return;
         }
         detached=true;
         sourceSignal?.removeEventListener?.(
             'abort',
-            forwardLegacyAIStreamAbort
+            forwardBuiltInAIStreamAbort
         );
     }
 
     if(sourceSignal?.aborted){
-        forwardLegacyAIStreamAbort();
+        forwardBuiltInAIStreamAbort();
     }else{
         sourceSignal?.addEventListener?.(
             'abort',
-            forwardLegacyAIStreamAbort,
+            forwardBuiltInAIStreamAbort,
             {once:true}
         );
     }
 
-    function emitLegacyAIStreamChunk(chunk){
+    function emitBuiltInAIStreamChunk(chunk){
         if(complete){
             return false;
         }
@@ -583,13 +589,13 @@ function createLegacyAIStreamBridge(execute,sourceSignal){
         return true;
     }
 
-    function finishLegacyAIStream(error){
+    function finishBuiltInAIStream(error){
         if(complete){
             return;
         }
         complete=true;
         failure=error||null;
-        detachLegacyAIStreamAbort();
+        detachBuiltInAIStreamAbort();
         while(waiters.length){
             const waiter=waiters.shift();
             if(failure){
@@ -601,42 +607,42 @@ function createLegacyAIStreamBridge(execute,sourceSignal){
     }
 
     const result=Promise.resolve().then(
-        function executeLegacyAIStream(){
+        function executeBuiltInAIStream(){
             if(controller.signal.aborted){
                 throw normalizeAIRequestAbort(controller.signal.reason);
             }
             return execute({
-                emit:emitLegacyAIStreamChunk,
+                emit:emitBuiltInAIStreamChunk,
                 signal:controller.signal
             });
         }
     ).then(
-        function acceptLegacyAIStreamResult(value){
-            finishLegacyAIStream(null);
+        function acceptBuiltInAIStreamResult(value){
+            finishBuiltInAIStream(null);
             return value;
         },
-        function rejectLegacyAIStreamResult(error){
+        function rejectBuiltInAIStreamResult(error){
             const normalized=isAIRequestAbort(error,controller.signal)
                 ?normalizeAIRequestAbort(error)
                 :error;
-            finishLegacyAIStream(normalized);
+            finishBuiltInAIStream(normalized);
             throw normalized;
         }
     );
-    result.catch(function retainLegacyAIStreamFailure() {});
+    result.catch(function retainBuiltInAIStreamFailure() {});
 
-    async function cancelLegacyAIStream(reason){
+    async function cancelBuiltInAIStream(reason){
         if(!controller.signal.aborted){
             controller.abort(reason);
         }
-        await result.catch(function retainCancelledLegacyAIStream() {});
+        await result.catch(function retainCancelledBuiltInAIStream() {});
         return true;
     }
 
     const handle={
         result,
-        cancel:cancelLegacyAIStream,
-        next:function readLegacyAIStreamChunk(){
+        cancel:cancelBuiltInAIStream,
+        next:function readBuiltInAIStreamChunk(){
             if(queue.length){
                 return Promise.resolve({value:queue.shift(),done:false});
             }
@@ -645,24 +651,24 @@ function createLegacyAIStreamBridge(execute,sourceSignal){
                     ?Promise.reject(failure)
                     :Promise.resolve({value:undefined,done:true});
             }
-            return new Promise(function waitForLegacyAIStreamChunk(resolve,reject){
+            return new Promise(function waitForBuiltInAIStreamChunk(resolve,reject){
                 waiters.push({resolve,reject});
             });
         },
-        return:async function returnLegacyAIStream(value){
-            await cancelLegacyAIStream(
-                legacyAIProviderError(
-                    'The legacy AI stream consumer stopped before completion.',
+        return:async function returnBuiltInAIStream(value){
+            await cancelBuiltInAIStream(
+                aiProviderError(
+                    'The built-in AI stream consumer stopped before completion.',
                     'ARCANE_AI_REQUEST_ABORTED'
                 )
             );
             return {value,done:true};
         },
-        throw:async function throwLegacyAIStream(error){
-            await cancelLegacyAIStream(error);
+        throw:async function throwBuiltInAIStream(error){
+            await cancelBuiltInAIStream(error);
             throw error;
         },
-        [Symbol.asyncIterator]:function iterateLegacyAIStream(){
+        [Symbol.asyncIterator]:function iterateBuiltInAIStream(){
             return this;
         }
     };
@@ -803,11 +809,46 @@ function browserSpeechIdentifier(value,label){
     return value;
 }
 
+function normalizeBrowserTTSExecution(value){
+    if(value===undefined){
+        return completeValue({...DEFAULT_BROWSER_TTS_EXECUTION});
+    }
+    const descriptors=closedRecord(
+        value,
+        ['device','maxConcurrentRequests'],
+        [],
+        'AI browser speech tts.execution'
+    );
+    const device=descriptors.device
+        ?descriptors.device.value
+        :DEFAULT_BROWSER_TTS_EXECUTION.device;
+    const maxConcurrentRequests=descriptors.maxConcurrentRequests
+        ?descriptors.maxConcurrentRequests.value
+        :DEFAULT_BROWSER_TTS_EXECUTION.maxConcurrentRequests;
+    if(typeof device!=='string'||!BROWSER_TTS_EXECUTION_DEVICES.has(device)){
+        throw aiBrowserSpeechError(
+            AI_BROWSER_SPEECH_ERROR_CODES.configurationContractMismatch,
+            AI_BROWSER_SPEECH_REASONS.configurationContractMismatch,
+            'AI browser speech tts.execution.device must be auto, webgpu, or wasm.'
+        );
+    }
+    if(!Number.isSafeInteger(maxConcurrentRequests)
+        ||maxConcurrentRequests<1
+        ||maxConcurrentRequests>MAX_BROWSER_TTS_CONCURRENT_REQUESTS){
+        throw aiBrowserSpeechError(
+            AI_BROWSER_SPEECH_ERROR_CODES.configurationContractMismatch,
+            AI_BROWSER_SPEECH_REASONS.configurationContractMismatch,
+            `AI browser speech tts.execution.maxConcurrentRequests must be an integer from 1 through ${MAX_BROWSER_TTS_CONCURRENT_REQUESTS}.`
+        );
+    }
+    return completeValue({device,maxConcurrentRequests});
+}
+
 function normalizeBrowserSpeechRole(value,role){
     const label=`AI browser speech ${role}`;
     const descriptors=closedRecord(
         value,
-        ['providerId','graph','model','runtime','security','offline'],
+        ['providerId','graph','model','runtime','security','offline','execution'],
         ['providerId','offline'],
         label
     );
@@ -868,6 +909,13 @@ function normalizeBrowserSpeechRole(value,role){
             `${label}.offline must be a boolean.`
         );
     }
+    if(role==='stt'&&descriptors.execution){
+        throw aiBrowserSpeechError(
+            AI_BROWSER_SPEECH_ERROR_CODES.configurationContractMismatch,
+            AI_BROWSER_SPEECH_REASONS.configurationContractMismatch,
+            'AI browser speech execution policy is available only for TTS.'
+        );
+    }
     return completeValue({
         providerId,
         ...(hasGraph
@@ -880,7 +928,12 @@ function normalizeBrowserSpeechRole(value,role){
                 runtime:descriptors.runtime.value,
                 ...(secure?{security:{secure:true}}:{})
             }),
-        offline:descriptors.offline.value
+        offline:descriptors.offline.value,
+        ...(role==='tts'
+            ?{execution:normalizeBrowserTTSExecution(
+                descriptors.execution?.value
+            )}
+            :{})
     });
 }
 
@@ -974,9 +1027,8 @@ class AI {
     // This is the enum section for inference configuration
     #service = {
         baseURL: {
-            // OPENAI remains the legacy route identifier for compatibility;
-            // remote LLM chat is provided by TWiN Cloud.
-            OPENAI: 'https://inference.do-ai.run/v1'
+            // TWiN Cloud owns this remote LLM route.
+            TWIN: 'https://inference.do-ai.run/v1'
         },
         sttURL: {
             LOCAL_SPEACH: 'http://127.0.0.1:8011/v1'
@@ -988,7 +1040,7 @@ class AI {
 
     #paths = {
         chat: {
-            OPENAI: '/chat/completions'
+            TWIN: '/chat/completions'
         },
         stt: {
             LOCAL_SPEACH: '/audio/transcriptions'
@@ -999,7 +1051,7 @@ class AI {
     }
 
     #models = {
-        OPENAI:'openai-gpt-oss-120b'
+        TWIN:'openai-gpt-oss-120b'
     }
 
     #sttModels = {
@@ -1018,7 +1070,7 @@ class AI {
     // Note: if we expand cloud providers, simply add their expected JSON metadata here
     get #serviceHeaders(){
         return {
-            OPENAI: {
+            TWIN: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${this.twinKey}`
             }
@@ -1086,10 +1138,10 @@ class AI {
         );
 
         const preferences=[
-            llmService||'OPENAI',
+            llmService||'TWIN',
             sttService||'LOCAL_SPEACH',
             ttsService||'LOCAL_SPEACH',
-            model||'OPENAI',
+            model||'TWIN',
             modelTTS||'LOCAL_SPEACH',
             modelSTT||'LOCAL_SPEACH'
         ];
@@ -1100,9 +1152,9 @@ class AI {
         const runtime=this;
         this.#stopOllamaReady=arcaneEvents.subscribe(
             'arcane-ollama-ready',
-            function reconcileLegacyOllamaReadiness(){
-                runtime.#retainLegacyLLMReadiness(
-                    runtime.#reconcileLegacyLLMReadiness()
+            function reconcileBuiltInOllamaReadiness(){
+                runtime.#retainBuiltInLLMReadiness(
+                    runtime.#reconcileBuiltInLLMReadiness()
                 );
             }
         );
@@ -1117,21 +1169,21 @@ class AI {
     #browserSpeechModulePromise=null;
     #browserSpeechOperationSequence=0;
     #browserSpeechRetiredRecords=new Set();
-    #browserSpeechRetiredLegacyRecords=new Set();
+    #browserSpeechRetiredBuiltInRecords=new Set();
     #browserSpeechTransition=Promise.resolve();
-    #legacyLLMProviders=new Map();
-    #legacyLLMReadiness=Promise.resolve(null);
-    #legacySpeechProviders=new Map();
-    #legacySpeechReadiness=Promise.resolve(null);
+    #builtInLLMProviders=new Map();
+    #builtInLLMReadiness=Promise.resolve(null);
+    #builtInSpeechProviders=new Map();
+    #builtInSpeechReadiness=Promise.resolve(null);
     #speechControlGeneration=0;
     #speechFailureSequence=0;
     #stopOllamaReady=null;
     #ttsSegmentation={...DEFAULT_TTS_SEGMENTATION};
     #preferenceTuple=completeValue([
-        'OPENAI',
+        'TWIN',
         'LOCAL_SPEACH',
         'LOCAL_SPEACH',
-        'OPENAI',
+        'TWIN',
         'LOCAL_SPEACH',
         'LOCAL_SPEACH'
     ]);
@@ -1178,24 +1230,12 @@ class AI {
         return `${this.#service.baseURL[this.llmService]}${this.#paths.chat[this.llmService]}`
     }
 
-    set url(value) {
-        return false;
-    }
-
     get urlTTS() {
         return `${this.#service.ttsURL[this.ttsService]}${this.#paths.tts[this.ttsService]}`
     }
 
-    set urlTTS(value) {
-        return false;
-    }
-
     get urlSTT() {
         return `${this.#service.sttURL[this.sttService]}${this.#paths.stt[this.sttService]}`
-    }
-
-    set urlSTT(value) {
-        return false;
     }
 
     #license='';
@@ -1210,8 +1250,8 @@ class AI {
 
     set twinKey(value){
         this.#license=typeof value==='string' ? value.trim():'';
-        this.#retainLegacyLLMReadiness(
-            this.#reconcileLegacyLLMReadiness()
+        this.#retainBuiltInLLMReadiness(
+            this.#reconcileBuiltInLLMReadiness()
         );
         return this.#license;
     }
@@ -1227,9 +1267,9 @@ class AI {
         return this.#license;
     }
 
-    #legacyLLMCapability(providerId){
-        if(providerId==='OPENAI'){
-            return this.llmService==='OPENAI'
+    #builtInLLMCapability(providerId){
+        if(providerId==='TWIN'){
+            return this.llmService==='TWIN'
                 &&Boolean(this.model)
                 &&Boolean(this.license)
                 &&typeof globalThis.fetch==='function';
@@ -1242,7 +1282,7 @@ class AI {
         return false;
     }
 
-    #legacyLLMInspection(providerId,selection){
+    #builtInLLMInspection(providerId,selection){
         const localOnly=providerId==='OLLAMA';
         if(!selection
             ||selection.providerId!==providerId
@@ -1252,10 +1292,10 @@ class AI {
             return completeValue({
                 available:false,
                 code:'ARCANE_AI_MODEL_AUTHORITY_REQUIRED',
-                message:'The selected legacy LLM route does not match the active AI configuration.'
+                message:'The selected built-in LLM route does not match the active AI configuration.'
             });
         }
-        if(!this.#legacyLLMCapability(providerId)){
+        if(!this.#builtInLLMCapability(providerId)){
             return completeValue({
                 available:false,
                 code:providerId==='OLLAMA'
@@ -1276,16 +1316,16 @@ class AI {
         });
     }
 
-    #createLegacyLLMProvider(providerId){
+    #createBuiltInLLMProvider(providerId){
         const runtime=this;
         const localOnly=providerId==='OLLAMA';
         let state='unloaded';
         let busy=false;
 
-        function statusLegacyLLMProvider(){
+        function statusBuiltInLLMProvider(){
             if(state==='ready'
                 &&!busy
-                &&!runtime.#legacyLLMCapability(providerId)){
+                &&!runtime.#builtInLLMCapability(providerId)){
                 state='unloaded';
             }
             return completeValue({
@@ -1295,13 +1335,13 @@ class AI {
             });
         }
 
-        function assertLegacyLLMSelection(selection){
-            const inspection=runtime.#legacyLLMInspection(
+        function assertBuiltInLLMSelection(selection){
+            const inspection=runtime.#builtInLLMInspection(
                 providerId,
                 selection
             );
             if(!inspection.available){
-                throw legacyAIProviderError(
+                throw aiProviderError(
                     inspection.message,
                     inspection.code
                 );
@@ -1309,7 +1349,7 @@ class AI {
             return inspection;
         }
 
-        function releaseLegacyLLMRequest(){
+        function releaseBuiltInLLMRequest(){
             busy=false;
         }
 
@@ -1318,7 +1358,7 @@ class AI {
             role:'llm',
             id:providerId,
             localOnly,
-            catalog:function catalogLegacyLLMProvider(){
+            catalog:function catalogBuiltInLLMProvider(){
                 if(runtime.llmService!==providerId||!runtime.model){
                     return completeValue([]);
                 }
@@ -1326,35 +1366,35 @@ class AI {
                     completeValue({id:runtime.model})
                 ]);
             },
-            inspect:function inspectLegacyLLMProvider(selection,{signal}={}){
+            inspect:function inspectBuiltInLLMProvider(selection,{signal}={}){
                 if(signal?.aborted){
                     throw normalizeAIRequestAbort(signal.reason);
                 }
-                return runtime.#legacyLLMInspection(providerId,selection);
+                return runtime.#builtInLLMInspection(providerId,selection);
             },
-            status:statusLegacyLLMProvider,
-            load:function loadLegacyLLMProvider(context={}){
+            status:statusBuiltInLLMProvider,
+            load:function loadBuiltInLLMProvider(context={}){
                 if(context.signal?.aborted){
                     throw normalizeAIRequestAbort(context.signal.reason);
                 }
                 if(state==='disposed'){
-                    throw legacyAIProviderError(
-                        'The legacy LLM provider is disposed.',
+                    throw aiProviderError(
+                        'The built-in LLM provider is disposed.',
                         'ARCANE_AI_PROVIDER_DISPOSED'
                     );
                 }
                 if(busy){
-                    throw legacyAIProviderError(
-                        'The legacy LLM provider owns an active request.',
+                    throw aiProviderError(
+                        'The built-in LLM provider owns an active request.',
                         'ARCANE_AI_ROLE_BUSY'
                     );
                 }
                 if(typeof context.progress!=='function'){
                     throw new TypeError(
-                        'Legacy LLM provider load progress must be a function.'
+                        'Built-in LLM provider load progress must be a function.'
                     );
                 }
-                const inspection=assertLegacyLLMSelection(context.selection);
+                const inspection=assertBuiltInLLMSelection(context.selection);
                 state='loading';
                 context.progress({
                     phase:'capability',
@@ -1377,40 +1417,40 @@ class AI {
                 });
                 return completeValue({
                     authority:inspection.authority,
-                    status:statusLegacyLLMProvider()
+                    status:statusBuiltInLLMProvider()
                 });
             },
-            request:function requestLegacyLLMProvider(context={}){
+            request:function requestBuiltInLLMProvider(context={}){
                 if(context.signal?.aborted){
                     throw normalizeAIRequestAbort(context.signal.reason);
                 }
-                assertLegacyLLMSelection(context.selection);
-                const current=statusLegacyLLMProvider();
+                assertBuiltInLLMSelection(context.selection);
+                const current=statusBuiltInLLMProvider();
                 if(current.state!=='ready'||!current.loaded){
-                    throw legacyAIProviderError(
-                        'The legacy LLM provider is not ready.',
+                    throw aiProviderError(
+                        'The built-in LLM provider is not ready.',
                         'ARCANE_AI_ROLE_NOT_READY'
                     );
                 }
                 if(busy){
-                    throw legacyAIProviderError(
-                        'The legacy LLM provider owns an active request.',
+                    throw aiProviderError(
+                        'The built-in LLM provider owns an active request.',
                         'ARCANE_AI_ROLE_BUSY'
                     );
                 }
                 busy=true;
                 if(context.operation==='chat'){
                     return Promise.resolve(
-                        runtime.#requestLegacyLLMChat(
+                        runtime.#requestBuiltInLLMChat(
                             context.payload,
                             context.signal
                         )
-                    ).finally(releaseLegacyLLMRequest);
+                    ).finally(releaseBuiltInLLMRequest);
                 }
                 if(context.operation==='stream'){
-                    const handle=createLegacyAIStreamBridge(
-                        function executeLegacyLLMProviderStream(bridge){
-                            return runtime.#requestLegacyLLMStream(
+                    const handle=createBuiltInAIStreamBridge(
+                        function executeBuiltInLLMProviderStream(bridge){
+                            return runtime.#requestBuiltInLLMStream(
                                 context.payload,
                                 bridge
                             );
@@ -1418,49 +1458,49 @@ class AI {
                         context.signal
                     );
                     handle.result.then(
-                        releaseLegacyLLMRequest,
-                        releaseLegacyLLMRequest
+                        releaseBuiltInLLMRequest,
+                        releaseBuiltInLLMRequest
                     );
                     return handle;
                 }
                 busy=false;
-                throw legacyAIProviderError(
-                    'The legacy LLM provider operation is unsupported.',
+                throw aiProviderError(
+                    'The built-in LLM provider operation is unsupported.',
                     'ARCANE_AI_PROVIDER_RUNTIME_INVALID'
                 );
             },
-            unload:function unloadLegacyLLMProvider(context={}){
+            unload:function unloadBuiltInLLMProvider(context={}){
                 if(context.signal?.aborted){
                     throw normalizeAIRequestAbort(context.signal.reason);
                 }
                 state='unloaded';
                 busy=false;
-                return statusLegacyLLMProvider();
+                return statusBuiltInLLMProvider();
             },
-            dispose:function disposeLegacyLLMProvider(context={}){
+            dispose:function disposeBuiltInLLMProvider(context={}){
                 if(context.signal?.aborted){
                     throw normalizeAIRequestAbort(context.signal.reason);
                 }
                 state='disposed';
                 busy=false;
-                return statusLegacyLLMProvider();
+                return statusBuiltInLLMProvider();
             }
         });
     }
 
-    #legacySpeechService(role){
+    #builtInSpeechService(role){
         return role==='stt'?this.sttService:this.ttsService;
     }
 
-    #legacySpeechModel(role){
+    #builtInSpeechModel(role){
         return role==='stt'?this.modelSTT:this.modelTTS;
     }
 
-    #legacySpeechProviderKey(role,providerId){
+    #builtInSpeechProviderKey(role,providerId){
         return `${role}:${providerId}`;
     }
 
-    #legacySpeechDefaultVoice(role,providerId){
+    #builtInSpeechDefaultVoice(role,providerId){
         if(role!=='tts'){
             return null;
         }
@@ -1470,9 +1510,9 @@ class AI {
         return null;
     }
 
-    #legacySpeechCapability(role,providerId){
-        const service=this.#legacySpeechService(role);
-        const model=this.#legacySpeechModel(role);
+    #builtInSpeechCapability(role,providerId){
+        const service=this.#builtInSpeechService(role);
+        const model=this.#builtInSpeechModel(role);
         if(service!==providerId||!model){
             return false;
         }
@@ -1482,20 +1522,20 @@ class AI {
         return false;
     }
 
-    #legacySpeechInspection(role,providerId,selection){
+    #builtInSpeechInspection(role,providerId,selection){
         const localOnly=providerId==='LOCAL_SPEACH';
         if(!selection
             ||selection.providerId!==providerId
-            ||selection.modelId!==this.#legacySpeechModel(role)
+            ||selection.modelId!==this.#builtInSpeechModel(role)
             ||selection.localOnly!==localOnly
-            ||this.#legacySpeechService(role)!==providerId){
+            ||this.#builtInSpeechService(role)!==providerId){
             return completeValue({
                 available:false,
                 code:'ARCANE_AI_MODEL_AUTHORITY_REQUIRED',
-                message:`The selected legacy ${role.toUpperCase()} route does not match the active AI configuration.`
+                message:`The selected built-in ${role.toUpperCase()} route does not match the active AI configuration.`
             });
         }
-        if(!this.#legacySpeechCapability(role,providerId)){
+        if(!this.#builtInSpeechCapability(role,providerId)){
             return completeValue({
                 available:false,
                 code:providerId==='LOCAL_SPEACH'
@@ -1516,17 +1556,17 @@ class AI {
         });
     }
 
-    #createLegacySpeechProvider(role,providerId){
+    #createBuiltInSpeechProvider(role,providerId){
         const runtime=this;
         const localOnly=providerId==='LOCAL_SPEACH';
         const expectedOperation=role==='stt'?'transcribe':'synthesize';
         let state='unloaded';
         let busy=false;
 
-        function statusLegacySpeechProvider(){
+        function statusBuiltInSpeechProvider(){
             if(state==='ready'
                 &&!busy
-                &&!runtime.#legacySpeechCapability(role,providerId)){
+                &&!runtime.#builtInSpeechCapability(role,providerId)){
                 state='unloaded';
             }
             return completeValue({
@@ -1536,14 +1576,14 @@ class AI {
             });
         }
 
-        function assertLegacySpeechSelection(selection){
-            const inspection=runtime.#legacySpeechInspection(
+        function assertBuiltInSpeechSelection(selection){
+            const inspection=runtime.#builtInSpeechInspection(
                 role,
                 providerId,
                 selection
             );
             if(!inspection.available){
-                throw legacyAIProviderError(
+                throw aiProviderError(
                     inspection.message,
                     inspection.code
                 );
@@ -1551,7 +1591,7 @@ class AI {
             return inspection;
         }
 
-        function releaseLegacySpeechRequest(){
+        function releaseBuiltInSpeechRequest(){
             busy=false;
         }
 
@@ -1560,12 +1600,12 @@ class AI {
             role,
             id:providerId,
             localOnly,
-            catalog:function catalogLegacySpeechProvider(){
-                const model=runtime.#legacySpeechModel(role);
-                if(runtime.#legacySpeechService(role)!==providerId||!model){
+            catalog:function catalogBuiltInSpeechProvider(){
+                const model=runtime.#builtInSpeechModel(role);
+                if(runtime.#builtInSpeechService(role)!==providerId||!model){
                     return completeValue([]);
                 }
-                const defaultVoice=runtime.#legacySpeechDefaultVoice(
+                const defaultVoice=runtime.#builtInSpeechDefaultVoice(
                     role,
                     providerId
                 );
@@ -1576,35 +1616,35 @@ class AI {
                     })
                 ]);
             },
-            inspect:function inspectLegacySpeechProvider(selection,{signal}={}){
+            inspect:function inspectBuiltInSpeechProvider(selection,{signal}={}){
                 if(signal?.aborted){
                     throw normalizeAIRequestAbort(signal.reason);
                 }
-                return runtime.#legacySpeechInspection(role,providerId,selection);
+                return runtime.#builtInSpeechInspection(role,providerId,selection);
             },
-            status:statusLegacySpeechProvider,
-            load:function loadLegacySpeechProvider(context={}){
+            status:statusBuiltInSpeechProvider,
+            load:function loadBuiltInSpeechProvider(context={}){
                 if(context.signal?.aborted){
                     throw normalizeAIRequestAbort(context.signal.reason);
                 }
                 if(state==='disposed'){
-                    throw legacyAIProviderError(
-                        `The legacy ${role.toUpperCase()} provider is disposed.`,
+                    throw aiProviderError(
+                        `The built-in ${role.toUpperCase()} provider is disposed.`,
                         'ARCANE_AI_PROVIDER_DISPOSED'
                     );
                 }
                 if(busy){
-                    throw legacyAIProviderError(
-                        `The legacy ${role.toUpperCase()} provider owns an active request.`,
+                    throw aiProviderError(
+                        `The built-in ${role.toUpperCase()} provider owns an active request.`,
                         'ARCANE_AI_ROLE_BUSY'
                     );
                 }
                 if(typeof context.progress!=='function'){
                     throw new TypeError(
-                        `Legacy ${role.toUpperCase()} provider load progress must be a function.`
+                        `Built-in ${role.toUpperCase()} provider load progress must be a function.`
                     );
                 }
-                const inspection=assertLegacySpeechSelection(context.selection);
+                const inspection=assertBuiltInSpeechSelection(context.selection);
                 state='loading';
                 context.progress({
                     phase:'capability',
@@ -1627,135 +1667,135 @@ class AI {
                 });
                 return completeValue({
                     authority:inspection.authority,
-                    status:statusLegacySpeechProvider()
+                    status:statusBuiltInSpeechProvider()
                 });
             },
-            request:function requestLegacySpeechProvider(context={}){
+            request:function requestBuiltInSpeechProvider(context={}){
                 if(context.signal?.aborted){
                     throw normalizeAIRequestAbort(context.signal.reason);
                 }
-                assertLegacySpeechSelection(context.selection);
-                const current=statusLegacySpeechProvider();
+                assertBuiltInSpeechSelection(context.selection);
+                const current=statusBuiltInSpeechProvider();
                 if(current.state!=='ready'||!current.loaded){
-                    throw legacyAIProviderError(
-                        `The legacy ${role.toUpperCase()} provider is not ready.`,
+                    throw aiProviderError(
+                        `The built-in ${role.toUpperCase()} provider is not ready.`,
                         'ARCANE_AI_ROLE_NOT_READY'
                     );
                 }
                 if(busy){
-                    throw legacyAIProviderError(
-                        `The legacy ${role.toUpperCase()} provider owns an active request.`,
+                    throw aiProviderError(
+                        `The built-in ${role.toUpperCase()} provider owns an active request.`,
                         'ARCANE_AI_ROLE_BUSY'
                     );
                 }
                 if(context.operation!==expectedOperation){
-                    throw legacyAIProviderError(
-                        `The legacy ${role.toUpperCase()} provider operation is unsupported.`,
+                    throw aiProviderError(
+                        `The built-in ${role.toUpperCase()} provider operation is unsupported.`,
                         'ARCANE_AI_PROVIDER_RUNTIME_INVALID'
                     );
                 }
                 busy=true;
                 const request=role==='stt'
-                    ?runtime.#requestLegacySpeechTranscription(
+                    ?runtime.#requestBuiltInSpeechTranscription(
                         context.payload,
                         context.signal
                     )
-                    :runtime.#requestLegacySpeechSynthesis(
+                    :runtime.#requestBuiltInSpeechSynthesis(
                         context.payload,
                         context.signal
                     );
-                return Promise.resolve(request).finally(releaseLegacySpeechRequest);
+                return Promise.resolve(request).finally(releaseBuiltInSpeechRequest);
             },
-            unload:function unloadLegacySpeechProvider(context={}){
+            unload:function unloadBuiltInSpeechProvider(context={}){
                 if(context.signal?.aborted){
                     throw normalizeAIRequestAbort(context.signal.reason);
                 }
                 if(busy){
-                    throw legacyAIProviderError(
-                        `The legacy ${role.toUpperCase()} provider still owns an active request.`,
+                    throw aiProviderError(
+                        `The built-in ${role.toUpperCase()} provider still owns an active request.`,
                         'ARCANE_AI_ROLE_BUSY'
                     );
                 }
                 state='unloaded';
-                return statusLegacySpeechProvider();
+                return statusBuiltInSpeechProvider();
             },
-            dispose:function disposeLegacySpeechProvider(context={}){
+            dispose:function disposeBuiltInSpeechProvider(context={}){
                 if(context.signal?.aborted){
                     throw normalizeAIRequestAbort(context.signal.reason);
                 }
                 if(busy){
-                    throw legacyAIProviderError(
-                        `The legacy ${role.toUpperCase()} provider still owns an active request.`,
+                    throw aiProviderError(
+                        `The built-in ${role.toUpperCase()} provider still owns an active request.`,
                         'ARCANE_AI_ROLE_BUSY'
                     );
                 }
                 state='disposed';
-                return statusLegacySpeechProvider();
+                return statusBuiltInSpeechProvider();
             }
         });
     }
 
-    #ensureLegacyLLMProvider(providerId){
-        if(providerId!=='OPENAI'&&providerId!=='OLLAMA'){
+    #ensureBuiltInLLMProvider(providerId){
+        if(providerId!=='TWIN'&&providerId!=='OLLAMA'){
             return false;
         }
         if(this.#providerRuntime.hasProvider('llm',providerId)){
             return false;
         }
-        const provider=this.#createLegacyLLMProvider(providerId);
+        const provider=this.#createBuiltInLLMProvider(providerId);
         const unregister=this.#providerRuntime.register(provider);
-        this.#legacyLLMProviders.set(
+        this.#builtInLLMProviders.set(
             providerId,
             completeValue({provider,unregister})
         );
         return true;
     }
 
-    #ensureLegacySpeechProvider(role,providerId){
+    #ensureBuiltInSpeechProvider(role,providerId){
         if(!['stt','tts'].includes(role)||providerId!=='LOCAL_SPEACH'){
             return false;
         }
         if(this.#providerRuntime.hasProvider(role,providerId)){
             return false;
         }
-        const provider=this.#createLegacySpeechProvider(role,providerId);
+        const provider=this.#createBuiltInSpeechProvider(role,providerId);
         const unregister=this.#providerRuntime.register(provider);
-        this.#legacySpeechProviders.set(
-            this.#legacySpeechProviderKey(role,providerId),
+        this.#builtInSpeechProviders.set(
+            this.#builtInSpeechProviderKey(role,providerId),
             completeValue({role,providerId,provider,unregister})
         );
         return true;
     }
 
-    #releaseInactiveLegacyLLMProviders(activeProviderId){
-        for(const [providerId,record] of this.#legacyLLMProviders){
+    #releaseInactiveBuiltInLLMProviders(activeProviderId){
+        for(const [providerId,record] of this.#builtInLLMProviders){
             if(providerId===activeProviderId){
                 continue;
             }
             if(record.unregister()){
-                this.#legacyLLMProviders.delete(providerId);
+                this.#builtInLLMProviders.delete(providerId);
             }
         }
     }
 
-    #releaseInactiveLegacySpeechProviders(activeProviders){
-        for(const [key,record] of this.#legacySpeechProviders){
+    #releaseInactiveBuiltInSpeechProviders(activeProviders){
+        for(const [key,record] of this.#builtInSpeechProviders){
             if(activeProviders[record.role]===record.providerId){
                 continue;
             }
             if(record.unregister()){
-                this.#legacySpeechProviders.delete(key);
+                this.#builtInSpeechProviders.delete(key);
             }
         }
     }
 
-    #internalLegacyLLMSelection(localOnly=false){
+    #builtInLLMSelection(localOnly=false){
         const selection=this.#providerRuntime.selection(
             'llm',
             {localOnly}
         );
         if(!selection
-            ||!this.#legacyLLMProviders.has(selection.providerId)
+            ||!this.#builtInLLMProviders.has(selection.providerId)
             ||selection.providerId!==this.llmService
             ||selection.modelId!==this.model){
             return null;
@@ -1763,44 +1803,44 @@ class AI {
         return selection;
     }
 
-    #internalLegacySpeechSelection(role,localOnly=false){
+    #builtInSpeechSelection(role,localOnly=false){
         const selection=this.#providerRuntime.selection(role,{localOnly});
         if(!selection
-            ||!this.#legacySpeechProviders.has(
-                this.#legacySpeechProviderKey(role,selection.providerId)
+            ||!this.#builtInSpeechProviders.has(
+                this.#builtInSpeechProviderKey(role,selection.providerId)
             )
-            ||selection.providerId!==this.#legacySpeechService(role)
-            ||selection.modelId!==this.#legacySpeechModel(role)){
+            ||selection.providerId!==this.#builtInSpeechService(role)
+            ||selection.modelId!==this.#builtInSpeechModel(role)){
             return null;
         }
         return selection;
     }
 
-    #retainLegacyLLMReadiness(operation){
-        this.#legacyLLMReadiness=Promise.resolve(operation).catch(
-            function retainLegacyLLMReadinessFailure(){
+    #retainBuiltInLLMReadiness(operation){
+        this.#builtInLLMReadiness=Promise.resolve(operation).catch(
+            function retainBuiltInLLMReadinessFailure(){
                 return null;
             }
         );
-        return this.#legacyLLMReadiness;
+        return this.#builtInLLMReadiness;
     }
 
-    #retainLegacySpeechReadiness(operation){
-        this.#legacySpeechReadiness=Promise.resolve(operation).catch(
-            function retainLegacySpeechReadinessFailure(){
+    #retainBuiltInSpeechReadiness(operation){
+        this.#builtInSpeechReadiness=Promise.resolve(operation).catch(
+            function retainBuiltInSpeechReadinessFailure(){
                 return null;
             }
         );
-        return this.#legacySpeechReadiness;
+        return this.#builtInSpeechReadiness;
     }
 
-    #reconcileLegacyLLMReadiness(){
-        const selection=this.#internalLegacyLLMSelection(false);
+    #reconcileBuiltInLLMReadiness(){
+        const selection=this.#builtInLLMSelection(false);
         if(!selection){
             return Promise.resolve(this.#providerRuntime.status('llm'));
         }
         const status=this.#providerRuntime.status('llm');
-        if(this.#legacyLLMCapability(selection.providerId)){
+        if(this.#builtInLLMCapability(selection.providerId)){
             if(status.state==='ready'&&status.loaded===true){
                 return Promise.resolve(status);
             }
@@ -1815,15 +1855,15 @@ class AI {
         return Promise.resolve(status);
     }
 
-    #reconcileLegacySpeechReadiness(){
+    #reconcileBuiltInSpeechReadiness(){
         const runtime=this;
-        return Promise.all(['stt','tts'].map(function reconcileLegacySpeechRole(role){
-            const selection=runtime.#internalLegacySpeechSelection(role,false);
+        return Promise.all(['stt','tts'].map(function reconcileBuiltInSpeechRole(role){
+            const selection=runtime.#builtInSpeechSelection(role,false);
             if(!selection){
                 return runtime.#providerRuntime.status(role);
             }
             const status=runtime.#providerRuntime.status(role);
-            if(runtime.#legacySpeechCapability(role,selection.providerId)){
+            if(runtime.#builtInSpeechCapability(role,selection.providerId)){
                 return status;
             }
             if(status.loaded===true
@@ -1838,8 +1878,8 @@ class AI {
 
     get configured(){
         if(this.#usesProviderRuntime('llm',this.llmService)){
-            if(this.#internalLegacyLLMSelection(false)
-                &&!this.#legacyLLMCapability(this.llmService)){
+            if(this.#builtInLLMSelection(false)
+                &&!this.#builtInLLMCapability(this.llmService)){
                 return false;
             }
             const state=this.#providerRuntime.status('llm');
@@ -1849,7 +1889,7 @@ class AI {
             return Boolean(this.model)&&Boolean(this.#nativeOllama());
         }
 
-        return this.llmService==='OPENAI'
+        return this.llmService==='TWIN'
             &&Boolean(this.model)
             &&Boolean(this.license);
     }
@@ -1857,21 +1897,21 @@ class AI {
     #assertServiceConfigured(service=this.llmService,role='llm'){
         if(this.#usesProviderRuntime(role,service)){
             const internal=role==='llm'
-                ?this.#internalLegacyLLMSelection(false)
-                :this.#internalLegacySpeechSelection(role,false);
+                ?this.#builtInLLMSelection(false)
+                :this.#builtInSpeechSelection(role,false);
             const internalAvailable=!internal
                 ||(role==='llm'
-                    ?this.#legacyLLMCapability(internal.providerId)
-                    :this.#legacySpeechCapability(role,internal.providerId));
+                    ?this.#builtInLLMCapability(internal.providerId)
+                    :this.#builtInSpeechCapability(role,internal.providerId));
             if(!internalAvailable){
                 const inspection=role==='llm'
-                    ?this.#legacyLLMInspection(internal.providerId,internal)
-                    :this.#legacySpeechInspection(
+                    ?this.#builtInLLMInspection(internal.providerId,internal)
+                    :this.#builtInSpeechInspection(
                         role,
                         internal.providerId,
                         internal
                     );
-                throw legacyAIProviderError(
+                throw aiProviderError(
                     inspection.message,
                     inspection.code
                 );
@@ -1901,7 +1941,7 @@ class AI {
             throw error;
         }
 
-        if(service==='OPENAI'&&role==='llm'&&Boolean(this.twinKey)){
+        if(service==='TWIN'&&role==='llm'&&Boolean(this.twinKey)){
             return true;
         }
 
@@ -1915,9 +1955,9 @@ class AI {
     }
 
     #shouldUseProviderRuntime(role,service,localOnly=false){
-        // Legacy adapters publish lifecycle without replacing established
+        // Built-in adapters publish lifecycle without replacing established
         // public transport callbacks or their cancellation behavior.
-        if(role==='llm'&&this.#internalLegacyLLMSelection(localOnly)){
+        if(role==='llm'&&this.#builtInLLMSelection(localOnly)){
             return false;
         }
         if(!localOnly){
@@ -1955,7 +1995,9 @@ class AI {
     speechPlaybackStarting=false;
     speechResumeAttempt=0;
     speechResumePending=false;
-    speechSynthesisTail=Promise.resolve();
+    speechScheduleGeneration=0;
+    speechScheduleContext=null;
+    speechScheduleTime=0;
     speechUnlockHandler=null;
 
     #nextPreferenceTuple(values){
@@ -1978,7 +2020,7 @@ class AI {
 
     #assertValidProviderTuple(tuple){
         if(tuple[0]==='OLLAMA'){
-            const mappedModel=tuple[3]==='OPENAI'?null:this.#models[tuple[3]];
+            const mappedModel=tuple[3]==='TWIN'?null:this.#models[tuple[3]];
             if(!mappedModel&&!normalizeOllamaModelIdentifier(tuple[3])){
                 const error=new TypeError('The Ollama model preference is invalid.');
                 error.code='AI_MODEL_INVALID';
@@ -2009,13 +2051,13 @@ class AI {
 
     #normalizedLLMModel(service,model){
         if(service==='OLLAMA'){
-            const mappedModel=model==='OPENAI'?null:this.#models[model];
+            const mappedModel=model==='TWIN'?null:this.#models[model];
             return mappedModel
                 ||normalizeOllamaModelIdentifier(model)
                 ||model;
         }
-        if(service==='OPENAI'){
-            return model==='OPENAI'?this.#models.OPENAI:model;
+        if(service==='TWIN'){
+            return model==='TWIN'?this.#models.TWIN:model;
         }
         return model;
     }
@@ -2094,12 +2136,12 @@ class AI {
             const identity=providerId&&modelId
                 ?this.#providerRuntime.providerIdentity(role,providerId)
                 :null;
-            const pendingNonLegacy=Boolean(
+            const pendingExternalRoute=Boolean(
                 providerId
                 &&modelId
-                &&!LEGACY_AI_SERVICES.has(providerId)
+                &&!BUILT_IN_AI_SERVICES.has(providerId)
             );
-            if(!identity&&!pendingNonLegacy){
+            if(!identity&&!pendingExternalRoute){
                 selections[role]={default:null,localOnly:null};
                 continue;
             }
@@ -2118,15 +2160,15 @@ class AI {
         return selections;
     }
 
-    #assertRegisteredLegacyRoutes(selections){
+    #assertRegisteredBuiltInRoutes(selections){
         for(const role of ['llm','stt','tts']){
             for(const routeName of ['default','localOnly']){
                 const selection=selections?.[role]?.[routeName];
                 if(selection
-                    &&LEGACY_AI_SERVICES.has(selection.providerId)
+                    &&BUILT_IN_AI_SERVICES.has(selection.providerId)
                     &&!this.#providerRuntime.hasProvider(role,selection.providerId)){
                     const error=new Error(
-                        `Legacy AI provider ${selection.providerId} requires an explicit ${role} adapter before routing.`
+                        `Built-in AI provider ${selection.providerId} requires an explicit ${role} adapter before routing.`
                     );
                     error.code='ARCANE_AI_PROVIDER_UNAVAILABLE';
                     throw error;
@@ -2211,22 +2253,22 @@ class AI {
         ]);
         this.#assertValidProviderTuple(tuple);
         this.#assertSynchronousBrowserSpeechSupersession('AI.setAI');
-        this.#ensureLegacyLLMProvider(tuple[0]);
-        this.#ensureLegacySpeechProvider('stt',tuple[1]);
-        this.#ensureLegacySpeechProvider('tts',tuple[2]);
+        this.#ensureBuiltInLLMProvider(tuple[0]);
+        this.#ensureBuiltInSpeechProvider('stt',tuple[1]);
+        this.#ensureBuiltInSpeechProvider('tts',tuple[2]);
         this.#providerRuntime.configure(this.#routesFromPreferenceTuple(tuple));
         this.#invalidateSpeechControl();
         this.#applyPreferenceTuple(tuple);
-        this.#releaseInactiveLegacyLLMProviders(tuple[0]);
-        this.#releaseInactiveLegacySpeechProviders({
+        this.#releaseInactiveBuiltInLLMProviders(tuple[0]);
+        this.#releaseInactiveBuiltInSpeechProviders({
             stt:tuple[1],
             tts:tuple[2]
         });
-        this.#retainLegacyLLMReadiness(
-            this.#reconcileLegacyLLMReadiness()
+        this.#retainBuiltInLLMReadiness(
+            this.#reconcileBuiltInLLMReadiness()
         );
-        this.#retainLegacySpeechReadiness(
-            this.#reconcileLegacySpeechReadiness()
+        this.#retainBuiltInSpeechReadiness(
+            this.#reconcileBuiltInSpeechReadiness()
         );
         return true;
     }
@@ -2235,33 +2277,33 @@ class AI {
         const prepared=this.#providerRuntime.validateConfiguration(selections);
         this.#assertDeviceSpeechConfiguration(prepared);
         this.#assertSynchronousBrowserSpeechSupersession('AI.configureProviders');
-        this.#ensureLegacyLLMProvider(
+        this.#ensureBuiltInLLMProvider(
             prepared.llm.default?.providerId
         );
-        this.#ensureLegacySpeechProvider(
+        this.#ensureBuiltInSpeechProvider(
             'stt',
             prepared.stt.default?.providerId
         );
-        this.#ensureLegacySpeechProvider(
+        this.#ensureBuiltInSpeechProvider(
             'tts',
             prepared.tts.default?.providerId
         );
-        this.#assertRegisteredLegacyRoutes(prepared);
+        this.#assertRegisteredBuiltInRoutes(prepared);
         const configured=this.#providerRuntime.configure(prepared);
         this.#invalidateSpeechControl();
         this.#applyPreferenceTuple(this.#tupleFromProviderRoutes(configured));
-        this.#releaseInactiveLegacyLLMProviders(
+        this.#releaseInactiveBuiltInLLMProviders(
             configured.llm.default?.providerId
         );
-        this.#releaseInactiveLegacySpeechProviders({
+        this.#releaseInactiveBuiltInSpeechProviders({
             stt:configured.stt.default?.providerId,
             tts:configured.tts.default?.providerId
         });
-        this.#retainLegacyLLMReadiness(
-            this.#reconcileLegacyLLMReadiness()
+        this.#retainBuiltInLLMReadiness(
+            this.#reconcileBuiltInLLMReadiness()
         );
-        this.#retainLegacySpeechReadiness(
-            this.#reconcileLegacySpeechReadiness()
+        this.#retainBuiltInSpeechReadiness(
+            this.#reconcileBuiltInSpeechReadiness()
         );
         return configured;
     }
@@ -2272,26 +2314,26 @@ class AI {
         this.#assertSynchronousBrowserSpeechSupersession(
             'AI.configureSpeechProviders'
         );
-        this.#ensureLegacySpeechProvider(
+        this.#ensureBuiltInSpeechProvider(
             'stt',
             prepared.stt.default?.providerId
         );
-        this.#ensureLegacySpeechProvider(
+        this.#ensureBuiltInSpeechProvider(
             'tts',
             prepared.tts.default?.providerId
         );
-        this.#assertRegisteredLegacyRoutes(prepared);
+        this.#assertRegisteredBuiltInRoutes(prepared);
         const configured=this.#providerRuntime.configureSpeech(prepared);
         this.#invalidateSpeechControl();
         this.#applySpeechPreferenceTuple(
             this.#tupleFromSpeechProviderRoutes(configured)
         );
-        this.#releaseInactiveLegacySpeechProviders({
+        this.#releaseInactiveBuiltInSpeechProviders({
             stt:configured.stt.default?.providerId,
             tts:configured.tts.default?.providerId
         });
-        this.#retainLegacySpeechReadiness(
-            this.#reconcileLegacySpeechReadiness()
+        this.#retainBuiltInSpeechReadiness(
+            this.#reconcileBuiltInSpeechReadiness()
         );
         this.muted=true;
         this.stopAudio();
@@ -2318,18 +2360,18 @@ class AI {
         await this.#supersedeBrowserSpeechForRouteChange();
         this.#invalidateSpeechControl();
         await this.#unloadProviderRolesForTransition();
-        this.#ensureLegacyLLMProvider(tuple[0]);
-        this.#ensureLegacySpeechProvider('stt',tuple[1]);
-        this.#ensureLegacySpeechProvider('tts',tuple[2]);
+        this.#ensureBuiltInLLMProvider(tuple[0]);
+        this.#ensureBuiltInSpeechProvider('stt',tuple[1]);
+        this.#ensureBuiltInSpeechProvider('tts',tuple[2]);
         this.#providerRuntime.configure(this.#routesFromPreferenceTuple(tuple));
         this.#applyPreferenceTuple(tuple);
-        this.#releaseInactiveLegacyLLMProviders(tuple[0]);
-        this.#releaseInactiveLegacySpeechProviders({
+        this.#releaseInactiveBuiltInLLMProviders(tuple[0]);
+        this.#releaseInactiveBuiltInSpeechProviders({
             stt:tuple[1],
             tts:tuple[2]
         });
-        await this.#reconcileLegacyLLMReadiness();
-        await this.#reconcileLegacySpeechReadiness();
+        await this.#reconcileBuiltInLLMReadiness();
+        await this.#reconcileBuiltInSpeechReadiness();
         return this.#providerRuntime.status();
     }
 
@@ -2337,31 +2379,31 @@ class AI {
         const prepared=this.#providerRuntime.validateConfiguration(selections);
         this.#assertDeviceSpeechConfiguration(prepared);
         await this.#supersedeBrowserSpeechForRouteChange();
-        this.#ensureLegacyLLMProvider(
+        this.#ensureBuiltInLLMProvider(
             prepared.llm.default?.providerId
         );
-        this.#ensureLegacySpeechProvider(
+        this.#ensureBuiltInSpeechProvider(
             'stt',
             prepared.stt.default?.providerId
         );
-        this.#ensureLegacySpeechProvider(
+        this.#ensureBuiltInSpeechProvider(
             'tts',
             prepared.tts.default?.providerId
         );
-        this.#assertRegisteredLegacyRoutes(prepared);
+        this.#assertRegisteredBuiltInRoutes(prepared);
         this.#invalidateSpeechControl();
         await this.#unloadProviderRolesForTransition();
         const configured=this.#providerRuntime.configure(prepared);
         this.#applyPreferenceTuple(this.#tupleFromProviderRoutes(configured));
-        this.#releaseInactiveLegacyLLMProviders(
+        this.#releaseInactiveBuiltInLLMProviders(
             configured.llm.default?.providerId
         );
-        this.#releaseInactiveLegacySpeechProviders({
+        this.#releaseInactiveBuiltInSpeechProviders({
             stt:configured.stt.default?.providerId,
             tts:configured.tts.default?.providerId
         });
-        await this.#reconcileLegacyLLMReadiness();
-        await this.#reconcileLegacySpeechReadiness();
+        await this.#reconcileBuiltInLLMReadiness();
+        await this.#reconcileBuiltInSpeechReadiness();
         return configured;
     }
 
@@ -2371,24 +2413,24 @@ class AI {
         await this.#supersedeBrowserSpeechForRouteChange();
         this.#invalidateSpeechControl();
         await this.#unloadSpeechProviderRolesForTransition();
-        this.#ensureLegacySpeechProvider(
+        this.#ensureBuiltInSpeechProvider(
             'stt',
             prepared.stt.default?.providerId
         );
-        this.#ensureLegacySpeechProvider(
+        this.#ensureBuiltInSpeechProvider(
             'tts',
             prepared.tts.default?.providerId
         );
-        this.#assertRegisteredLegacyRoutes(prepared);
+        this.#assertRegisteredBuiltInRoutes(prepared);
         const configured=this.#providerRuntime.configureSpeech(prepared);
         this.#applySpeechPreferenceTuple(
             this.#tupleFromSpeechProviderRoutes(configured)
         );
-        this.#releaseInactiveLegacySpeechProviders({
+        this.#releaseInactiveBuiltInSpeechProviders({
             stt:configured.stt.default?.providerId,
             tts:configured.tts.default?.providerId
         });
-        await this.#reconcileLegacySpeechReadiness();
+        await this.#reconcileBuiltInSpeechReadiness();
         this.muted=true;
         return configured;
     }
@@ -2499,7 +2541,7 @@ class AI {
 
     #browserSpeechReplacementBoundary(previousRecord,roles){
         const expectedProviders={stt:null,tts:null};
-        const legacyRecords=[];
+        const builtInRecords=[];
         for(const role of roles){
             if(previousRecord?.managedRoles.includes(role)){
                 expectedProviders[role]=previousRecord.providers[role];
@@ -2510,8 +2552,8 @@ class AI {
                 expectedProviders[role]=null;
                 continue;
             }
-            const record=this.#legacySpeechProviders.get(
-                this.#legacySpeechProviderKey(role,selection.providerId)
+            const record=this.#builtInSpeechProviders.get(
+                this.#builtInSpeechProviderKey(role,selection.providerId)
             );
             if(!record
                 ||!this.#providerRuntime.ownsProvider(role,record.provider)){
@@ -2524,41 +2566,41 @@ class AI {
                     continue;
                 }
                 throw this.#browserSpeechProviderRouteOwnershipError(
-                    `The selected ${role} route is not owned by the replaceable AI legacy speech boundary.`
+                    `The selected ${role} route is not owned by the replaceable built-in AI speech boundary.`
                 );
             }
             expectedProviders[role]=record.provider;
-            legacyRecords.push(record);
+            builtInRecords.push(record);
         }
         return completeValue({
             expectedProviders:completeValue(expectedProviders),
-            legacyRecords:completeValue(legacyRecords)
+            builtInRecords:completeValue(builtInRecords)
         });
     }
 
-    async #cleanupRetiredLegacySpeechProviders(
+    async #cleanupRetiredBuiltInSpeechProviders(
         {signal=null,committed=false}={}
     ){
         const failures=[];
-        for(const record of [...this.#browserSpeechRetiredLegacyRecords]){
+        for(const record of [...this.#browserSpeechRetiredBuiltInRecords]){
             try{
                 if(this.#providerRuntime.ownsProvider(
                     record.role,
                     record.provider
                 )){
                     throw this.#browserSpeechProviderRouteOwnershipError(
-                        `The retired ${record.role} legacy speech provider still owns its registry entry.`
+                        `The retired ${record.role} built-in speech provider still owns its registry entry.`
                     );
                 }
                 await record.provider.dispose({role:record.role,signal});
-                const key=this.#legacySpeechProviderKey(
+                const key=this.#builtInSpeechProviderKey(
                     record.role,
                     record.providerId
                 );
-                if(this.#legacySpeechProviders.get(key)===record){
-                    this.#legacySpeechProviders.delete(key);
+                if(this.#builtInSpeechProviders.get(key)===record){
+                    this.#builtInSpeechProviders.delete(key);
                 }
-                this.#browserSpeechRetiredLegacyRecords.delete(record);
+                this.#browserSpeechRetiredBuiltInRecords.delete(record);
             }catch(error){
                 failures.push(error);
             }
@@ -2567,12 +2609,12 @@ class AI {
             throw aiBrowserSpeechError(
                 AI_BROWSER_SPEECH_ERROR_CODES.providerDisposalRejected,
                 AI_BROWSER_SPEECH_REASONS.providerDisposalRejected,
-                'The replaced legacy speech providers could not be disposed.',
+                'The replaced built-in speech providers could not be disposed.',
                 failures.length===1
                     ?failures[0]
                     :new AggregateError(
                         failures,
-                        'Multiple replaced legacy speech provider disposals were rejected.'
+                        'Multiple replaced built-in speech provider disposals were rejected.'
                     ),
                 {committed}
             );
@@ -2670,7 +2712,12 @@ class AI {
                     ?{artifactGraphId:catalog.artifactGraphId}
                     :{}),
                 offline:configured.offline,
-                ...(role==='tts'?{defaultVoice:catalog.defaultVoice}:{})
+                ...(role==='tts'
+                    ?{
+                        defaultVoice:catalog.defaultVoice,
+                        execution:configured.execution
+                    }
+                    :{})
             });
         }
         const roles={};
@@ -3039,7 +3086,8 @@ class AI {
                             runtime:configured.runtime
                         }),
                     store,
-                    offline:configured.offline
+                    offline:configured.offline,
+                    ...(role==='tts'?{execution:configured.execution}:{})
                 });
             }
             providers=completeValue({...candidateProviders});
@@ -3175,8 +3223,8 @@ class AI {
             candidate,
             replacement
         );
-        for(const legacyRecord of replacementBoundary.legacyRecords){
-            this.#browserSpeechRetiredLegacyRecords.add(legacyRecord);
+        for(const builtInRecord of replacementBoundary.builtInRecords){
+            this.#browserSpeechRetiredBuiltInRecords.add(builtInRecord);
         }
         if(previousRecord){
             this.#retireBrowserSpeechRegistration(
@@ -3272,7 +3320,7 @@ class AI {
             generation,
             {committed:true}
         );
-        await this.#cleanupRetiredLegacySpeechProviders({
+        await this.#cleanupRetiredBuiltInSpeechProviders({
             signal:controller.signal,
             committed:true
         });
@@ -3438,7 +3486,7 @@ class AI {
                 record.managedRoles.includes('tts')
                 ||record.candidateRoles.includes('tts')
             )
-            ||[...this.#browserSpeechRetiredLegacyRecords].some(
+            ||[...this.#browserSpeechRetiredBuiltInRecords].some(
                 record=>record.role==='tts'
             )
         );
@@ -3466,7 +3514,7 @@ class AI {
                     if(activeRecord)records.add(activeRecord);
                     const eventRecord=activeRecord||records.values().next().value||null;
                     if(!eventRecord
-                        &&runtime.#browserSpeechRetiredLegacyRecords.size===0){
+                        &&runtime.#browserSpeechRetiredBuiltInRecords.size===0){
                         return false;
                     }
                     if(eventRecord){
@@ -3550,8 +3598,8 @@ class AI {
                         );
                         changed=true;
                     }
-                    if(runtime.#browserSpeechRetiredLegacyRecords.size){
-                        await runtime.#cleanupRetiredLegacySpeechProviders({
+                    if(runtime.#browserSpeechRetiredBuiltInRecords.size){
+                        await runtime.#cleanupRetiredBuiltInSpeechProviders({
                             signal:controller.signal,
                             committed:true
                         });
@@ -3722,7 +3770,7 @@ class AI {
         return null;
     }
 
-    async #requestLegacySpeechTranscription(payload={},signal=null){
+    async #requestBuiltInSpeechTranscription(payload={},signal=null){
         const audio=payload?.audio;
         if(!audio||typeof audio.arrayBuffer!=='function'){
             throw new TypeError('Speech transcription requires an audio Blob or File.');
@@ -3773,7 +3821,7 @@ class AI {
         return response.text();
     }
 
-    async #requestLegacySpeechSynthesis(payload={},signal=null){
+    async #requestBuiltInSpeechSynthesis(payload={},signal=null){
         const input=typeof payload?.input==='string'?payload.input:'';
         if(!input){
             throw new TypeError('Speech synthesis requires nonempty input.');
@@ -3784,7 +3832,7 @@ class AI {
         const model=String(payload.model||this.modelTTS);
         const voice=typeof payload.voice==='string'&&payload.voice.trim()
             ?payload.voice.trim()
-            :this.#legacySpeechDefaultVoice('tts',this.ttsService);
+            :this.#builtInSpeechDefaultVoice('tts',this.ttsService);
         if(!voice){
             throw new TypeError('The selected speech provider requires a voice.');
         }
@@ -3842,14 +3890,14 @@ class AI {
             if(isAIRequestAbort(error,signal)){
                 throw normalizeAIRequestAbort(error);
             }
-            throw legacyAIProviderError(
+            throw aiProviderError(
                 'The configured TTS HTTP request failed.',
                 'ARCANE_AI_TTS_HTTP_REQUEST_FAILED',
                 error
             );
         }
         if(!response.ok){
-            const error=legacyAIProviderError(
+            const error=aiProviderError(
                 `The configured TTS HTTP response was rejected with status ${response.status}.`,
                 'ARCANE_AI_TTS_HTTP_RESPONSE_REJECTED'
             );
@@ -4128,49 +4176,49 @@ class AI {
         return typeof content==='string'?content:completion;
     }
 
-    #requestLegacyLLMChat(payload={},signal=null){
+    #requestBuiltInLLMChat(payload={},signal=null){
         const parallelToolCalls=payload.parallelToolCalls!==undefined
             ?payload.parallelToolCalls
             :payload.parallel_tool_calls;
-        return this.#fetchLegacy(
+        return this.#fetchBuiltIn(
             payload.messages??[],
-            function ignoreLegacyLLMProviderResponse(){},
+            function ignoreBuiltInLLMProviderResponse(){},
             payload.structuredOutput??false,
             payload.tools??[],
             payload.toolChoice??'auto',
             parallelToolCalls,
             payload.id??Date.now(),
-            function ignoreLegacyLLMProviderRequest(){},
+            function ignoreBuiltInLLMProviderRequest(){},
             signal,
             payload.reasoningEffort
         );
     }
 
-    #requestLegacyLLMStream(payload={},bridge){
+    #requestBuiltInLLMStream(payload={},bridge){
         const parallelToolCalls=payload.parallelToolCalls!==undefined
             ?payload.parallelToolCalls
             :payload.parallel_tool_calls;
-        function emitLegacyLLMStreamData(chunk){
+        function emitBuiltInLLMStreamData(chunk){
             bridge.emit(chunk);
         }
 
-        return this.#streamLegacyMessage(
+        return this.#streamBuiltInMessage(
             payload.messages??[],
-            function ignoreLegacyLLMScalarStream(){},
-            function ignoreLegacyLLMProviderCompletion(){},
+            function ignoreBuiltInLLMScalarStream(){},
+            function ignoreBuiltInLLMProviderCompletion(){},
             payload.tools??[],
             payload.toolChoice??'auto',
-            function retainLegacyLLMStreamToolUntilCompletion(){},
+            function retainBuiltInLLMStreamToolUntilCompletion(){},
             parallelToolCalls,
             payload.id??Date.now(),
             payload.seeThinking??false,
             bridge.signal,
-            function ignoreLegacyLLMProviderRequest(){},
+            function ignoreBuiltInLLMProviderRequest(){},
             payload.structuredOutput??false,
             false,
             true,
-            emitLegacyLLMStreamData,
-            function ignoreLegacyLLMStreamResult(){},
+            emitBuiltInLLMStreamData,
+            function ignoreBuiltInLLMStreamResult(){},
             payload.reasoningEffort
         );
     }
@@ -4466,13 +4514,13 @@ class AI {
         }
 
         try{
-            const completion=await this.#streamLegacyMessage(
+            const completion=await this.#streamBuiltInMessage(
                 messages,
                 onChunk,
-                function retainLegacyCompletionUntilResponse(){},
+                function retainBuiltInCompletionUntilResponse(){},
                 tools,
                 toolChoice,
-                function retainLegacyToolCallUntilResponse(){},
+                function retainBuiltInToolCallUntilResponse(){},
                 parallelToolCalls,
                 id,
                 seeThinking,
@@ -4553,7 +4601,7 @@ class AI {
             });
         }
 
-        return this.#streamLegacyMessage(
+        return this.#streamBuiltInMessage(
             messages,
             streamHandler,
             streamComplete,
@@ -4573,7 +4621,7 @@ class AI {
         );
     }
 
-    async #streamLegacyMessage(
+    async #streamBuiltInMessage(
         messages=[],
         streamHandler=function ignoreStreamChunk(){},
         streamComplete=function finishIgnoredStream(){},
@@ -4588,8 +4636,8 @@ class AI {
         structuredOutput=false,
         finishSpeech=true,
         returnCompletion=false,
-        dataChunkHandler=function ignoreLegacyStreamDataChunk(){},
-        dataResultHandler=function ignoreLegacyStreamDataResult(){},
+        dataChunkHandler=function ignoreBuiltInStreamDataChunk(){},
+        dataResultHandler=function ignoreBuiltInStreamDataResult(){},
         reasoningEffort
     ){
         let speechTurnCompleted=false;
@@ -4635,7 +4683,7 @@ class AI {
 
         if(
             normalizedReasoningEffort
-            &&(this.llmService==='OPENAI'||this.llmService==='OLLAMA')
+            &&(this.llmService==='TWIN'||this.llmService==='OLLAMA')
         ){
             request.reasoning_effort=normalizedReasoningEffort;
         }
@@ -4648,7 +4696,7 @@ class AI {
         const nativeOllama=this.#nativeOllama();
 
         if(this.llmService==='OLLAMA'&&!nativeOllama){
-            throw legacyAIProviderError(
+            throw aiProviderError(
                 'Local AI requires the capability-gated Arcane API.',
                 'AI_NATIVE_LOCAL_REQUIRED'
             );
@@ -5036,7 +5084,6 @@ class AI {
                 const content=typeof choiceDelta.content==='string'
                     ?choiceDelta.content
                     :'';
-                let value=content;
                 let reasoning='';
                 if(seeThinking){
                     reasoning=typeof choiceDelta.reasoning_content==='string'
@@ -5046,8 +5093,13 @@ class AI {
                             :'';
                 }
                 isThinking=Boolean(reasoning);
-                if(reasoning) value=reasoning;
-                if(value) await streamHandler(value,`M-${id}`,isThinking);
+                if(reasoning){
+                    await streamHandler(reasoning,`M-${id}`,true);
+                }
+                if(content){
+                    isThinking=false;
+                    await streamHandler(content,`M-${id}`,false);
+                }
             }
         }
 
@@ -5214,7 +5266,7 @@ class AI {
         const selectedTerminalChoiceIndex=selectedChoiceIndex??completionChoiceIndexes[0];
         const structuralToolCalls=structuralToolCallsByChoice.get(selectedTerminalChoiceIndex)||[];
         const completionChoices=completionChoiceIndexes
-            .map(function completeLegacyStreamChoice(choicePosition){
+            .map(function completeBuiltInStreamChoice(choicePosition){
                 const retained=streamedChoicesByIndex.get(choicePosition)||{
                     choice:{index:choicePosition},
                     message:{role:'assistant'}
@@ -5243,7 +5295,7 @@ class AI {
             });
         const completion={
             ...streamMetadata,
-            id:Object.hasOwn(streamMetadata,'id')?streamMetadata.id:`legacy-${id}`,
+            id:Object.hasOwn(streamMetadata,'id')?streamMetadata.id:`stream-${id}`,
             object:Object.hasOwn(streamMetadata,'object')
                 ?streamMetadata.object
                 :'chat.completion',
@@ -5257,7 +5309,7 @@ class AI {
         assertAIStreamToolCallCorrelation(
             structuralToolCalls,
             terminalToolCalls,
-            'The legacy HTTP stream'
+            'The built-in HTTP stream'
         );
         await dataResultHandler(completion,id);
         for(const call of terminalToolCalls){
@@ -5374,7 +5426,7 @@ class AI {
             return response;
         }
 
-        return this.#fetchLegacy(
+        return this.#fetchBuiltIn(
             messages,
             onResponse,
             structuredOutput,
@@ -5414,7 +5466,7 @@ class AI {
             });
         }
 
-        return this.#fetchLegacy(
+        return this.#fetchBuiltIn(
             messages,
             responseHandler,
             structuredOutput,
@@ -5427,7 +5479,7 @@ class AI {
         );
     }
 
-    async #fetchLegacy(
+    async #fetchBuiltIn(
         messages=[],
         responseHandler=function ignoreFetchResponse(){},
         structuredOutput=false,
@@ -5477,7 +5529,7 @@ class AI {
 
         if(
             normalizedReasoningEffort
-            &&(this.llmService==='OPENAI'||this.llmService==='OLLAMA')
+            &&(this.llmService==='TWIN'||this.llmService==='OLLAMA')
         ){
             request.reasoning_effort=normalizedReasoningEffort;
         }
@@ -5485,7 +5537,7 @@ class AI {
         const nativeOllama=this.#nativeOllama();
 
         if(this.llmService==='OLLAMA'&&!nativeOllama){
-            throw legacyAIProviderError(
+            throw aiProviderError(
                 'Local AI requires the capability-gated Arcane API.',
                 'AI_NATIVE_LOCAL_REQUIRED'
             );
@@ -5808,18 +5860,21 @@ class AI {
     #queueSpeechJob(text,generation){
         const job={
             abortController:null,
+            audioBuffer:null,
+            audioContext:null,
             generation,
+            scheduledEnd:null,
+            scheduledStart:null,
             sourceNode:null,
             state:'queued',
             text
         };
         const runtime=this;
-        const previous=this.speechSynthesisTail;
 
         this.speechJobs.push(job);
 
-        const synthesis=previous.then(
-            function synthesizeQueuedSpeech(){
+        return Promise.resolve().then(
+            function synthesizeAvailableSpeech(){
                 return runtime.#prepareSpeechJob(job);
             }
         ).catch(
@@ -5831,14 +5886,6 @@ class AI {
                 );
             }
         );
-
-        this.speechSynthesisTail=synthesis.then(
-            function releaseSpeechSynthesisSlot(){
-                return undefined;
-            }
-        );
-
-        return synthesis;
     }
 
     async #prepareSpeechJob(job){
@@ -5923,7 +5970,7 @@ class AI {
             ||!formats.every(format=>typeof format==='string'&&format.trim()===format&&format)
             ||typeof defaultFormat!=='string'
             ||!formats.includes(defaultFormat)){
-            throw legacyAIProviderError(
+            throw aiProviderError(
                 'The selected TTS provider returned an invalid speech format catalog.',
                 'ARCANE_AI_PROVIDER_RUNTIME_INVALID'
             );
@@ -5931,10 +5978,10 @@ class AI {
         if(formats.includes(this.audioFormat)){
             return this.audioFormat;
         }
-        if(this.audioFormat===LEGACY_TTS_RESPONSE_FORMAT){
+        if(this.audioFormat===DEFAULT_TTS_RESPONSE_FORMAT){
             return defaultFormat;
         }
-        throw legacyAIProviderError(
+        throw aiProviderError(
             `The selected TTS provider does not support ${this.audioFormat}.`,
             'ARCANE_AI_UNSUPPORTED_RESPONSE_FORMAT'
         );
@@ -6118,7 +6165,7 @@ class AI {
             ?requestedVoice
             :selection
                 ?this.#providerSpeechVoice()
-                :this.#legacySpeechDefaultVoice('tts',this.ttsService);
+                :this.#builtInSpeechDefaultVoice('tts',this.ttsService);
         if(!voice){
             const error=new TypeError(
                 'AI.fetchTTS requires a caller- or model-catalog-admitted voice.'
@@ -6170,23 +6217,14 @@ class AI {
             return audio;
         }
 
-        return this.#requestLegacySpeechSynthesis(
+        return this.#requestBuiltInSpeechSynthesis(
             {model,voice,input,responseFormat,speed},
             signal
         );
     }
 
-    async fetchSTT(
-        audioFile,
-        responseHandler=(text='')=>{},
-        signal=null
-    ){
+    async fetchSTT(audioFile,signal=null){
         this.#assertServiceConfigured(this.sttService,'stt');
-        if(typeof responseHandler!=='function'){
-            const error=new TypeError('AI.fetchSTT responseHandler must be a function.');
-            error.code='ARCANE_AI_STT_RESPONSE_HANDLER_INVALID';
-            throw error;
-        }
         if(signal&&(
             typeof signal.aborted!=='boolean'
             ||typeof signal.addEventListener!=='function'
@@ -6228,12 +6266,10 @@ class AI {
                 throw error;
             }
             if(signal?.aborted)throw normalizeAIRequestAbort(signal.reason);
-            await responseHandler(text);
-            if(signal?.aborted)throw normalizeAIRequestAbort(signal.reason);
             return text;
         }
 
-        const text=await this.#requestLegacySpeechTranscription(
+        const text=await this.#requestBuiltInSpeechTranscription(
             {
                 audio:audioFile,
                 mimeType:String(audioFile?.type||'audio/webm'),
@@ -6242,8 +6278,6 @@ class AI {
             signal
         );
         if(signal?.aborted)throw normalizeAIRequestAbort(signal.reason);
-        await responseHandler(text);
-        if(signal?.aborted)throw normalizeAIRequestAbort(signal.reason);
         return text;
     }
 
@@ -6251,6 +6285,9 @@ class AI {
         this.speechGeneration+=1;
         this.speechResumeAttempt+=1;
         this.speechResumePending=false;
+        this.speechScheduleGeneration=this.speechGeneration;
+        this.speechScheduleContext=null;
+        this.speechScheduleTime=0;
         this.audioMessageChunks='';
         this.#clearSpeechUnlock();
 
@@ -6306,7 +6343,7 @@ class AI {
             }
 
             if(typeof context.resume!=='function'){
-                this.#waitForSpeechGesture();
+                this.#waitForSpeechGesture(null,context);
                 return false;
             }
 
@@ -6333,7 +6370,7 @@ class AI {
             if(attempt===this.speechResumeAttempt){
                 this.speechResumePending=false;
             }
-            this.#waitForSpeechGesture(error);
+            this.#waitForSpeechGesture(error,context);
             if(error?.name!=='NotAllowedError'){
                 this.#publishTTSFailure(error,{
                     boundary:'playback-resume',
@@ -6343,7 +6380,7 @@ class AI {
             return false;
         }
 
-        this.#waitForSpeechGesture();
+        this.#waitForSpeechGesture(null,context);
         return false;
     }
 
@@ -6356,7 +6393,11 @@ class AI {
     ){
         const job=speechJob||{
             abortController:null,
+            audioBuffer:null,
+            audioContext:null,
             generation:this.speechGeneration,
+            scheduledEnd:null,
+            scheduledStart:null,
             sourceNode:null,
             state:'decoding',
             text:''
@@ -6372,7 +6413,9 @@ class AI {
 
         try{
             job.state='decoding';
-            const playbackContext=audioContext||this.#getSpeechAudioContext();
+            const playbackContext=sourceNode?.context
+                ||audioContext
+                ||this.#getSpeechAudioContext();
             const audioBlob=new Blob(audioChunks,{type:audioType});
             const arrayBuffer=await audioBlob.arrayBuffer();
             const audioBuffer=await playbackContext.decodeAudioData(arrayBuffer);
@@ -6390,6 +6433,8 @@ class AI {
             preparedSource.onended=function finishQueuedSpeechSource(){
                 runtime.nextSentance(job);
             };
+            job.audioBuffer=audioBuffer;
+            job.audioContext=preparedSource.context||playbackContext;
             job.sourceNode=preparedSource;
             job.state='ready';
             this.sourceNodes.push(preparedSource);
@@ -6415,7 +6460,7 @@ class AI {
     }
 
     async #pumpSpeechPlayback(){
-        if(this.speechPlaybackStarting||this.isSpeaking||this.muted){
+        if(this.speechPlaybackStarting||this.muted){
             return false;
         }
 
@@ -6423,12 +6468,21 @@ class AI {
         let activeJob=null;
 
         try{
-            while(!this.isSpeaking&&!this.muted){
-                const job=this.speechJobs[0];
+            if(this.speechScheduleGeneration!==this.speechGeneration){
+                this.speechScheduleGeneration=this.speechGeneration;
+                this.speechScheduleContext=null;
+                this.speechScheduleTime=0;
+            }
+
+            let index=0;
+            let scheduled=false;
+
+            while(index<this.speechJobs.length&&!this.muted){
+                const job=this.speechJobs[index];
                 activeJob=job||null;
 
                 if(!job){
-                    return false;
+                    break;
                 }
 
                 if(job.generation!==this.speechGeneration||['cancelled','failed'].includes(job.state)){
@@ -6436,25 +6490,32 @@ class AI {
                     continue;
                 }
 
-                if(job.state!=='ready'||!job.sourceNode?.buffer){
-                    return false;
+                if(!['ready','scheduled'].includes(job.state)||!job.sourceNode?.buffer){
+                    break;
                 }
 
-                const audioContext=this.#getSpeechAudioContext();
+                const audioContext=job.sourceNode.context||job.audioContext;
 
                 if(audioContext.state!=='running'){
-                    this.#waitForSpeechGesture();
+                    this.#waitForSpeechGesture(null,audioContext);
 
                     if(!this.speechResumePending){
                         this.resumeAudio(audioContext,false);
                     }
 
-                    return false;
+                    return scheduled;
+                }
+
+                if(job.state==='scheduled'){
+                    if(job.scheduledEnd===null){
+                        break;
+                    }
+                    index+=1;
+                    continue;
                 }
 
                 if(
                     this.muted
-                    ||job!==this.speechJobs[0]
                     ||job.generation!==this.speechGeneration
                     ||job.state!=='ready'
                 ){
@@ -6462,18 +6523,47 @@ class AI {
                 }
 
                 try{
-                    job.state='playing';
+                    const duration=Number(job.audioBuffer?.duration);
+                    const hasKnownDuration=Number.isFinite(duration)&&duration>0;
+                    const currentTime=Number(audioContext.currentTime)||0;
+                    const previousContext=this.speechScheduleContext;
+                    const remainingDelay=previousContext
+                        ?Math.max(
+                            0,
+                            this.speechScheduleTime
+                                -(Number(previousContext.currentTime)||0)
+                        )
+                        :0;
+                    const scheduledStart=Math.max(
+                        currentTime,
+                        previousContext===audioContext
+                            ?this.speechScheduleTime
+                            :currentTime+remainingDelay
+                    );
+                    job.state='scheduled';
+                    job.scheduledStart=scheduledStart;
+                    job.scheduledEnd=hasKnownDuration
+                        ?scheduledStart+duration
+                        :null;
                     job.sourceNode.__arcaneStarted=true;
-                    this.currentSpeechJob=job;
+                    if(!this.currentSpeechJob){
+                        this.currentSpeechJob=job;
+                    }
                     this.isSpeaking=true;
-                    await job.sourceNode.start(0);
-                    return true;
+                    job.sourceNode.start(scheduledStart);
+                    scheduled=true;
+                    this.speechScheduleContext=audioContext;
+                    if(job.scheduledEnd===null){
+                        this.speechScheduleTime=0;
+                        break;
+                    }
+                    this.speechScheduleTime=job.scheduledEnd;
+                    index+=1;
                 }catch(error){
-                    this.currentSpeechJob=null;
-                    this.isSpeaking=false;
                     this.#failSpeechJob(job,error,'playback-start');
                 }
             }
+            return scheduled;
         }catch(error){
             if(activeJob){
                 this.#failSpeechJob(activeJob,error,'playback-start');
@@ -6485,11 +6575,20 @@ class AI {
             this.speechPlaybackStarting=false;
 
             if(
-                !this.isSpeaking
-                &&!this.muted
+                !this.muted
                 &&!this.speechAwaitingGesture
                 &&!this.speechResumePending
-                &&this.speechJobs[0]?.state==='ready'
+                &&!this.speechJobs.some(
+                    function hasScheduledSpeechWithoutDuration(job){
+                        return job.state==='scheduled'
+                            &&job.scheduledEnd===null;
+                    }
+                )
+                &&this.speechJobs.find(
+                    function findFirstUnscheduledSpeechJob(job){
+                        return job.state!=='scheduled';
+                    }
+                )?.state==='ready'
             ){
                 this.#requestSpeechPlayback();
             }
@@ -6511,9 +6610,17 @@ class AI {
         this.#removeSpeechJob(job);
 
         if(this.currentSpeechJob===job){
-            this.currentSpeechJob=null;
-            this.isSpeaking=false;
+            this.currentSpeechJob=this.speechJobs.find(
+                function findNextScheduledSpeechJob(candidate){
+                    return candidate.state==='scheduled';
+                }
+            )||null;
         }
+        this.isSpeaking=this.speechJobs.some(
+            function hasScheduledSpeechJob(candidate){
+                return candidate.state==='scheduled';
+            }
+        );
 
         this.#requestSpeechPlayback();
         return true;
@@ -6603,9 +6710,17 @@ class AI {
         this.#removeSpeechJob(job);
 
         if(this.currentSpeechJob===job){
-            this.currentSpeechJob=null;
-            this.isSpeaking=false;
+            this.currentSpeechJob=this.speechJobs.find(
+                function findRemainingScheduledSpeechJob(candidate){
+                    return candidate.state==='scheduled';
+                }
+            )||null;
         }
+        this.isSpeaking=this.speechJobs.some(
+            function hasRemainingScheduledSpeechJob(candidate){
+                return candidate.state==='scheduled';
+            }
+        );
 
         this.#requestSpeechPlayback();
         return false;
@@ -6627,7 +6742,7 @@ class AI {
         job.sourceNode?.disconnect?.();
     }
 
-    #waitForSpeechGesture(error=null){
+    #waitForSpeechGesture(error=null,audioContext=null){
         if(this.speechUnlockHandler){
             return false;
         }
@@ -6638,7 +6753,7 @@ class AI {
         this.speechAwaitingGesture=true;
         this.speechUnlockHandler=function unlockSpeechFromUserGesture(){
             runtime.#clearSpeechUnlock();
-            runtime.resumeAudio();
+            return runtime.resumeAudio(audioContext);
         };
 
         target.addEventListener?.(

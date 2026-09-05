@@ -24,7 +24,9 @@ Completed stories outside the two adventure collections will be added here.
 
 Each book opens in the same full-screen horizontal reader with touch swiping, keyboard navigation, page controls, and JuJu’s existing eight-voice read-aloud controls.
 
-The app pins published `arcane-os@0.5.8` and uses its public browser-speech, AI, DBOPFS, event, and `arcane-os/speech-playback` contracts. JuJu owns story narration, voice choice, presentation, and a low-latency narration policy that completes a segment at the earliest punctuation mark or four-whole-word cadence; the SDK preserves every character while keeping synthesis and playback sequential. The SDK also owns provider registration, loading, cancellation, Worker lifecycle, WAV normalization, runtime asset loading, playback, and the single `globalThis.arcaneEvents` authority. The legacy app-local `speech-worker.js`, direct CDN import, AudioContext scheduler, and browser-speech fallback have been retired.
+The app pins published `arcane-os@0.5.9` and uses its public browser-speech, AI, DBOPFS, event, and `arcane-os/speech-playback` contracts. JuJu owns story narration, voice choice, presentation, and passage pauses. Its current `SpeechPlayback` path sends complete passages through `AI.fetchTTS`, synthesizing one passage at a time and preparing the next during playback. The configured AI streaming cadence (earliest punctuation or four whole words) applies to `AI.streamTTS`, not this passage-based playback path. JuJu's controls subscribe to the playback instance's public `SPEECH_PLAYBACK_STATE_EVENT`; destroying playback releases that subscription. The SDK owns provider registration, loading, cancellation, Worker lifecycle, WAV normalization, runtime asset loading, playback, and the single `globalThis.arcaneEvents` authority. The legacy app-local `speech-worker.js`, direct CDN import, AudioContext scheduler, and browser-speech fallback have been retired.
+
+SDK 0.5.9 defaults to a two-request Kokoro pool with automatic WebGPU-first selection and WASM fallback. JuJu's current `SpeechPlayback` queue does not yet submit concurrent synthesis requests or use the SDK's contiguous streaming-audio scheduler. Parallel passage generation requires an SDK-owned playback update; the package upgrade alone does not establish parallel narration or actual GPU execution.
 
 The SDK package does not include a Kokoro runtime, model, or voice artifact. JuJu supplies its app-owned `kokoro-js@1.2.1` runtime descriptor, selects `onnx-community/Kokoro-82M-v1.0-ONNX` with `q8`, and defaults to the `af_heart` voice. The SDK loads the runtime and model through its public browser-speech provider and Worker contracts when read aloud is first used.
 
@@ -32,7 +34,7 @@ Every spread has a **Move words** handle. Drag it with a mouse or finger, or foc
 
 ## Arcane island boundary
 
-JuJu declares exact `arcane-os@0.5.8` in its own `package.json`; a normal project-root `npm install` resolves the public package into this repository’s own physical `node_modules`. The app-owned ESM materializer projects the installed SDK into the repository-local `arcane/` tree before the public import-map, development, build, bundle, run, or packaging path uses it. No global install, symlink, Arcane checkout, live source mount, or update poll is part of the package or runtime contract.
+JuJu declares exact `arcane-os@0.5.9` in its own `package.json`; a normal project-root `npm install` resolves the public package into this repository’s own physical `node_modules`. The app-owned ESM materializer projects the installed SDK into the repository-local `arcane/` tree before the public import-map, development, build, bundle, run, or packaging path uses it. No global install, symlink, Arcane checkout, live source mount, or update poll is part of the package or runtime contract.
 
 Create the one selected, independently runnable browser artifact with:
 

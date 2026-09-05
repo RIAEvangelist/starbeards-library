@@ -4,11 +4,13 @@ import {
 } from 'arcane/AI';
 import DBOPFS from 'arcane/DBOPFS';
 import {arcaneEvents} from 'arcane-os/event-manager';
-import SpeechPlayback from 'arcane-os/speech-playback';
+import SpeechPlayback, {
+    SPEECH_PLAYBACK_STATE_EVENT
+} from 'arcane-os/speech-playback';
 
 export const JUJU_SPEECH_AUTHORITY_REQUIRED = 'ARCANE_AI_MODEL_AUTHORITY_REQUIRED';
 
-const ARCANE_SDK_VERSION = '0.5.8';
+const ARCANE_SDK_VERSION = '0.5.9';
 const CONFIGURATION_ID = 'juju-grand-adventures-browser-speech';
 const DEFAULT_SPEED = 0.95;
 
@@ -120,7 +122,6 @@ export function createJuJuSpeech({
                 voice: selectedAuthority.defaultVoice,
                 responseFormat: 'wav',
                 speed: DEFAULT_SPEED,
-                onState,
                 messages: {
                     unavailable: 'Local read aloud is not ready.',
                     preparing: 'Preparing this page with Kokoro…',
@@ -137,6 +138,13 @@ export function createJuJuSpeech({
                     playbackError: 'The prepared narration could not be played.',
                     fallbackError: 'Local read aloud stopped unexpectedly.'
                 }
+            }
+        );
+
+        playback.events.subscribe(
+            SPEECH_PLAYBACK_STATE_EVENT,
+            function observeJuJuPlaybackState(event) {
+                onState(event.detail);
             }
         );
 
