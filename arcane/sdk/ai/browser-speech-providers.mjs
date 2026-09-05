@@ -4,14 +4,15 @@ import {
   isBrowserSpeechArtifactError,
   isBrowserSpeechAuthority,
   isDbopfsSpeechArtifactStore,
-} from "./browser-speech-artifacts.mjs?arcaneVersion=0.5.16";
+} from "./browser-speech-artifacts.mjs?arcaneVersion=0.5.17";
+import { stripSpeechFormatting } from "../speech-text.mjs?arcaneVersion=0.5.17";
 
 const completeValue = (value) => value;
 import {
   createSpeechWorkerClient,
   isSpeechWorkerClient,
   isSpeechWorkerClientError,
-} from "./speech-worker-client.mjs?arcaneVersion=0.5.16";
+} from "./speech-worker-client.mjs?arcaneVersion=0.5.17";
 
 const AI_PROVIDER_PROTOCOL = "arcane-ai-provider/2";
 const AI_MODEL_AUTHORITY_PROTOCOL = "arcane-ai-model-authority/1";
@@ -896,7 +897,7 @@ function cloneNativeTranscriptionPayload(payload, authority) {
   });
 }
 
-function normalizeSynthesisPayload(payload, authority) {
+function normalizeSynthesisPayload(payload, authority, speechInputPrepared) {
   const shared = Object.hasOwn(payload, "input");
   let descriptors;
   let textValue;
@@ -932,7 +933,8 @@ function normalizeSynthesisPayload(payload, authority) {
     assertPayloadModel(payload, authority, { operationSubject: "tts-synthesis" });
     textValue = descriptors.text.value;
   }
-  const text = typeof textValue === "string" ? textValue : "";
+  const suppliedText = typeof textValue === "string" ? textValue : "";
+  const text = speechInputPrepared === true ? suppliedText : stripSpeechFormatting(suppliedText);
   const voiceValue = Object.hasOwn(descriptors, "voice")
     ? descriptors.voice.value
     : authority.defaultVoice;
@@ -983,6 +985,7 @@ async function normalizeRequestPayload(
   authority,
   signal,
   cancellationReason,
+  speechInputPrepared,
 ) {
   if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
     throw providerError(
@@ -1009,7 +1012,7 @@ async function normalizeRequestPayload(
     }
     return cloneNativeTranscriptionPayload(payload, authority);
   }
-  return normalizeSynthesisPayload(payload, authority);
+  return normalizeSynthesisPayload(payload, authority, speechInputPrepared);
 }
 
 function encodeSharedSynthesisResult(result, authority) {
@@ -1619,7 +1622,7 @@ function createBrowserSpeechProvider({
       }, role);
     },
 
-    async request(context = {}) {
+    async request(context = {}, { speechInputPrepared = false } = {}) {
       let requestContext;
       try {
         requestContext = providerContext(context, role, "request");
@@ -1713,6 +1716,7 @@ function createBrowserSpeechProvider({
           authority,
           linked.controller.signal,
           browserSpeechRequestAbortReason,
+          speechInputPrepared,
         );
         throwIfAborted(
           linked.controller.signal,

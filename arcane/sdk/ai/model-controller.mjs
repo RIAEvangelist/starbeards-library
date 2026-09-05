@@ -1,4 +1,4 @@
-import { arcaneLogging } from '../logging.mjs?arcaneVersion=0.5.16';
+import { arcaneLogging } from '../logging.mjs?arcaneVersion=0.5.17';
 import { createArcaneEventSource } from "arcane-os/event-manager";
 
 export const ARCANE_AI_ADAPTER_PROTOCOL = "arcane-ai-adapter/1";

@@ -1,6 +1,6 @@
 import {
   normalizeModelSecurity,
-} from "./model-controller.mjs?arcaneVersion=0.5.16";
+} from "./model-controller.mjs?arcaneVersion=0.5.17";
 
 const completeValue = (value) => value;
 

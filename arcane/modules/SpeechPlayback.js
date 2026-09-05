@@ -1,5 +1,18 @@
 import {createArcaneEventSource} from 'arcane-os/event-manager';
+import {stripSpeechFormatting} from 'arcane-os/speech-text';
 
+const SPEECH_VOICE_OPTIONS=[
+    {value:'alloy',label:'Alloy'},
+    {value:'ash',label:'Ash'},
+    {value:'ballad',label:'Ballad'},
+    {value:'coral',label:'Coral'},
+    {value:'echo',label:'Echo'},
+    {value:'fable',label:'Fable'},
+    {value:'nova',label:'Nova'},
+    {value:'onyx',label:'Onyx'},
+    {value:'sage',label:'Sage'},
+    {value:'shimmer',label:'Shimmer'}
+];
 const SUPERSEDED={superseded:true};
 const SPEECH_PLAYBACK_STATE_EVENT='speech-playback-state';
 const SPEECH_PLAYBACK_FAILURE_REASONS={
@@ -16,6 +29,10 @@ const WAV_AUDIO_CONTENT_TYPES=new Set([
     'audio/x-wav'
 ]);
 const queuesBySpeechClient=new WeakMap();
+
+const SPEECH_VOICE_ALIASES=new Set(
+    SPEECH_VOICE_OPTIONS.map(function voiceAlias(option){return option.value;})
+);
 
 function splitSpeechText(value=''){
     const text=String(value??'');
@@ -401,6 +418,7 @@ class SpeechPlayback{
         voice=null,
         responseFormat=null,
         speed=1,
+        onState=function noop(){},
         createObjectURL,
         revokeObjectURL,
         delay,
@@ -422,6 +440,7 @@ class SpeechPlayback{
                 eventTypes:[SPEECH_PLAYBACK_STATE_EVENT]
             }
         );
+        this.onState=onState;
         this.createObjectURL=createObjectURL||function createAudioURL(blob){return URL.createObjectURL(blob);};
         this.revokeObjectURL=revokeObjectURL||function revokeAudioURL(url){URL.revokeObjectURL(url);};
         this.delay=delay||function playbackDelay(duration,signal){
@@ -515,6 +534,12 @@ class SpeechPlayback{
                 }
             );
         }
+        try{
+            this.onState(detail);
+        }catch(error){
+            if(typeof globalThis.reportError==='function')globalThis.reportError(error);
+            else console.error(error);
+        }
         return detail;
     }
 
@@ -569,8 +594,10 @@ class SpeechPlayback{
     }
 
     async requestSpeech(part,signal){
+        const input=stripSpeechFormatting(part.input);
+        const preparation={speechInputPrepared:true};
         const payload={
-            input:part.input,
+            input,
             speed:part.speed,
             ...(this.model?{model:this.model}:{}),
             ...(part.voice?{voice:part.voice}:{}),
@@ -578,12 +605,12 @@ class SpeechPlayback{
         };
         if(typeof this.speech?.fetchTTS==='function'){
             return playableSpeechBlob(
-                await this.speech.fetchTTS(payload,signal)
+                await this.speech.fetchTTS(payload,signal,preparation)
             );
         }
         if(typeof this.speech?.synthesize==='function'){
             return playableSpeechBlob(
-                await this.speech.synthesize(payload,{signal})
+                await this.speech.synthesize(payload,{signal},preparation)
             );
         }
         const error=new Error(this.message('unavailable'));
@@ -1002,12 +1029,15 @@ class SpeechPlayback{
         this.audio.removeEventListener('error',this.boundError);
         this.destroyed=true;
         this.events.dispose();
+        this.onState=function destroyedSpeechPlaybackStateObserver(){};
         return true;
     }
 }
 
 export {
     SPEECH_PLAYBACK_STATE_EVENT,
+    SPEECH_VOICE_ALIASES,
+    SPEECH_VOICE_OPTIONS,
     SpeechPlayback,
     splitSpeechText
 };

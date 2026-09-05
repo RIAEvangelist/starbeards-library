@@ -1,13 +1,13 @@
-import { arcaneLogging } from '../logging.mjs?arcaneVersion=0.5.16';
+import { arcaneLogging } from '../logging.mjs?arcaneVersion=0.5.17';
 import {
   ARCANE_AI_ADAPTER_PROTOCOL,
   ArcaneAIError,
   normalizeModelSecurity,
   normalizeArcaneAIError,
   resolveModelSecurity,
-} from "./model-controller.mjs?arcaneVersion=0.5.16";
-import { createPackagedWllamaRuntime } from "./browser-wllama-runtime.mjs?arcaneVersion=0.5.16";
-import { arcaneEvents } from "../event-manager.mjs?arcaneVersion=0.5.16";
+} from "./model-controller.mjs?arcaneVersion=0.5.17";
+import { createPackagedWllamaRuntime } from "./browser-wllama-runtime.mjs?arcaneVersion=0.5.17";
+import { arcaneEvents } from "../event-manager.mjs?arcaneVersion=0.5.17";
 
 const completeValue = (value) => value;
 

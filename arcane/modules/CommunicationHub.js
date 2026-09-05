@@ -1,7 +1,7 @@
 import {createArcaneEventSource} from 'arcane-os/event-manager';
-import CommunicationMessage from '../entities/CommunicationMessage.js?arcaneVersion=0.5.16';
-import CommunicationThread from '../entities/CommunicationThread.js?arcaneVersion=0.5.16';
-import CommunicationProviderRegistry from './CommunicationProviderRegistry.js?v=2&arcaneVersion=0.5.16';
+import CommunicationMessage from '../entities/CommunicationMessage.js?arcaneVersion=0.5.17';
+import CommunicationThread from '../entities/CommunicationThread.js?arcaneVersion=0.5.17';
+import CommunicationProviderRegistry from './CommunicationProviderRegistry.js?v=2&arcaneVersion=0.5.17';
 
 const communicationHubEvents={
     refreshCancelled:'communications-refresh-cancelled',

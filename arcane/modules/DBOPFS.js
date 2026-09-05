@@ -1,6 +1,6 @@
 import { arcaneLogging } from 'arcane-os/logging';
-import Is from "../../node_modules/strong-type/index.js?arcaneVersion=0.5.16";
-import {openApplicationDataDirectory} from './AppDataScope.js?arcaneVersion=0.5.16';
+import Is from "../../node_modules/strong-type/index.js?arcaneVersion=0.5.17";
+import {openApplicationDataDirectory} from './AppDataScope.js?arcaneVersion=0.5.17';
 import {
     createArcaneEventSource,
     projectArcaneDOMEvent
@@ -210,7 +210,7 @@ class DBOPFS {
 
         if(typeof this.#writeWorker?.postMessage!=='function'){
             this.#writeWorker=new Worker(
-                new URL('./DBOPFSWorker.js?arcaneVersion=0.5.16',import.meta.url)
+                new URL('./DBOPFSWorker.js?arcaneVersion=0.5.17',import.meta.url)
             );
         }
 

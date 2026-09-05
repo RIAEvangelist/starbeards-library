@@ -842,8 +842,8 @@ function validateConfiguration(configuration, role) {
 function nestedWorkerUrl(role) {
   const url = new URL(
     role === "stt"
-      ? "./browser-whisper-worker.mjs?arcaneVersion=0.5.16"
-      : "./browser-kokoro-worker.mjs?arcaneVersion=0.5.16",
+      ? "./browser-whisper-worker.mjs?arcaneVersion=0.5.17"
+      : "./browser-kokoro-worker.mjs?arcaneVersion=0.5.17",
     import.meta.url,
   );
   url.searchParams.set("arcaneSpeechWorkerMode", "artifact-module-worker");

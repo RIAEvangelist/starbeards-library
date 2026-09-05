@@ -1,8 +1,8 @@
 import {createArcaneEventSource} from 'arcane-os/event-manager';
-import MailOutbox from './MailOutbox.mjs?arcaneVersion=0.5.16';
+import MailOutbox from './MailOutbox.mjs?arcaneVersion=0.5.17';
 import {
     sendMailReport,
-} from './MailTransport.mjs?arcaneVersion=0.5.16';
+} from './MailTransport.mjs?arcaneVersion=0.5.17';
 
 let userInstance=null;
 
@@ -170,7 +170,7 @@ function normalizedNativeMailError(error){
 
 async function loadRequiredMailStorage(){
     try{
-        await import('./DBOPFS.js?arcaneVersion=0.5.16');
+        await import('./DBOPFS.js?arcaneVersion=0.5.17');
     }catch{
         throw codedError(
             'Mail outbox storage is unavailable.',
@@ -190,7 +190,7 @@ async function loadRequiredMailStorage(){
 async function loadOptionalMailUser(injectedUser){
     if(injectedUser!==undefined) return injectedUser;
     if(!userInstance){
-        const {default:UserEntity}=await import('../entities/User.js?arcaneVersion=0.5.16');
+        const {default:UserEntity}=await import('../entities/User.js?arcaneVersion=0.5.17');
         userInstance=new UserEntity();
     }
     return userInstance;

@@ -1,4 +1,4 @@
-import * as ArcaneNetworkPolicy from './ArcaneNetworkPolicy.js?v=3&arcaneVersion=0.5.16';
+import * as ArcaneNetworkPolicy from './ArcaneNetworkPolicy.js?v=3&arcaneVersion=0.5.17';
 
 function completeText(value,fallback){
     return typeof value==='string'&&value.length>0?value:fallback;

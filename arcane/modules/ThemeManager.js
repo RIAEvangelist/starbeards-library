@@ -1,7 +1,7 @@
-import Theme,{arcaneDarkThemeTokens,arcaneLightThemeTokens} from '../entities/Theme.js?arcaneVersion=0.5.16';
-import PreferenceStore from './PreferenceStore.js?arcaneVersion=0.5.16';
-import {applyAppearancePreferences,createAppearancePreferenceStore} from './AppearancePreferences.js?arcaneVersion=0.5.16';
-import SystemAppearance from './SystemAppearance.js?arcaneVersion=0.5.16';
+import Theme,{arcaneDarkThemeTokens,arcaneLightThemeTokens} from '../entities/Theme.js?arcaneVersion=0.5.17';
+import PreferenceStore from './PreferenceStore.js?arcaneVersion=0.5.17';
+import {applyAppearancePreferences,createAppearancePreferenceStore} from './AppearancePreferences.js?arcaneVersion=0.5.17';
+import SystemAppearance from './SystemAppearance.js?arcaneVersion=0.5.17';
 import {
     createArcaneEventSource,
     projectArcaneDOMEvent

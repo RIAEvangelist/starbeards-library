@@ -1,5 +1,5 @@
 import {createArcaneEventSource} from 'arcane-os/event-manager';
-import TerminalSession from '../entities/TerminalSession.js?arcaneVersion=0.5.16';
+import TerminalSession from '../entities/TerminalSession.js?arcaneVersion=0.5.17';
 
 export const TERMINAL_CLIENT_EVENT_TYPES={
     sessionStarted:'terminal-session',
