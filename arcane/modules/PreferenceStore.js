@@ -1,6 +1,6 @@
 import {createArcaneEventSource} from 'arcane-os/event-manager';
-import Preference,{preferenceSchema} from '../entities/Preference.js?arcaneVersion=0.5.15';
-import {resolveApplicationLocalStorageKey} from './AppDataScope.js?arcaneVersion=0.5.15';
+import Preference,{preferenceSchema} from '../entities/Preference.js?arcaneVersion=0.5.16';
+import {resolveApplicationLocalStorageKey} from './AppDataScope.js?arcaneVersion=0.5.16';
 
 export const PREFERENCE_STORE_ERROR_CODES={
     adapterInvalid:'ARCANE_PREFERENCE_STORE_ADAPTER_INVALID',

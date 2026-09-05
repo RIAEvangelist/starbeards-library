@@ -1,5 +1,5 @@
 import {createArcaneEventSource} from 'arcane-os/event-manager';
-import {resolveApplicationLocalStorageKey} from './AppDataScope.js?arcaneVersion=0.5.15';
+import {resolveApplicationLocalStorageKey} from './AppDataScope.js?arcaneVersion=0.5.16';
 
 export const RECORD_REVIEW_STORE_ERROR_CODES={
     adapterInvalid:'ARCANE_RECORD_REVIEW_STORE_ADAPTER_INVALID',

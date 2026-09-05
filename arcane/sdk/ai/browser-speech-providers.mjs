@@ -4,14 +4,14 @@ import {
   isBrowserSpeechArtifactError,
   isBrowserSpeechAuthority,
   isDbopfsSpeechArtifactStore,
-} from "./browser-speech-artifacts.mjs?arcaneVersion=0.5.15";
+} from "./browser-speech-artifacts.mjs?arcaneVersion=0.5.16";
 
 const completeValue = (value) => value;
 import {
   createSpeechWorkerClient,
   isSpeechWorkerClient,
   isSpeechWorkerClientError,
-} from "./speech-worker-client.mjs?arcaneVersion=0.5.15";
+} from "./speech-worker-client.mjs?arcaneVersion=0.5.16";
 
 const AI_PROVIDER_PROTOCOL = "arcane-ai-provider/2";
 const AI_MODEL_AUTHORITY_PROTOCOL = "arcane-ai-model-authority/1";

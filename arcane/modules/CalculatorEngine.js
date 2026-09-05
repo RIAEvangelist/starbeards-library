@@ -1,5 +1,5 @@
 import {createArcaneEventSource} from 'arcane-os/event-manager';
-import Calculation from '../entities/Calculation.js?arcaneVersion=0.5.15';
+import Calculation from '../entities/Calculation.js?arcaneVersion=0.5.16';
 
 const FUNCTIONS={sqrt:Math.sqrt,abs:Math.abs,sin:Math.sin,cos:Math.cos,tan:Math.tan,log:Math.log10,ln:Math.log};
 const CONSTANTS={pi:Math.PI,e:Math.E};

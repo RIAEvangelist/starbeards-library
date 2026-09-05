@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="./arcane/css/layout.css?v=3&amp;arcaneVersion=0.5.15">
+<link rel="stylesheet" href="./arcane/css/layout.css?v=3&amp;arcaneVersion=0.5.16">
 <style>
     :host {
         --arcane-speech-padding-block-end: .85rem;
@@ -140,20 +140,20 @@
         projectArcaneDOMEvent
     } = await import('arcane-os/event-manager');
 
-    void import('../modules/DBLS.js?arcaneVersion=0.5.15').catch(
+    void import('../modules/DBLS.js?arcaneVersion=0.5.16').catch(
         function reportDBLSImportFailure(error) {
             arcaneLogging.error('The shared database runtime could not load.');
         }
     );
-    const aiModuleImport = import('../modules/AI.js?arcaneVersion=0.5.15');
+    const aiModuleImport = import('../modules/AI.js?arcaneVersion=0.5.16');
     const {
         requestAIRuntimeIntent,
         subscribeAIRuntimeState
-    } = await import('../modules/AIRuntimeState.js?arcaneVersion=0.5.15');
+    } = await import('../modules/AIRuntimeState.js?arcaneVersion=0.5.16');
     const {
         createSTTActivationController,
         formatAIRuntimeProgress
-    } = await import('../modules/ComponentContracts.js?arcaneVersion=0.5.15');
+    } = await import('../modules/ComponentContracts.js?arcaneVersion=0.5.16');
 
     const host = this;
     const events = createArcaneEventSource(

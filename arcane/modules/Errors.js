@@ -1,4 +1,4 @@
-import waitForComponent from './WaitForComponent.js?arcaneVersion=0.5.15';
+import waitForComponent from './WaitForComponent.js?arcaneVersion=0.5.16';
 import { arcaneLogging,readArcaneDeveloperMode } from 'arcane-os/logging';
 import {
     arcaneEvents,
@@ -145,7 +145,7 @@ function defaultStorage(target){
 
 async function sendWithWindowMail(target,...args){
     if(typeof target?.mail?.send!=='function'){
-        await import('./Mail.js?arcaneVersion=0.5.15');
+        await import('./Mail.js?arcaneVersion=0.5.16');
     }
 
     if(typeof target?.mail?.send!=='function'){
@@ -221,7 +221,7 @@ async function ensureHTMLImport(target){
     }
 
     try{
-        await import('./HTMLImport.js?arcaneVersion=0.5.15');
+        await import('./HTMLImport.js?arcaneVersion=0.5.16');
     }catch(error){
         if(!registry.get('html-import')){
             throw error;

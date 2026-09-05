@@ -1,4 +1,4 @@
-import {recurringChatMessages} from './ChatRecords.js?arcaneVersion=0.5.15';
+import {recurringChatMessages} from './ChatRecords.js?arcaneVersion=0.5.16';
 
 const FORBIDDEN_REQUEST_FIELDS=new Set([
     'messages',

@@ -1,4 +1,4 @@
-import {marked} from './Marked.min.js?arcaneVersion=0.5.15';
+import {marked} from './Marked.min.js?arcaneVersion=0.5.16';
 
 const BARE_HTTP_URL_PATTERN=/\bhttps?:\/\/[^\s<>\[\]"'`]+/giu;
 const BARE_WWW_URL_PATTERN=/\bwww\.[^\s<>\[\]"'`]+/giu;

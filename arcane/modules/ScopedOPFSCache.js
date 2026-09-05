@@ -1,7 +1,7 @@
 import {
     canonicalApplicationId,
     openApplicationDataDirectory
-} from './AppDataScope.js?arcaneVersion=0.5.15';
+} from './AppDataScope.js?arcaneVersion=0.5.16';
 
 function safeSegment(value,label){
     if(typeof value!=='string'){

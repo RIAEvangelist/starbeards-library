@@ -1,5 +1,5 @@
-import {analyzeRiskSignals} from './RiskSignalAnalyzer.js?arcaneVersion=0.5.15';
-import {canonicalNetworkHostname,emptyArcaneNetworkPolicy,findDeniedDomainRule,loadArcaneNetworkPolicy} from './ArcaneNetworkPolicy.js?v=3&arcaneVersion=0.5.15';
+import {analyzeRiskSignals} from './RiskSignalAnalyzer.js?arcaneVersion=0.5.16';
+import {canonicalNetworkHostname,emptyArcaneNetworkPolicy,findDeniedDomainRule,loadArcaneNetworkPolicy} from './ArcaneNetworkPolicy.js?v=3&arcaneVersion=0.5.16';
 
 export const scamRiskSignals=[
     {id:'urgency',label:'Urgency or secrecy pressure',weight:18,pattern:/\b(urgent|immediately|act now|do not tell|keep (?:this|it) secret|stay on the line)\b/i,guidance:'Pause. A legitimate organization will let you verify independently.'},

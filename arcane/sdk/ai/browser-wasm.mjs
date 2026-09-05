@@ -2,14 +2,14 @@ import {
   completeValueText,
   createModelController,
   ModelController,
-} from "./model-controller.mjs?arcaneVersion=0.5.15";
+} from "./model-controller.mjs?arcaneVersion=0.5.16";
 import {
   adaptV1LlmProvider,
   createBrowserModelSource,
   createBrowserWasmLlmProvider,
   createDbopfsModelStore,
-} from "./browser-wasm-llm-provider.mjs?arcaneVersion=0.5.15";
-import { BROWSER_WASM_RUNTIME_AUTHORITY } from "./browser-wllama-runtime.mjs?arcaneVersion=0.5.15";
+} from "./browser-wasm-llm-provider.mjs?arcaneVersion=0.5.16";
+import { BROWSER_WASM_RUNTIME_AUTHORITY } from "./browser-wllama-runtime.mjs?arcaneVersion=0.5.16";
 
 /**
  * Creates the public Arcane browser-local AI API module. The SDK owns lifecycle,

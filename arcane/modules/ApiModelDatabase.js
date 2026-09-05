@@ -1,5 +1,5 @@
 import {createArcaneEventSource} from 'arcane-os/event-manager';
-import ApiModelRecord from '../entities/ApiModelRecord.js?arcaneVersion=0.5.15';
+import ApiModelRecord from '../entities/ApiModelRecord.js?arcaneVersion=0.5.16';
 
 const apiModelEvents={
     requestStarted:'api-model-request',

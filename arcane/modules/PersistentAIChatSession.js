@@ -1,8 +1,8 @@
 import { arcaneLogging } from 'arcane-os/logging';
-import ChatEntity from '../entities/Chat.js?arcaneVersion=0.5.15';
+import ChatEntity from '../entities/Chat.js?arcaneVersion=0.5.16';
 import ConfiguredAIChatSession,{
     normalizeStructuralToolCall
-} from './ConfiguredAIChatSession.js?arcaneVersion=0.5.15';
+} from './ConfiguredAIChatSession.js?arcaneVersion=0.5.16';
 
 const SESSION_MANAGED_REQUEST_FIELDS=new Set([
     'messages',

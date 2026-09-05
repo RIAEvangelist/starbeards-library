@@ -1,12 +1,12 @@
 import { arcaneLogging } from 'arcane-os/logging';
-import ArcaneCommunicationBridge from './ArcaneCommunicationBridge.js?arcaneVersion=0.5.15';
-import CommunicationHub from './CommunicationHub.js?v=2&arcaneVersion=0.5.15';
-import CommunicationPreferences from './CommunicationPreferences.js?arcaneVersion=0.5.15';
-import {loadAndApplyTheme} from './ThemeManager.js?arcaneVersion=0.5.15';
+import ArcaneCommunicationBridge from './ArcaneCommunicationBridge.js?arcaneVersion=0.5.16';
+import CommunicationHub from './CommunicationHub.js?v=2&arcaneVersion=0.5.16';
+import CommunicationPreferences from './CommunicationPreferences.js?arcaneVersion=0.5.16';
+import {loadAndApplyTheme} from './ThemeManager.js?arcaneVersion=0.5.16';
 import {
     inspectMessageRecords,
     unavailableMessageInspection
-} from './MessageAdvisory.js?v=3&arcaneVersion=0.5.15';
+} from './MessageAdvisory.js?v=3&arcaneVersion=0.5.16';
 
 export const COMMUNICATION_APP_CONTROLLER_ERROR_CODES={
     destroyed:'ARCANE_COMMUNICATION_APP_CONTROLLER_DESTROYED'

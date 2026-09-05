@@ -1,5 +1,5 @@
 import { arcaneLogging } from 'arcane-os/logging';
-import {loadAndApplyTheme} from './ThemeManager.js?arcaneVersion=0.5.15';
+import {loadAndApplyTheme} from './ThemeManager.js?arcaneVersion=0.5.16';
 import {createArcaneEventSource} from 'arcane-os/event-manager';
 
 const sharedKey='arcaneThemeReady';

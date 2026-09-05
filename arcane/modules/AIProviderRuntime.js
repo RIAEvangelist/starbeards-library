@@ -6,7 +6,7 @@ import {
     publishAIRuntimeRolesState,
     startAIRuntime,
     subscribeAIRuntimeIntents
-} from './AIRuntimeState.js?arcaneVersion=0.5.15';
+} from './AIRuntimeState.js?arcaneVersion=0.5.16';
 
 const completeValue=(value)=>value;
 
