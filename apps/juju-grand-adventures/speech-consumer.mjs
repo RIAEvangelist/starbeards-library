@@ -1,12 +1,9 @@
 import DBOPFS from 'arcane/DBOPFS';
 import {arcaneEvents} from 'arcane-os/event-manager';
-import SpeechPlayback, {
-    SPEECH_PLAYBACK_STATE_EVENT
-} from 'arcane-os/speech-playback';
 
 export const JUJU_SPEECH_AUTHORITY_REQUIRED = 'ARCANE_AI_MODEL_AUTHORITY_REQUIRED';
 
-const ARCANE_SDK_VERSION = '0.5.11';
+const ARCANE_SDK_VERSION = '0.5.12';
 const CONFIGURATION_ID = 'juju-grand-adventures-browser-speech';
 const DEFAULT_SPEED = 0.95;
 
@@ -82,6 +79,7 @@ export function createJuJuSpeech({
     let disposed = false;
     let generation = 0;
     let runtime = null;
+    let pendingStop = Promise.resolve(false);
 
     function assertActive() {
         if (disposed) {
@@ -129,47 +127,6 @@ export function createJuJuSpeech({
 
         assertActive();
 
-        const audio = document.createElement('audio');
-
-        audio.dataset.jujuNarration = 'sdk';
-        audio.hidden = true;
-        audio.preload = 'none';
-        document.body.append(audio);
-
-        const playback = new SpeechPlayback(
-            {
-                audio,
-                speech: ai,
-                model: selectedAuthority.model.id,
-                voice: selectedAuthority.defaultVoice,
-                responseFormat: 'wav',
-                speed: DEFAULT_SPEED,
-                messages: {
-                    unavailable: 'Local read aloud is not ready.',
-                    preparing: 'Preparing this page with Kokoro…',
-                    queued: 'Waiting to prepare this page…',
-                    ready: 'Narration is ready.',
-                    playing: 'Reading this page.',
-                    pausing: 'Turning to the next passage…',
-                    buffering: 'Preparing the next passage…',
-                    paused: 'Narration is paused.',
-                    ended: 'Narration finished.',
-                    stopped: 'Narration stopped.',
-                    preparationStopped: 'Narration preparation stopped.',
-                    autoplayBlocked: 'Narration is ready. Select Play narration to begin.',
-                    playbackError: 'The prepared narration could not be played.',
-                    fallbackError: 'Local read aloud stopped unexpectedly.'
-                }
-            }
-        );
-
-        playback.events.subscribe(
-            SPEECH_PLAYBACK_STATE_EVENT,
-            function observeJuJuPlaybackState(event) {
-                onState(event.detail);
-            }
-        );
-
         const configuration = {
             protocol: AI_BROWSER_SPEECH_CONFIGURATION_PROTOCOL,
             id: CONFIGURATION_ID,
@@ -185,14 +142,13 @@ export function createJuJuSpeech({
         try {
             await ai.configureBrowserSpeech(configuration);
             assertActive();
-            ai.configureTTSSegmentation({
-                punctuation: 'any',
-                wordCadence: 4
-            });
+            ai.configureTTSSegmentation(
+                {
+                    punctuation: 'any',
+                    wordCadence: null
+                }
+            );
         } catch (error) {
-            playback.destroy();
-            audio.remove();
-
             if (
                 ai.browserSpeechDescriptor?.configurationId
                 === CONFIGURATION_ID
@@ -216,8 +172,6 @@ export function createJuJuSpeech({
 
         return {
             ai,
-            audio,
-            playback,
             authority: selectedAuthority
         };
     }
@@ -245,8 +199,7 @@ export function createJuJuSpeech({
     }
 
     async function read({
-        key,
-        parts,
+        passages,
         voice,
         speed = DEFAULT_SPEED
     } = {}) {
@@ -256,49 +209,114 @@ export function createJuJuSpeech({
 
         generation = operationGeneration;
         await initialize();
+        await pendingStop;
 
         if (operationGeneration !== generation || disposed) {
-            return {
-                ready: false,
-                played: false,
-                cancelled: true
-            };
+            return false;
         }
 
         const selectedVoice = String(voice || runtime.authority.defaultVoice);
 
-        if (runtime.playback.hasAudio()) {
-            const played = await runtime.playback.replay();
-
-            return {
-                ready: true,
-                played,
-                replayed: true
-            };
-        }
-
         await runtime.ai.setSpeechMuted(false);
 
         if (operationGeneration !== generation || disposed) {
-            await runtime.ai.setSpeechMuted(true);
-            return {
-                ready: false,
-                played: false,
-                cancelled: true
-            };
+            return false;
         }
 
-        return runtime.playback.prepare(
-            {
-                key,
-                parts,
-                model: runtime.authority.model.id,
-                voice: selectedVoice,
-                responseFormat: 'wav',
-                speed,
-                autoplay: true
+        const stopObservingFailures = arcaneEvents.subscribe(
+            'ai-tts-failure',
+            function reportNarrationFailure(event) {
+                if (operationGeneration === generation && !disposed) {
+                    onState(
+                        {
+                            state: 'error',
+                            error: event.detail.error
+                        }
+                    );
+                }
             }
         );
+
+        try {
+            // The SDK owns segmentation, provider backpressure and ordered audio.
+            // Submit the whole page before awaiting any passage's completion.
+            const completions = passages.map(
+                function queueJuJuPassage(passage) {
+                    return runtime.ai.streamTTS(
+                        passage.text,
+                        true,
+                        {
+                            voice: selectedVoice,
+                            speed,
+                            pauseAfterMs: passage.pauseMs,
+                            waitForPlayback: true
+                        }
+                    );
+                }
+            );
+            const playbackCompletion = Promise.all(completions);
+
+            onState(
+                {
+                    state: 'queued'
+                }
+            );
+            resume().catch(
+                function reportNarrationResumeFailure(error) {
+                    if (operationGeneration === generation && !disposed) {
+                        onState(
+                            {
+                                state: 'error',
+                                error
+                            }
+                        );
+                    }
+                }
+            );
+
+            const results = await playbackCompletion;
+
+            return operationGeneration === generation
+                && !disposed
+                && results.every(Boolean);
+        } catch (error) {
+            if (operationGeneration === generation && !disposed) {
+                runtime.ai.stopAudio();
+            }
+
+            throw error;
+        } finally {
+            stopObservingFailures();
+
+            if (operationGeneration === generation) {
+                generation += 1;
+            }
+        }
+    }
+
+    async function resume() {
+        assertActive();
+
+        if (!runtime) {
+            return false;
+        }
+
+        const operationGeneration = generation;
+        const resumed = await runtime.ai.resumeAudio();
+
+        if (operationGeneration !== generation || disposed) {
+            return false;
+        }
+
+        if (!resumed) {
+            onState(
+                {
+                    state: 'waiting-for-gesture'
+                }
+            );
+        }
+
+        return resumed;
     }
 
     function stop() {
@@ -308,15 +326,25 @@ export function createJuJuSpeech({
             return Promise.resolve(false);
         }
 
-        runtime.playback.stop();
+        runtime.ai.stopAudio();
 
         const status = runtime.ai.providerRuntime.status('tts');
 
         if (status.state === 'loading') {
-            return runtime.ai.setSpeechMuted(true);
+            const stopOperation = runtime.ai.setSpeechMuted(true);
+
+            pendingStop = stopOperation;
+
+            function clearSettledStop() {
+                if (pendingStop === stopOperation) {
+                    pendingStop = Promise.resolve(false);
+                }
+            }
+
+            stopOperation.then(clearSettledStop, clearSettledStop);
         }
 
-        return Promise.resolve(status);
+        return pendingStop;
     }
 
     async function dispose() {
@@ -331,10 +359,35 @@ export function createJuJuSpeech({
             return true;
         }
 
-        runtime.playback.destroy();
-        runtime.audio.remove();
-        await runtime.ai.disposeBrowserSpeech();
+        runtime.ai.stopAudio();
+
+        let stopError = null;
+
+        try {
+            await pendingStop;
+        } catch (error) {
+            stopError = error;
+        }
+
+        try {
+            await runtime.ai.disposeBrowserSpeech();
+        } catch (error) {
+            if (stopError) {
+                throw new AggregateError(
+                    [stopError, error],
+                    'JuJu read aloud could not stop loading or release browser speech.'
+                );
+            }
+
+            throw error;
+        }
+
         runtime = null;
+
+        if (stopError) {
+            throw stopError;
+        }
+
         return true;
     }
 
@@ -344,13 +397,6 @@ export function createJuJuSpeech({
             configured: Boolean(runtime?.ai.browserSpeechDescriptor?.tts),
             provider: runtime
                 ? runtime.ai.providerRuntime.status('tts', {execution: true})
-                : null,
-            playback: runtime
-                ? {
-                    state: runtime.playback.state,
-                    key: runtime.playback.key,
-                    hasAudio: runtime.playback.hasAudio()
-                }
                 : null
         };
     }
@@ -358,6 +404,7 @@ export function createJuJuSpeech({
     return {
         initialize,
         read,
+        resume,
         stop,
         dispose,
         inspect

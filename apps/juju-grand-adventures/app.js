@@ -103,7 +103,7 @@ let scrollFrame = 0;
 let narrationActive = false;
 let narrationReady = false;
 let narrationRevision = 0;
-let activeNarrationKey = '';
+let narrationWaitingForGesture = false;
 let jujuSpeech = null;
 let lastOpenButton = null;
 let activeCopyDrag = null;
@@ -570,153 +570,74 @@ function narrationFailureMessage(error) {
 }
 
 function handleSpeechPlaybackState(detail) {
-    if (
-        !detail
-        || typeof detail !== 'object'
-        || (
-            detail.key
-            && activeNarrationKey
-            && detail.key !== activeNarrationKey
-        )
-    ) {
+    if (!detail || typeof detail !== 'object') {
         return;
     }
 
-    if (detail.state === 'synthesizing') {
-        clearNarrationError();
-        updateNarrationButton(true, 'Preparing page…', true);
-        updateNarrationStatus(detail.message);
-        return;
-    }
-
-    if (detail.state === 'ready') {
-        clearNarrationError();
-
-        if (detail.reason === 'audio-autoplay-rejected') {
-            updateNarrationButton(false, 'Play narration');
-            updateNarrationStatus(detail.message);
-        } else {
-            updateNarrationButton(true, 'Starting narration…', true);
-            updateNarrationStatus(detail.message);
-        }
-
-        return;
-    }
-
-    if (detail.state === 'playing') {
+    if (detail.state === 'queued') {
+        narrationWaitingForGesture = false;
         clearNarrationError();
         updateNarrationButton(true, 'Stop reading');
         updateNarrationStatus(
-            getSelectedVoiceLabel()
-            + ' is reading this page.'
+            'Preparing and reading this page with '
+            + getSelectedVoiceLabel()
+            + '.'
         );
         return;
     }
 
-    if (detail.state === 'buffering') {
-        updateNarrationButton(true, 'Preparing next passage…', true);
-        updateNarrationStatus(detail.message);
-        return;
-    }
-
-    if (detail.state === 'pausing') {
-        updateNarrationButton(true, 'Stop reading');
-        updateNarrationStatus(detail.message);
-        return;
-    }
-
-    if (detail.state === 'paused') {
+    if (detail.state === 'waiting-for-gesture') {
+        narrationWaitingForGesture = true;
         updateNarrationButton(false, 'Play narration');
-        updateNarrationStatus('Narration is paused. Select Play narration to continue.');
-        return;
-    }
-
-    if (detail.state === 'ended') {
-        handleNarrationEnd();
+        updateNarrationStatus(
+            'Select Play narration to let the browser play the queued audio.'
+        );
         return;
     }
 
     if (detail.state === 'error') {
-        narrationRevision += 1;
-        updateNarrationButton(false);
-        narrationStatus.dataset.speechStatusCode = detail.code || 'ARCANE_AI_TTS_FAILED';
-        updateNarrationStatus(
-            narrationFailureMessage(
-                {
-                    message: detail.message
-                }
-            )
-            + ' Please try again.'
-        );
+        handleUnexpectedNarrationFailure(detail.error);
     }
 }
 
 async function beginKokoroNarration(passages, voice, revision) {
-    const key = 'juju-narration:' + revision;
-    const parts = passages.map(
-        function createSpeechPlaybackPart(passage) {
-            return {
-                input: passage.text,
-                pauseAfterMs: passage.pauseMs
-            };
-        }
-    );
-
-    activeNarrationKey = key;
-
     try {
-        const result = await jujuSpeech.read(
+        const completed = await jujuSpeech.read(
             {
-                key,
-                parts,
+                passages,
                 voice,
                 speed: 0.95
             }
         );
 
-        if (
-            revision !== narrationRevision
-            || result.cancelled
-        ) {
+        if (revision !== narrationRevision) {
             return;
         }
 
-        if (result.ready && !result.played) {
-            updateNarrationButton(false, 'Play narration');
+        if (completed) {
+            handleNarrationEnd();
+        } else {
+            stopNarration();
             updateNarrationStatus(
-                'Narration is ready. Select Play narration to begin.'
+                'Narration stopped before the page finished. Select Read this page to try again.'
             );
         }
     } catch (error) {
-        if (
-            revision !== narrationRevision
-            || error?.name === 'AbortError'
-            || error?.code === 'ARCANE_AI_REQUEST_ABORTED'
-            || error?.code === 'ARCANE_AI_OPERATION_SUPERSEDED'
-        ) {
+        if (revision !== narrationRevision) {
             return;
         }
 
-        narrationRevision += 1;
-        updateNarrationButton(false);
-        narrationStatus.dataset.speechStatusCode = error?.code
-            || 'ARCANE_AI_TTS_FAILED';
-        updateNarrationStatus(
-            narrationFailureMessage(error)
-            + ' The visual story remains available; check the connection and try again.'
-        );
-        reportApplicationError(error);
+        handleUnexpectedNarrationFailure(error);
     }
 }
 
 function handleUnexpectedNarrationFailure(error) {
-    if (!narrationActive) {
-        return;
-    }
-
     stopNarration();
+    narrationStatus.dataset.speechStatusCode = error?.code
+        || 'ARCANE_AI_TTS_FAILED';
     updateNarrationStatus(
-        'Read aloud stopped unexpectedly. Please try again.'
+        narrationFailureMessage(error)
+        + ' The visual story remains available. Please try again.'
     );
     reportApplicationError(error);
 }
@@ -725,17 +646,28 @@ function handleNarrationStopFailure(error) {
     narrationStatus.dataset.speechStatusCode = error?.code
         || 'ARCANE_AI_TTS_STOP_FAILED';
     updateNarrationStatus(
-        'Read aloud could not finish stopping cleanly. Reload the story before trying again.'
+        narrationFailureMessage(error)
+        + ' Read aloud could not finish stopping cleanly. Please try again.'
     );
     reportApplicationError(error);
 }
 
 function stopNarration() {
     narrationRevision += 1;
-    activeNarrationKey = '';
+    narrationWaitingForGesture = false;
+
+    const revision = narrationRevision;
 
     if (jujuSpeech) {
-        jujuSpeech.stop().catch(handleNarrationStopFailure);
+        jujuSpeech.stop().catch(
+            function reportCurrentNarrationStopFailure(error) {
+                if (revision === narrationRevision) {
+                    handleNarrationStopFailure(error);
+                } else {
+                    reportApplicationError(error);
+                }
+            }
+        );
     }
 
     if (!narrationReady) {
@@ -1037,6 +969,8 @@ function collectNarrationPassages(page) {
 }
 
 function handleNarrationEnd() {
+    narrationRevision += 1;
+    narrationWaitingForGesture = false;
     clearNarrationError();
     updateNarrationButton(false);
     updateNarrationStatus('Ready to read with ' + getSelectedVoiceLabel() + '.');
@@ -1049,6 +983,38 @@ function handleReadClick() {
 
     if (narrationActive) {
         stopNarration();
+        return;
+    }
+
+    if (narrationWaitingForGesture) {
+        const revision = narrationRevision;
+
+        narrationWaitingForGesture = false;
+        updateNarrationButton(true, 'Stop reading');
+        updateNarrationStatus('Resuming narration…');
+        jujuSpeech.resume().then(
+            function handleNarrationResume(resumed) {
+                if (revision !== narrationRevision) {
+                    return;
+                }
+
+                if (resumed) {
+                    updateNarrationStatus(
+                        'Preparing and reading this page with '
+                        + getSelectedVoiceLabel()
+                        + '.'
+                    );
+                }
+            }
+        ).catch(
+            function reportNarrationResumeFailure(error) {
+                if (revision === narrationRevision) {
+                    handleUnexpectedNarrationFailure(error);
+                } else {
+                    reportApplicationError(error);
+                }
+            }
+        );
         return;
     }
 
@@ -1100,7 +1066,7 @@ function restoreVoicePreference() {
 }
 
 function handleVoiceChange() {
-    if (narrationActive) {
+    if (narrationActive || narrationWaitingForGesture) {
         stopNarration();
     }
 
