@@ -608,7 +608,7 @@ function handleSpeechPlaybackState(detail) {
         updateNarrationButton(true, 'Stop reading');
         updateNarrationStatus(
             getSelectedVoiceLabel()
-            + ' is reading while the next passage is prepared.'
+            + ' is reading this page.'
         );
         return;
     }
@@ -1017,11 +1017,7 @@ function collectNarrationPassages(page) {
             lineBreaks[breakIndex].replaceWith('\n');
         }
 
-        const passageText = passage.textContent
-            .replace(/\r\n?/g, '\n')
-            .replace(/[^\S\n]+/g, ' ')
-            .replace(/ *\n+ */g, '\n')
-            .trim();
+        const passageText = passage.textContent;
 
         if (passageText) {
             narrationPassages.push(
