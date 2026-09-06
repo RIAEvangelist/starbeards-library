@@ -1139,7 +1139,11 @@ function handleReadClick() {
     }
 
     if (narrationActive) {
-        stopNarration();
+        stopNarration(
+            {
+                cancelPreparation: false
+            }
+        );
         return;
     }
 
