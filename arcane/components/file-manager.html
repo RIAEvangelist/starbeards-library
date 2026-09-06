@@ -338,18 +338,21 @@
 
 <input id="fileUpload" type="file" hidden multiple>
 
-<html-import id="directoryModal" class="modal" href="./arcane/components/modal.html?v=13&amp;arcaneVersion=0.5.17"></html-import>
-<html-import id="fileModal" class="modal" href="./arcane/components/modal.html?v=13&amp;arcaneVersion=0.5.17"></html-import>
-<html-import id="deleteModal" class="modal" href="./arcane/components/modal.html?v=13&amp;arcaneVersion=0.5.17"></html-import>
+<html-import id="directoryModal" class="modal" href="./arcane/components/modal.html?v=13&amp;arcaneVersion=0.5.18"></html-import>
+<html-import id="fileModal" class="modal" href="./arcane/components/modal.html?v=13&amp;arcaneVersion=0.5.18"></html-import>
+<html-import id="deleteModal" class="modal" href="./arcane/components/modal.html?v=13&amp;arcaneVersion=0.5.18"></html-import>
 
 <script type="module">
+    const {default:Is}=await import('strong-type');
+    const is=new Is(false);
+
     const {arcaneLogging}=await import('arcane-os/logging');
 
-    import('../modules/DBOPFS.js?arcaneVersion=0.5.17');
+    import('../modules/DBOPFS.js?arcaneVersion=0.5.18');
     //importing Document at the end of the file to avoid blocking;
 
     const host=this;
-    const {default:waitForComponent}=await import('../modules/WaitForComponent.js?arcaneVersion=0.5.17');
+    const {default:waitForComponent}=await import('../modules/WaitForComponent.js?arcaneVersion=0.5.18');
     const {createArcaneEventSource,projectArcaneDOMEvent}=await import('arcane-os/event-manager');
     const events=createArcaneEventSource(host,{source:'arcane.component.file-manager',eventTypes:['file-manager-action','file-manager-select','file-manager-open','file-manager-ready']});
     const lifecycleController=new AbortController();
@@ -367,7 +370,7 @@
     const dirs=host.dataset.dirs?.split(',').map(
         directory=>directory.trim()
     ).filter(Boolean);
-    const fileEntityPromise=import('../entities/File.js?arcaneVersion=0.5.17');
+    const fileEntityPromise=import('../entities/File.js?arcaneVersion=0.5.18');
 
     let activeFileURL='';
     let uploadDirectory='';
@@ -431,12 +434,12 @@
     }
 
     function isVisibleEntry(entry={}){
-        const normalized=typeof entry==='string'
+        const normalized=is.string(entry)
             ?{name:entry,path:entry,kind:'file'}
             :entry;
         const activeFilter=filter||provider?.filter;
 
-        if(typeof activeFilter==='function'){
+        if(is.function(activeFilter)){
             return activeFilter(normalized)!==false;
         }
 
@@ -542,7 +545,7 @@
         if(destroyed){
             return null;
         }
-        if(nextProvider!==null&&typeof nextProvider?.list!=='function'){
+        if(nextProvider!==null&&!is.function(nextProvider?.list)){
             throw new TypeError('File manager providers must expose list(path).');
         }
 
@@ -564,7 +567,7 @@
         if(destroyed){
             return null;
         }
-        if(nextFilter!==null&&typeof nextFilter!=='function'){
+        if(nextFilter!==null&&!is.function(nextFilter)){
             throw new TypeError('File manager filters must be functions or null.');
         }
 
@@ -593,7 +596,7 @@
     }
 
     function normalizeProviderEntry(candidate={},parentPath=''){
-        if(!candidate||typeof candidate!=='object'){
+        if(!candidate||!is.object(candidate)){
             return null;
         }
 
@@ -620,7 +623,7 @@
             name:name,
             path:path,
             kind:kind,
-            size:Number.isFinite(Number(candidate.size))?Number(candidate.size):0,
+            size:is.finite(Number(candidate.size))?Number(candidate.size):0,
             mimeType:String(candidate.mimeType||''),
             lastModified:candidate.lastModified||'',
             status:String(candidate.status||''),
@@ -629,7 +632,7 @@
     }
 
     function normalizeProviderEntries(entries=[],parentPath=''){
-        if(!Array.isArray(entries)){
+        if(!is.array(entries)){
             throw new TypeError('File manager provider list(path) must return an array.');
         }
 
@@ -827,13 +830,13 @@
         icon.className='tree-entry-icon';
         icon.alt='';
         icon.src=entry.kind==='directory'
-            ?new URL('./arcane/img/folder.svg?arcaneVersion=0.5.17',document.baseURI).href
-            :new URL('./arcane/img/doc.svg?arcaneVersion=0.5.17',document.baseURI).href;
+            ?new URL('./arcane/img/folder.svg?arcaneVersion=0.5.18',document.baseURI).href
+            :new URL('./arcane/img/doc.svg?arcaneVersion=0.5.18',document.baseURI).href;
         name.className='tree-entry-name';
         name.innerText=entry.name;
         count.className='tree-file-count';
 
-        if(Number.isFinite(Number(entry.fileCount))){
+        if(is.finite(Number(entry.fileCount))){
             setFileCountLabel(count,Number(entry.fileCount),false);
             item.dataset.fileCount=String(Number(entry.fileCount));
         }
@@ -900,7 +903,7 @@
                 const exact=Number(current._fileManagerEntry?.fileCount);
                 const countElement=current.querySelector(':scope>.tree-item-row>.tree-file-count');
 
-                if(Number.isFinite(exact)){
+                if(is.finite(exact)){
                     current.dataset.fileCount=String(exact);
                     setFileCountLabel(countElement,exact,false);
                 }else if(current.dataset.loaded==='true'){
@@ -1188,7 +1191,7 @@
             return true;
         }
 
-        if(typeof activeTreeProvider().open==='function'){
+        if(is.function(activeTreeProvider().open)){
             try{
                 await activeTreeProvider().open(entry);
                 if(destroyed||generation!==treeOpenGeneration){
@@ -1406,7 +1409,7 @@
         deleteButton.innerText='Delete File';
         deleteIcon.alt='';
         deleteIcon.className='action-icon';
-        deleteIcon.src=new URL('./arcane/img/trash.svg?arcaneVersion=0.5.17',document.baseURI).href;
+        deleteIcon.src=new URL('./arcane/img/trash.svg?arcaneVersion=0.5.18',document.baseURI).href;
         deleteButton.prepend(deleteIcon);
         deleteButton.addEventListener(
             'click',
@@ -1508,7 +1511,7 @@
 
         if(
             ['json','jsonl','ndjson'].includes(fileRef.ext)
-            &&typeof host.previewTransform==='function'
+            &&is.function(host.previewTransform)
         ){
             preview=await host.previewTransform(
                 preview,
@@ -1530,7 +1533,7 @@
                 break;
             case 'jsonl':
             case 'ndjson':{
-                const records=Array.isArray(preview)?preview:[];
+                const records=is.array(preview)?preview:[];
 
                 for(let i=0;i<records.length;i++){
                     rendered.append(
@@ -1612,7 +1615,7 @@
 
         fileIcon.alt='';
         fileIcon.className='icon file-icon';
-        fileIcon.src=new URL('./arcane/img/doc.svg?arcaneVersion=0.5.17',document.baseURI).href;
+        fileIcon.src=new URL('./arcane/img/doc.svg?arcaneVersion=0.5.18',document.baseURI).href;
         fileDetails.className='file-details';
         fileLabel.className='file-name';
         fileLabel.innerText=fileName;
@@ -1635,7 +1638,7 @@
 
         deleteIcon.alt='';
         deleteIcon.className='action-icon';
-        deleteIcon.src=new URL('./arcane/img/trash.svg?arcaneVersion=0.5.17',document.baseURI).href;
+        deleteIcon.src=new URL('./arcane/img/trash.svg?arcaneVersion=0.5.18',document.baseURI).href;
 
         openButton.addEventListener(
             'click',
@@ -1729,7 +1732,7 @@
                         return;
                     }
 
-                    if(closeFile&&typeof fileModal.close==='function'){
+                    if(closeFile&&is.function(fileModal.close)){
                         await fileModal.close(undefined,true);
                         if(destroyed||generation!==deleteGeneration){
                             return;
@@ -1935,7 +1938,7 @@
             directory.dataset.directory=tableName;
             folder.className='file folder';
             folderIcon.className='icon';
-            folderIcon.src=new URL('./arcane/img/folder.svg?arcaneVersion=0.5.17',document.baseURI).href;
+            folderIcon.src=new URL('./arcane/img/folder.svg?arcaneVersion=0.5.18',document.baseURI).href;
             folderName.innerText=tableName;
             fileCount.className='file-count';
             fileCount.innerText=`${files.length} ${files.length===1?'file':'files'}`;

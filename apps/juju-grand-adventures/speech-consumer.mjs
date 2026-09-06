@@ -3,9 +3,30 @@ import {arcaneEvents} from 'arcane-os/event-manager';
 
 export const JUJU_SPEECH_AUTHORITY_REQUIRED = 'ARCANE_AI_MODEL_AUTHORITY_REQUIRED';
 
-const ARCANE_SDK_VERSION = '0.5.17';
+const ARCANE_SDK_VERSION = '0.5.18';
 const CONFIGURATION_ID = 'juju-grand-adventures-browser-speech';
 const DEFAULT_SPEED = 0.95;
+const NARRATION_TABLE = 'juju_narration_audio';
+
+function bookPreparationOrder(pageCount, selectedPageIndex) {
+    const order = [selectedPageIndex];
+    let followingPageIndex = selectedPageIndex + 1;
+    let precedingPageIndex = 0;
+
+    while (followingPageIndex < pageCount || precedingPageIndex < selectedPageIndex) {
+        if (followingPageIndex < pageCount) {
+            order.push(followingPageIndex);
+            followingPageIndex += 1;
+        }
+
+        if (precedingPageIndex < selectedPageIndex) {
+            order.push(precedingPageIndex);
+            precedingPageIndex += 1;
+        }
+    }
+
+    return order;
+}
 
 function createJuJuSpeechError(code, message, cause) {
     const error = cause === undefined
@@ -80,6 +101,8 @@ export function createJuJuSpeech({
     let generation = 0;
     let runtime = null;
     let pendingStop = Promise.resolve(false);
+    let bookPreparation = null;
+    let activePlayback = null;
 
     function assertActive() {
         if (disposed) {
@@ -172,6 +195,7 @@ export function createJuJuSpeech({
 
         return {
             ai,
+            dbopfs,
             authority: selectedAuthority
         };
     }
@@ -198,69 +222,171 @@ export function createJuJuSpeech({
         return configurationPromise;
     }
 
+    function reportBookState(book, state, pageIndex, error) {
+        if (bookPreparation !== book || book.controller.signal.aborted || disposed) {
+            return;
+        }
+
+        onState(
+            {
+                state,
+                bookId: book.id,
+                voice: book.voice,
+                pageIndex,
+                completedPages: book.completedPages,
+                failedPages: book.failedPages,
+                totalPages: book.pages.length,
+                error
+            }
+        );
+    }
+
+    function preparePage(book, pageIndex) {
+        const page = book.pages[pageIndex];
+
+        reportBookState(book, 'book-preparing', pageIndex);
+
+        return runtime.ai.prepareTTS(
+            {
+                parts: page.passages.map(
+                    function describeNarrationPart(passage) {
+                        return {
+                            input: passage.text,
+                            voice: book.voice,
+                            speed: book.speed,
+                            pauseAfterMs: passage.pauseMs
+                        };
+                    }
+                ),
+                storage: {
+                    db: runtime.dbopfs,
+                    table: NARRATION_TABLE,
+                    key: JSON.stringify([book.id, page.id, book.voice])
+                },
+                identity: {
+                    bookId: book.id,
+                    pageId: page.id,
+                    providerId: runtime.authority.providerId,
+                    model: runtime.authority.model,
+                    runtime: runtime.authority.runtime
+                },
+                signal: book.controller.signal
+            }
+        );
+    }
+
+    async function prepareBook(book, selectedPreparation) {
+        for (const pageIndex of book.order) {
+            if (book.controller.signal.aborted || disposed) {
+                return;
+            }
+
+            try {
+                const prepared = pageIndex === book.selectedPageIndex
+                    ? selectedPreparation
+                    : preparePage(book, pageIndex);
+
+                // Advance on generation/storage completion, never on playback.
+                // The SDK owns concurrent punctuation segments inside each page.
+                await prepared.ready;
+
+                if (book.controller.signal.aborted || disposed) {
+                    return;
+                }
+
+                book.completedPages += 1;
+                reportBookState(book, 'book-preparing', pageIndex);
+            } catch (error) {
+                if (book.controller.signal.aborted || disposed) {
+                    return;
+                }
+
+                book.failedPages += 1;
+                reportBookState(book, 'book-preparation-error', pageIndex, error);
+            }
+        }
+
+        reportBookState(book, 'book-prepared', book.selectedPageIndex);
+    }
+
     async function read({
-        passages,
+        bookId,
+        pages,
+        pageIndex,
         voice,
         speed = DEFAULT_SPEED
     } = {}) {
         assertActive();
 
-        const operationGeneration = generation + 1;
+        const stopping = stop();
+        const operationGeneration = generation;
 
-        generation = operationGeneration;
         await initialize();
-        await pendingStop;
+        await stopping;
 
         if (operationGeneration !== generation || disposed) {
             return false;
         }
 
         const selectedVoice = String(voice || runtime.authority.defaultVoice);
+        const book = {
+            id: bookId,
+            pages,
+            selectedPageIndex: pageIndex,
+            voice: selectedVoice,
+            speed,
+            order: bookPreparationOrder(pages.length, pageIndex),
+            controller: new AbortController(),
+            completedPages: 0,
+            failedPages: 0,
+            done: Promise.resolve(),
+            settled: false
+        };
 
-        await runtime.ai.setSpeechMuted(false);
+        bookPreparation = book;
 
-        if (operationGeneration !== generation || disposed) {
-            return false;
-        }
-
-        const stopObservingFailures = arcaneEvents.subscribe(
-            'ai-tts-failure',
-            function reportNarrationFailure(event) {
-                if (operationGeneration === generation && !disposed) {
-                    onState(
-                        {
-                            state: 'error',
-                            error: event.detail.error
-                        }
-                    );
-                }
-            }
-        );
+        let playback = null;
 
         try {
-            // The SDK owns segmentation, provider backpressure and ordered audio.
-            // Submit the whole page before awaiting any passage's completion.
-            const completions = passages.map(
-                function queueJuJuPassage(passage) {
-                    return runtime.ai.streamTTS(
-                        passage.text,
-                        true,
-                        {
-                            voice: selectedVoice,
-                            speed,
-                            pauseAfterMs: passage.pauseMs,
-                            waitForPlayback: true
-                        }
-                    );
+            const selectedPreparation = preparePage(book, pageIndex);
+
+            book.done = prepareBook(book, selectedPreparation).finally(
+                function settleBookPreparation() {
+                    book.settled = true;
                 }
             );
-            const playbackCompletion = Promise.all(completions);
+            book.done.catch(
+                function reportBookObserverFailure(error) {
+                    console.error('JuJu book preparation could not report its result.', error);
+                }
+            );
 
             onState(
                 {
                     state: 'queued'
                 }
             );
+
+            // Cached reads precede model loading inside the SDK. Playback can
+            // attach while generation continues, without an eager model unmute.
+            playback = runtime.ai.playPreparedTTS(
+                selectedPreparation,
+                {
+                    onState: function reportSelectedPlaybackState(detail) {
+                        if (operationGeneration !== generation || disposed) {
+                            return;
+                        }
+
+                        if (detail.state === 'waiting-for-gesture') {
+                            onState({state: 'waiting-for-gesture'});
+                        } else if (detail.state === 'scheduled') {
+                            onState({state: 'queued'});
+                        }
+                    }
+                }
+            );
+            activePlayback = playback;
+
             resume().catch(
                 function reportNarrationResumeFailure(error) {
                     if (operationGeneration === generation && !disposed) {
@@ -274,19 +400,25 @@ export function createJuJuSpeech({
                 }
             );
 
-            const results = await playbackCompletion;
+            const completed = await playback.finished;
+
+            if (!completed && playback.error) {
+                throw playback.error;
+            }
 
             return operationGeneration === generation
                 && !disposed
-                && results.every(Boolean);
+                && completed;
         } catch (error) {
             if (operationGeneration === generation && !disposed) {
-                runtime.ai.stopAudio();
+                playback?.stop();
             }
 
             throw error;
         } finally {
-            stopObservingFailures();
+            if (activePlayback === playback) {
+                activePlayback = null;
+            }
 
             if (operationGeneration === generation) {
                 generation += 1;
@@ -297,54 +429,64 @@ export function createJuJuSpeech({
     async function resume() {
         assertActive();
 
-        if (!runtime) {
+        if (!activePlayback) {
             return false;
         }
 
         const operationGeneration = generation;
-        const resumed = await runtime.ai.resumeAudio();
+        const playback = activePlayback;
+        const resumed = await playback.resume();
 
         if (operationGeneration !== generation || disposed) {
             return false;
         }
 
-        if (!resumed) {
-            onState(
-                {
-                    state: 'waiting-for-gesture'
-                }
-            );
+        if (playback.error) {
+            throw playback.error;
         }
 
         return resumed;
     }
 
-    function stop() {
+    function stop({cancelPreparation = true} = {}) {
         generation += 1;
 
-        if (!runtime) {
-            return Promise.resolve(false);
+        const playback = activePlayback;
+        const book = cancelPreparation ? bookPreparation : null;
+        const stopping = [pendingStop];
+
+        activePlayback = null;
+
+        if (playback) {
+            stopping.push(playback.stop());
         }
 
-        runtime.ai.stopAudio();
-
-        const status = runtime.ai.providerRuntime.status('tts');
-
-        if (status.state === 'loading') {
-            const stopOperation = runtime.ai.setSpeechMuted(true);
-
-            pendingStop = stopOperation;
-
-            function clearSettledStop() {
-                if (pendingStop === stopOperation) {
-                    pendingStop = Promise.resolve(false);
-                }
+        if (book) {
+            if (!book.settled) {
+                reportBookState(book, 'book-stopped', book.selectedPageIndex);
             }
 
-            stopOperation.then(clearSettledStop, clearSettledStop);
+            book.controller.abort();
+            bookPreparation = null;
+            stopping.push(book.done);
         }
 
-        return pendingStop;
+        const stopOperation = Promise.all(stopping).then(
+            function finishNarrationStop() {
+                return Boolean(playback || book);
+            }
+        );
+
+        pendingStop = stopOperation;
+
+        function clearSettledStop() {
+            if (pendingStop === stopOperation) {
+                pendingStop = Promise.resolve(false);
+            }
+        }
+
+        stopOperation.then(clearSettledStop, clearSettledStop);
+        return stopOperation;
     }
 
     async function dispose() {
@@ -353,18 +495,17 @@ export function createJuJuSpeech({
         }
 
         disposed = true;
-        generation += 1;
+
+        const stopping = stop();
 
         if (!runtime) {
             return true;
         }
 
-        runtime.ai.stopAudio();
-
         let stopError = null;
 
         try {
-            await pendingStop;
+            await stopping;
         } catch (error) {
             stopError = error;
         }
@@ -375,7 +516,7 @@ export function createJuJuSpeech({
             if (stopError) {
                 throw new AggregateError(
                     [stopError, error],
-                    'JuJu read aloud could not stop loading or release browser speech.'
+                    'JuJu read aloud could not stop preparation or release browser speech.'
                 );
             }
 

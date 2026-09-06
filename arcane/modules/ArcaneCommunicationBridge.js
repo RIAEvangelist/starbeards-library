@@ -1,5 +1,8 @@
-import CommunicationMessage from '../entities/CommunicationMessage.js?arcaneVersion=0.5.17';
-import CommunicationThread from '../entities/CommunicationThread.js?arcaneVersion=0.5.17';
+import Is from 'strong-type';
+const is=new Is(false);
+
+import CommunicationMessage from '../entities/CommunicationMessage.js?arcaneVersion=0.5.18';
+import CommunicationThread from '../entities/CommunicationThread.js?arcaneVersion=0.5.18';
 
 function cleanEndpoint(value){const url=new URL(String(value||'http://127.0.0.1:8020'));if(!['http:','https:'].includes(url.protocol)) throw new TypeError('Bridge URL must use HTTP or HTTPS.');return url.href.replace(/\/$/,'');}
 
@@ -8,7 +11,7 @@ export default class ArcaneCommunicationBridge{
         this.id=String(id||'arcane-bridge');this.label=String(label||'Arcane communications bridge');this.channels=Array.from(channels||['other']);this.endpoint=cleanEndpoint(endpoint);this.fetchImpl=fetchImpl;
     }
     async request(path,options={}){
-        if(typeof this.fetchImpl!=='function') throw new Error('Network access is unavailable.');
+        if(!is.function(this.fetchImpl)) throw new Error('Network access is unavailable.');
         const response=await this.fetchImpl(`${this.endpoint}${path}`,{...options,headers:{Accept:'application/json',...(options.body?{'Content-Type':'application/json'}:{}),...options.headers}});
         const text=await response.text();let body={};if(text){try{body=JSON.parse(text);}catch{throw new Error('The communications bridge returned invalid JSON.');}}
         if(!response.ok) throw new Error(body.error||`Communications bridge request failed (${response.status}).`);

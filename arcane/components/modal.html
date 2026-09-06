@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="./arcane/css/layout.css?v=3&amp;arcaneVersion=0.5.17" />
+<link rel="stylesheet" href="./arcane/css/layout.css?v=3&amp;arcaneVersion=0.5.18" />
 <style>
     :host{
         --modal-surface:var(--modal-background,var(--background,#fff));
@@ -156,6 +156,9 @@
 </dialog>
 
 <script type="module">
+    const {default:Is}=await import('strong-type');
+    const is=new Is(false);
+
     const {arcaneLogging}=await import('arcane-os/logging');
 
     const host=this;
@@ -339,7 +342,7 @@
         }
 
         const tasks=jobs.filter(function isRunnableTask(job){
-            return job&&typeof job.name==='string'&&typeof job.task==='function';
+            return job&&is.string(job.name)&&is.function(job.task);
         });
         if(!tasks.length){
             return [];

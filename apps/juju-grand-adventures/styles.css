@@ -774,6 +774,32 @@ select:focus-visible {
     justify-content: flex-end;
 }
 
+.book-preparation {
+    position: absolute;
+    top: 100%;
+    right: max(1rem, env(safe-area-inset-right));
+    width: min(32rem, calc(100% - 2rem));
+    max-height: 35vh;
+    overflow: auto;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--line);
+    border-radius: 1rem;
+    background: rgba(8, 16, 43, 0.94);
+    color: var(--ink);
+    font-size: 0.8rem;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+    pointer-events: auto;
+}
+
+.book-preparation p {
+    margin: 0 0 0.65rem;
+}
+
+.book-preparation .read-button {
+    white-space: normal;
+}
+
 .voice-control {
     display: inline-flex;
     min-height: 40px;

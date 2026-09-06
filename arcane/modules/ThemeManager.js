@@ -1,7 +1,10 @@
-import Theme,{arcaneDarkThemeTokens,arcaneLightThemeTokens} from '../entities/Theme.js?arcaneVersion=0.5.17';
-import PreferenceStore from './PreferenceStore.js?arcaneVersion=0.5.17';
-import {applyAppearancePreferences,createAppearancePreferenceStore} from './AppearancePreferences.js?arcaneVersion=0.5.17';
-import SystemAppearance from './SystemAppearance.js?arcaneVersion=0.5.17';
+import Is from 'strong-type';
+const is=new Is(false);
+
+import Theme,{arcaneDarkThemeTokens,arcaneLightThemeTokens} from '../entities/Theme.js?arcaneVersion=0.5.18';
+import PreferenceStore from './PreferenceStore.js?arcaneVersion=0.5.18';
+import {applyAppearancePreferences,createAppearancePreferenceStore} from './AppearancePreferences.js?arcaneVersion=0.5.18';
+import SystemAppearance from './SystemAppearance.js?arcaneVersion=0.5.18';
 import {
     createArcaneEventSource,
     projectArcaneDOMEvent
@@ -135,8 +138,8 @@ export default class ThemeManager{
                 publicDetail:{mode:detail.mode,reason}
             }
         );
-        if(typeof globalThis.CustomEvent==='function'
-            &&typeof globalThis.dispatchEvent==='function'){
+        if(is.function(globalThis.CustomEvent)
+            &&is.function(globalThis.dispatchEvent)){
             projectArcaneDOMEvent(globalThis,occurrence);
         }
         return occurrence;

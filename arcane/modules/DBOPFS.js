@@ -1,6 +1,6 @@
 import { arcaneLogging } from 'arcane-os/logging';
-import Is from "../../node_modules/strong-type/index.js?arcaneVersion=0.5.17";
-import {openApplicationDataDirectory} from './AppDataScope.js?arcaneVersion=0.5.17';
+import Is from 'strong-type';
+import {openApplicationDataDirectory} from './AppDataScope.js?arcaneVersion=0.5.18';
 import {
     createArcaneEventSource,
     projectArcaneDOMEvent
@@ -208,9 +208,9 @@ class DBOPFS {
      */
     async #requestFileWorker(data={},transfer=[]){
 
-        if(typeof this.#writeWorker?.postMessage!=='function'){
+        if(!is.function(this.#writeWorker?.postMessage)){
             this.#writeWorker=new Worker(
-                new URL('./DBOPFSWorker.js?arcaneVersion=0.5.17',import.meta.url)
+                new URL('./DBOPFSWorker.js?arcaneVersion=0.5.18',import.meta.url)
             );
         }
 
@@ -438,7 +438,7 @@ class DBOPFS {
 
                 let dataToWrite=value
 
-                if(typeof value!=='string'){
+                if(!is.string(value)){
                     dataToWrite=JSON.stringify(dataToWrite)
                 }
 
@@ -499,7 +499,7 @@ class DBOPFS {
             {create:true}
         );
 
-        if(typeof handle.createWritable!=='function'){
+        if(!is.function(handle.createWritable)){
             return this.#writeFileWithWorker(
                 table.name,
                 fileName,
@@ -542,7 +542,7 @@ class DBOPFS {
         const table=await this.getTableHandle(tableName)
         const handle=await table.getFileHandle(fileName,{create:false})
 
-        if(typeof handle.getFile==='function'){
+        if(is.function(handle.getFile)){
             return handle.getFile()
         }
 
@@ -564,7 +564,7 @@ class DBOPFS {
         const table=await this.getTableHandle(tableName)
         const handle=await table.getFileHandle(fileName,{create:false})
 
-        if(typeof handle.getFile!=='function'){
+        if(!is.function(handle.getFile)){
             return {
                 lastModified:null,
                 size:null,
@@ -1177,7 +1177,7 @@ class DBOPFS {
     }
 }
 
-if(typeof window.dbopfs?.get!=="function"){
+if(!is.function(window.dbopfs?.get)){
     window.dbopfs=new DBOPFS();
 }
 

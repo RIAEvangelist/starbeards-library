@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="./arcane/css/layout.css?v=3&amp;arcaneVersion=0.5.17">
-<link rel="stylesheet" href="./arcane/css/dashboard-config.css?v=2&amp;arcaneVersion=0.5.17">
+<link rel="stylesheet" href="./arcane/css/layout.css?v=3&amp;arcaneVersion=0.5.18">
+<link rel="stylesheet" href="./arcane/css/dashboard-config.css?v=2&amp;arcaneVersion=0.5.18">
 <style>
     :host{
         display:block;
@@ -7,19 +7,22 @@
 </style>
 
 <button id="openConfig" type="button" aria-haspopup="dialog" disabled></button>
-<html-import id="configModal" class="modal" href="./arcane/components/modal.html?v=13&amp;arcaneVersion=0.5.17"></html-import>
+<html-import id="configModal" class="modal" href="./arcane/components/modal.html?v=13&amp;arcaneVersion=0.5.18"></html-import>
 
 <script type="module">
+    const {default:Is}=await import('strong-type');
+    const is=new Is(false);
+
     const {arcaneLogging}=await import('arcane-os/logging');
 
     const host=this;
-    const {default:waitForComponent}=await import('../modules/WaitForComponent.js?arcaneVersion=0.5.17');
+    const {default:waitForComponent}=await import('../modules/WaitForComponent.js?arcaneVersion=0.5.18');
     const {
         effectiveDashboardVisibility,
         normalizeDashboardDefinitions,
         normalizeDashboardOptions,
         normalizeDashboardVisibility
-    }=await import('../modules/ComponentContracts.js?arcaneVersion=0.5.17');
+    }=await import('../modules/ComponentContracts.js?arcaneVersion=0.5.18');
     const {createArcaneEventSource,projectArcaneDOMEvent}=await import('arcane-os/event-manager');
     const events=createArcaneEventSource(host,{source:'arcane.component.dashboard-config',eventTypes:['dashboard-config-closed','dashboard-config-opened','dashboard-config-change','dashboard-config-ready']});
     const lifecycleController=new AbortController();
@@ -150,7 +153,7 @@
         return {
             ...definition.chartOptions,
             labels:{...definition.chartOptions.labels},
-            chartOptions:typeof definition.chartOptions.chartOptions==='object'
+            chartOptions:is.object(definition.chartOptions.chartOptions)
                 &&definition.chartOptions.chartOptions!==null
                 ?{...definition.chartOptions.chartOptions}
                 :definition.chartOptions.chartOptions
@@ -158,7 +161,7 @@
     }
 
     function isVisible(definition={}){
-        return typeof visibility[definition.key]==='boolean'
+        return is.boolean(visibility[definition.key])
             ?visibility[definition.key]
             :definition.defaultVisible;
     }
@@ -229,7 +232,7 @@
         const items=document.createElement('section');
 
         styles.rel='stylesheet';
-        styles.href=new URL('./arcane/css/dashboard-config.css?v=2&arcaneVersion=0.5.17',document.baseURI).href;
+        styles.href=new URL('./arcane/css/dashboard-config.css?v=2&arcaneVersion=0.5.18',document.baseURI).href;
         heading.dataset.dashboardConfigHeading='';
         message.dataset.dashboardConfigDescription='';
         empty.className='dashboard-config-empty';
@@ -337,7 +340,7 @@
             chartOptions:{
                 ...definition.chartOptions,
                 labels:{...definition.chartOptions.labels},
-                chartOptions:typeof definition.chartOptions.chartOptions==='object'
+                chartOptions:is.object(definition.chartOptions.chartOptions)
                     &&definition.chartOptions.chartOptions!==null
                     ?{...definition.chartOptions.chartOptions}
                     :definition.chartOptions.chartOptions

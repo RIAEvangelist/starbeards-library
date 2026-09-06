@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="./arcane/css/layout.css?v=3&amp;arcaneVersion=0.5.17">
+<link rel="stylesheet" href="./arcane/css/layout.css?v=3&amp;arcaneVersion=0.5.18">
 <style>
     :host{
         display:flex;
@@ -11,15 +11,18 @@
 </style>
 
 <button id="openData" type="button" aria-haspopup="dialog"></button>
-<html-import id="dataModal" class="modal" href="./arcane/components/modal.html?v=13&amp;arcaneVersion=0.5.17"></html-import>
+<html-import id="dataModal" class="modal" href="./arcane/components/modal.html?v=13&amp;arcaneVersion=0.5.18"></html-import>
 
 <script type="module">
+    const {default:Is}=await import('strong-type');
+    const is=new Is(false);
+
     const {arcaneLogging}=await import('arcane-os/logging');
 
     const host=this;
     const openButton=host.shadowRoot.querySelector('#openData');
     const dataModal=host.shadowRoot.querySelector('#dataModal');
-    const {default:waitForComponent}=await import('../modules/WaitForComponent.js?arcaneVersion=0.5.17');
+    const {default:waitForComponent}=await import('../modules/WaitForComponent.js?arcaneVersion=0.5.18');
     const {createArcaneEventSource,projectArcaneDOMEvent}=await import('arcane-os/event-manager');
     const events=createArcaneEventSource(host,{source:'arcane.component.data-view',eventTypes:['data-view-ready']});
     const lifecycleController=new AbortController();
@@ -29,7 +32,7 @@
     let operationGeneration=0;
     let destroyed=false;
 
-    host.beforeOpen=typeof host.beforeOpen==='function'
+    host.beforeOpen=is.function(host.beforeOpen)
         ?host.beforeOpen
         :async function beforeOpen(){};
     host.open=openData;

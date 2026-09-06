@@ -1,12 +1,15 @@
+import Is from 'strong-type';
+const is=new Is(false);
+
 import { arcaneLogging } from 'arcane-os/logging';
-import ArcaneCommunicationBridge from './ArcaneCommunicationBridge.js?arcaneVersion=0.5.17';
-import CommunicationHub from './CommunicationHub.js?v=2&arcaneVersion=0.5.17';
-import CommunicationPreferences from './CommunicationPreferences.js?arcaneVersion=0.5.17';
-import {loadAndApplyTheme} from './ThemeManager.js?arcaneVersion=0.5.17';
+import ArcaneCommunicationBridge from './ArcaneCommunicationBridge.js?arcaneVersion=0.5.18';
+import CommunicationHub from './CommunicationHub.js?v=2&arcaneVersion=0.5.18';
+import CommunicationPreferences from './CommunicationPreferences.js?arcaneVersion=0.5.18';
+import {loadAndApplyTheme} from './ThemeManager.js?arcaneVersion=0.5.18';
 import {
     inspectMessageRecords,
     unavailableMessageInspection
-} from './MessageAdvisory.js?v=3&arcaneVersion=0.5.17';
+} from './MessageAdvisory.js?v=3&arcaneVersion=0.5.18';
 
 export const COMMUNICATION_APP_CONTROLLER_ERROR_CODES={
     destroyed:'ARCANE_COMMUNICATION_APP_CONTROLLER_DESTROYED'
@@ -89,13 +92,13 @@ export default class CommunicationAppController{
         this.services=services;
         this.channels=channels;
         this.labels=labels;
-        this.inspectMessage=typeof inspectMessage==='function'
+        this.inspectMessage=is.function(inspectMessage)
             ?inspectMessage
             :null;
-        this.prepareMessageInspection=typeof prepareMessageInspection==='function'
+        this.prepareMessageInspection=is.function(prepareMessageInspection)
             ?prepareMessageInspection
             :null;
-        this.onAdvisoryAction=typeof onAdvisoryAction==='function'
+        this.onAdvisoryAction=is.function(onAdvisoryAction)
             ?onAdvisoryAction
             :null;
         this.refreshVersion=0;
@@ -302,7 +305,7 @@ export default class CommunicationAppController{
         );
         const providers=enabled.map(
             function createCommunicationProvider(item){
-                return typeof item.providerFactory==='function'
+                return is.function(item.providerFactory)
                     ?item.providerFactory(
                         {
                             service:item,
@@ -355,9 +358,9 @@ export default class CommunicationAppController{
             return;
         }
         try{
-            if(typeof hub.destroy==='function'){
+            if(is.function(hub.destroy)){
                 hub.destroy();
-            }else if(typeof hub.dispose==='function'){
+            }else if(is.function(hub.dispose)){
                 hub.dispose();
             }
         }catch(error){
