@@ -1,23 +1,23 @@
 import Is from 'strong-type';
 const is=new Is(false);
 
-import './DBOPFS.js?arcaneVersion=0.13.0';
-import UserEntity from '../entities/User.js?arcaneVersion=0.13.0';
+import './DBOPFS.js?arcaneVersion=0.13.1';
+import UserEntity from '../entities/User.js?arcaneVersion=0.13.1';
 import {
     arcaneEvents,
     createArcaneEventSource,
     projectArcaneDOMEvent
 } from 'arcane-os/event-manager';
-import {getAIPreferencesForRuntime} from './AIPreferenceRuntime.js?arcaneVersion=0.13.0';
+import {getAIPreferencesForRuntime} from './AIPreferenceRuntime.js?arcaneVersion=0.13.1';
 import {
     AI_MODEL_AUTHORITY_PROTOCOL,
     AI_PROVIDER_PROTOCOL,
     getAIProviderRuntime
-} from './AIProviderRuntime.js?arcaneVersion=0.13.0';
-import {normalizeOllamaModelIdentifier} from './OllamaModelIdentifier.js?arcaneVersion=0.13.0';
+} from './AIProviderRuntime.js?arcaneVersion=0.13.1';
+import {normalizeOllamaModelIdentifier} from './OllamaModelIdentifier.js?arcaneVersion=0.13.1';
 import {arcaneLogging} from 'arcane-os/logging';
 import {MarkdownSpeech,stripSpeechFormatting} from 'arcane-os/speech-text';
-import {prepareSpeech} from './PreparedSpeech.js?arcaneVersion=0.13.0';
+import {prepareSpeech} from './PreparedSpeech.js?arcaneVersion=0.13.1';
 
 const completeValue=(value)=>value;
 

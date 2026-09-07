@@ -4,7 +4,7 @@ const is=new Is(false);
 import {
     CONVERSATION_ACTION_ITEM_BASES,
     normalizeRememberedConversationActions
-} from './ConversationActionItems.js?arcaneVersion=0.13.0';
+} from './ConversationActionItems.js?arcaneVersion=0.13.1';
 
 const DEFAULT_TOOL_NAME='prepare_conversation_closing_report';
 const TOOL_NAME_PATTERN=/^[a-z][a-z0-9_]*$/;

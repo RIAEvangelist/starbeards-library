@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="./arcane/css/layout.css?arcaneVersion=0.13.0">
-<link rel="stylesheet" href="./arcane/modules/uPlot.min.css?arcaneVersion=0.13.0">
+<link rel="stylesheet" href="./arcane/css/layout.css?arcaneVersion=0.13.1">
+<link rel="stylesheet" href="./arcane/modules/uPlot.min.css?arcaneVersion=0.13.1">
 <style>
     :host{
         display:block;
@@ -165,11 +165,11 @@
     const is=new Is(false);
 
     const host=this;
-    const {default:loadChartLibrary}=await import('../modules/ChartLibrary.js?arcaneVersion=0.13.0');
+    const {default:loadChartLibrary}=await import('../modules/ChartLibrary.js?arcaneVersion=0.13.1');
     const {
         normalizeChartOptions,
         normalizeChartRows
-    }=await import('../modules/ComponentContracts.js?arcaneVersion=0.13.0');
+    }=await import('../modules/ComponentContracts.js?arcaneVersion=0.13.1');
     const {createArcaneEventSource,projectArcaneDOMEvent}=await import('arcane-os/event-manager');
     const events=createArcaneEventSource(host,{source:'arcane.component.chart',eventTypes:['chart-remove','chart-ready']});
     const lifecycleController=new AbortController();

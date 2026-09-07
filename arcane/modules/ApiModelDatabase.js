@@ -2,7 +2,7 @@ import Is from 'strong-type';
 const is=new Is(false);
 
 import {createArcaneEventSource} from 'arcane-os/event-manager';
-import ApiModelRecord from '../entities/ApiModelRecord.js?arcaneVersion=0.13.0';
+import ApiModelRecord from '../entities/ApiModelRecord.js?arcaneVersion=0.13.1';
 
 const apiModelEvents={
     requestStarted:'api-model-request',

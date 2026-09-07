@@ -1,5 +1,5 @@
-import Is from "../dependencies/strong-type/index.js?arcaneVersion=0.13.0";
-import { arcaneLogging } from '../logging.mjs?arcaneVersion=0.13.0';
+import Is from "../dependencies/strong-type/index.js?arcaneVersion=0.13.1";
+import { arcaneLogging } from '../logging.mjs?arcaneVersion=0.13.1';
 import { createArcaneEventSource } from "arcane-os/event-manager";
 
 const is = new Is(false);

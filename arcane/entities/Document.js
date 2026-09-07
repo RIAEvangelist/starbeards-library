@@ -1,4 +1,4 @@
-import FileEntity from './File.js?arcaneVersion=0.13.0';
+import FileEntity from './File.js?arcaneVersion=0.13.1';
 
 class DocumentEntity extends FileEntity {
     constructor(fileName = '', tableName = 'documents') {
