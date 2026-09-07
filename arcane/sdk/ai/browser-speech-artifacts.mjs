@@ -1,7 +1,7 @@
-import Is from "../dependencies/strong-type/index.js?arcaneVersion=0.5.18";
+import Is from "../dependencies/strong-type/index.js?arcaneVersion=0.13.0";
 import {
   normalizeModelSecurity,
-} from "./model-controller.mjs?arcaneVersion=0.5.18";
+} from "./model-controller.mjs?arcaneVersion=0.13.0";
 
 const is = new Is(false);
 
@@ -1962,6 +1962,10 @@ export function createDbopfsSpeechArtifactStore({
     return artifactGraphError(graphFileReason(descriptor, boundary), message);
   }
 
+  function reportArtifactProgress(onProgress, signal, progress) {
+      if (!signal?.aborted && is.function(onProgress)) onProgress(progress);
+  }
+
   async function openCached(authority, { signal, onProgress } = {}) {
     const graph = ARTIFACT_GRAPHS.has(authority);
     const metadata = artifactMetadata(authority);
@@ -1975,14 +1979,50 @@ export function createDbopfsSpeechArtifactStore({
     for (let index = 0; index < metadata.files.length; index += 1) {
       throwIfAborted(signal);
       const descriptor = metadata.files[index];
+      reportArtifactProgress(
+          onProgress,
+          signal,
+          {
+              phase: 'prepare',
+              stage: 'cache',
+              message: 'Opening cached speech file',
+              file: descriptor.path,
+              completed: index,
+              total: metadata.files.length,
+              unit: 'files',
+          }
+      );
       const file = await readFile(names.files[index]);
       if (!file) {
         await removeUnlocked(authority);
         return null;
       }
       files.push({ descriptor, file });
+      reportArtifactProgress(
+          onProgress,
+          signal,
+          {
+              phase: 'prepare',
+              stage: 'cache',
+              message: 'Opened cached speech file',
+              file: descriptor.path,
+              completed: files.length,
+              total: metadata.files.length,
+              unit: 'files',
+          }
+      );
     }
     try {
+      reportArtifactProgress(
+          onProgress,
+          signal,
+          {
+              phase: 'prepare',
+              stage: 'runtime',
+              message: 'Preparing speech runtime modules',
+              total: null,
+          }
+      );
       const routing = graph
         ? await planOrdinaryMaterializedRuntime({ files }, metadata, signal)
         : null;
@@ -2020,6 +2060,19 @@ export function createDbopfsSpeechArtifactStore({
         throwIfAborted(signal);
         const descriptor = metadata.files[index];
         const sourceUrl = graph ? descriptor.sourceUrl : descriptor.url;
+        reportArtifactProgress(
+            onProgress,
+            signal,
+            {
+                phase: 'download',
+                stage: 'artifacts',
+                message: 'Downloading speech file',
+                file: descriptor.path,
+                completed: index,
+                total: metadata.files.length,
+                unit: 'files',
+            }
+        );
         let response;
         try {
           response = await fetchFunction(sourceUrl, {
@@ -2095,7 +2148,30 @@ export function createDbopfsSpeechArtifactStore({
           throw speechError("ARCANE_AI_ARTIFACT_CACHE_REJECTED", "DBOPFS did not preserve a speech artifact.");
         }
         installed.push({ descriptor, file });
+        reportArtifactProgress(
+            onProgress,
+            signal,
+            {
+                phase: 'download',
+                stage: 'artifacts',
+                message: 'Stored speech file',
+                file: descriptor.path,
+                completed: installed.length,
+                total: metadata.files.length,
+                unit: 'files',
+            }
+        );
       }
+      reportArtifactProgress(
+          onProgress,
+          signal,
+          {
+              phase: 'prepare',
+              stage: 'runtime',
+              message: 'Preparing speech runtime modules',
+              total: null,
+          }
+      );
       const routing = graph
         ? await planOrdinaryMaterializedRuntime({ files: installed }, metadata, signal)
         : null;
@@ -2145,6 +2221,16 @@ export function createDbopfsSpeechArtifactStore({
       }
       throw speechError("ARCANE_AI_ARTIFACT_OFFLINE_MISS", "No cached offline speech artifacts are available.");
     }
+    reportArtifactProgress(
+        onProgress,
+        signal,
+        {
+            phase: 'prepare',
+            stage: 'runtime',
+            message: 'Opening prepared speech files',
+            total: null,
+        }
+    );
     if (graph) {
       const materialized = await createOrdinaryArtifactObjectUrls(
         admitted,
@@ -2243,6 +2329,53 @@ export function createDbopfsSpeechArtifactStore({
   });
   STORES.add(store);
   return store;
+}
+
+export async function removeBrowserSpeechModelCache(
+    {repository, cacheStorage = globalThis.caches, signal} = {}
+) {
+    const selectedRepository = requiredText(repository, 'repository');
+    const removed = [];
+    const result = {repository: selectedRepository, removed};
+    const modelPath = `/${selectedRepository.split('/').map(encodeURIComponent).join('/')}/resolve/`;
+
+    try {
+        throwIfAborted(signal);
+        if (!is.function(cacheStorage?.has) || !is.function(cacheStorage?.open)) {
+            throw speechError(
+                'ARCANE_AI_STORAGE_UNAVAILABLE',
+                'Browser model cache storage is unavailable.',
+                undefined,
+                'browser-speech-model-cache-unavailable'
+            );
+        }
+        const cached = await cacheStorage.has('transformers-cache');
+        throwIfAborted(signal);
+        if (!cached) return result;
+        const cache = await cacheStorage.open('transformers-cache');
+        const requests = await cache.keys();
+        for (const request of requests) {
+            throwIfAborted(signal);
+            const url = new URL(request.url);
+            if (url.origin !== 'https://huggingface.co' || !url.pathname.startsWith(modelPath)) {
+                continue;
+            }
+            if (await cache.delete(request)) removed.push(request.url);
+        }
+        throwIfAborted(signal);
+        return result;
+    } catch (cause) {
+        const error = cause?.name === 'AbortError' || isBrowserSpeechArtifactError(cause)
+            ? cause
+            : speechError(
+                'ARCANE_AI_STORAGE_DELETE_FAILED',
+                'Unable to remove the selected browser speech model download.',
+                cause,
+                'browser-speech-model-cache-delete-rejected'
+            );
+        error.removed = removed;
+        throw error;
+    }
 }
 
 export function isBrowserSpeechAuthority(value) {

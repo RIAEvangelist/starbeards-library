@@ -24,11 +24,11 @@ Completed stories outside the two adventure collections will be added here.
 
 Each book opens in the same full-screen horizontal reader with touch swiping, keyboard navigation, page controls, and JuJu’s existing eight-voice read-aloud controls.
 
-The app pins published `arcane-os@0.5.18` and uses its public browser-speech, AI, DBOPFS, event, and prepared-audio contracts.
+The app pins published `arcane-os@0.13.0` and uses its public browser-speech, AI, DBOPFS, event, and prepared-audio contracts.
 
 JuJu owns story text, voice choice, presentation, passage pauses, and book preparation order. Each Read snapshots every complete page in the selected book. It submits all passages of the selected page to `AI.prepareTTS` and attaches `AI.playPreparedTTS` immediately. The SDK splits at punctuation, with no four-word cadence, queues generation through its bounded provider pool, and plays the selected page in original order on its audio clock. Each passage's 200 ms pause follows only its final punctuation chunk; the page's final passage has no added pause.
 
-Background preparation starts with the selected page, alternates the next unread forward page with the earliest preceding page, and finishes whichever side remains. Starting on page 5 gives **5, 6, 1, 7, 2, 8, 3, 9, 4, 10…**, skipping pages outside the book. JuJu advances when each page's audio has been prepared and stored, never when playback finishes. The SDK defaults to four concurrent Kokoro generation requests with automatic WebGPU-first selection and WASM fallback; it owns segment scheduling and backpressure. SDK capacity does not establish physical GPU kernel overlap, and package installation does not prove actual GPU use or audible browser behavior.
+Background preparation starts with the selected page, alternates the next unread forward page with the earliest preceding page, and finishes whichever side remains. Starting on page 5 gives **5, 6, 1, 7, 2, 8, 3, 9, 4, 10…**, skipping pages outside the book. JuJu advances when each page's audio has been prepared and stored, never when playback finishes. The SDK defaults to four concurrent Kokoro generation requests and automatically tries WebNN NPU, then WebGPU, then CPU through WASM, skipping APIs the browser does not expose; it owns segment scheduling and backpressure. SDK capacity does not establish physical accelerator overlap, and package installation does not prove actual GPU use or audible browser behavior.
 
 Narration audio is stored through the SDK's DBOPFS boundary in `juju_narration_audio`, grouped by book, page, and voice. The SDK compares complete narration parts, voice, speed, pauses, segmentation, and selected model/runtime context before reusing audio. Unchanged audio is reused on later reads in the same browser origin without loading the speech model. Changed text or settings requires preparation for that selection; SDK version alone is not a cache identity. Successful segments survive cancellation or another page's failure. Browser storage clearing or eviction can remove saved audio and require generation again.
 
@@ -48,7 +48,9 @@ Every spread has a **Move words** handle. Drag it with a mouse or finger, or foc
 
 ## Arcane island boundary
 
-JuJu declares exact `arcane-os@0.5.18` in its own `package.json`; a normal project-root `npm install` resolves the public package into this repository’s own physical `node_modules`. The app-owned ESM materializer projects the installed SDK into the repository-local `arcane/` tree before the public import-map, development, build, bundle, run, or packaging path uses it. No global install, symlink, Arcane checkout, live source mount, or update poll is part of the package or runtime contract. The SDK materializer and managed import-map generator carry `arcaneVersion=0.5.18` through local browser resource references while preserving ordinary caching, remote provider URLs, and saved user state.
+JuJu declares exact `arcane-os@0.13.0` in its own `package.json`; a normal project-root `npm install` resolves the public package into this repository’s own physical `node_modules`. The app-owned ESM materializer projects the installed SDK into the repository-local `arcane/` tree before the public import-map, development, build, bundle, run, or packaging path uses it. No global install, symlink, Arcane checkout, live source mount, or update poll is part of the package or runtime contract. The SDK materializer and managed import-map generator carry `arcaneVersion=0.13.0` through local browser resource references while preserving ordinary caching, remote provider URLs, and saved user state.
+
+JuJu has not enabled the SDK's optional PWA behavior in its app descriptor. The SDK update does not register a PWA worker, mount an installation prompt, or change the app's branding. Existing narration caching remains independent of PWA enablement.
 
 Create the one selected, independently runnable browser artifact with:
 
@@ -66,7 +68,9 @@ The project directory is:
 C:\Users\codex\Documents\ChatGPT\JuJu's Grand Adventures
 ```
 
-Install and start the app from PowerShell:
+Use Node.js 22.23.2 or newer. Before starting the SDK development server, supply the workspace's PEM certificate chain at `.arcane/dev/server-cert.pem` and private key at `.arcane/dev/server-key.pem`, or pass the SDK's `--cert` and `--key` options with existing paths. These local files are ignored by Git. The SDK uses `node-http-server` for HTTPS and a paired HTTP 308 redirect listener; certificate creation and device trust setup are not performed by JuJu.
+
+With that pair configured, install and start the app from PowerShell:
 
 ```powershell
 cd "C:\Users\codex\Documents\ChatGPT\JuJu's Grand Adventures"
@@ -74,7 +78,7 @@ npm install
 npm run dev
 ```
 
-Open the loopback URL printed by the SDK development server. The app has no framework, backend, or server-side database; it uses plain HTML, CSS, and JavaScript plus local media under `apps/juju-grand-adventures/assets/`.
+Open the HTTPS URL printed by the SDK development server. Browser storage belongs to the exact scheme, host, and port: changing from an existing HTTP address to HTTPS opens separate storage and does not migrate or delete the old origin's prepared narration. Keep the same origin when rereading saved audio. The app has no framework, backend, or server-side database; it uses plain HTML, CSS, and JavaScript plus local media under `apps/juju-grand-adventures/assets/`.
 
 ## Privacy
 

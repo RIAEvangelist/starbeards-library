@@ -14,6 +14,6 @@
     "run": "npm run import-map && arcane run --target browser --app juju-grand-adventures"
   },
   "dependencies": {
-    "arcane-os": "0.5.18"
+    "arcane-os": "0.13.0"
   }
 }

@@ -1,13 +1,13 @@
 import { arcaneLogging } from 'arcane-os/logging';
 import Is from 'strong-type';
-import '../modules/DBOPFS.js?arcaneVersion=0.5.18';
-import '../modules/AI.js?arcaneVersion=0.5.18';
+import '../modules/DBOPFS.js?arcaneVersion=0.13.0';
+import '../modules/AI.js?arcaneVersion=0.13.0';
 import {
     hasConversationEntry,
     hasUserEntry,
     recurringChatMessages
-} from '../modules/ChatRecords.js?arcaneVersion=0.5.18';
-import {normalizeMemoryContent} from '../modules/MemoryRecords.js?arcaneVersion=0.5.18';
+} from '../modules/ChatRecords.js?arcaneVersion=0.13.0';
+import {normalizeMemoryContent} from '../modules/MemoryRecords.js?arcaneVersion=0.13.0';
 
 const is = new Is(false);
 

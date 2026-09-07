@@ -1,7 +1,7 @@
 import Is from 'strong-type';
 const is=new Is(false);
 
-import {recurringChatMessages} from './ChatRecords.js?arcaneVersion=0.5.18';
+import {recurringChatMessages} from './ChatRecords.js?arcaneVersion=0.13.0';
 
 const FORBIDDEN_REQUEST_FIELDS=new Set([
     'messages',

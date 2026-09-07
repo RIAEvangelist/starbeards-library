@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="./arcane/css/layout.css?v=3&amp;arcaneVersion=0.5.18">
+<link rel="stylesheet" href="./arcane/css/layout.css?arcaneVersion=0.13.0">
 <style>
     :host{
         display:block;
@@ -42,15 +42,40 @@
     }
 
     .description,
-    .status{
-        margin:0;
+    .status {
+        margin: 0;
+        overflow-wrap: anywhere;
+    }
+
+    .transcription-feedback {
+        min-width: 0;
+    }
+
+    .stt-activation-progress {
+        display: block;
+        width: 100%;
+        height: .6rem;
+        margin-block-start: .7rem;
+        accent-color: var(--arcane-action, var(--primary-color));
+    }
+
+    .stt-activation-progress[hidden] {
+        display: none;
     }
 </style>
 
 <section class="voice-transcription">
     <p id="description" class="description"></p>
     <section id="transcript" class="transcript"></section>
-    <p id="status" class="status" role="status" aria-live="polite"></p>
+    <div class="transcription-feedback">
+        <p id="status" class="status" role="status" aria-live="polite"></p>
+        <progress
+            id="sttActivationProgress"
+            class="stt-activation-progress"
+            aria-label="Transcription model activation progress"
+            hidden
+        ></progress>
+    </div>
     <section class="controls">
         <button id="start" type="button" disabled></button>
         <button id="sttActivation" type="button" hidden disabled>Start transcription</button>
@@ -89,21 +114,22 @@
             ]
         }
     );
-    const {default:MD}=await import('../modules/MD.js?v=2&arcaneVersion=0.5.18');
+    const {default:MD}=await import('../modules/MD.js?arcaneVersion=0.13.0');
     const {
         appendTranscription,
         createSTTActivationController,
         normalizeVoiceOptions
-    }=await import('../modules/ComponentContracts.js?arcaneVersion=0.5.18');
+    }=await import('../modules/ComponentContracts.js?arcaneVersion=0.13.0');
     const {
         requestAIRuntimeIntent,
         subscribeAIRuntimeState
-    }=await import('../modules/AIRuntimeState.js?arcaneVersion=0.5.18');
+    }=await import('../modules/AIRuntimeState.js?arcaneVersion=0.13.0');
     const description=host.shadowRoot.querySelector('#description');
     const transcriptElement=host.shadowRoot.querySelector('#transcript');
     const status=host.shadowRoot.querySelector('#status');
     const startButton=host.shadowRoot.querySelector('#start');
     const sttActivationButton=host.shadowRoot.querySelector('#sttActivation');
+    const sttActivationProgress = host.shadowRoot.querySelector('#sttActivationProgress');
     const stopButton=host.shadowRoot.querySelector('#stop');
     const completeButton=host.shadowRoot.querySelector('#complete');
     const runtimeStateAbortController=new AbortController();
@@ -225,6 +251,7 @@
         {
             host,
             button:sttActivationButton,
+            progress: sttActivationProgress,
             onChange:renderState,
             eventSource:events
         }
@@ -598,7 +625,7 @@
             return options.transcribe(file,context);
         }
         if(!is.function(globalThis.ai?.fetchSTT)){
-            await import('../modules/AI.js?arcaneVersion=0.5.18');
+            await import('../modules/AI.js?arcaneVersion=0.13.0');
         }
         if(!is.function(globalThis.ai?.fetchSTT)){
             const error=new Error('Speech transcription is not configured.');

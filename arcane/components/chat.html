@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="./arcane/css/layout.css?v=3&amp;arcaneVersion=0.5.18" />
+<link rel="stylesheet" href="./arcane/css/layout.css?arcaneVersion=0.13.0" />
 <style>
     :host {
         display: block;
@@ -110,6 +110,15 @@
     .chat_area[data-conversation-complete="true"] > #speech,
     .chat_area[data-conversation-complete="true"] > .controls{
         display:none;
+    }
+
+    .chat_area[data-model-start-required="true"]:not([data-conversation-complete="true"]) > .conversation_timebox,
+    .chat_area[data-model-start-required="true"]:not([data-conversation-complete="true"]) > .chat_output,
+    .chat_area[data-model-start-required="true"]:not([data-conversation-complete="true"]) > .chat_session_status,
+    .chat_area[data-model-start-required="true"]:not([data-conversation-complete="true"]) > .chat_input_area,
+    .chat_area[data-model-start-required="true"]:not([data-conversation-complete="true"]) > #speech,
+    .chat_area[data-model-start-required="true"]:not([data-conversation-complete="true"]) > .controls {
+        display: none;
     }
 
     .conversation_timebox[data-error="true"]{
@@ -452,13 +461,13 @@
     }
 
     .chat_submit::before {
-        mask-image:url('./arcane/img/send.svg?arcaneVersion=0.5.18');
-        -webkit-mask-image:url('./arcane/img/send.svg?arcaneVersion=0.5.18');
+        mask-image:url('./arcane/img/send.svg?arcaneVersion=0.13.0');
+        -webkit-mask-image:url('./arcane/img/send.svg?arcaneVersion=0.13.0');
     }
 
     button.chat_upload::before {
-        mask-image:url('./arcane/img/upload.svg?arcaneVersion=0.5.18');
-        -webkit-mask-image:url('./arcane/img/upload.svg?arcaneVersion=0.5.18');
+        mask-image:url('./arcane/img/upload.svg?arcaneVersion=0.13.0');
+        -webkit-mask-image:url('./arcane/img/upload.svg?arcaneVersion=0.13.0');
     }
 
     .chat_submit img,
@@ -522,6 +531,10 @@
             padding: var(--arcane-space-2, .5rem);
         }
 
+        .chat_area[data-model-start-required="true"]:not([data-conversation-complete="true"]) {
+            justify-content: flex-start;
+        }
+
         .chat_output > li {
             max-width: 96%;
         }
@@ -570,7 +583,7 @@
     }
 </style>
 
-<section class="chat_area">
+<section class="chat_area" data-model-start-required="true">
     <section
         id="conversation_timebox"
         class="conversation_timebox"
@@ -621,11 +634,11 @@
     <div class="chat_input_area">
         <textarea type='text' class='chat_input' id='chat_input' placeholder='Message' aria-label='Message'></textarea>
         <button type="button" id="chat_upload" class="chat_upload" title="Upload files" aria-label="Upload files">
-            <img class='upload-icon' src="./arcane/img/upload.svg?arcaneVersion=0.5.18" />
+            <img class='upload-icon' src="./arcane/img/upload.svg?arcaneVersion=0.13.0" />
         </button>
         <input type="file" id="file_upload_input" class="chat_upload" accept=".txt, .md, image/*" hidden multiple />
         <button type="button" id="chat_submit" class="chat_submit" title="Send message" aria-label="Send message">
-            <img class='send-icon' src="./arcane/img/send.svg?arcaneVersion=0.5.18" />
+            <img class='send-icon' src="./arcane/img/send.svg?arcaneVersion=0.13.0" />
         </button>
     </div>
     <span id="speech_mount"></span>
@@ -878,11 +891,11 @@
         {requestAIRuntimeIntent,subscribeAIRuntimeState},
         {createPersistentAIChatSession}
     ]=await Promise.all([
-        import('../modules/MD.js?arcaneVersion=0.5.18'),
-        import('../entities/File.js?arcaneVersion=0.5.18'),
-        import('../modules/ConversationTimebox.js?arcaneVersion=0.5.18'),
-        import('../modules/AIRuntimeState.js?arcaneVersion=0.5.18'),
-        import('../modules/PersistentAIChatSession.js?arcaneVersion=0.5.18')
+        import('../modules/MD.js?arcaneVersion=0.13.0'),
+        import('../entities/File.js?arcaneVersion=0.13.0'),
+        import('../modules/ConversationTimebox.js?arcaneVersion=0.13.0'),
+        import('../modules/AIRuntimeState.js?arcaneVersion=0.13.0'),
+        import('../modules/PersistentAIChatSession.js?arcaneVersion=0.13.0')
     ]);
 
     host.language=host.language||'English';
@@ -1985,6 +1998,14 @@
 
     function applyAIAvailability(availability){
         host.aiAvailability={...availability};
+        const selectedRole = hasSelectedAIRuntimeRole('llm')
+            ? latestAIRuntimeRoles.llm
+            : null;
+        const conversationVisible = selectedRole
+            ? selectedRole.localOnly === false
+                || (selectedRole.state === 'ready' && selectedRole.loaded)
+            : availability.llm;
+        chatArea.dataset.modelStartRequired = String(!conversationVisible);
         send.disabled=host.conversationComplete
             ||!availability.llm
             ||sessionMessagePending
@@ -2039,6 +2060,20 @@
         }
 
         function determinateProgress(){
+            if(role?.progress?.phase==='initialize'){
+                const {completed,total,unit}=role.progress;
+                if(
+                    !is.finite(total)
+                    ||total<=0
+                    ||!is.finite(completed)
+                    ||completed<0
+                    ||!is.string(unit)
+                    ||!unit
+                ){
+                    return null;
+                }
+                return {completed,total,unit,byteTelemetry:false};
+            }
             const totalBytes=role?.progress?.totalBytes;
             const loadedBytes=role?.progress?.loadedBytes;
             if(
@@ -2160,8 +2195,10 @@
             return `${active} of ${limit} ${noun}${limit===1?'':'s'} active`;
         }
 
-        function progressElapsedText(){
-            const elapsedMilliseconds=Number(role?.progress?.elapsedMs);
+        function progressElapsedText(
+            elapsedMilliseconds,
+            suffix='elapsed'
+        ){
             if(!is.finite(elapsedMilliseconds)||elapsedMilliseconds<0){
                 return '';
             }
@@ -2170,12 +2207,12 @@
             const minutes=Math.floor(elapsedSeconds%3600/60);
             const seconds=elapsedSeconds%60;
             if(hours>0){
-                return `${hours}h ${minutes}m elapsed`;
+                return `${hours}h ${minutes}m ${suffix}`;
             }
             if(minutes>0){
-                return `${minutes}m ${String(seconds).padStart(2,'0')}s elapsed`;
+                return `${minutes}m ${String(seconds).padStart(2,'0')}s ${suffix}`;
             }
-            return `${seconds}s elapsed`;
+            return `${seconds}s ${suffix}`;
         }
 
         function progressMessage(){
@@ -2183,7 +2220,14 @@
             const phaseValue=is.string(role?.progress?.phase)&&role.progress.phase
                 ?role.progress.phase
                 :'loading';
-            const phase=phaseValue.replaceAll('-',' ');
+            const initializing=phaseValue==='initialize';
+            const phase=initializing
+                ?is.string(role?.progress?.message)&&role.progress.message
+                    ?role.progress.message
+                    :is.string(role?.progress?.stage)&&role.progress.stage
+                        ?role.progress.stage.replaceAll('-',' ')
+                        :'Initializing the selected model'
+                :phaseValue.replaceAll('-',' ');
             const parts=[
                 `Loading ${modelDisplayName()} through the Arcane SDK`,
                 phase
@@ -2211,18 +2255,38 @@
                     :measured.unit;
                 parts.push(`${measured.completed} of ${measured.total} ${suffix}`);
             }
-            const transfers=activeTransferText();
+            const transfers=initializing?'':activeTransferText();
             if(transfers){
                 parts.push(transfers);
             }
-            const elapsed=progressElapsedText();
+            const elapsed=progressElapsedText(Number(role?.progress?.elapsedMs));
             if(elapsed){
                 parts.push(elapsed);
-                if(role?.progress?.heartbeat===true){
+                if(!initializing&&role?.progress?.heartbeat===true){
                     parts.push('Still working');
                 }
             }
-            if(!measured?.byteTelemetry){
+            if(initializing){
+                const phaseElapsed=progressElapsedText(
+                    role.progress.phaseElapsedMs,
+                    'in this stage'
+                );
+                if(phaseElapsed){
+                    parts.push(phaseElapsed);
+                }
+                if(role.progress.heartbeat===true){
+                    const activityElapsed=progressElapsedText(
+                        role.progress.activityElapsedMs,
+                        'ago'
+                    );
+                    if(activityElapsed){
+                        parts.push(`Last runtime activity ${activityElapsed}`);
+                    }
+                }
+                parts.push(measured
+                    ?'Keep this tab open'
+                    :'Completion percentage unavailable; keep this tab open');
+            }else if(!measured?.byteTelemetry){
                 parts.push('The first activation can take several minutes; keep this tab open');
             }
             return parts.join(' · ');

@@ -1,7 +1,7 @@
 import Is from 'strong-type';
 const is=new Is(false);
 
-import waitForComponent from './WaitForComponent.js?arcaneVersion=0.5.18';
+import waitForComponent from './WaitForComponent.js?arcaneVersion=0.13.0';
 import { arcaneLogging,readArcaneDeveloperMode } from 'arcane-os/logging';
 import {
     arcaneEvents,
@@ -148,7 +148,7 @@ function defaultStorage(target){
 
 async function sendWithWindowMail(target,...args){
     if(!is.function(target?.mail?.send)){
-        await import('./Mail.js?arcaneVersion=0.5.18');
+        await import('./Mail.js?arcaneVersion=0.13.0');
     }
 
     if(!is.function(target?.mail?.send)){
@@ -224,7 +224,7 @@ async function ensureHTMLImport(target){
     }
 
     try{
-        await import('./HTMLImport.js?arcaneVersion=0.5.18');
+        await import('./HTMLImport.js?arcaneVersion=0.13.0');
     }catch(error){
         if(!registry.get('html-import')){
             throw error;
@@ -477,6 +477,7 @@ class Errors {
             return;
         }
 
+        // Restored records resume delivery; only live capture offers developer modals.
         const timestamp=this.now();
         for(const storedRecord of records){
             if(
@@ -519,7 +520,6 @@ class Errors {
             if(!record.retryRequired){
                 this.scheduleRecord(record,dueAt-timestamp);
             }
-            this.offerDeveloperIncident(record.incident,record.occurrenceId);
         }
 
         this.persistLedger();
