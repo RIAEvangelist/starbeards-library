@@ -1,6 +1,10 @@
+![Juliet, Uni, and Starbeard beneath three glowing planets, with the title Juliet’s Grand Adventures.](apps/juju-grand-adventures/assets/social-card.png)
+
 # Juliet’s Grand Adventures
 
 An illustrated Arcane browser application starring Juliet, Uni, and Starbeard.
+
+[GitHub Pages app — deployment pending](https://riaevangelist.github.io/starbeards-library/apps/juju-grand-adventures/)
 
 ## Library sections
 
