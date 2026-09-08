@@ -2,7 +2,7 @@ import Is from 'strong-type';
 const is=new Is(false);
 
 import {createArcaneEventSource} from 'arcane-os/event-manager';
-import TerminalSession from '../entities/TerminalSession.js?arcaneVersion=0.18.0';
+import TerminalSession from '../entities/TerminalSession.js?arcaneVersion=0.25.0';
 
 export const TERMINAL_CLIENT_EVENT_TYPES={
     sessionStarted:'terminal-session',

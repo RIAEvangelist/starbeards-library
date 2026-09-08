@@ -2,8 +2,8 @@ import Is from 'strong-type';
 const is=new Is(false);
 
 import {createArcaneEventSource} from 'arcane-os/event-manager';
-import ApiModelDatabase from './ApiModelDatabase.js?arcaneVersion=0.18.0';
-import {WeatherDay,WeatherLocation,WeatherObservation,WeatherSnapshot} from '../entities/Weather.js?arcaneVersion=0.18.0';
+import ApiModelDatabase from './ApiModelDatabase.js?arcaneVersion=0.25.0';
+import {WeatherDay,WeatherLocation,WeatherObservation,WeatherSnapshot} from '../entities/Weather.js?arcaneVersion=0.25.0';
 
 export const OPEN_METEO_ENDPOINTS={
     geocoding:'https://geocoding-api.open-meteo.com/v1/search',

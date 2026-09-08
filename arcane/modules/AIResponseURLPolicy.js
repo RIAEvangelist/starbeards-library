@@ -1,5 +1,5 @@
 import Is from 'strong-type';
-import {marked} from './Marked.min.js?arcaneVersion=0.18.0';
+import {marked} from './Marked.min.js?arcaneVersion=0.25.0';
 
 const is=new Is(false);
 

@@ -1,7 +1,7 @@
 import Is from 'strong-type';
 const is=new Is(false);
 
-import {resolveApplicationLocalStorageKey} from './AppDataScope.js?arcaneVersion=0.18.0';
+import {resolveApplicationLocalStorageKey} from './AppDataScope.js?arcaneVersion=0.25.0';
 
 function adapter(){
     const native=globalThis.Arcane?.preferences;

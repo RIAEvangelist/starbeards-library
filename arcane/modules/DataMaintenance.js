@@ -1,6 +1,6 @@
-import './DBOPFS.js?arcaneVersion=0.18.0';
-import {hasConversationEntry,hasUserEntry} from './ChatRecords.js?arcaneVersion=0.18.0';
-import {hasMemoryContent} from './MemoryRecords.js?arcaneVersion=0.18.0';
+import './DBOPFS.js?arcaneVersion=0.25.0';
+import {hasConversationEntry,hasUserEntry} from './ChatRecords.js?arcaneVersion=0.25.0';
+import {hasMemoryContent} from './MemoryRecords.js?arcaneVersion=0.25.0';
 import {arcaneEvents} from 'arcane-os/event-manager';
 
 async function clearEmptyChatsAndMemories(){

@@ -2,7 +2,7 @@ import Is from 'strong-type';
 const is=new Is(false);
 
 import {createArcaneEventSource} from 'arcane-os/event-manager';
-import {resolveApplicationLocalStorageKey} from './AppDataScope.js?arcaneVersion=0.18.0';
+import {resolveApplicationLocalStorageKey} from './AppDataScope.js?arcaneVersion=0.25.0';
 
 export const RECORD_REVIEW_STORE_ERROR_CODES={
     adapterInvalid:'ARCANE_RECORD_REVIEW_STORE_ADAPTER_INVALID',
