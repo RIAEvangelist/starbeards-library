@@ -1,5 +1,13 @@
 {
   "name": "juju-grand-adventures",
+  "displayName": "Juliet’s Grand Adventures",
+  "version": "0.1.0",
+  "description": "A little illustrated library of space adventures with Juliet, Uni, and Starbeard.",
+  "license": "AGPL-3.0-only",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RIAEvangelist/starbeards-library.git"
+  },
   "private": true,
   "type": "module",
   "scripts": {
