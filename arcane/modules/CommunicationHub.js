@@ -2,9 +2,9 @@ import Is from 'strong-type';
 const is=new Is(false);
 
 import {createArcaneEventSource} from 'arcane-os/event-manager';
-import CommunicationMessage from '../entities/CommunicationMessage.js?arcaneVersion=0.13.1';
-import CommunicationThread from '../entities/CommunicationThread.js?arcaneVersion=0.13.1';
-import CommunicationProviderRegistry from './CommunicationProviderRegistry.js?arcaneVersion=0.13.1';
+import CommunicationMessage from '../entities/CommunicationMessage.js?arcaneVersion=0.18.0';
+import CommunicationThread from '../entities/CommunicationThread.js?arcaneVersion=0.18.0';
+import CommunicationProviderRegistry from './CommunicationProviderRegistry.js?arcaneVersion=0.18.0';
 
 const communicationHubEvents={
     refreshCancelled:'communications-refresh-cancelled',

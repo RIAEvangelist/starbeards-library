@@ -1,6 +1,6 @@
 import { arcaneLogging } from 'arcane-os/logging';
 import Is from 'strong-type';
-import DBLS from '../modules/DBLS.js?arcaneVersion=0.13.1';
+import DBLS from '../modules/DBLS.js?arcaneVersion=0.18.0';
 import {
     arcaneEvents,
     createArcaneEventSource,
@@ -23,7 +23,7 @@ import {
  *
  * The import must remain even if unused because it registers the singleton.
  */
-import DBOPFS from '../modules/DBOPFS.js?arcaneVersion=0.13.1';
+import DBOPFS from '../modules/DBOPFS.js?arcaneVersion=0.18.0';
 
 function createDefaultDashboard(){
     return { charts:{} };

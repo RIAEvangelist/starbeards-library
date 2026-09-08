@@ -1,4 +1,4 @@
-import {preferenceSchema} from '../entities/Preference.js?arcaneVersion=0.13.1';
+import {preferenceSchema} from '../entities/Preference.js?arcaneVersion=0.18.0';
 
 export const ollamaRuntimeSchema=preferenceSchema([
     {key:'bootLoad',type:'boolean',label:'Load default model at boot',description:'Preload the default model after ArcaneOllama and Arcane Core are ready.',defaultValue:true},

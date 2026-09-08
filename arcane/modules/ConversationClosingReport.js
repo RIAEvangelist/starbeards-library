@@ -4,7 +4,7 @@ const is=new Is(false);
 import {
     CONVERSATION_ACTION_ITEM_BASES,
     normalizeRememberedConversationActions
-} from './ConversationActionItems.js?arcaneVersion=0.13.1';
+} from './ConversationActionItems.js?arcaneVersion=0.18.0';
 
 const DEFAULT_TOOL_NAME='prepare_conversation_closing_report';
 const TOOL_NAME_PATTERN=/^[a-z][a-z0-9_]*$/;
@@ -74,7 +74,7 @@ function parseArguments(value){
     return value;
 }
 
-function escapeRawHTML(value){
+export function formatConversationClosingReportText(value){
     return value
         .replaceAll('&','&amp;')
         .replaceAll('<','&lt;')
@@ -240,7 +240,7 @@ export function formatConversationClosingReport(value){
             remembered_actions:value.rememberedActions,
         }
         :value;
-    return escapeRawHTML(
+    return formatConversationClosingReportText(
         normalizeConversationClosingReport(normalizedInput).finalMessage
     );
 }

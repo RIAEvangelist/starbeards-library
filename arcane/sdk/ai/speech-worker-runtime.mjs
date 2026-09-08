@@ -1,4 +1,4 @@
-import Is from "../dependencies/strong-type/index.js?arcaneVersion=0.13.1";
+import Is from "../dependencies/strong-type/index.js?arcaneVersion=0.18.0";
 
 const is = new Is(false);
 
@@ -844,8 +844,8 @@ function validateConfiguration(configuration, role) {
 function nestedWorkerUrl(role) {
   const url = new URL(
     role === "stt"
-      ? "./browser-whisper-worker.mjs?arcaneVersion=0.13.1"
-      : "./browser-kokoro-worker.mjs?arcaneVersion=0.13.1",
+      ? "./browser-whisper-worker.mjs?arcaneVersion=0.18.0"
+      : "./browser-kokoro-worker.mjs?arcaneVersion=0.18.0",
     import.meta.url,
   );
   url.searchParams.set("arcaneSpeechWorkerMode", "artifact-module-worker");

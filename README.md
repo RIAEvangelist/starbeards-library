@@ -24,7 +24,7 @@ Completed stories outside the two adventure collections will be added here.
 
 Each book opens in the same full-screen horizontal reader with touch swiping, keyboard navigation, page controls, and JuJu’s existing eight-voice read-aloud controls.
 
-The app pins published `arcane-os@0.13.1` and uses its public browser-speech, AI, DBOPFS, event, and prepared-audio contracts.
+The app pins published `arcane-os@0.18.0` and uses its public browser-speech, AI, DBOPFS, event, and prepared-audio contracts.
 
 JuJu owns story text, voice choice, presentation, passage pauses, and book preparation order. Each Read snapshots every complete page in the selected book. It submits all passages of the selected page to `AI.prepareTTS` and attaches `AI.playPreparedTTS` immediately. The SDK splits at punctuation, with no four-word cadence, queues generation through its bounded provider pool, and plays the selected page in original order on its audio clock. Each passage's 200 ms pause follows only its final punctuation chunk; the page's final passage has no added pause.
 
@@ -48,7 +48,7 @@ Every spread has a **Move words** handle. Drag it with a mouse or finger, or foc
 
 ## Arcane island boundary
 
-JuJu declares exact `arcane-os@0.13.1` in its own `package.json`; a normal project-root `npm install` resolves the public package into this repository’s own physical `node_modules`. The app-owned ESM materializer projects the installed SDK into the repository-local `arcane/` tree before the public import-map, development, build, bundle, run, or packaging path uses it. No global install, symlink, Arcane checkout, live source mount, or update poll is part of the package or runtime contract. The SDK materializer and managed import-map generator carry `arcaneVersion=0.13.1` through local browser resource references while preserving ordinary caching, remote provider URLs, and saved user state.
+JuJu declares exact `arcane-os@0.18.0` in its own `package.json`; a normal project-root `npm install` resolves the public package into this repository’s own physical `node_modules`. The app-owned ESM materializer projects the installed SDK into the repository-local `arcane/` tree before the public import-map, development, build, bundle, run, or packaging path uses it. No global install, symlink, Arcane checkout, live source mount, or update poll is part of the package or runtime contract. The SDK materializer and managed import-map generator carry `arcaneVersion=0.18.0` through local browser resource references while preserving ordinary caching, remote provider URLs, and saved user state.
 
 JuJu has not enabled the SDK's optional PWA behavior in its app descriptor. The SDK update does not register a PWA worker, mount an installation prompt, or change the app's branding. Existing narration caching remains independent of PWA enablement.
 
@@ -68,7 +68,7 @@ The project directory is:
 C:\Users\codex\Documents\ChatGPT\JuJu's Grand Adventures
 ```
 
-Use Node.js 22.23.2 or newer. Before starting the SDK development server, supply the workspace's PEM certificate chain at `.arcane/dev/server-cert.pem` and private key at `.arcane/dev/server-key.pem`, or pass the SDK's `--cert` and `--key` options with existing paths. These local files are ignored by Git. The SDK uses `node-http-server` for HTTPS and a paired HTTP 308 redirect listener; certificate creation and device trust setup are not performed by JuJu.
+Use Node.js 22.23.2 or newer. The SDK supplies `node-http-server@10.0.0` through its runtime dependency tree; JuJu declares no separate server dependency. For the default HTTPS mode, supply the workspace's PEM certificate chain at `.arcane/dev/server-cert.pem` and private key at `.arcane/dev/server-key.pem`, or pass the SDK's `--cert` and `--key` options with existing paths. These local files are ignored by Git. PEM-backed HTTPS supports HTTP/2 and HTTP/1.1 on the same port, with a paired HTTP 308 redirect listener; certificate creation and device trust setup are not performed by JuJu.
 
 With that pair configured, install and start the app from PowerShell:
 
@@ -78,7 +78,13 @@ npm install
 npm run dev
 ```
 
-Open the HTTPS URL printed by the SDK development server. Browser storage belongs to the exact scheme, host, and port: changing from an existing HTTP address to HTTPS opens separate storage and does not migrate or delete the old origin's prepared narration. Keep the same origin when rereading saved audio. The app has no framework, backend, or server-side database; it uses plain HTML, CSS, and JavaScript plus local media under `apps/juju-grand-adventures/assets/`.
+For explicit HTTP source development without a certificate pair, use the same public SDK server:
+
+```powershell
+npm run dev -- --http --port 8001
+```
+
+This selects one HTTP content listener without an HTTPS listener or redirect. Use an available port; do not start a second server on a port already owned by a running server. Open the URL printed by the SDK development server. Browser storage belongs to the exact scheme, host, and port: changing from an existing HTTP address to HTTPS opens separate storage and does not migrate or delete the old origin's prepared narration. Keep the same origin when rereading saved audio. DBOPFS and PWA availability remain subject to browser secure-context requirements, particularly when using a plain HTTP LAN address. The app has no framework, backend, or server-side database; it uses plain HTML, CSS, and JavaScript plus local media under `apps/juju-grand-adventures/assets/`.
 
 ## Privacy
 
