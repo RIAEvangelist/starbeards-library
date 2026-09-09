@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="./arcane/css/layout.css?arcaneVersion=0.28.3" />
+<link rel="stylesheet" href="./arcane/css/layout.css?arcaneVersion=0.28.4" />
 <style>
     :host {
         display: block;
@@ -461,13 +461,13 @@
     }
 
     .chat_submit::before {
-        mask-image:url('./arcane/img/send.svg?arcaneVersion=0.28.3');
-        -webkit-mask-image:url('./arcane/img/send.svg?arcaneVersion=0.28.3');
+        mask-image:url('./arcane/img/send.svg?arcaneVersion=0.28.4');
+        -webkit-mask-image:url('./arcane/img/send.svg?arcaneVersion=0.28.4');
     }
 
     button.chat_upload::before {
-        mask-image:url('./arcane/img/upload.svg?arcaneVersion=0.28.3');
-        -webkit-mask-image:url('./arcane/img/upload.svg?arcaneVersion=0.28.3');
+        mask-image:url('./arcane/img/upload.svg?arcaneVersion=0.28.4');
+        -webkit-mask-image:url('./arcane/img/upload.svg?arcaneVersion=0.28.4');
     }
 
     .chat_submit img,
@@ -634,11 +634,11 @@
     <div class="chat_input_area">
         <textarea type='text' class='chat_input' id='chat_input' placeholder='Message' aria-label='Message'></textarea>
         <button type="button" id="chat_upload" class="chat_upload" title="Upload files" aria-label="Upload files">
-            <img class='upload-icon' src="./arcane/img/upload.svg?arcaneVersion=0.28.3" />
+            <img class='upload-icon' src="./arcane/img/upload.svg?arcaneVersion=0.28.4" />
         </button>
         <input type="file" id="file_upload_input" class="chat_upload" accept=".txt, .md, image/*" hidden multiple />
         <button type="button" id="chat_submit" class="chat_submit" title="Send message" aria-label="Send message">
-            <img class='send-icon' src="./arcane/img/send.svg?arcaneVersion=0.28.3" />
+            <img class='send-icon' src="./arcane/img/send.svg?arcaneVersion=0.28.4" />
         </button>
     </div>
     <span id="speech_mount"></span>
@@ -891,11 +891,11 @@
         {requestAIRuntimeIntent,subscribeAIRuntimeState},
         {createPersistentAIChatSession}
     ]=await Promise.all([
-        import('../modules/MD.js?arcaneVersion=0.28.3'),
-        import('../entities/File.js?arcaneVersion=0.28.3'),
-        import('../modules/ConversationTimebox.js?arcaneVersion=0.28.3'),
-        import('../modules/AIRuntimeState.js?arcaneVersion=0.28.3'),
-        import('../modules/PersistentAIChatSession.js?arcaneVersion=0.28.3')
+        import('../modules/MD.js?arcaneVersion=0.28.4'),
+        import('../entities/File.js?arcaneVersion=0.28.4'),
+        import('../modules/ConversationTimebox.js?arcaneVersion=0.28.4'),
+        import('../modules/AIRuntimeState.js?arcaneVersion=0.28.4'),
+        import('../modules/PersistentAIChatSession.js?arcaneVersion=0.28.4')
     ]);
 
     host.language=host.language||'English';

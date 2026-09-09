@@ -1,4 +1,4 @@
-import PreferenceStore from './PreferenceStore.js?arcaneVersion=0.28.3';
+import PreferenceStore from './PreferenceStore.js?arcaneVersion=0.28.4';
 
 export const appearancePreferenceSchema=Object.freeze([
     {key:'appearance.colorScheme',type:'select',label:'Color scheme',description:'Use the device preference or choose a consistent light or dark appearance.',defaultValue:'system',options:[{label:'Use device setting',value:'system'},{label:'Light',value:'light'},{label:'Dark',value:'dark'}]},

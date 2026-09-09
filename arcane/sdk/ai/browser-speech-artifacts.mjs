@@ -1,7 +1,7 @@
-import Is from "../dependencies/strong-type/index.js?arcaneVersion=0.28.3";
+import Is from "../dependencies/strong-type/index.js?arcaneVersion=0.28.4";
 import {
   normalizeModelSecurity,
-} from "./model-controller.mjs?arcaneVersion=0.28.3";
+} from "./model-controller.mjs?arcaneVersion=0.28.4";
 
 const is = new Is(false);
 

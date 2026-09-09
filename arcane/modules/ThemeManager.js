@@ -1,10 +1,10 @@
 import Is from 'strong-type';
 const is=new Is(false);
 
-import Theme,{arcaneDarkThemeTokens,arcaneLightThemeTokens} from '../entities/Theme.js?arcaneVersion=0.28.3';
-import PreferenceStore from './PreferenceStore.js?arcaneVersion=0.28.3';
-import {applyAppearancePreferences,createAppearancePreferenceStore} from './AppearancePreferences.js?arcaneVersion=0.28.3';
-import SystemAppearance from './SystemAppearance.js?arcaneVersion=0.28.3';
+import Theme,{arcaneDarkThemeTokens,arcaneLightThemeTokens} from '../entities/Theme.js?arcaneVersion=0.28.4';
+import PreferenceStore from './PreferenceStore.js?arcaneVersion=0.28.4';
+import {applyAppearancePreferences,createAppearancePreferenceStore} from './AppearancePreferences.js?arcaneVersion=0.28.4';
+import SystemAppearance from './SystemAppearance.js?arcaneVersion=0.28.4';
 import {
     createArcaneEventSource,
     projectArcaneDOMEvent

@@ -4,7 +4,7 @@ const is=new Is(false);
 import {
     APP_LOCAL_STORAGE_PREFIX,
     resolveBrowserApplicationId
-} from './AppDataScope.js?arcaneVersion=0.28.3';
+} from './AppDataScope.js?arcaneVersion=0.28.4';
 import {
     createArcaneEventSource,
     projectArcaneDOMEvent

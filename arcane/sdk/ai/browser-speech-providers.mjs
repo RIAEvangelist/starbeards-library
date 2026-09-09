@@ -1,12 +1,12 @@
-import Is from "../dependencies/strong-type/index.js?arcaneVersion=0.28.3";
+import Is from "../dependencies/strong-type/index.js?arcaneVersion=0.28.4";
 import {
   createBrowserSpeechAuthority,
   isBrowserSpeechArtifactGraph,
   isBrowserSpeechArtifactError,
   isBrowserSpeechAuthority,
   isDbopfsSpeechArtifactStore,
-} from "./browser-speech-artifacts.mjs?arcaneVersion=0.28.3";
-import { stripSpeechFormatting } from "../speech-text.mjs?arcaneVersion=0.28.3";
+} from "./browser-speech-artifacts.mjs?arcaneVersion=0.28.4";
+import { stripSpeechFormatting } from "../speech-text.mjs?arcaneVersion=0.28.4";
 
 const is = new Is(false);
 
@@ -15,7 +15,7 @@ import {
   createSpeechWorkerClient,
   isSpeechWorkerClient,
   isSpeechWorkerClientError,
-} from "./speech-worker-client.mjs?arcaneVersion=0.28.3";
+} from "./speech-worker-client.mjs?arcaneVersion=0.28.4";
 
 const AI_PROVIDER_PROTOCOL = "arcane-ai-provider/2";
 const AI_MODEL_AUTHORITY_PROTOCOL = "arcane-ai-model-authority/1";

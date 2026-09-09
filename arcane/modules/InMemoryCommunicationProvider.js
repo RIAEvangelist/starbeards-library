@@ -1,5 +1,5 @@
-import CommunicationMessage from '../entities/CommunicationMessage.js?arcaneVersion=0.28.3';
-import CommunicationThread from '../entities/CommunicationThread.js?arcaneVersion=0.28.3';
+import CommunicationMessage from '../entities/CommunicationMessage.js?arcaneVersion=0.28.4';
+import CommunicationThread from '../entities/CommunicationThread.js?arcaneVersion=0.28.4';
 
 export default class InMemoryCommunicationProvider{
     constructor({id='demo-provider',label='Demo provider',channels=['other'],threads=[],messages={}}={}){

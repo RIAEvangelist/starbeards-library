@@ -2,7 +2,7 @@ export {
     default,
     default as Mail,
     resolveMailConfig
-} from './Mail.js?arcaneVersion=0.28.3';
+} from './Mail.js?arcaneVersion=0.28.4';
 export {
     MAIL_OUTBOX_IDEMPOTENCY_WINDOW_MS,
     MAIL_OUTBOX_PROTOCOL,
@@ -10,10 +10,10 @@ export {
     MAIL_OUTBOX_TABLE,
     MailOutbox,
     createMailOutbox
-} from './MailOutbox.mjs?arcaneVersion=0.28.3';
+} from './MailOutbox.mjs?arcaneVersion=0.28.4';
 export {
     MailTransportError,
     normalizeMailEndpoint,
     sendMailReport,
     serializeMailReport
-} from './MailTransport.mjs?arcaneVersion=0.28.3';
+} from './MailTransport.mjs?arcaneVersion=0.28.4';

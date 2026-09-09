@@ -2,14 +2,14 @@ import Is from 'strong-type';
 const is=new Is(false);
 
 import { arcaneLogging } from 'arcane-os/logging';
-import ArcaneCommunicationBridge from './ArcaneCommunicationBridge.js?arcaneVersion=0.28.3';
-import CommunicationHub from './CommunicationHub.js?arcaneVersion=0.28.3';
-import CommunicationPreferences from './CommunicationPreferences.js?arcaneVersion=0.28.3';
-import {loadAndApplyTheme} from './ThemeManager.js?arcaneVersion=0.28.3';
+import ArcaneCommunicationBridge from './ArcaneCommunicationBridge.js?arcaneVersion=0.28.4';
+import CommunicationHub from './CommunicationHub.js?arcaneVersion=0.28.4';
+import CommunicationPreferences from './CommunicationPreferences.js?arcaneVersion=0.28.4';
+import {loadAndApplyTheme} from './ThemeManager.js?arcaneVersion=0.28.4';
 import {
     inspectMessageRecords,
     unavailableMessageInspection
-} from './MessageAdvisory.js?arcaneVersion=0.28.3';
+} from './MessageAdvisory.js?arcaneVersion=0.28.4';
 
 export const COMMUNICATION_APP_CONTROLLER_ERROR_CODES={
     destroyed:'ARCANE_COMMUNICATION_APP_CONTROLLER_DESTROYED'

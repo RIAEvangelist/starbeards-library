@@ -1,15 +1,15 @@
-import Is from "../dependencies/strong-type/index.js?arcaneVersion=0.28.3";
-import { arcaneLogging } from '../logging.mjs?arcaneVersion=0.28.3';
+import Is from "../dependencies/strong-type/index.js?arcaneVersion=0.28.4";
+import { arcaneLogging } from '../logging.mjs?arcaneVersion=0.28.4';
 import {
   ARCANE_AI_ADAPTER_PROTOCOL,
   ArcaneAIError,
   normalizeModelSecurity,
   normalizeArcaneAIError,
   resolveModelSecurity,
-} from "./model-controller.mjs?arcaneVersion=0.28.3";
-import { createPackagedWllamaRuntime } from "./browser-wllama-runtime.mjs?arcaneVersion=0.28.3";
-import { getBrowserDeviceSettings, describeBrowserGpu } from "./browser-device-settings.mjs?arcaneVersion=0.28.3";
-import { arcaneEvents } from "../event-manager.mjs?arcaneVersion=0.28.3";
+} from "./model-controller.mjs?arcaneVersion=0.28.4";
+import { createPackagedWllamaRuntime } from "./browser-wllama-runtime.mjs?arcaneVersion=0.28.4";
+import { getBrowserDeviceSettings, describeBrowserGpu } from "./browser-device-settings.mjs?arcaneVersion=0.28.4";
+import { arcaneEvents } from "../event-manager.mjs?arcaneVersion=0.28.4";
 
 const is = new Is(false);
 

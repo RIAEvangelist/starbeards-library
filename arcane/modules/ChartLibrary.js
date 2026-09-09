@@ -13,7 +13,7 @@ function loadChartLibrary(){
         function loadChartLibraryPromise(resolve,reject){
             const script=document.createElement('script');
 
-            script.src=new URL('./uPlot.iife.min.js?arcaneVersion=0.28.3',import.meta.url).href;
+            script.src=new URL('./uPlot.iife.min.js?arcaneVersion=0.28.4',import.meta.url).href;
             script.addEventListener(
                 'load',
                 ()=>window.uPlot
