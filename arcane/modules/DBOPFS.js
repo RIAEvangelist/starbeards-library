@@ -1,6 +1,6 @@
 import { arcaneLogging } from 'arcane-os/logging';
 import Is from 'strong-type';
-import {openApplicationDataDirectory} from './AppDataScope.js?arcaneVersion=0.28.2';
+import {openApplicationDataDirectory} from './AppDataScope.js?arcaneVersion=0.28.3';
 import {
     createArcaneEventSource,
     projectArcaneDOMEvent
@@ -218,7 +218,7 @@ class DBOPFS {
 
         if(!is.function(this.#writeWorker?.postMessage)){
             this.#writeWorker=new Worker(
-                new URL('./DBOPFSWorker.js?arcaneVersion=0.28.2',import.meta.url)
+                new URL('./DBOPFSWorker.js?arcaneVersion=0.28.3',import.meta.url)
             );
         }
 
@@ -284,6 +284,25 @@ class DBOPFS {
      */
     #getLockKey(tableName,fileName){
         return `${tableName}:${fileName}`
+    }
+
+    /**
+     * Invalidates every known cache key for one logical/physical table pair.
+     * @private
+     * @param {string} tableName
+     * @param {string} directoryName
+     * @param {string} registeredTableName
+     */
+    #forgetTable(tableName,directoryName,registeredTableName){
+        for(const name of new Set([
+            tableName,
+            directoryName,
+            registeredTableName
+        ])){
+            delete this.#tables[name]
+            delete this.#tableHandles[name]
+            delete this.#tableHandlePromises[name]
+        }
     }
 
     /** @type {boolean} */
@@ -823,6 +842,66 @@ class DBOPFS {
         }
 
         return true
+    }
+
+    /**
+     * Removes one existing table only when its physical directory is empty.
+     * The target is resolved as an existing directory without creating or
+     * scanning it. Native non-recursive OPFS removal owns the emptiness
+     * decision, so this method never clears or recursively removes a table.
+     *
+     * @param {string} tableName
+     * @returns {Promise<{
+     *   status:'removed'|'absent'|'not-empty',
+     *   removed:boolean,
+     *   tableName:string,
+     *   directoryName:string
+     * }>}
+     */
+    async removeEmptyTable(tableName){
+        if(!this.ready){
+            await this.readyPromise;
+        }
+
+        const directoryName=directoryNameForTable(tableName);
+        const registeredTableName=tableNameForDirectory(directoryName);
+
+        try{
+            await this.#db.getDirectoryHandle(directoryName,{create:false})
+            await this.#db.removeEntry(directoryName)
+        }catch(error){
+            if(error.name==='InvalidModificationError'){
+                return {
+                    status:'not-empty',
+                    removed:false,
+                    tableName:registeredTableName,
+                    directoryName
+                }
+            }
+
+            if(error.name!=='NotFoundError'){
+                arcaneLogging.error(error)
+                throw error
+            }
+
+            this.#forgetTable(tableName,directoryName,registeredTableName)
+
+            return {
+                status:'absent',
+                removed:false,
+                tableName:registeredTableName,
+                directoryName
+            }
+        }
+
+        this.#forgetTable(tableName,directoryName,registeredTableName)
+
+        return {
+            status:'removed',
+            removed:true,
+            tableName:registeredTableName,
+            directoryName
+        }
     }
 
     /**

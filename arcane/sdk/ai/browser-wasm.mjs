@@ -1,16 +1,16 @@
-import Is from "../dependencies/strong-type/index.js?arcaneVersion=0.28.2";
+import Is from "../dependencies/strong-type/index.js?arcaneVersion=0.28.3";
 import {
   completeValueText,
   createModelController,
   ModelController,
-} from "./model-controller.mjs?arcaneVersion=0.28.2";
+} from "./model-controller.mjs?arcaneVersion=0.28.3";
 import {
   adaptV1LlmProvider,
   createBrowserModelSource,
   createBrowserWasmLlmProvider,
   createDbopfsModelStore,
-} from "./browser-wasm-llm-provider.mjs?arcaneVersion=0.28.2";
-import { BROWSER_WASM_RUNTIME_AUTHORITY } from "./browser-wllama-runtime.mjs?arcaneVersion=0.28.2";
+} from "./browser-wasm-llm-provider.mjs?arcaneVersion=0.28.3";
+import { BROWSER_WASM_RUNTIME_AUTHORITY } from "./browser-wllama-runtime.mjs?arcaneVersion=0.28.3";
 
 const is = new Is(false);
 

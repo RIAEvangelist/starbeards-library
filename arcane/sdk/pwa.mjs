@@ -1,6 +1,6 @@
-import {createArcaneEventSource} from './event-manager.mjs?arcaneVersion=0.28.2';
+import {createArcaneEventSource} from './event-manager.mjs?arcaneVersion=0.28.3';
 
-export {PWA_INSTALL_STATE_EVENT, getPwaInstall, mountPwaInstallPrompt} from './pwa-install.mjs?arcaneVersion=0.28.2';
+export {PWA_INSTALL_STATE_EVENT, getPwaInstall, mountPwaInstallPrompt} from './pwa-install.mjs?arcaneVersion=0.28.3';
 
 export const PWA_STATE_EVENT = 'arcane.pwa.state';
 

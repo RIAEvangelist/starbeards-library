@@ -5,8 +5,8 @@ export {
   createBrowserSpeechAuthority,
   createDbopfsSpeechArtifactStore,
   removeBrowserSpeechModelCache,
-} from "./browser-speech-artifacts.mjs?arcaneVersion=0.28.2";
+} from "./browser-speech-artifacts.mjs?arcaneVersion=0.28.3";
 export {
   createBrowserKokoroProvider,
   createBrowserWhisperProvider,
-} from "./browser-speech-providers.mjs?arcaneVersion=0.28.2";
+} from "./browser-speech-providers.mjs?arcaneVersion=0.28.3";

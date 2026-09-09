@@ -1,7 +1,7 @@
-import Is from "../dependencies/strong-type/index.js?arcaneVersion=0.28.2";
-import { arcaneLogging } from '../logging.mjs?arcaneVersion=0.28.2';
+import Is from "../dependencies/strong-type/index.js?arcaneVersion=0.28.3";
+import { arcaneLogging } from '../logging.mjs?arcaneVersion=0.28.3';
 import { createArcaneEventSource } from "arcane-os/event-manager";
-import { createToolTextObserver } from './tool-text-stream.mjs?arcaneVersion=0.28.2';
+import { createToolTextObserver } from './tool-text-stream.mjs?arcaneVersion=0.28.3';
 
 const is = new Is(false);
 

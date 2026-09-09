@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="./arcane/css/primitives.css?arcaneVersion=0.28.2">
+<link rel="stylesheet" href="./arcane/css/primitives.css?arcaneVersion=0.28.3">
 <style>
     :host{display:block;min-width:0}
     .flag-choice {
@@ -83,7 +83,7 @@
         getBrowserDeviceSettings,
         detectBrowserGpu,
         WEBNN_BROWSER_SETTINGS
-    } = await import('../sdk/ai/browser-device-settings.mjs?arcaneVersion=0.28.2');
+    } = await import('../sdk/ai/browser-device-settings.mjs?arcaneVersion=0.28.3');
     const {arcaneLogging}=await import('arcane-os/logging');
     const {createArcaneEventSource,projectArcaneDOMEvent}=await import('arcane-os/event-manager');
     const events=createArcaneEventSource(host,{

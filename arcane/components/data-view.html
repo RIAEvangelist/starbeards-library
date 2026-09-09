@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="./arcane/css/layout.css?arcaneVersion=0.28.2">
+<link rel="stylesheet" href="./arcane/css/layout.css?arcaneVersion=0.28.3">
 <style>
     :host{
         display:flex;
@@ -11,7 +11,7 @@
 </style>
 
 <button id="openData" type="button" aria-haspopup="dialog"></button>
-<html-import id="dataModal" class="modal" href="./arcane/components/modal.html?arcaneVersion=0.28.2"></html-import>
+<html-import id="dataModal" class="modal" href="./arcane/components/modal.html?arcaneVersion=0.28.3"></html-import>
 
 <script type="module">
     const {default:Is}=await import('strong-type');
@@ -23,7 +23,7 @@
     const componentHref=new URL(host.getAttribute('href'),document.baseURI);
     const openButton=host.shadowRoot.querySelector('#openData');
     const dataModal=host.shadowRoot.querySelector('#dataModal');
-    const {default:waitForComponent}=await import('../modules/WaitForComponent.js?arcaneVersion=0.28.2');
+    const {default:waitForComponent}=await import('../modules/WaitForComponent.js?arcaneVersion=0.28.3');
     const {createArcaneEventSource,projectArcaneDOMEvent}=await import('arcane-os/event-manager');
     const events=createArcaneEventSource(host,{source:'arcane.component.data-view',eventTypes:['data-view-ready']});
     const lifecycleController=new AbortController();

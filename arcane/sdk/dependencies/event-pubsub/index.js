@@ -1,5 +1,5 @@
 // Shim allowing the same module path to run in Node and an unbundled browser.
-import Is from '../strong-type/index.js?arcaneVersion=0.28.2';
+import Is from '../strong-type/index.js?arcaneVersion=0.28.3';
 
 const is = new Is();
 const ALL_EVENTS = Symbol.for('event-pubsub-all');

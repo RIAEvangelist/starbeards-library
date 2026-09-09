@@ -1,4 +1,4 @@
-import Is from "../dependencies/strong-type/index.js?arcaneVersion=0.28.2";
+import Is from "../dependencies/strong-type/index.js?arcaneVersion=0.28.3";
 
 const is = new Is(false);
 

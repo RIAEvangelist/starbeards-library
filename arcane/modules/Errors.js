@@ -1,7 +1,7 @@
 import Is from 'strong-type';
 const is=new Is(false);
 
-import waitForComponent from './WaitForComponent.js?arcaneVersion=0.28.2';
+import waitForComponent from './WaitForComponent.js?arcaneVersion=0.28.3';
 import { arcaneLogging,readArcaneDeveloperMode } from 'arcane-os/logging';
 import {
     arcaneEvents,
@@ -148,7 +148,7 @@ function defaultStorage(target){
 
 async function sendWithWindowMail(target,...args){
     if(!is.function(target?.mail?.send)){
-        await import('./Mail.js?arcaneVersion=0.28.2');
+        await import('./Mail.js?arcaneVersion=0.28.3');
     }
 
     if(!is.function(target?.mail?.send)){
@@ -224,7 +224,7 @@ async function ensureHTMLImport(target){
     }
 
     try{
-        await import('./HTMLImport.js?arcaneVersion=0.28.2');
+        await import('./HTMLImport.js?arcaneVersion=0.28.3');
     }catch(error){
         if(!registry.get('html-import')){
             throw error;

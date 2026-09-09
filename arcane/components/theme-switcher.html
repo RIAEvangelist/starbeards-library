@@ -17,7 +17,7 @@
     const host=this;
     const root=host.shadowRoot;
     const buttons=Array.from(root.querySelectorAll('[data-scheme]'));
-    const {default:ThemeManager}=await import('../modules/ThemeManager.js?arcaneVersion=0.28.2');
+    const {default:ThemeManager}=await import('../modules/ThemeManager.js?arcaneVersion=0.28.3');
     const manager=new ThemeManager();
 
     host.setMode=setMode;
