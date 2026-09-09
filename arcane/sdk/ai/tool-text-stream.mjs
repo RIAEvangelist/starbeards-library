@@ -1,4 +1,4 @@
-import Is from '../dependencies/strong-type/index.js?arcaneVersion=0.27.0';
+import Is from '../dependencies/strong-type/index.js?arcaneVersion=0.27.1';
 
 const is = new Is(false);
 const STRING_ESCAPES = {

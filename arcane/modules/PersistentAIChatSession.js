@@ -2,10 +2,10 @@ import Is from 'strong-type';
 const is=new Is(false);
 
 import { arcaneLogging } from 'arcane-os/logging';
-import ChatEntity from '../entities/Chat.js?arcaneVersion=0.27.0';
+import ChatEntity from '../entities/Chat.js?arcaneVersion=0.27.1';
 import ConfiguredAIChatSession,{
     normalizeStructuralToolCall
-} from './ConfiguredAIChatSession.js?arcaneVersion=0.27.0';
+} from './ConfiguredAIChatSession.js?arcaneVersion=0.27.1';
 
 const SESSION_MANAGED_REQUEST_FIELDS=new Set([
     'messages',

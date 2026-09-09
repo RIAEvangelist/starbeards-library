@@ -1,5 +1,5 @@
-import Is from './dependencies/strong-type/index.js?arcaneVersion=0.27.0';
-import {createArcaneEventSource} from './event-manager.mjs?arcaneVersion=0.27.0';
+import Is from './dependencies/strong-type/index.js?arcaneVersion=0.27.1';
+import {createArcaneEventSource} from './event-manager.mjs?arcaneVersion=0.27.1';
 
 const is = new Is(false);
 export const PWA_INSTALL_STATE_EVENT = 'arcane.pwa.install.state';
