@@ -1,13 +1,13 @@
-import Is from "../dependencies/strong-type/index.js?arcaneVersion=0.28.1";
-import { arcaneLogging } from '../logging.mjs?arcaneVersion=0.28.1';
-import {Wllama, WllamaRuntimeError} from './wllama/index.mjs?arcaneVersion=0.28.1';
+import Is from "../dependencies/strong-type/index.js?arcaneVersion=0.28.2";
+import { arcaneLogging } from '../logging.mjs?arcaneVersion=0.28.2';
+import {Wllama, WllamaRuntimeError} from './wllama/index.mjs?arcaneVersion=0.28.2';
 
 const is = new Is(false);
 
 const completeValue = (value) => value;
 
-const MODULE_URL = new URL("./wllama/index.mjs?arcaneVersion=0.28.1", import.meta.url).href;
-const WASM_URL = new URL("./wllama/wllama.wasm?arcaneVersion=0.28.1", import.meta.url).href;
+const MODULE_URL = new URL("./wllama/index.mjs?arcaneVersion=0.28.2", import.meta.url).href;
+const WASM_URL = new URL("./wllama/wllama.wasm?arcaneVersion=0.28.2", import.meta.url).href;
 const RUNTIME_EVIDENCE_PROTOCOL = "arcane-wllama-runtime-evidence/1";
 const FULL_GPU_LAYERS = 99_999;
 const WEBGPU_ADAPTER_PATTERN = /^ggml_webgpu: adapter_info: vendor_id: (\d+) \| vendor: (.*?) \| architecture: (.*?) \| device_id: (\d+) \| name: (.*?) \| device_desc: (.*)$/u;

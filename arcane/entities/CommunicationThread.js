@@ -1,7 +1,7 @@
 import Is from 'strong-type';
 const is=new Is(false);
 
-import CommunicationMessage from './CommunicationMessage.js?arcaneVersion=0.28.1';
+import CommunicationMessage from './CommunicationMessage.js?arcaneVersion=0.28.2';
 
 function required(value,label){const text=String(value??'').trim();if(!text) throw new TypeError(`${label} is required.`);return text;}
 

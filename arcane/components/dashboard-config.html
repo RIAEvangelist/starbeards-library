@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="./arcane/css/layout.css?arcaneVersion=0.28.1">
-<link rel="stylesheet" href="./arcane/css/dashboard-config.css?arcaneVersion=0.28.1">
+<link rel="stylesheet" href="./arcane/css/layout.css?arcaneVersion=0.28.2">
+<link rel="stylesheet" href="./arcane/css/dashboard-config.css?arcaneVersion=0.28.2">
 <style>
     :host{
         display:block;
@@ -7,7 +7,7 @@
 </style>
 
 <button id="openConfig" type="button" aria-haspopup="dialog" disabled></button>
-<html-import id="configModal" class="modal" href="./arcane/components/modal.html?arcaneVersion=0.28.1"></html-import>
+<html-import id="configModal" class="modal" href="./arcane/components/modal.html?arcaneVersion=0.28.2"></html-import>
 
 <script type="module">
     const {default:Is}=await import('strong-type');
@@ -17,13 +17,13 @@
 
     const host=this;
     const componentHref=new URL(host.getAttribute('href'),document.baseURI);
-    const {default:waitForComponent}=await import('../modules/WaitForComponent.js?arcaneVersion=0.28.1');
+    const {default:waitForComponent}=await import('../modules/WaitForComponent.js?arcaneVersion=0.28.2');
     const {
         effectiveDashboardVisibility,
         normalizeDashboardDefinitions,
         normalizeDashboardOptions,
         normalizeDashboardVisibility
-    }=await import('../modules/ComponentContracts.js?arcaneVersion=0.28.1');
+    }=await import('../modules/ComponentContracts.js?arcaneVersion=0.28.2');
     const {createArcaneEventSource,projectArcaneDOMEvent}=await import('arcane-os/event-manager');
     const events=createArcaneEventSource(host,{source:'arcane.component.dashboard-config',eventTypes:['dashboard-config-closed','dashboard-config-opened','dashboard-config-change','dashboard-config-ready']});
     const lifecycleController=new AbortController();

@@ -1,13 +1,13 @@
 import Is from 'strong-type';
 const is=new Is(false);
 
-import {AI_PREFERENCE_SLOT_KEYS} from './AIPreferenceTuple.js?arcaneVersion=0.28.1';
+import {AI_PREFERENCE_SLOT_KEYS} from './AIPreferenceTuple.js?arcaneVersion=0.28.2';
 import {
     getCoreLocalModelCatalog,
     isUserManagedLoopbackLocalAIStatus,
     USER_MANAGED_LOOPBACK_PROVIDER_MODE
-} from './CoreLocalModelCatalog.js?arcaneVersion=0.28.1';
-import {normalizeOllamaModelIdentifier} from './OllamaModelIdentifier.js?arcaneVersion=0.28.1';
+} from './CoreLocalModelCatalog.js?arcaneVersion=0.28.2';
+import {normalizeOllamaModelIdentifier} from './OllamaModelIdentifier.js?arcaneVersion=0.28.2';
 
 export const LOCAL_AI_BROWSER_ENDPOINTS={
     speech:'http://127.0.0.1:8011/health'
