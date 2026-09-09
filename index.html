@@ -1,0 +1,1630 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <base href="./">
+    <script type="importmap" data-arcane-import-map>
+{
+  "imports": {
+    "#arcane/persistent-ai-chat-session": "./node_modules/arcane-os/runtime/arcane/modules/PersistentAIChatSession.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/strong-type/index.js": "./node_modules/arcane-os/runtime/strong-type/index.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/dependencies/strong-type/index.js": "./node_modules/arcane-os/runtime/strong-type/index.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/strong-type/index.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/strong-type/index.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/dependencies/strong-type/index.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/strong-type/index.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/entities/ApiModelRecord.js": "./node_modules/arcane-os/runtime/arcane/entities/ApiModelRecord.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/entities/ApiModelRecord.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/entities/ApiModelRecord.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/entities/Calculation.js": "./node_modules/arcane-os/runtime/arcane/entities/Calculation.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/entities/Calculation.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/entities/Calculation.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/entities/Chat.js": "./node_modules/arcane-os/runtime/arcane/entities/Chat.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/entities/Chat.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/entities/Chat.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/entities/CommunicationMessage.js": "./node_modules/arcane-os/runtime/arcane/entities/CommunicationMessage.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/entities/CommunicationMessage.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/entities/CommunicationMessage.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/entities/CommunicationThread.js": "./node_modules/arcane-os/runtime/arcane/entities/CommunicationThread.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/entities/CommunicationThread.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/entities/CommunicationThread.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/entities/Document.js": "./node_modules/arcane-os/runtime/arcane/entities/Document.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/entities/Document.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/entities/Document.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/entities/File.js": "./node_modules/arcane-os/runtime/arcane/entities/File.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/entities/File.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/entities/File.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/entities/Image.js": "./node_modules/arcane-os/runtime/arcane/entities/Image.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/entities/Image.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/entities/Image.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/entities/IntentEnvelope.js": "./node_modules/arcane-os/runtime/arcane/entities/IntentEnvelope.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/entities/IntentEnvelope.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/entities/IntentEnvelope.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/entities/Preference.js": "./node_modules/arcane-os/runtime/arcane/entities/Preference.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/entities/Preference.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/entities/Preference.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/entities/TerminalSession.js": "./node_modules/arcane-os/runtime/arcane/entities/TerminalSession.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/entities/TerminalSession.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/entities/TerminalSession.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/entities/Theme.js": "./node_modules/arcane-os/runtime/arcane/entities/Theme.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/entities/Theme.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/entities/Theme.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/entities/User.js": "./node_modules/arcane-os/runtime/arcane/entities/User.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/entities/User.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/entities/User.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/entities/Weather.js": "./node_modules/arcane-os/runtime/arcane/entities/Weather.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/entities/Weather.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/entities/Weather.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/AI.js": "./node_modules/arcane-os/runtime/arcane/modules/AI.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/AI.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/AI.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/AIPreferenceRuntime.js": "./node_modules/arcane-os/runtime/arcane/modules/AIPreferenceRuntime.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/AIPreferenceRuntime.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/AIPreferenceRuntime.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/AIPreferenceTuple.js": "./node_modules/arcane-os/runtime/arcane/modules/AIPreferenceTuple.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/AIPreferenceTuple.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/AIPreferenceTuple.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/AIProviderRuntime.js": "./node_modules/arcane-os/runtime/arcane/modules/AIProviderRuntime.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/AIProviderRuntime.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/AIProviderRuntime.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/AIResponseURLPolicy.js": "./node_modules/arcane-os/runtime/arcane/modules/AIResponseURLPolicy.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/AIResponseURLPolicy.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/AIResponseURLPolicy.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/AIRuntimeState.js": "./node_modules/arcane-os/runtime/arcane/modules/AIRuntimeState.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/AIRuntimeState.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/AIRuntimeState.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/AnsiText.js": "./node_modules/arcane-os/runtime/arcane/modules/AnsiText.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/AnsiText.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/AnsiText.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/ApiModelDatabase.js": "./node_modules/arcane-os/runtime/arcane/modules/ApiModelDatabase.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/ApiModelDatabase.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/ApiModelDatabase.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/AppDataScope.js": "./node_modules/arcane-os/runtime/arcane/modules/AppDataScope.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/AppDataScope.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/AppDataScope.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/AppearancePreferences.js": "./node_modules/arcane-os/runtime/arcane/modules/AppearancePreferences.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/AppearancePreferences.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/AppearancePreferences.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/ArcaneCommunicationBridge.js": "./node_modules/arcane-os/runtime/arcane/modules/ArcaneCommunicationBridge.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/ArcaneCommunicationBridge.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/ArcaneCommunicationBridge.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/ArcaneNavigationPolicy.js": "./node_modules/arcane-os/runtime/arcane/modules/ArcaneNavigationPolicy.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/ArcaneNavigationPolicy.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/ArcaneNavigationPolicy.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/ArcaneNetworkPolicy.js": "./node_modules/arcane-os/runtime/arcane/modules/ArcaneNetworkPolicy.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/ArcaneNetworkPolicy.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/ArcaneNetworkPolicy.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/AsyncBoundary.js": "./node_modules/arcane-os/runtime/arcane/modules/AsyncBoundary.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/AsyncBoundary.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/AsyncBoundary.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/BrowserTestSuite.js": "./node_modules/arcane-os/runtime/arcane/modules/BrowserTestSuite.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/BrowserTestSuite.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/BrowserTestSuite.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/CalculatorEngine.js": "./node_modules/arcane-os/runtime/arcane/modules/CalculatorEngine.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/CalculatorEngine.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/CalculatorEngine.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/ChartLibrary.js": "./node_modules/arcane-os/runtime/arcane/modules/ChartLibrary.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/ChartLibrary.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/ChartLibrary.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/ChatRecords.js": "./node_modules/arcane-os/runtime/arcane/modules/ChatRecords.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/ChatRecords.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/ChatRecords.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/CommunicationAppController.js": "./node_modules/arcane-os/runtime/arcane/modules/CommunicationAppController.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/CommunicationAppController.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/CommunicationAppController.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/CommunicationHub.js": "./node_modules/arcane-os/runtime/arcane/modules/CommunicationHub.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/CommunicationHub.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/CommunicationHub.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/CommunicationPreferences.js": "./node_modules/arcane-os/runtime/arcane/modules/CommunicationPreferences.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/CommunicationPreferences.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/CommunicationPreferences.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/CommunicationProviderRegistry.js": "./node_modules/arcane-os/runtime/arcane/modules/CommunicationProviderRegistry.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/CommunicationProviderRegistry.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/CommunicationProviderRegistry.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/ComponentContracts.js": "./node_modules/arcane-os/runtime/arcane/modules/ComponentContracts.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/ComponentContracts.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/ComponentContracts.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/ConfiguredAIChatSession.js": "./node_modules/arcane-os/runtime/arcane/modules/ConfiguredAIChatSession.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/ConfiguredAIChatSession.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/ConfiguredAIChatSession.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/ConversationActionItems.js": "./node_modules/arcane-os/runtime/arcane/modules/ConversationActionItems.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/ConversationActionItems.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/ConversationActionItems.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/ConversationClosingReport.js": "./node_modules/arcane-os/runtime/arcane/modules/ConversationClosingReport.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/ConversationClosingReport.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/ConversationClosingReport.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/ConversationTimebox.js": "./node_modules/arcane-os/runtime/arcane/modules/ConversationTimebox.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/ConversationTimebox.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/ConversationTimebox.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/CoreLocalModelCatalog.js": "./node_modules/arcane-os/runtime/arcane/modules/CoreLocalModelCatalog.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/CoreLocalModelCatalog.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/CoreLocalModelCatalog.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/DBLS.js": "./node_modules/arcane-os/runtime/arcane/modules/DBLS.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/DBLS.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/DBLS.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/DBOPFS.js": "./node_modules/arcane-os/runtime/arcane/modules/DBOPFS.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/DBOPFS.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/DBOPFS.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/DBOPFSDocumentLibrary.js": "./node_modules/arcane-os/runtime/arcane/modules/DBOPFSDocumentLibrary.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/DBOPFSDocumentLibrary.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/DBOPFSDocumentLibrary.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/DBOPFSWorker.js": "./node_modules/arcane-os/runtime/arcane/modules/DBOPFSWorker.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/DBOPFSWorker.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/DBOPFSWorker.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/DataMaintenance.js": "./node_modules/arcane-os/runtime/arcane/modules/DataMaintenance.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/DataMaintenance.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/DataMaintenance.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/DevelopmentWorkspace.js": "./node_modules/arcane-os/runtime/arcane/modules/DevelopmentWorkspace.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/DevelopmentWorkspace.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/DevelopmentWorkspace.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/DirectoryPicker.js": "./node_modules/arcane-os/runtime/arcane/modules/DirectoryPicker.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/DirectoryPicker.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/DirectoryPicker.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/DocumentLexicalSearch.js": "./node_modules/arcane-os/runtime/arcane/modules/DocumentLexicalSearch.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/DocumentLexicalSearch.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/DocumentLexicalSearch.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/DocumentNavigation.js": "./node_modules/arcane-os/runtime/arcane/modules/DocumentNavigation.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/DocumentNavigation.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/DocumentNavigation.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/Errors.js": "./node_modules/arcane-os/runtime/arcane/modules/Errors.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/Errors.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/Errors.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/GifEncoder.js": "./node_modules/arcane-os/runtime/arcane/modules/GifEncoder.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/GifEncoder.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/GifEncoder.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/HTMLImport.js": "./node_modules/arcane-os/runtime/arcane/modules/HTMLImport.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/HTMLImport.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/HTMLImport.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/InMemoryCommunicationProvider.js": "./node_modules/arcane-os/runtime/arcane/modules/InMemoryCommunicationProvider.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/InMemoryCommunicationProvider.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/InMemoryCommunicationProvider.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/IsolatedModelQuestionRunner.js": "./node_modules/arcane-os/runtime/arcane/modules/IsolatedModelQuestionRunner.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/IsolatedModelQuestionRunner.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/IsolatedModelQuestionRunner.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/LocalAIReadiness.js": "./node_modules/arcane-os/runtime/arcane/modules/LocalAIReadiness.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/LocalAIReadiness.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/LocalAIReadiness.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/LocalAIReadinessController.js": "./node_modules/arcane-os/runtime/arcane/modules/LocalAIReadinessController.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/LocalAIReadinessController.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/LocalAIReadinessController.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/MD.js": "./node_modules/arcane-os/runtime/arcane/modules/MD.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/MD.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/MD.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/Mail.js": "./node_modules/arcane-os/runtime/arcane/modules/Mail.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/Mail.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/Mail.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/MailApi.mjs": "./node_modules/arcane-os/runtime/arcane/modules/MailApi.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/MailApi.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/MailApi.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/MailOutbox.mjs": "./node_modules/arcane-os/runtime/arcane/modules/MailOutbox.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/MailOutbox.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/MailOutbox.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/MailTransport.mjs": "./node_modules/arcane-os/runtime/arcane/modules/MailTransport.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/MailTransport.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/MailTransport.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/MarkdownSpeech.js": "./node_modules/arcane-os/runtime/arcane/modules/MarkdownSpeech.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/MarkdownSpeech.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/MarkdownSpeech.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/Marked.min.js": "./node_modules/arcane-os/runtime/arcane/modules/Marked.min.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/Marked.min.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/Marked.min.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/MemoryRecords.js": "./node_modules/arcane-os/runtime/arcane/modules/MemoryRecords.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/MemoryRecords.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/MemoryRecords.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/MessageAdvisory.js": "./node_modules/arcane-os/runtime/arcane/modules/MessageAdvisory.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/MessageAdvisory.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/MessageAdvisory.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/ModelDefinition.js": "./node_modules/arcane-os/runtime/arcane/modules/ModelDefinition.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/ModelDefinition.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/ModelDefinition.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/Ollama.js": "./node_modules/arcane-os/runtime/arcane/modules/Ollama.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/Ollama.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/Ollama.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/OllamaModelIdentifier.js": "./node_modules/arcane-os/runtime/arcane/modules/OllamaModelIdentifier.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/OllamaModelIdentifier.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/OllamaModelIdentifier.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/OllamaSettings.js": "./node_modules/arcane-os/runtime/arcane/modules/OllamaSettings.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/OllamaSettings.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/OllamaSettings.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/OpenMeteoWeatherProvider.js": "./node_modules/arcane-os/runtime/arcane/modules/OpenMeteoWeatherProvider.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/OpenMeteoWeatherProvider.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/OpenMeteoWeatherProvider.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/PersistentAIChatSession.js": "./node_modules/arcane-os/runtime/arcane/modules/PersistentAIChatSession.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/PersistentAIChatSession.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/PersistentAIChatSession.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/PreferenceStore.js": "./node_modules/arcane-os/runtime/arcane/modules/PreferenceStore.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/PreferenceStore.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/PreferenceStore.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/PreparedSpeech.js": "./node_modules/arcane-os/runtime/arcane/modules/PreparedSpeech.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/PreparedSpeech.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/PreparedSpeech.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/QRCode.min.js": "./node_modules/arcane-os/runtime/arcane/modules/QRCode.min.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/QRCode.min.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/QRCode.min.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/Questionnaire.js": "./node_modules/arcane-os/runtime/arcane/modules/Questionnaire.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/Questionnaire.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/Questionnaire.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/RecordLinkIndex.js": "./node_modules/arcane-os/runtime/arcane/modules/RecordLinkIndex.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/RecordLinkIndex.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/RecordLinkIndex.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/RecordPassageIndex.js": "./node_modules/arcane-os/runtime/arcane/modules/RecordPassageIndex.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/RecordPassageIndex.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/RecordPassageIndex.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/RecordReviewStore.js": "./node_modules/arcane-os/runtime/arcane/modules/RecordReviewStore.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/RecordReviewStore.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/RecordReviewStore.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/RiskSignalAnalyzer.js": "./node_modules/arcane-os/runtime/arcane/modules/RiskSignalAnalyzer.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/RiskSignalAnalyzer.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/RiskSignalAnalyzer.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/ScamRiskPolicy.js": "./node_modules/arcane-os/runtime/arcane/modules/ScamRiskPolicy.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/ScamRiskPolicy.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/ScamRiskPolicy.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/ScopedOPFSCache.js": "./node_modules/arcane-os/runtime/arcane/modules/ScopedOPFSCache.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/ScopedOPFSCache.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/ScopedOPFSCache.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/ScreenCapture.js": "./node_modules/arcane-os/runtime/arcane/modules/ScreenCapture.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/ScreenCapture.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/ScreenCapture.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/SpeechPlayback.js": "./node_modules/arcane-os/runtime/arcane/modules/SpeechPlayback.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/SpeechPlayback.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/SpeechPlayback.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/StaticDocumentCatalog.js": "./node_modules/arcane-os/runtime/arcane/modules/StaticDocumentCatalog.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/StaticDocumentCatalog.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/StaticDocumentCatalog.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/SystemAppearance.js": "./node_modules/arcane-os/runtime/arcane/modules/SystemAppearance.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/SystemAppearance.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/SystemAppearance.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/SystemPlatformPresentation.js": "./node_modules/arcane-os/runtime/arcane/modules/SystemPlatformPresentation.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/SystemPlatformPresentation.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/SystemPlatformPresentation.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/SystemToolRegistry.js": "./node_modules/arcane-os/runtime/arcane/modules/SystemToolRegistry.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/SystemToolRegistry.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/SystemToolRegistry.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/TerminalClient.js": "./node_modules/arcane-os/runtime/arcane/modules/TerminalClient.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/TerminalClient.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/TerminalClient.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/TerminalCommandRegistry.js": "./node_modules/arcane-os/runtime/arcane/modules/TerminalCommandRegistry.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/TerminalCommandRegistry.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/TerminalCommandRegistry.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/ThemeBootstrap.js": "./node_modules/arcane-os/runtime/arcane/modules/ThemeBootstrap.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/ThemeBootstrap.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/ThemeBootstrap.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/ThemeManager.js": "./node_modules/arcane-os/runtime/arcane/modules/ThemeManager.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/ThemeManager.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/ThemeManager.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/TimeGuard.js": "./node_modules/arcane-os/runtime/arcane/modules/TimeGuard.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/TimeGuard.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/TimeGuard.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/ToolCallRouter.js": "./node_modules/arcane-os/runtime/arcane/modules/ToolCallRouter.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/ToolCallRouter.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/ToolCallRouter.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/WaitForComponent.js": "./node_modules/arcane-os/runtime/arcane/modules/WaitForComponent.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/WaitForComponent.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/WaitForComponent.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/YouTubeMedia.js": "./node_modules/arcane-os/runtime/arcane/modules/YouTubeMedia.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/YouTubeMedia.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/YouTubeMedia.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/uPlot.iife.min.js": "./node_modules/arcane-os/runtime/arcane/modules/uPlot.iife.min.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/modules/uPlot.iife.min.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/arcane/modules/uPlot.iife.min.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/ai/browser-device-settings.mjs": "./node_modules/arcane-os/browser-runtime/ai/browser-device-settings.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/ai/browser-device-settings.mjs": "./node_modules/arcane-os/browser-runtime/ai/browser-device-settings.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/ai/browser-device-settings.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/ai/browser-device-settings.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/ai/browser-device-settings.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/ai/browser-device-settings.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/ai/browser-kokoro-worker.mjs": "./node_modules/arcane-os/browser-runtime/ai/browser-kokoro-worker.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/ai/browser-kokoro-worker.mjs": "./node_modules/arcane-os/browser-runtime/ai/browser-kokoro-worker.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/ai/browser-kokoro-worker.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/ai/browser-kokoro-worker.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/ai/browser-kokoro-worker.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/ai/browser-kokoro-worker.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/ai/browser-speech-artifacts.mjs": "./node_modules/arcane-os/browser-runtime/ai/browser-speech-artifacts.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/ai/browser-speech-artifacts.mjs": "./node_modules/arcane-os/browser-runtime/ai/browser-speech-artifacts.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/ai/browser-speech-artifacts.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/ai/browser-speech-artifacts.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/ai/browser-speech-artifacts.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/ai/browser-speech-artifacts.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/ai/browser-speech-providers.mjs": "./node_modules/arcane-os/browser-runtime/ai/browser-speech-providers.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/ai/browser-speech-providers.mjs": "./node_modules/arcane-os/browser-runtime/ai/browser-speech-providers.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/ai/browser-speech-providers.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/ai/browser-speech-providers.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/ai/browser-speech-providers.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/ai/browser-speech-providers.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/ai/browser-speech.mjs": "./node_modules/arcane-os/browser-runtime/ai/browser-speech.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/ai/browser-speech.mjs": "./node_modules/arcane-os/browser-runtime/ai/browser-speech.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/ai/browser-speech.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/ai/browser-speech.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/ai/browser-speech.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/ai/browser-speech.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/ai/browser-wasm-llm-provider.mjs": "./node_modules/arcane-os/browser-runtime/ai/browser-wasm-llm-provider.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/ai/browser-wasm-llm-provider.mjs": "./node_modules/arcane-os/browser-runtime/ai/browser-wasm-llm-provider.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/ai/browser-wasm-llm-provider.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/ai/browser-wasm-llm-provider.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/ai/browser-wasm-llm-provider.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/ai/browser-wasm-llm-provider.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/ai/browser-wasm.mjs": "./node_modules/arcane-os/browser-runtime/ai/browser-wasm.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/ai/browser-wasm.mjs": "./node_modules/arcane-os/browser-runtime/ai/browser-wasm.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/ai/browser-wasm.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/ai/browser-wasm.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/ai/browser-wasm.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/ai/browser-wasm.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/ai/browser-whisper-worker.mjs": "./node_modules/arcane-os/browser-runtime/ai/browser-whisper-worker.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/ai/browser-whisper-worker.mjs": "./node_modules/arcane-os/browser-runtime/ai/browser-whisper-worker.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/ai/browser-whisper-worker.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/ai/browser-whisper-worker.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/ai/browser-whisper-worker.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/ai/browser-whisper-worker.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/ai/browser-wllama-runtime.mjs": "./node_modules/arcane-os/browser-runtime/ai/browser-wllama-runtime.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/ai/browser-wllama-runtime.mjs": "./node_modules/arcane-os/browser-runtime/ai/browser-wllama-runtime.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/ai/browser-wllama-runtime.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/ai/browser-wllama-runtime.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/ai/browser-wllama-runtime.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/ai/browser-wllama-runtime.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/ai/model-controller.mjs": "./node_modules/arcane-os/browser-runtime/ai/model-controller.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/ai/model-controller.mjs": "./node_modules/arcane-os/browser-runtime/ai/model-controller.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/ai/model-controller.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/ai/model-controller.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/ai/model-controller.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/ai/model-controller.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/ai/speech-worker-client.mjs": "./node_modules/arcane-os/browser-runtime/ai/speech-worker-client.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/ai/speech-worker-client.mjs": "./node_modules/arcane-os/browser-runtime/ai/speech-worker-client.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/ai/speech-worker-client.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/ai/speech-worker-client.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/ai/speech-worker-client.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/ai/speech-worker-client.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/ai/speech-worker-runtime.mjs": "./node_modules/arcane-os/browser-runtime/ai/speech-worker-runtime.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/ai/speech-worker-runtime.mjs": "./node_modules/arcane-os/browser-runtime/ai/speech-worker-runtime.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/ai/speech-worker-runtime.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/ai/speech-worker-runtime.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/ai/speech-worker-runtime.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/ai/speech-worker-runtime.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/ai/tool-text-stream.mjs": "./node_modules/arcane-os/browser-runtime/ai/tool-text-stream.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/ai/tool-text-stream.mjs": "./node_modules/arcane-os/browser-runtime/ai/tool-text-stream.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/ai/tool-text-stream.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/ai/tool-text-stream.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/ai/tool-text-stream.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/ai/tool-text-stream.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/ai/wllama/index.mjs": "./node_modules/arcane-os/browser-runtime/ai/wllama/index.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/ai/wllama/index.mjs": "./node_modules/arcane-os/browser-runtime/ai/wllama/index.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/ai/wllama/index.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/ai/wllama/index.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/ai/wllama/index.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/ai/wllama/index.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/browser-device.mjs": "./node_modules/arcane-os/browser-runtime/browser-device.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/browser-device.mjs": "./node_modules/arcane-os/browser-runtime/browser-device.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/browser-device.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/browser-device.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/browser-device.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/browser-device.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/dependencies/event-pubsub/index.js": "./node_modules/arcane-os/browser-runtime/dependencies/event-pubsub/index.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/dependencies/event-pubsub/index.js": "./node_modules/arcane-os/browser-runtime/dependencies/event-pubsub/index.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/dependencies/event-pubsub/index.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/dependencies/event-pubsub/index.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/dependencies/event-pubsub/index.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/dependencies/event-pubsub/index.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/dependencies/strong-type/index.js": "./node_modules/arcane-os/browser-runtime/dependencies/strong-type/index.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/dependencies/strong-type/index.js": "./node_modules/arcane-os/browser-runtime/dependencies/strong-type/index.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/dependencies/strong-type/index.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/dependencies/strong-type/index.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/dependencies/strong-type/index.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/dependencies/strong-type/index.js?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/dom-event-instrumentation.mjs": "./node_modules/arcane-os/browser-runtime/dom-event-instrumentation.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/dom-event-instrumentation.mjs": "./node_modules/arcane-os/browser-runtime/dom-event-instrumentation.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/dom-event-instrumentation.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/dom-event-instrumentation.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/dom-event-instrumentation.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/dom-event-instrumentation.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/event-manager.mjs": "./node_modules/arcane-os/browser-runtime/event-manager.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/event-manager.mjs": "./node_modules/arcane-os/browser-runtime/event-manager.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/event-manager.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/event-manager.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/event-manager.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/event-manager.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/logging.mjs": "./node_modules/arcane-os/browser-runtime/logging.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/logging.mjs": "./node_modules/arcane-os/browser-runtime/logging.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/logging.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/logging.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/logging.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/logging.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/pwa-install.mjs": "./node_modules/arcane-os/browser-runtime/pwa-install.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/pwa-install.mjs": "./node_modules/arcane-os/browser-runtime/pwa-install.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/pwa-install.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/pwa-install.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/pwa-install.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/pwa-install.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/pwa.mjs": "./node_modules/arcane-os/browser-runtime/pwa.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/pwa.mjs": "./node_modules/arcane-os/browser-runtime/pwa.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/pwa.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/pwa.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/pwa.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/pwa.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/speech-text.mjs": "./node_modules/arcane-os/browser-runtime/speech-text.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/speech-text.mjs": "./node_modules/arcane-os/browser-runtime/speech-text.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/browser-runtime/speech-text.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/speech-text.mjs?arcaneVersion=0.29.1",
+    "./node_modules/arcane-os/runtime/arcane/sdk/speech-text.mjs?arcaneVersion=0.29.1": "./node_modules/arcane-os/browser-runtime/speech-text.mjs?arcaneVersion=0.29.1",
+    "./node_modules/strong-type/index.js": "./node_modules/arcane-os/runtime/strong-type/index.js?arcaneVersion=0.29.1",
+    "./node_modules/strong-type/index.js?arcaneVersion=0.29.1": "./node_modules/arcane-os/runtime/strong-type/index.js?arcaneVersion=0.29.1",
+    "arcane-os/ai": "./node_modules/arcane-os/runtime/arcane/modules/AI.js?arcaneVersion=0.29.1",
+    "arcane-os/ai-preference-runtime": "./node_modules/arcane-os/runtime/arcane/modules/AIPreferenceRuntime.js?arcaneVersion=0.29.1",
+    "arcane-os/ai-preference-tuple": "./node_modules/arcane-os/runtime/arcane/modules/AIPreferenceTuple.js?arcaneVersion=0.29.1",
+    "arcane-os/ai-provider-runtime": "./node_modules/arcane-os/runtime/arcane/modules/AIProviderRuntime.js?arcaneVersion=0.29.1",
+    "arcane-os/ai-runtime-state": "./node_modules/arcane-os/runtime/arcane/modules/AIRuntimeState.js?arcaneVersion=0.29.1",
+    "arcane-os/ai/browser-speech": "./node_modules/arcane-os/browser-runtime/ai/browser-speech.mjs?arcaneVersion=0.29.1",
+    "arcane-os/ai/browser-wasm": "./node_modules/arcane-os/browser-runtime/ai/browser-wasm.mjs?arcaneVersion=0.29.1",
+    "arcane-os/ai/tool-text-stream": "./node_modules/arcane-os/browser-runtime/ai/tool-text-stream.mjs?arcaneVersion=0.29.1",
+    "arcane-os/app-data-scope": "./node_modules/arcane-os/runtime/arcane/modules/AppDataScope.js?arcaneVersion=0.29.1",
+    "arcane-os/browser-device": "./node_modules/arcane-os/browser-runtime/browser-device.mjs?arcaneVersion=0.29.1",
+    "arcane-os/chat-records": "./node_modules/arcane-os/runtime/arcane/modules/ChatRecords.js?arcaneVersion=0.29.1",
+    "arcane-os/conversation-action-items": "./node_modules/arcane-os/runtime/arcane/modules/ConversationActionItems.js?arcaneVersion=0.29.1",
+    "arcane-os/conversation-closing-report": "./node_modules/arcane-os/runtime/arcane/modules/ConversationClosingReport.js?arcaneVersion=0.29.1",
+    "arcane-os/conversation-timebox": "./node_modules/arcane-os/runtime/arcane/modules/ConversationTimebox.js?arcaneVersion=0.29.1",
+    "arcane-os/core-local-model-catalog": "./node_modules/arcane-os/runtime/arcane/modules/CoreLocalModelCatalog.js?arcaneVersion=0.29.1",
+    "arcane-os/dbopfs-document-library": "./node_modules/arcane-os/runtime/arcane/modules/DBOPFSDocumentLibrary.js?arcaneVersion=0.29.1",
+    "arcane-os/dom-event-instrumentation": "./node_modules/arcane-os/browser-runtime/dom-event-instrumentation.mjs?arcaneVersion=0.29.1",
+    "arcane-os/entities/ApiModelRecord.js": "./node_modules/arcane-os/runtime/arcane/entities/ApiModelRecord.js?arcaneVersion=0.29.1",
+    "arcane-os/entities/Calculation.js": "./node_modules/arcane-os/runtime/arcane/entities/Calculation.js?arcaneVersion=0.29.1",
+    "arcane-os/entities/Chat.js": "./node_modules/arcane-os/runtime/arcane/entities/Chat.js?arcaneVersion=0.29.1",
+    "arcane-os/entities/CommunicationMessage.js": "./node_modules/arcane-os/runtime/arcane/entities/CommunicationMessage.js?arcaneVersion=0.29.1",
+    "arcane-os/entities/CommunicationThread.js": "./node_modules/arcane-os/runtime/arcane/entities/CommunicationThread.js?arcaneVersion=0.29.1",
+    "arcane-os/entities/Document.js": "./node_modules/arcane-os/runtime/arcane/entities/Document.js?arcaneVersion=0.29.1",
+    "arcane-os/entities/File.js": "./node_modules/arcane-os/runtime/arcane/entities/File.js?arcaneVersion=0.29.1",
+    "arcane-os/entities/Image.js": "./node_modules/arcane-os/runtime/arcane/entities/Image.js?arcaneVersion=0.29.1",
+    "arcane-os/entities/IntentEnvelope.js": "./node_modules/arcane-os/runtime/arcane/entities/IntentEnvelope.js?arcaneVersion=0.29.1",
+    "arcane-os/entities/Preference.js": "./node_modules/arcane-os/runtime/arcane/entities/Preference.js?arcaneVersion=0.29.1",
+    "arcane-os/entities/TerminalSession.js": "./node_modules/arcane-os/runtime/arcane/entities/TerminalSession.js?arcaneVersion=0.29.1",
+    "arcane-os/entities/Theme.js": "./node_modules/arcane-os/runtime/arcane/entities/Theme.js?arcaneVersion=0.29.1",
+    "arcane-os/entities/User.js": "./node_modules/arcane-os/runtime/arcane/entities/User.js?arcaneVersion=0.29.1",
+    "arcane-os/entities/Weather.js": "./node_modules/arcane-os/runtime/arcane/entities/Weather.js?arcaneVersion=0.29.1",
+    "arcane-os/event-manager": "./node_modules/arcane-os/browser-runtime/event-manager.mjs?arcaneVersion=0.29.1",
+    "arcane-os/local-ai-readiness": "./node_modules/arcane-os/runtime/arcane/modules/LocalAIReadiness.js?arcaneVersion=0.29.1",
+    "arcane-os/logging": "./node_modules/arcane-os/browser-runtime/logging.mjs?arcaneVersion=0.29.1",
+    "arcane-os/mail": "./node_modules/arcane-os/runtime/arcane/modules/MailApi.mjs?arcaneVersion=0.29.1",
+    "arcane-os/model-definition": "./node_modules/arcane-os/runtime/arcane/modules/ModelDefinition.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/AI.js": "./node_modules/arcane-os/runtime/arcane/modules/AI.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/AIPreferenceRuntime.js": "./node_modules/arcane-os/runtime/arcane/modules/AIPreferenceRuntime.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/AIPreferenceTuple.js": "./node_modules/arcane-os/runtime/arcane/modules/AIPreferenceTuple.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/AIProviderRuntime.js": "./node_modules/arcane-os/runtime/arcane/modules/AIProviderRuntime.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/AIResponseURLPolicy.js": "./node_modules/arcane-os/runtime/arcane/modules/AIResponseURLPolicy.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/AIRuntimeState.js": "./node_modules/arcane-os/runtime/arcane/modules/AIRuntimeState.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/AnsiText.js": "./node_modules/arcane-os/runtime/arcane/modules/AnsiText.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/ApiModelDatabase.js": "./node_modules/arcane-os/runtime/arcane/modules/ApiModelDatabase.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/AppDataScope.js": "./node_modules/arcane-os/runtime/arcane/modules/AppDataScope.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/AppearancePreferences.js": "./node_modules/arcane-os/runtime/arcane/modules/AppearancePreferences.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/ArcaneCommunicationBridge.js": "./node_modules/arcane-os/runtime/arcane/modules/ArcaneCommunicationBridge.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/ArcaneNavigationPolicy.js": "./node_modules/arcane-os/runtime/arcane/modules/ArcaneNavigationPolicy.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/ArcaneNetworkPolicy.js": "./node_modules/arcane-os/runtime/arcane/modules/ArcaneNetworkPolicy.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/AsyncBoundary.js": "./node_modules/arcane-os/runtime/arcane/modules/AsyncBoundary.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/BrowserTestSuite.js": "./node_modules/arcane-os/runtime/arcane/modules/BrowserTestSuite.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/CalculatorEngine.js": "./node_modules/arcane-os/runtime/arcane/modules/CalculatorEngine.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/ChartLibrary.js": "./node_modules/arcane-os/runtime/arcane/modules/ChartLibrary.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/ChatRecords.js": "./node_modules/arcane-os/runtime/arcane/modules/ChatRecords.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/CommunicationAppController.js": "./node_modules/arcane-os/runtime/arcane/modules/CommunicationAppController.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/CommunicationHub.js": "./node_modules/arcane-os/runtime/arcane/modules/CommunicationHub.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/CommunicationPreferences.js": "./node_modules/arcane-os/runtime/arcane/modules/CommunicationPreferences.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/CommunicationProviderRegistry.js": "./node_modules/arcane-os/runtime/arcane/modules/CommunicationProviderRegistry.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/ComponentContracts.js": "./node_modules/arcane-os/runtime/arcane/modules/ComponentContracts.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/ConfiguredAIChatSession.js": "./node_modules/arcane-os/runtime/arcane/modules/ConfiguredAIChatSession.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/ConversationActionItems.js": "./node_modules/arcane-os/runtime/arcane/modules/ConversationActionItems.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/ConversationClosingReport.js": "./node_modules/arcane-os/runtime/arcane/modules/ConversationClosingReport.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/ConversationTimebox.js": "./node_modules/arcane-os/runtime/arcane/modules/ConversationTimebox.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/CoreLocalModelCatalog.js": "./node_modules/arcane-os/runtime/arcane/modules/CoreLocalModelCatalog.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/DBLS.js": "./node_modules/arcane-os/runtime/arcane/modules/DBLS.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/DBOPFS.js": "./node_modules/arcane-os/runtime/arcane/modules/DBOPFS.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/DBOPFSDocumentLibrary.js": "./node_modules/arcane-os/runtime/arcane/modules/DBOPFSDocumentLibrary.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/DBOPFSWorker.js": "./node_modules/arcane-os/runtime/arcane/modules/DBOPFSWorker.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/DataMaintenance.js": "./node_modules/arcane-os/runtime/arcane/modules/DataMaintenance.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/DevelopmentWorkspace.js": "./node_modules/arcane-os/runtime/arcane/modules/DevelopmentWorkspace.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/DirectoryPicker.js": "./node_modules/arcane-os/runtime/arcane/modules/DirectoryPicker.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/DocumentLexicalSearch.js": "./node_modules/arcane-os/runtime/arcane/modules/DocumentLexicalSearch.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/DocumentNavigation.js": "./node_modules/arcane-os/runtime/arcane/modules/DocumentNavigation.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/Errors.js": "./node_modules/arcane-os/runtime/arcane/modules/Errors.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/GifEncoder.js": "./node_modules/arcane-os/runtime/arcane/modules/GifEncoder.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/HTMLImport.js": "./node_modules/arcane-os/runtime/arcane/modules/HTMLImport.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/InMemoryCommunicationProvider.js": "./node_modules/arcane-os/runtime/arcane/modules/InMemoryCommunicationProvider.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/IsolatedModelQuestionRunner.js": "./node_modules/arcane-os/runtime/arcane/modules/IsolatedModelQuestionRunner.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/LocalAIReadiness.js": "./node_modules/arcane-os/runtime/arcane/modules/LocalAIReadiness.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/LocalAIReadinessController.js": "./node_modules/arcane-os/runtime/arcane/modules/LocalAIReadinessController.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/MD.js": "./node_modules/arcane-os/runtime/arcane/modules/MD.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/Mail.js": "./node_modules/arcane-os/runtime/arcane/modules/Mail.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/MailApi.mjs": "./node_modules/arcane-os/runtime/arcane/modules/MailApi.mjs?arcaneVersion=0.29.1",
+    "arcane-os/modules/MailOutbox.mjs": "./node_modules/arcane-os/runtime/arcane/modules/MailOutbox.mjs?arcaneVersion=0.29.1",
+    "arcane-os/modules/MailTransport.mjs": "./node_modules/arcane-os/runtime/arcane/modules/MailTransport.mjs?arcaneVersion=0.29.1",
+    "arcane-os/modules/MarkdownSpeech.js": "./node_modules/arcane-os/runtime/arcane/modules/MarkdownSpeech.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/Marked.min.js": "./node_modules/arcane-os/runtime/arcane/modules/Marked.min.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/MemoryRecords.js": "./node_modules/arcane-os/runtime/arcane/modules/MemoryRecords.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/MessageAdvisory.js": "./node_modules/arcane-os/runtime/arcane/modules/MessageAdvisory.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/ModelDefinition.js": "./node_modules/arcane-os/runtime/arcane/modules/ModelDefinition.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/Ollama.js": "./node_modules/arcane-os/runtime/arcane/modules/Ollama.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/OllamaModelIdentifier.js": "./node_modules/arcane-os/runtime/arcane/modules/OllamaModelIdentifier.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/OllamaSettings.js": "./node_modules/arcane-os/runtime/arcane/modules/OllamaSettings.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/OpenMeteoWeatherProvider.js": "./node_modules/arcane-os/runtime/arcane/modules/OpenMeteoWeatherProvider.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/PersistentAIChatSession.js": "./node_modules/arcane-os/runtime/arcane/modules/PersistentAIChatSession.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/PreferenceStore.js": "./node_modules/arcane-os/runtime/arcane/modules/PreferenceStore.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/PreparedSpeech.js": "./node_modules/arcane-os/runtime/arcane/modules/PreparedSpeech.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/QRCode.min.js": "./node_modules/arcane-os/runtime/arcane/modules/QRCode.min.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/Questionnaire.js": "./node_modules/arcane-os/runtime/arcane/modules/Questionnaire.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/RecordLinkIndex.js": "./node_modules/arcane-os/runtime/arcane/modules/RecordLinkIndex.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/RecordPassageIndex.js": "./node_modules/arcane-os/runtime/arcane/modules/RecordPassageIndex.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/RecordReviewStore.js": "./node_modules/arcane-os/runtime/arcane/modules/RecordReviewStore.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/RiskSignalAnalyzer.js": "./node_modules/arcane-os/runtime/arcane/modules/RiskSignalAnalyzer.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/ScamRiskPolicy.js": "./node_modules/arcane-os/runtime/arcane/modules/ScamRiskPolicy.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/ScopedOPFSCache.js": "./node_modules/arcane-os/runtime/arcane/modules/ScopedOPFSCache.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/ScreenCapture.js": "./node_modules/arcane-os/runtime/arcane/modules/ScreenCapture.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/SpeechPlayback.js": "./node_modules/arcane-os/runtime/arcane/modules/SpeechPlayback.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/StaticDocumentCatalog.js": "./node_modules/arcane-os/runtime/arcane/modules/StaticDocumentCatalog.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/SystemAppearance.js": "./node_modules/arcane-os/runtime/arcane/modules/SystemAppearance.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/SystemPlatformPresentation.js": "./node_modules/arcane-os/runtime/arcane/modules/SystemPlatformPresentation.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/SystemToolRegistry.js": "./node_modules/arcane-os/runtime/arcane/modules/SystemToolRegistry.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/TerminalClient.js": "./node_modules/arcane-os/runtime/arcane/modules/TerminalClient.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/TerminalCommandRegistry.js": "./node_modules/arcane-os/runtime/arcane/modules/TerminalCommandRegistry.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/ThemeBootstrap.js": "./node_modules/arcane-os/runtime/arcane/modules/ThemeBootstrap.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/ThemeManager.js": "./node_modules/arcane-os/runtime/arcane/modules/ThemeManager.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/TimeGuard.js": "./node_modules/arcane-os/runtime/arcane/modules/TimeGuard.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/ToolCallRouter.js": "./node_modules/arcane-os/runtime/arcane/modules/ToolCallRouter.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/WaitForComponent.js": "./node_modules/arcane-os/runtime/arcane/modules/WaitForComponent.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/YouTubeMedia.js": "./node_modules/arcane-os/runtime/arcane/modules/YouTubeMedia.js?arcaneVersion=0.29.1",
+    "arcane-os/modules/uPlot.iife.min.js": "./node_modules/arcane-os/runtime/arcane/modules/uPlot.iife.min.js?arcaneVersion=0.29.1",
+    "arcane-os/ollama-model-identifier": "./node_modules/arcane-os/runtime/arcane/modules/OllamaModelIdentifier.js?arcaneVersion=0.29.1",
+    "arcane-os/preference-store": "./node_modules/arcane-os/runtime/arcane/modules/PreferenceStore.js?arcaneVersion=0.29.1",
+    "arcane-os/pwa": "./node_modules/arcane-os/browser-runtime/pwa.mjs?arcaneVersion=0.29.1",
+    "arcane-os/speech-playback": "./node_modules/arcane-os/runtime/arcane/modules/SpeechPlayback.js?arcaneVersion=0.29.1",
+    "arcane-os/speech-text": "./node_modules/arcane-os/browser-runtime/speech-text.mjs?arcaneVersion=0.29.1",
+    "event-pubsub": "./node_modules/arcane-os/browser-runtime/dependencies/event-pubsub/index.js?arcaneVersion=0.29.1",
+    "strong-type": "./node_modules/arcane-os/runtime/strong-type/index.js?arcaneVersion=0.29.1"
+  }
+}
+</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="rgb(6, 14, 43)">
+    <meta name="description" content="A little illustrated library of space adventures with Juliet, Uni, and Starbeard.">
+    <meta name="arcane-app-id" content="juju-grand-adventures">
+    <meta property="og:title" content="Juliet’s Grand Adventures">
+    <meta property="og:description" content="Choose a book and explore the galaxy with Juliet, Uni, and Starbeard.">
+    <meta property="og:image" content="./assets/social-card.png">
+    <meta property="og:type" content="website">
+    <title>Juliet’s Grand Adventures</title>
+    <link rel="manifest" href="./manifest.json?arcaneVersion=0.29.1">
+    <link rel="icon" href="./assets/cover.png?arcaneVersion=0.29.1" type="image/png">
+    <link rel="stylesheet" href="./node_modules/arcane-os/runtime/arcane/css/theme.css?arcaneVersion=0.29.1">
+    <link rel="stylesheet" href="./node_modules/arcane-os/runtime/arcane/css/primitives.css?arcaneVersion=0.29.1">
+    <link rel="stylesheet" href="./styles.css?arcaneVersion=0.29.1">
+    <script type="module" src="./app.js?arcaneVersion=0.29.1"></script>
+</head>
+<body>
+    <main class="library-view" id="library-view">
+        <div class="library-stars" aria-hidden="true"></div>
+        <div class="library-shell">
+            <header class="library-masthead">
+                <div class="library-heading">
+                    <p class="library-kicker">The little library between stars</p>
+                    <h1>Juliet’s<br>Grand Adventures</h1>
+                    <p class="library-intro">Choose a shelf, choose a book, cuddle in, and turn the galaxy one illustrated page at a time.</p>
+                    <div class="library-music-slot" id="library-music-slot">
+                        <button class="music-button" id="music-button" type="button" aria-label="Play background music" aria-pressed="false" aria-busy="false" aria-describedby="music-status">
+                            <span class="music-button-icon" id="music-button-icon" aria-hidden="true">♪</span>
+                            <span class="music-button-label" id="music-button-label">Play music</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="library-orbit" aria-hidden="true">
+                    <span class="orbit-ring orbit-ring-one"></span>
+                    <span class="orbit-ring orbit-ring-two"></span>
+                    <span class="orbit-star">✦</span>
+                    <span class="orbit-moon">☾</span>
+                </div>
+            </header>
+
+            <div class="library-collections">
+                <section class="bookshelf library-collection library-collection-juliet" aria-labelledby="juliet-adventures-title">
+                    <div class="shelf-heading">
+                        <div>
+                            <p class="shelf-kicker">Collection one · 3 books</p>
+                            <h2 id="juliet-adventures-title">Juliet’s Grand Adventures</h2>
+                        </div>
+                        <p class="shelf-hint">Juliet leads a gentle bedtime crew through bright planets, curious clues, and brave rescues.</p>
+                    </div>
+
+                    <div class="book-grid">
+                        <article class="book-card book-card-planets">
+                            <button class="book-jacket" type="button" data-open-book="planets" aria-label="Open The Three Little Planets">
+                                <img src="./assets/cover.png?arcaneVersion=0.29.1" alt="Juliet, Uni, and Starbeard beside their patchwork rocket beneath three glowing planets.">
+                                <span class="book-jacket-shade" aria-hidden="true"></span>
+                                <span class="book-volume">Volume one</span>
+                                <span class="book-open-prompt">Open book <span aria-hidden="true">→</span></span>
+                            </button>
+                            <div class="book-details">
+                                <div>
+                                    <p class="book-tag">First voyage · 8 pages</p>
+                                    <h3>The Three Little Planets</h3>
+                                    <p>Three tiny worlds need a steady hand, a listening heart, and one very gentle bedtime crew.</p>
+                                </div>
+                                <button class="shelf-read-button" type="button" data-open-book="planets">Read this book</button>
+                            </div>
+                        </article>
+
+                        <article class="book-card book-card-doughnut">
+                            <button class="book-jacket" type="button" data-open-book="doughnut" aria-label="Open Starbeard and the Doughnut Planet Map">
+                                <img src="./assets/book-doughnut-cover.png?arcaneVersion=0.29.1" alt="Juliet, Uni, and Starbeard sail toward a glowing doughnut-shaped planet.">
+                                <span class="book-jacket-shade" aria-hidden="true"></span>
+                                <span class="book-volume">Volume two</span>
+                                <span class="book-open-prompt">Open book <span aria-hidden="true">→</span></span>
+                            </button>
+                            <div class="book-details">
+                                <div>
+                                    <p class="book-tag book-tag-new">Second voyage · 8 pages</p>
+                                    <h3>Starbeard and the Doughnut Planet Map</h3>
+                                    <p>A round clue, a storm of sprinkles, and a cozy explorer growing into a proper space-pirate captain.</p>
+                                </div>
+                                <button class="shelf-read-button" type="button" data-open-book="doughnut">Read this book</button>
+                            </div>
+                        </article>
+
+                        <article class="book-card book-card-starwater">
+                            <button class="book-jacket" type="button" data-open-book="starwater" aria-label="Open Starbeard and the Starwater">
+                                <img src="./assets/book-starwater-cover.png?arcaneVersion=0.29.1" alt="Starbeard, Juliet, and Uni discover a glowing crystal bottle beneath the moon-sand.">
+                                <span class="book-jacket-shade" aria-hidden="true"></span>
+                                <span class="book-volume">Volume three</span>
+                                <span class="book-open-prompt">Open book <span aria-hidden="true">→</span></span>
+                            </button>
+                            <div class="book-details">
+                                <div>
+                                    <p class="book-tag book-tag-new">Third voyage · 8 pages</p>
+                                    <h3>Starbeard and the Starwater</h3>
+                                    <p>A patient treasure hunt uncovers a bottle of gentle light and a reminder that the finest treasures help us feel our best.</p>
+                                </div>
+                                <button class="shelf-read-button" type="button" data-open-book="starwater">Read this book</button>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="shelf-plank" aria-hidden="true"></div>
+                </section>
+
+                <section class="bookshelf library-collection library-collection-starbeard" aria-labelledby="starbeard-uni-title">
+                    <div class="shelf-heading">
+                        <div>
+                            <p class="shelf-kicker">Collection two · 3 books</p>
+                            <h2 id="starbeard-uni-title">The Adventures of Starbeard and Uni</h2>
+                        </div>
+                        <p class="shelf-hint">Every completed Starbeard-and-Uni book will join this shelf in reading order.</p>
+                    </div>
+
+                    <div class="book-grid">
+                        <article class="book-card book-card-moonlit">
+                            <button class="book-jacket" type="button" data-open-book="moonlit" aria-label="Open The Song of the Moonlit Blossom Planet">
+                                <img src="./assets/book-moonlit-blossom-cover.png?arcaneVersion=0.29.1" alt="Juliet, Uni, and Starbeard sail toward a luminous flower planet beneath three moons.">
+                                <span class="book-jacket-shade" aria-hidden="true"></span>
+                                <span class="book-volume">Starbeard &amp; Uni · Book one</span>
+                                <span class="book-open-prompt">Open book <span aria-hidden="true">→</span></span>
+                            </button>
+                            <div class="book-details">
+                                <div>
+                                    <p class="book-tag book-tag-new">The Adventures of Starbeard and Uni · 21 pages</p>
+                                    <h3>The Song of the Moonlit Blossom Planet</h3>
+                                    <p>A missing note leads the crew through a singing forest to a treasure that can only be given.</p>
+                                </div>
+                                <button class="shelf-read-button" type="button" data-open-book="moonlit">Read this book</button>
+                            </div>
+                        </article>
+
+                        <article class="book-card book-card-sock-caper">
+                            <button class="book-jacket" type="button" data-open-book="sockCaper" aria-label="Open The Great Galactic Sock Caper">
+                                <img src="./assets/book-sock-caper-cover.png?arcaneVersion=0.29.1" alt="Starbeard and Uni dodge swirling laundry while a purple star sock drifts toward Starbeard and Admiral Pigeon watches from the round window.">
+                                <span class="book-jacket-shade" aria-hidden="true"></span>
+                                <span class="book-volume">Starbeard &amp; Uni · Book two</span>
+                                <span class="book-open-prompt">Open book <span aria-hidden="true">→</span></span>
+                            </button>
+                            <div class="book-details">
+                                <div>
+                                    <p class="book-tag book-tag-new">The Adventures of Starbeard and Uni · 12 pages</p>
+                                    <h3>The Great Galactic Sock Caper</h3>
+                                    <p>A missing purple sock turns laundry day into a quiet galactic mystery,and an adventure exactly big enough for today.</p>
+                                </div>
+                                <button class="shelf-read-button" type="button" data-open-book="sockCaper">Read this book</button>
+                            </div>
+                        </article>
+
+                        <article class="book-card book-card-pluto">
+                            <button class="book-jacket" type="button" data-open-book="pluto" aria-label="Open The Treasure of Pluto and the Luminous Labyrinth">
+                                <img src="./assets/book-pluto-labyrinth-cover.png?arcaneVersion=0.29.1" alt="Starbeard and Uni sail toward frozen Pluto while a golden maze glows among the stars.">
+                                <span class="book-jacket-shade" aria-hidden="true"></span>
+                                <span class="book-volume">Starbeard &amp; Uni · Book three</span>
+                                <span class="book-open-prompt">Open book <span aria-hidden="true">→</span></span>
+                            </button>
+                            <div class="book-details">
+                                <div>
+                                    <p class="book-tag book-tag-new">The Adventures of Starbeard and Uni · 10 pages</p>
+                                    <h3>The Treasure of Pluto and the Luminous Labyrinth</h3>
+                                    <p>Frozen treasure, new friends, and a golden maze reveal what an explorer carries home.</p>
+                                </div>
+                                <button class="shelf-read-button" type="button" data-open-book="pluto">Read this book</button>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="shelf-plank" aria-hidden="true"></div>
+                </section>
+
+                <section class="bookshelf library-collection library-collection-other" aria-labelledby="other-stories-title">
+                    <div class="shelf-heading">
+                        <div>
+                            <p class="shelf-kicker">Collection three</p>
+                            <h2 id="other-stories-title">Other Stories</h2>
+                        </div>
+                        <p class="shelf-hint">Finished stories beyond the two adventure collections will live here.</p>
+                    </div>
+
+                    <div class="shelf-empty" role="note">
+                        <span class="shelf-empty-star" aria-hidden="true">✦</span>
+                        <p><strong>This shelf is waiting for its first finished story.</strong> When another tale is complete, its book will appear here.</p>
+                    </div>
+                    <div class="shelf-plank" aria-hidden="true"></div>
+                </section>
+            </div>
+
+            <footer class="library-footer">
+                <span aria-hidden="true">✦</span>
+                <p>Made for reading together, wherever the next almost-bedtime adventure begins.</p>
+            </footer>
+        </div>
+    </main>
+
+    <main class="storybook" id="reader-view" hidden tabindex="-1">
+        <header class="reader-bar">
+            <div class="reader-identity">
+                <button class="library-button" id="library-button" type="button">
+                    <span aria-hidden="true">←</span>
+                    <span>Library</span>
+                </button>
+                <button class="reader-brand" id="reader-brand-button" type="button" aria-label="Return to this book’s cover">
+                    <span class="brand-star" aria-hidden="true">✦</span>
+                    <span>Juliet’s Grand Adventures</span>
+                </button>
+            </div>
+            <div class="reader-actions">
+                <p class="chapter-label" id="chapter-label"></p>
+                <div class="voice-control" id="voice-control">
+                    <label for="voice-select">Voice</label>
+                    <select class="voice-select" id="voice-select" aria-describedby="narration-status">
+                        <option value="af_heart">Heart · US</option>
+                        <option value="af_bella">Bella · US</option>
+                        <option value="af_nicole">Nicole · US</option>
+                        <option value="af_nova">Nova · US</option>
+                        <option value="am_fenrir">Fenrir · US</option>
+                        <option value="am_michael">Michael · US</option>
+                        <option value="bf_emma">Emma · UK</option>
+                        <option value="bm_fable">Fable · UK</option>
+                    </select>
+                </div>
+                <button class="read-button" id="read-button" type="button" aria-pressed="false" aria-busy="false" aria-describedby="narration-status">
+                    <span class="read-icon" aria-hidden="true">◖</span>
+                    <span id="read-button-label">Read this page</span>
+                </button>
+                <p class="visually-hidden" id="narration-status" aria-live="polite">Ready to read with Heart.</p>
+                <div class="reader-music-slot" id="reader-music-slot"></div>
+            </div>
+        </header>
+
+        <div class="story-track" id="story-track"></div>
+
+        <nav class="reader-controls" aria-label="Story pages">
+            <button class="round-button" id="previous-button" type="button" aria-label="Previous page" disabled>
+                <span aria-hidden="true">←</span>
+            </button>
+            <div class="page-status" aria-live="polite">
+                <div class="progress-dots" id="progress-dots" aria-label="Choose a story page"></div>
+                <span id="page-status-text"></span>
+            </div>
+            <button class="round-button" id="next-button" type="button" aria-label="Next page">
+                <span aria-hidden="true">→</span>
+            </button>
+        </nav>
+    </main>
+
+    <audio id="background-music" src="./assets/the-little-library-between-stars.mp3?arcaneVersion=0.29.1" loop preload="metadata" hidden></audio>
+    <p class="visually-hidden" id="music-status" aria-live="polite">Background music is paused.</p>
+
+    <template id="book-planets-template">
+        <section class="story-page cover-page is-current" data-page-label="Cover" aria-labelledby="planets-cover-title">
+            <img class="page-art" src="./assets/cover.png" alt="Juliet, Starbeard, and Uni stand beside their patchwork rocket under three glowing planets.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy cover-copy">
+                <p class="eyebrow" data-narrate>Tonight’s read-together adventure</p>
+                <h2 class="cover-title" id="planets-cover-title" data-narrate>The Three<br>Little Planets</h2>
+                <p class="dek" data-narrate>Juliet, Uni, and Starbeard follow a magical map hidden in his beard through three little planets. Each world holds one piece of a starlit path that can lead them safely home.</p>
+                <button class="begin-button" type="button" data-story-action="begin">
+                    Begin the adventure
+                    <span aria-hidden="true">→</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The beard-map wakes" aria-labelledby="planets-page-2-title">
+            <img class="page-art" src="./assets/launch.png" alt="Juliet raises the cape-sail while Uni sparks the patchwork rocket and Starbeard reads a map in his glowing beard.">
+            <div class="art-shade art-shade-bottom" aria-hidden="true"></div>
+            <div class="page-copy story-copy story-copy-right">
+                <p class="page-kicker" data-narrate>One starry almost-bedtime…</p>
+                <h2 id="planets-page-2-title" data-narrate>A magic map twinkled inside Starbeard’s beard.</h2>
+                <p data-narrate>Starbeard heard a tiny chime under his chin. When he combed his beard, out floated a ribbon of starlight with three little planets painted across it. The planets glowed, but every path between them had gone dark.</p>
+                <p data-narrate>Juliet tied her red cape to the blanket rocket as a sail. Uni warmed the patchwork engine with a golden spark. On the map, the first planet blinked three times, like a porch light calling friends home.</p>
+                <p class="spoken-line" data-narrate>“Three worlds are calling,” Juliet said. “Let’s answer together.”</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Tumble-Turn" aria-labelledby="planets-page-3-title">
+            <img class="page-art" src="./assets/tumble-turn.png" alt="The three explorers hold hands in a glowing forest of floating bubble trees.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy story-copy-left">
+                <p class="planet-badge" data-narrate>Little Planet One · Tumble-Turn</p>
+                <h2 id="planets-page-3-title" data-narrate>Everything floated in the wrong direction.</h2>
+                <p data-narrate>Bubble trees drifted above their roots. Mossy paths curled along the sky. Even the raindrops rose from puddles and disappeared into the stars. The first silver path in Starbeard’s beard-map flickered as if it might vanish.</p>
+                <p data-narrate>High in a twisting branch, a baby pearl-bubble had bounced out of its nest. It spun farther away each time the little planet rolled.</p>
+                <p class="spoken-line" data-narrate>“Hold hands,” Juliet said. “If the planet will not choose an up, we will make our own.”</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The first path" aria-labelledby="planets-page-4-title">
+            <img class="page-art" src="./assets/tumble-turn-rescue.png" alt="Uni anchors the rocket while Starbeard holds a rope of stars and Juliet returns the pearl-bubble to its floating tree.">
+            <div class="art-shade art-shade-bottom" aria-hidden="true"></div>
+            <div class="page-copy story-copy story-copy-right story-copy-compact">
+                <p class="page-kicker" data-narrate>The first path</p>
+                <h2 id="planets-page-4-title" data-narrate>They became one long, laughing rescue chain.</h2>
+                <p data-narrate>Uni pressed her hooves against the rocket and anchored it with a warm beam. Starbeard looped a rope of stars around his waist. Juliet held the other end, opened her cape, and swung through the floating forest.</p>
+                <p data-narrate>On the count of three, she caught the giggling pearl-bubble and tucked it into its branch-nest. The bubble trees settled around their roots, and the whole planet turned right-side up.</p>
+                <p class="story-lesson" data-narrate>Inside Starbeard’s beard, the first silver path shone bright and pointed to the next little world.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Luma Bloom" aria-labelledby="planets-page-5-title">
+            <img class="page-art" src="./assets/luma-bloom.png" alt="Juliet listens beside glowing bell flowers while Uni and Starbeard join her in the quiet.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy story-copy-right">
+                <p class="planet-badge" data-narrate>Little Planet Two · Luma Bloom</p>
+                <h2 id="planets-page-5-title" data-narrate>The second path was hidden in a song.</h2>
+                <p data-narrate>The map led them to Luma Bloom, where bell flowers should have rung each evening to grow a bridge of light. Tonight every flower hung silent, and the crew could not cross the dark valley to the map’s next star.</p>
+                <p data-narrate>Juliet knelt beside a tiny seed humming under a leaf. She hummed the same note back. Uni added a silver harmony, Starbeard added a jingling bass, and one by one the bell flowers lifted their heads. A bridge bloomed across the valley, and the second path lit beside the first.</p>
+                <p class="spoken-line" data-narrate>“You had the song all along,” Juliet told the seed. “We only needed to listen.”</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Naptune" aria-labelledby="planets-page-6-title">
+            <img class="page-art" src="./assets/naptune.png" alt="Juliet and Uni float through cloud rings toward a sleepy crescent moon while Starbeard keeps them safe with a glowing rope.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy story-copy-left">
+                <p class="planet-badge" data-narrate>Little Planet Three · Naptune</p>
+                <h2 id="planets-page-6-title" data-narrate>The final path ended at a wide-awake moon.</h2>
+                <p data-narrate>Two bright paths now curled through Starbeard’s beard-map. The last one led to Naptune, where every sleepy star was yawning except the crescent moon. Naptune’s golden dream seed had blown into a maze of drifting cloud rings.</p>
+                <p data-narrate>Without the seed, the moon could not sleep. Without the moon’s dream, the map could not reveal the way home. Juliet and Uni floated after the warm glow while Starbeard anchored their rope to the rocket.</p>
+                <p class="spoken-line" data-narrate>“We got this far together,” Juliet said. “We finish together.”</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The third path" aria-labelledby="planets-page-7-title">
+            <img class="page-art" src="./assets/naptune-dream.png" alt="Juliet carries the glowing dream seed to the yawning crescent moon while Uni and Starbeard guide her through the clouds.">
+            <div class="art-shade art-shade-bottom" aria-hidden="true"></div>
+            <div class="page-copy story-copy story-copy-right story-copy-compact">
+                <p class="page-kicker" data-narrate>The third path</p>
+                <h2 id="planets-page-7-title" data-narrate>Juliet carried the dream seed through the clouds.</h2>
+                <p data-narrate>Uni lit the safest ring and Starbeard kept the rope steady as the clouds rolled like slow waves. Juliet wrapped the seed in her cape so its golden dreams would not spill into space.</p>
+                <p data-narrate>She placed it beside the moon. Naptune gave one enormous, peaceful yawn. The sleepy stars tucked themselves into the clouds, and the final silver path shone inside Starbeard’s beard.</p>
+                <p class="spoken-line" data-narrate>All three paths joined into one bright trail pointing home.</p>
+            </div>
+        </section>
+
+        <section class="story-page ending-page" data-page-label="Home again" aria-labelledby="planets-page-8-title">
+            <img class="page-art" src="./assets/home.png" alt="At dawn, Juliet, Starbeard, and Uni cuddle beneath the cape beside a tiny glowing starflower.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy ending-copy story-copy-right">
+                <p class="page-kicker" data-narrate>Home again</p>
+                <h2 id="planets-page-8-title" data-narrate>Home is a planet, too.</h2>
+                <p data-narrate>At dawn, the map guided their patchwork rocket back to the blanket fort. They planted a tiny gift from Naptune beside the porch, and it opened into a starflower with three glowing petals, one for each world they had helped.</p>
+                <p data-narrate>Starbeard carefully curled the magic map back into his beard, where it could sleep until another world called. Juliet tucked her cape around Uni and watched Tumble-Turn, Luma Bloom, and Naptune shine together in the morning sky.</p>
+                <p class="spoken-line" data-narrate>Three little planets were safe, and three explorers were already dreaming of where the map might lead next.</p>
+                <button class="again-button" type="button" data-story-action="again">
+                    Read it again
+                    <span aria-hidden="true">↺</span>
+                </button>
+            </div>
+        </section>
+    </template>
+
+    <template id="book-doughnut-template">
+        <section class="story-page cover-page doughnut-cover is-current" data-page-label="Cover" aria-labelledby="doughnut-cover-title">
+            <img class="page-art" src="./assets/book-doughnut-cover.png" alt="Juliet, Uni, and Starbeard sail their patchwork star-sloop toward a glowing doughnut planet.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy cover-copy doughnut-cover-copy">
+                <p class="eyebrow" data-narrate>A marmalade-map adventure</p>
+                <h2 class="cover-title" id="doughnut-cover-title" data-narrate>Starbeard &amp; the<br>Doughnut Planet Map</h2>
+                <p class="dek" data-narrate>When a golden map swirls out of Juliet’s breakfast, she, Uni, and Starbeard follow it past the Sprinkle Belt to a silent doughnut planet. There, a tiny moon needs a brave, gentle rescue.</p>
+                <button class="begin-button" type="button" data-story-action="begin">
+                    Follow the golden crumb-trail
+                    <span aria-hidden="true">→</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The map in the marmalade" aria-labelledby="doughnut-page-2-title">
+            <img class="page-art" src="./assets/doughnut-map.png" alt="A glowing ring-shaped star map rises from Juliet’s marmalade while Uni and Starbeard look on.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy story-copy-right">
+                <p class="page-kicker" data-narrate>Breakfast aboard the patchwork star-sloop</p>
+                <h2 id="doughnut-page-2-title" data-narrate>The map was hiding in the marmalade.</h2>
+                <p data-narrate>Juliet drew one slow circle through the orange-gold marmalade. Her spoon began to tingle. Then the sticky swirl lifted from her toast and opened above the breakfast table as a shining map shaped like a ring.</p>
+                <p data-narrate>Inside the ring, a tiny golden moon blinked once, twice, and disappeared beneath a raspberry-colored storm. A trail of glowing crumbs ran from their porthole into the stars.</p>
+                <p class="spoken-line" data-narrate>“Someone tucked a call for help inside our breakfast,” Uni whispered.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Captain in the making" aria-labelledby="doughnut-page-3-title">
+            <img class="page-art" src="./assets/doughnut-course.png" alt="Juliet plots the golden crumb-trail at the star-wheel while Uni warms the engine and Starbeard ties on his first captain sash.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy story-copy-right story-copy-compact">
+                <p class="pirate-badge" data-narrate>Starbeard’s captain look · The sash and compass</p>
+                <h2 id="doughnut-page-3-title" data-narrate>The golden map chose a course and a captain.</h2>
+                <p data-narrate>The map curled into Starbeard’s empty brass compass without spilling a drop. Juliet matched its crumb-trail to the constellations while Uni warmed the patchwork engine with one gentle beam.</p>
+                <p data-narrate>Starbeard tied a midnight-blue sash over his cardigan. His new captain voice squeaked on the first try, so he breathed, smiled at his crew, and tried again.</p>
+                <p class="spoken-line" data-narrate>“Course set for the round horizon,” he said. “Together.”</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The Sprinkle Belt" aria-labelledby="doughnut-page-4-title">
+            <img class="page-art" src="./assets/sprinkle-belt.png" alt="The crew sails through a sparkling belt of colorful sprinkle-shaped asteroids.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy story-copy-left">
+                <p class="pirate-badge" data-narrate>Starbeard’s captain look · The long coat</p>
+                <h2 id="doughnut-page-4-title" data-narrate>The Sprinkle Belt tried to shake them from the trail.</h2>
+                <p data-narrate>The glowing crumbs led straight into tumbling crystal sprinkles, purple, blue, orange, and green. Each one spun like a tiny log in a very sparkly river.</p>
+                <p data-narrate>Juliet kept both hands steady on the wheel. Uni nudged the widest sprinkles aside. Starbeard listened to them and called the safe turns. As he did, his cardigan stretched into a long starry coat with bright brass buttons.</p>
+                <p class="spoken-line" data-narrate>“Port past the purple! Now starboard around the blue!”</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The roundest horizon" aria-labelledby="doughnut-page-5-title">
+            <img class="page-art page-art-doughnut-arrival" src="./assets/doughnut-arrival.png" alt="The patchwork star-sloop approaches a silent rose-gold ring world while worried moonlets point toward its stormy middle.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy story-copy-left">
+                <p class="planet-badge" data-narrate>Doughnut Planet · Rosegold Ring</p>
+                <h2 id="doughnut-page-5-title" data-narrate>The planet was beautiful, but far too quiet.</h2>
+                <p data-narrate>They sailed out of the last sparkle and found glaze seas, icing clouds, and forests of chiming sugar trees. But the seas did not move. The trees did not sing. Even the moonlets stared worriedly into the empty middle.</p>
+                <p data-narrate>The marmalade map brightened. It showed the missing golden moon trapped below, tangled in a sticky raspberry storm. Without the moon’s pull, the whole round world had gone still.</p>
+                <p class="spoken-line" data-narrate>“The map did not lead us to treasure,” Juliet said. “It led us to a neighbor.”</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The moon in the middle" aria-labelledby="doughnut-page-6-title">
+            <img class="page-art" src="./assets/doughnut-rescue.png" alt="Juliet, Uni, and Captain Starbeard free a little golden moon from the center of the doughnut planet.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy story-copy-right">
+                <p class="pirate-badge" data-narrate>Starbeard’s captain look · The starry hat</p>
+                <h2 id="doughnut-page-6-title" data-narrate>The raspberry storm guarded the little moon.</h2>
+                <p data-narrate>The crew landed on the inner rim, where the wind rushed around and around the enormous hollow sky. Far below, the little moon bobbed inside jam-colored clouds and called with a bell-small peep.</p>
+                <p data-narrate>Juliet opened her cape into a sail. Uni aimed her horn through the safest gap. Starbeard wrapped their shining rope around himself and a sturdy sugar-crystal root. A wide starry captain hat appeared atop his curls.</p>
+                <p class="spoken-line" data-narrate>“Ready when you are, Captain,” Juliet said. “Ready because you are,” he answered.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="One round rescue" aria-labelledby="doughnut-page-7-title">
+            <img class="page-art" src="./assets/doughnut-homeward.png" alt="Juliet’s marmalade compass draws a shining orbit that guides the rescued golden moon above the waking Doughnut Planet.">
+            <div class="art-shade art-shade-bottom" aria-hidden="true"></div>
+            <div class="page-copy story-copy story-copy-right story-copy-compact">
+                <p class="page-kicker" data-narrate>One cape, one horn, one steady rope</p>
+                <h2 id="doughnut-page-7-title" data-narrate>The moon followed the marmalade light home.</h2>
+                <p data-narrate>Uni’s warm beam loosened the storm. Juliet caught the moon in her cape, but its proper orbit was too dark to see. Then she raised the marmalade compass. The golden map sprang open once more, drawing a bright circle through the sky.</p>
+                <p data-narrate>Starbeard eased the rope, Juliet gave the cape one careful swing, and the moon rolled onto the glowing path. Glaze seas rushed, sprinkle trees rang, and golden sparks braided themselves through Starbeard’s beard.</p>
+                <p class="story-lesson" data-narrate>The moon completed one bright orbit, and the whole Doughnut Planet woke up.</p>
+            </div>
+        </section>
+
+        <section class="story-page ending-page" data-page-label="Round horizons" aria-labelledby="doughnut-page-8-title">
+            <img class="page-art" src="./assets/doughnut-horizons.png" alt="Juliet, Uni, and Captain Starbeard sail toward a galaxy filled with distant ring-shaped worlds.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy ending-copy story-copy-left">
+                <p class="page-kicker" data-narrate>A galaxy of round horizons</p>
+                <h2 id="doughnut-page-8-title" data-narrate>One rescued moon opened a trail of new worlds.</h2>
+                <p data-narrate>The grateful moon pressed one crumb-shaped star into the brass compass. Around it appeared a trail of new rings: blueberry, peach-gold, lavender, and one speckled like birthday cake.</p>
+                <p data-narrate>Juliet tucked the compass beside the marmalade jar. Uni curled up near the warm engine. Starbeard, now wearing sash, coat, captain hat, and a beard full of starlight, turned the ship toward the first unknown ring.</p>
+                <p class="spoken-line" data-narrate>“Good thing,” he said, “this crew packed plenty of toast.”</p>
+                <button class="again-button" type="button" data-story-action="again">
+                    Sail it again
+                    <span aria-hidden="true">↺</span>
+                </button>
+            </div>
+        </section>
+    </template>
+
+    <template id="book-moonlit-template">
+        <section class="story-page cover-page moonlit-cover is-current" data-page-label="Cover" aria-labelledby="moonlit-cover-title">
+            <img class="page-art" src="./assets/book-moonlit-blossom-cover.png" alt="Juliet, Uni, and Starbeard sail toward a luminous purple flower planet beneath three moons.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy cover-copy moonlit-cover-copy">
+                <p class="eyebrow" data-narrate>The Adventures of Starbeard and Uni · Book One</p>
+                <h2 class="cover-title" id="moonlit-cover-title" data-narrate>The Song of the<br>Moonlit Blossom Planet</h2>
+                <p class="dek" data-narrate>Far, far away, beyond the Moon and beyond the planets, where the stars sparkle like tiny diamonds scattered across a great black sea, sailed a very unusual pirate ship.</p>
+                <button class="begin-button" type="button" data-story-action="begin">
+                    Follow the song
+                    <span aria-hidden="true">→</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The Cosmic Wanderer" aria-labelledby="moonlit-page-2-title">
+            <img class="page-art" src="./assets/moonlit-cosmic-wanderer.png" alt="The patchwork Cosmic Wanderer sails through deep space with Starbeard, Juliet, and Uni together at the helm.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy story-copy-right">
+                <p class="page-kicker" data-narrate>Far beyond the Moon</p>
+                <h2 id="moonlit-page-2-title" data-narrate>It was a space pirate ship.</h2>
+                <p data-narrate>Its silver sails caught the light of distant stars. Its engines purred as softly as a sleeping kitten. And painted proudly upon its side were the words: The Cosmic Wanderer.</p>
+                <p data-narrate>At the helm stood Admiral Starbeard.</p>
+                <p data-narrate>Starbeard was a pirate captain,but not the sort of pirate who stole things. Oh, no. Starbeard searched for lost treasures, explored forgotten worlds, helped people in trouble, and occasionally ate far too many pancakes.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Meet the crew" aria-labelledby="moonlit-page-3-title">
+            <img class="page-art" src="./assets/moonlit-meet-the-crew.png" alt="Starbeard’s beard sparkles as he laughs beside Juliet and Uni on the warm, quilted bridge.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy story-copy-right">
+                <p class="page-kicker" data-narrate>Aboard The Cosmic Wanderer</p>
+                <h2 id="moonlit-page-3-title" data-narrate>Meet the crew.</h2>
+                <p data-narrate>His great beard was sprinkled with tiny points of light that shimmered like stars whenever he laughed. And Starbeard laughed often.</p>
+                <p class="spoken-line" data-narrate>“HA-HA! Another beautiful night for an adventure!”</p>
+                <p data-narrate>Beside him stood his very best friend, Uni. Uni was a magical unicorn with a snowy white coat, a flowing mane that shimmered with every color of the rainbow, and a golden horn that glowed whenever magic was near.</p>
+                <p data-narrate>And traveling with them was their youngest explorer: Juliet.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Meet Juliet" aria-labelledby="moonlit-page-4-title">
+            <img class="page-art" src="./assets/moonlit-juliet-stargazing.png" alt="Juliet and Uni watch stars through the round window as Starbeard’s treasure compass begins to blink nearby.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy story-copy-right">
+                <p class="page-kicker" data-narrate>Their youngest explorer</p>
+                <h2 id="moonlit-page-4-title" data-narrate>Juliet loved adventures.</h2>
+                <p data-narrate>She loved discovering new planets. She loved finding treasure. But most of all, she loved traveling through the galaxy with Starbeard and Uni.</p>
+                <p data-narrate>One quiet evening, Juliet was sitting beside Uni and watching the stars drift past the window when something began to blink on Starbeard’s treasure compass.</p>
+                <p class="story-sound" data-narrate>Blink. Blink. BLINK!</p>
+                <p data-narrate>Starbeard raised one enormous eyebrow. “Well, shiver me satellites.” Juliet hurried over. “What is it?” Starbeard held up the compass.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The compass points" aria-labelledby="moonlit-page-5-title">
+            <img class="page-art page-art-moonlit-compass-close" src="./assets/moonlit-compass.png" alt="The magical compass points through the round ship window toward a purple planet with three moons.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy story-copy-right">
+                <p class="page-kicker" data-narrate>A golden needle</p>
+                <h2 id="moonlit-page-5-title" data-narrate>The compass chose a mysterious world.</h2>
+                <p data-narrate>Instead of pointing north, its golden needle was spinning around and around. Then,PING! It stopped. The needle pointed toward a tiny purple planet surrounded by three glowing moons.</p>
+                <p data-narrate>Uni’s horn began to sparkle. “That,” said Uni softly, “is no ordinary planet.” Starbeard grinned. “Then I suppose we’d better go have an extraordinary look.”</p>
+                <p class="story-sound" data-narrate>And with a pull of a lever,WHOOSH!</p>
+                <p data-narrate>The Cosmic Wanderer sailed toward the mysterious world.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Planet of Flowers" aria-labelledby="moonlit-page-6-title">
+            <img class="page-art" src="./assets/moonlit-meadow.png" alt="The crew stands in a vast meadow as luminous flowers open beneath three golden moons.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy story-copy-left">
+                <p class="planet-badge" data-narrate>The Planet of Flowers</p>
+                <h2 id="moonlit-page-6-title" data-narrate>A whole planet of closed flowers.</h2>
+                <p data-narrate>As they descended through lavender clouds, Juliet pressed her nose against the window. “Whoa…” Flowers covered the entire planet.</p>
+                <p data-narrate>There were little flowers no bigger than buttons. There were flowers as tall as trees. There were enormous flowers whose petals stretched wider than The Cosmic Wanderer itself.</p>
+                <p data-narrate>But something was strange. Every flower was closed. Starbeard landed the ship in a quiet meadow. The three moons rose into the sky.</p>
+                <p class="story-sound" data-narrate>And suddenly,DING. One flower opened. Then another. DONG. Then another. TING! TONG! DING-DING!</p>
+                <p data-narrate>Thousands of flowers slowly opened beneath the moonlight.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The flowers sing" aria-labelledby="moonlit-page-7-title">
+            <img class="page-art" src="./assets/moonlit-flower-orchestra.png" alt="Blue, gold, pink, and enormous purple flowers perform in glowing rings around the delighted crew.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy story-copy-left">
+                <p class="page-kicker" data-narrate>Under the three moons</p>
+                <h2 id="moonlit-page-7-title" data-narrate>Every flower had a voice.</h2>
+                <p data-narrate>And each flower made a musical note. Juliet’s eyes grew wide. “The flowers are singing!” They certainly were.</p>
+                <p data-narrate>Blue flowers chimed like little bells. Golden flowers hummed like cellos. Pink flowers whistled like flutes. And enormous purple flowers made deep, gentle sounds: BOOOOOOM.</p>
+                <p data-narrate>Starbeard stroked his beard. “I’ve heard of singing in the shower, but singing in the flower? That’s new.” Juliet giggled.</p>
+                <p class="spoken-line" data-narrate>Then they heard another sound. Someone was crying.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The Melodians" aria-labelledby="moonlit-page-8-title">
+            <img class="page-art" src="./assets/moonlit-melodians.png" alt="Three tiny long-eared Melodians greet Juliet, Uni, and a bowing Starbeard beneath a giant blue blossom.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy story-copy-right">
+                <p class="planet-badge" data-narrate>The Missing Note</p>
+                <h2 id="moonlit-page-8-title" data-narrate>The travelers from the stars had come.</h2>
+                <p data-narrate>Behind a giant blue blossom sat three tiny creatures. They had round bodies, long ears, and little antennae that bounced whenever they spoke.</p>
+                <p data-narrate>“Hello,” said Juliet. The creatures looked up. “You came!” cried one. “The travelers from the stars!” “We hoped someone would!”</p>
+                <p data-narrate>Starbeard removed his hat and bowed. “Admiral Starbeard, treasure hunter, explorer, pancake enthusiast, and pirate captain at your service.” Uni bowed. “Uni.” Juliet smiled. “And I’m Juliet.”</p>
+                <p data-narrate>The little creatures introduced themselves as Melodians, the caretakers of the Moonlit Blossom Planet.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The missing note" aria-labelledby="moonlit-page-9-title">
+            <img class="page-art" src="./assets/moonlit-missing-note.png" alt="Three worried Melodians show the crew a glowing ribbon of song with one dark gap.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy story-copy-right">
+                <p class="planet-badge" data-narrate>The Moonlight Song</p>
+                <h2 id="moonlit-page-9-title" data-narrate>A song that could not finish.</h2>
+                <p data-narrate>But something was wrong. Every night, explained the eldest Melodian, the flowers sang the Moonlight Song. The song helped the flowers sleep until the following evening.</p>
+                <p data-narrate>But tonight, one note was missing. Without it, the song could never finish. And without the finished song, the flowers could not sleep.</p>
+                <p data-narrate>Juliet looked across the meadow. Thousands of flowers were swaying restlessly.</p>
+                <p class="spoken-line" data-narrate>“We’ll help,” she said. Starbeard smiled. “That’s my kind of treasure hunt.”</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The musical path" aria-labelledby="moonlit-page-10-title">
+            <img class="page-art" src="./assets/moonlit-musical-path.png" alt="Juliet rides Uni while Starbeard follows silver stones that ripple with golden light toward a flowering vine wall.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy story-copy-left">
+                <p class="planet-badge" data-narrate>Into the Singing Forest</p>
+                <h2 id="moonlit-page-10-title" data-narrate>The forest played beneath their feet.</h2>
+                <p data-narrate>The missing note belonged to the legendary First Flower, hidden somewhere deep inside the Singing Forest. So Juliet climbed onto Uni’s back. Starbeard adjusted his enormous hat. And together they followed a trail of glowing petals into the woods.</p>
+                <p data-narrate>The deeper they traveled, the stranger the forest became. Whenever Juliet stepped on a silver stone,TING! Whenever Starbeard stepped on one,TONG! And when Uni stepped on one,TWINKLE-TWINKLE-TING!</p>
+                <p data-narrate>Soon Juliet realized something. “It’s a song!” The stones formed a musical path. But ahead stood a wall of enormous vines. On the vines were five glowing flowers.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The vine door" aria-labelledby="moonlit-page-11-title">
+            <img class="page-art page-art-moonlit-forest-close" src="./assets/moonlit-forest.png" alt="The friends play five glowing flowers while Starbeard’s hat lifts from one enormous booming note.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy story-copy-left">
+                <p class="page-kicker" data-narrate>Five glowing flowers</p>
+                <h2 id="moonlit-page-11-title" data-narrate>The vines were a musical lock.</h2>
+                <p data-narrate>Starbeard pushed. Nothing happened. Uni tried magic. Nothing happened. Juliet looked at the flowers. “Maybe we have to play them.”</p>
+                <p data-narrate>She touched the first. Ding. Uni touched another. Dong. Starbeard carefully poked the largest. BWOOOOONG! His hat flew off. Juliet burst out laughing. Starbeard picked up his hat. “I meant to do that.”</p>
+                <p data-narrate>Together they tried again. Ding. Ding. Dong. Ding. The vines began to wiggle. They played the pattern once more. Ding. Ding. Dong. Ding! The vines lifted away.</p>
+                <p class="spoken-line" data-narrate>Starbeard pointed dramatically forward. “Crew! The path is open!” And onward they went.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The First Flower" aria-labelledby="moonlit-page-12-title">
+            <img class="page-art" src="./assets/moonlit-first-flower-clearing.png" alt="Juliet approaches the newly opened silver-and-gold First Flower while Uni and Starbeard pause beside its carved stone.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy story-copy-left">
+                <p class="planet-badge" data-narrate>The First Flower</p>
+                <h2 id="moonlit-page-12-title" data-narrate>In the clearing, everything became quiet.</h2>
+                <p data-narrate>At last, they reached a clearing. Everything became quiet. No bells. No humming. No whistles. Only the soft night breeze.</p>
+                <p data-narrate>In the center of the clearing stood one enormous flower. Its petals were silver and gold. Tiny lights drifted around it like fireflies. Uni’s horn glowed warmly. “The First Flower,” she whispered.</p>
+                <p data-narrate>Juliet slowly walked toward it. The flower opened. Inside was a single glowing petal. Starbeard reached toward it. But Juliet noticed something carved into a stone beneath the flower:</p>
+                <p class="story-lesson" data-narrate>The greatest treasure cannot be taken. It can only be given.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The stone’s message" aria-labelledby="moonlit-page-13-title">
+            <img class="page-art" src="./assets/moonlit-stone-message.png" alt="Juliet, Uni, and Starbeard sit quietly beside the First Flower and listen for the meaning of its carved stone.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy story-copy-left">
+                <p class="page-kicker" data-narrate>A treasure that must be given</p>
+                <h2 id="moonlit-page-13-title" data-narrate>How could they find the missing note?</h2>
+                <p data-narrate>Starbeard stopped. “Hmmm.” Uni smiled. “I don't think we're supposed to take the petal.” “Then how do we get the missing note?” Juliet asked.</p>
+                <p data-narrate>The three friends sat quietly. They listened. The wind moved through the grass. The leaves rustled. Somewhere far away, the flowers continued their unfinished song.</p>
+                <p data-narrate>Then Juliet understood. “Maybe it wants us to sing.” Starbeard blinked. “Me?” Juliet nodded. Starbeard cleared his throat. “Arrrrr…” Uni laughed. “That isn't singing.”</p>
+                <p class="spoken-line" data-narrate>“I'm warming up.”</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="One perfect note" aria-labelledby="moonlit-page-14-title">
+            <img class="page-art" src="./assets/moonlit-first-flower.png" alt="The three friends sing together as the First Flower releases a perfect golden note across the planet.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy story-copy-left">
+                <p class="page-kicker" data-narrate>Three different voices</p>
+                <h2 id="moonlit-page-14-title" data-narrate>A note no treasure chest could hold.</h2>
+                <p data-narrate>So Juliet began with one gentle note. Uni joined her. Then Starbeard added his deep, rumbling voice. Their voices weren't exactly the same. They weren't supposed to be.</p>
+                <p data-narrate>Juliet's voice was bright. Uni's was soft and clear. Starbeard's was deep and warm. But together… they made something beautiful.</p>
+                <p class="story-sound" data-narrate>The First Flower began to glow. Brighter. And brighter. And brighter. Then,DIIIIIIIIING.</p>
+                <p data-narrate>One perfect note rang across the planet. They had found it. Except it wasn't something they could put inside a treasure chest. It was something they had made together.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The planet sings" aria-labelledby="moonlit-page-15-title">
+            <img class="page-art" src="./assets/moonlit-planet-song.png" alt="A golden wave of song races across forests, rivers, valleys, and millions of blossoms as the crew and Melodians hurry through the meadow.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy story-copy-right">
+                <p class="planet-badge" data-narrate>The Moonlight Song</p>
+                <h2 id="moonlit-page-15-title" data-narrate>The note raced across the planet.</h2>
+                <p data-narrate>The note raced through the Singing Forest. Every flower it passed joined the melody. Ding… Dong… Hummmmmm… Ting-a-ling…</p>
+                <p data-narrate>Across valleys. Across mountains. Across sparkling rivers. Across fields filled with millions of moonlit blossoms. The entire planet began to sing.</p>
+                <p data-narrate>Starbeard, Uni, and Juliet hurried back toward the meadow. The Melodians were dancing. The flowers swayed gently beneath the three moons.</p>
+                <p data-narrate>And now the song became softer. And slower. And quieter. The enormous flowers began folding their petals.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="A lullaby" aria-labelledby="moonlit-page-16-title">
+            <img class="page-art page-art-moonlit-lullaby-close" src="./assets/moonlit-lullaby.png" alt="A sleepy Juliet leans against Uni while Starbeard and the dancing Melodians listen to the flowers’ lullaby.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy story-copy-right">
+                <p class="page-kicker" data-narrate>Softly · Slowly · Quietly</p>
+                <h2 id="moonlit-page-16-title" data-narrate>The flowers began to sleep.</h2>
+                <p data-narrate>The little flowers curled into tiny balls. The glowing vines dimmed their lights. Even the three moons seemed to shine a little more gently. The Moonlight Song wasn't only a song. It was a lullaby.</p>
+                <p data-narrate>Juliet yawned. Starbeard noticed. “Uh-oh.” “What?” Juliet asked sleepily. “I recognize that.” “Recognize what?” “The Extremely Dangerous Galactic Yawn.” Juliet giggled. Then she yawned again.</p>
+                <p data-narrate>Uni lowered herself beside her. Juliet leaned against Uni's warm side. Around them, the flowers whispered their sleepy song.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Under the universe" aria-labelledby="moonlit-page-17-title">
+            <img class="page-art" src="./assets/moonlit-under-universe.png" alt="Juliet, Uni, and Starbeard sit together beneath three moons and an enormous sky above the sleeping flower meadow.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy story-copy-right">
+                <p class="page-kicker" data-narrate>Beneath the three moons</p>
+                <h2 id="moonlit-page-17-title" data-narrate>Even Admiral Starbeard was quiet.</h2>
+                <p data-narrate>Starbeard sat beside them. For once, even the great Admiral Starbeard was quiet. Above them stretched the whole enormous universe. Millions upon millions of stars.</p>
+                <p data-narrate>So many places they had never visited. So many friends they had not met yet. So many treasures waiting to be discovered.</p>
+                <p data-narrate>Juliet looked at Starbeard. “Was the song the treasure?” Starbeard thought for a moment. “I reckon it was part of it.” “What's the other part?”</p>
+                <p class="spoken-line" data-narrate>Starbeard looked at Uni. Uni looked at Juliet. “The people you find while you're searching,” Uni said.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Friendship is treasure" aria-labelledby="moonlit-page-18-title">
+            <img class="page-art" src="./assets/moonlit-friendship-treasure.png" alt="Starbeard rests one hand over his heart while Juliet and Uni smile beside him in the softly glowing meadow.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy story-copy-right">
+                <p class="page-kicker" data-narrate>The greatest treasure</p>
+                <h2 id="moonlit-page-18-title" data-narrate>A good friend is treasure you carry right here.</h2>
+                <p data-narrate>Starbeard nodded. “Gold can be lost. Jewels can disappear. But a good friend?” He smiled. “That's treasure you carry right here.” He gently tapped his chest. Juliet smiled. The flowers continued their lullaby.</p>
+                <p class="story-lullaby" data-narrate>Softly now, the starlights gleam,<br>Silver ships sail into dream.<br>Moonflowers close, the night winds sigh,<br>Three moons wander through the sky.</p>
+                <p class="story-lullaby" data-narrate>Rest your head and close your eyes,<br>Dream of distant, starry skies.<br>Wherever tomorrow's journey may be,<br>There's always another world to see.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Home aboard" aria-labelledby="moonlit-page-19-title">
+            <img class="page-art" src="./assets/moonlit-home-aboard.png" alt="Starbeard tucks sleepy Juliet into her bunk while Uni pulls up the constellation quilt with her softly glowing horn.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy story-copy-left">
+                <p class="planet-badge" data-narrate>Home Among the Stars</p>
+                <h2 id="moonlit-page-19-title" data-narrate>A sleepy crew returned to the ship.</h2>
+                <p data-narrate>Eventually, Starbeard carried a very sleepy Juliet back aboard The Cosmic Wanderer. Uni walked beside them, her horn glowing just enough to light the way.</p>
+                <p data-narrate>Starbeard tucked Juliet into her little bunk. It had a round window beside it, so she could watch the stars. Uni pulled the blanket up beneath Juliet's chin.</p>
+                <p class="spoken-line" data-narrate>“Are we going home now?” Juliet murmured. Starbeard smiled. “The Cosmic Wanderer is our home.”</p>
+                <p data-narrate>Juliet thought about that.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Sailing away" aria-labelledby="moonlit-page-20-title">
+            <img class="page-art" src="./assets/moonlit-sailing-away.png" alt="Juliet watches the flower planet and its three moons recede while Starbeard steers and Uni sleeps near the helm.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy story-copy-left">
+                <p class="page-kicker" data-narrate>Beyond the round window</p>
+                <h2 id="moonlit-page-20-title" data-narrate>The planet grew smaller and smaller.</h2>
+                <p data-narrate>Outside her window, the Moonlit Blossom Planet grew smaller and smaller. The flowers below were sleeping. The three moons shone peacefully. And somewhere among those flowers were new friends who would remember them whenever the Moonlight Song played.</p>
+                <p data-narrate>Starbeard returned to the helm. Uni curled up nearby. The engines made their soft nighttime hum. Hmmmmmmmmmmm…</p>
+                <p data-narrate>Starbeard turned down the cabin lights. The ship sailed gently through the darkness. Past one star. Then another. Then another.</p>
+                <p data-narrate>Juliet's eyes became heavier. She could hear Uni breathing nearby. She could hear the quiet engines.</p>
+            </div>
+        </section>
+
+        <section class="story-page ending-page" data-page-label="Safe, warm, loved" aria-labelledby="moonlit-page-21-title">
+            <img class="page-art" src="./assets/moonlit-home.png" alt="Juliet and Uni sleep safely beneath a constellation quilt while Starbeard watches over them among the stars.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy moonlit-story-copy ending-copy story-copy-left">
+                <p class="page-kicker" data-narrate>Under a blanket of stars</p>
+                <h2 id="moonlit-page-21-title" data-narrate>Tomorrow would bring another adventure.</h2>
+                <p data-narrate>And she could just barely hear Starbeard humming the Moonlight Song from the bridge. Softly now, the starlights gleam… Juliet closed her eyes.</p>
+                <p data-narrate>Tomorrow there would be another planet. Perhaps there would be treasure. Perhaps there would be a mystery. Perhaps someone somewhere among the stars would need their help. But that was tomorrow.</p>
+                <p data-narrate>Tonight, the galaxy was peaceful. The Cosmic Wanderer sailed onward beneath a blanket of stars. Starbeard watched over his crew. Uni's magic glimmered softly in the darkness.</p>
+                <p class="story-lesson" data-narrate>And Juliet slept. Safe. Warm. Loved. And dreaming of wherever their adventures took them next.</p>
+                <p class="story-ending" data-narrate>The End</p>
+                <button class="again-button" type="button" data-story-action="again">
+                    Sing it again
+                    <span aria-hidden="true">↺</span>
+                </button>
+            </div>
+        </section>
+    </template>
+
+    <template id="book-sock-caper-template">
+        <section class="story-page cover-page sock-caper-cover is-current" data-page-label="Cover" aria-labelledby="sock-caper-cover-title">
+            <img class="page-art" src="./assets/book-sock-caper-cover.png" alt="Starbeard and Uni dodge swirling laundry while a purple star sock drifts toward Starbeard and Admiral Pigeon watches from the round window.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy cover-copy sock-caper-cover-copy">
+                <p class="eyebrow" data-narrate>The Adventures of Starbeard and Uni · Book Two</p>
+                <h2 class="cover-title" id="sock-caper-cover-title" data-narrate>The Great Galactic<br>Sock Caper</h2>
+                <p class="dek" data-narrate>A missing purple sock leads Uni and Starbeard through silver clues, a laundry-room wormhole, and one adventure exactly big enough for today.</p>
+                <button class="begin-button" type="button" data-story-action="begin">
+                    Follow the silver fluff
+                    <span aria-hidden="true">→</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The morning after" aria-labelledby="sock-caper-page-2-title">
+            <img class="page-art" src="./assets/sock-caper-victory-sneeze.png" alt="Uni sneezes sparkles while landing in a basket of clean laundry as Starbeard smiles beside her.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy sock-caper-story-copy story-copy-right">
+                <p class="page-kicker" data-narrate>The morning after</p>
+                <h2 id="sock-caper-page-2-title" data-narrate>Uni was completely better. Mostly.</h2>
+                <p data-narrate>The next morning, aboard <em>The Starlight Wanderer</em>, Uni opened one eye. Then the other. Then all at once she sprang from beneath her blanket and shouted: “I AM COMPLETELY BETTER!”</p>
+                <p data-narrate>She leaped from the couch. She spun through the air. She landed directly in a basket of clean laundry. Then she sneezed.</p>
+                <p data-narrate>Starbeard looked at her. Uni looked back. “Victory sneeze,” she explained. “Aye,” said Starbeard. “Naturally.”</p>
+                <p data-narrate>Uni climbed from the basket wearing a pillowcase like a cape. Her throat was less scratchy. Her nose was less stuffy. Her tummy had stopped feeling strange. And her hoof only itched a tiny bit.</p>
+                <p class="spoken-line" data-narrate>“I am ready for the biggest adventure in the entire galaxy,” she announced. Starbeard nodded gravely. “Excellent. Our first mission is laundry.”</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Mission number one" aria-labelledby="sock-caper-page-3-title">
+            <img class="page-art" src="./assets/sock-caper-laundry-mission.png" alt="Starbeard holds up an ordinary gray sock like a dangerous object while Uni leans away beside neat piles of laundry.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy sock-caper-story-copy story-copy-left">
+                <p class="page-kicker" data-narrate>Mission number one</p>
+                <h2 id="sock-caper-page-3-title" data-narrate>Clean socks are treasure.</h2>
+                <p data-narrate>Uni stared at him. “Laundry is not an adventure.”</p>
+                <p data-narrate>“Spoken like someone who has never faced the Folding Fields of Flannel Seven.”</p>
+                <p data-narrate>“I want treasure.” “Clean socks are treasure.” “I want danger.”</p>
+                <p data-narrate>Starbeard held up one of his socks. Uni leaned away. “Fine,” she said. “Laundry is dangerous.”</p>
+                <p data-narrate>Together they sorted the basket. Shirts in one pile. Towels in another. Starbeard’s trousers in a pile that immediately fell over.</p>
+                <p class="spoken-line" data-narrate>At last they reached Uni’s favorite socks. They were purple, with tiny silver stars and golden toes.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="One sock missing" aria-labelledby="sock-caper-page-4-title">
+            <img class="page-art" src="./assets/sock-caper-one-sock-missing.png" alt="Uni searches a laundry basket as Starbeard holds the one remaining purple star sock and the brass communicator glows.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy sock-caper-story-copy story-copy-right">
+                <p class="page-kicker" data-narrate>A sock-related irregularity</p>
+                <h2 id="sock-caper-page-4-title" data-narrate>One royal hoof-warmer was gone.</h2>
+                <p data-narrate>Starbeard held up the first sock. “One royal hoof-warmer.” Uni searched the basket. She moved a towel. She lifted a shirt. She shook the pillowcase off her head. Nothing. “Where’s the other one?” she asked.</p>
+                <p data-narrate>They searched again. Slowly. Carefully. Twice. The second sock was gone. Uni’s eyes grew wide.</p>
+                <p data-narrate>“Starbeard?” “Aye?” “You once told me you escaped the Great Galactic Sock Thief of Sector Nine.” Starbeard became very still. “I did.” “Did you catch him?” “No.” “Then he could still be out there.”</p>
+                <p data-narrate>Starbeard looked toward the door. The door looked back. Or it would have, if doors had eyes.</p>
+                <p data-narrate>The communicator on the table crackled. “Captain Starbeard,” came Starblaze’s voice. “My instruments have detected a sock-related irregularity.” Uni grabbed the communicator. “How irregular?” “One-sock irregular.” Uni gasped.</p>
+                <p data-narrate>Starbeard stroked his beard. “Crew, we have a mystery.” He stood dramatically and pointed toward the ceiling. “We shall begin Operation: Locate and Return One Slightly Damp Hoof-Warmer!”</p>
+                <p class="spoken-line" data-narrate>Uni frowned. “That is the worst mission name in the galaxy.” “Have ye a better one?” Uni raised the lone sock like a flag. “Operation Great Galactic Sock Caper.” Starblaze answered at once. “Much better.”</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Every possibility" aria-labelledby="sock-caper-page-5-title">
+            <img class="page-art" src="./assets/sock-caper-room-investigation.png" alt="Uni questions a pillow while Starbeard searches beneath the couch and silver fluff leads toward the door.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy sock-caper-story-copy story-copy-left">
+                <p class="page-kicker" data-narrate>Every possibility</p>
+                <h2 id="sock-caper-page-5-title" data-narrate>The clues began beside the door.</h2>
+                <p data-narrate>The investigation began inside the hotel room,or, depending on how much imagination one happened to possess, inside the laundry deck of <em>The Starlight Wanderer</em>.</p>
+                <p data-narrate>They searched beneath the couch. They found three crumbs, a blue crayon, and a coin from a distant planet that looked suspiciously like a quarter. They searched behind the chair. Nothing. They searched inside Starbeard’s hat. Also nothing.</p>
+                <p data-narrate>“I told you,” said Uni. “Socks don’t hide in hats.” “Space pirates must investigate every possibility.”</p>
+                <p data-narrate>They questioned a suspicious pillow. “Where were you between bedtime and breakfast?” Uni demanded. The pillow said nothing. “Very suspicious,” said Starbeard.</p>
+                <p data-narrate>Then Uni noticed something beside the door. A tiny piece of silver fluff. And beyond it... Another. And another. A trail.</p>
+                <p class="spoken-line" data-narrate>“The Sock Thief,” Uni whispered.</p>
+                <p data-narrate>Before leaving, Uni put on both horseshoes. Then she checked them twice. Hotel carpet had lost her trust.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The Celestial Passageway" aria-labelledby="sock-caper-page-6-title">
+            <img class="page-art" src="./assets/sock-caper-celestial-passageway.png" alt="Uni and Starbeard follow silver fluff past a housekeeping moon rover toward the glowing elevator.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy sock-caper-story-copy story-copy-right">
+                <p class="page-kicker" data-narrate>Beyond the hotel room</p>
+                <h2 id="sock-caper-page-6-title" data-narrate>The hallway became a celestial passage.</h2>
+                <p data-narrate>Starbeard brought the laundry basket. Uni carried the communicator. Together they followed the silver trail into the Celestial Passageway.</p>
+                <p data-narrate>It looked very much like an ordinary hotel hallway. But ordinary hotel hallways do not lead to galactic sock thieves. Probably.</p>
+                <p data-narrate>The trail curved past a housekeeping cart. Uni stopped. “Moon rover.” “Aye.”</p>
+                <p data-narrate>It continued to the elevator. The doors slid open with a ding. “Teleportation chamber,” said Starbeard.</p>
+                <p data-narrate>They stepped inside. The doors closed. Soft music began playing. Uni listened. “Why does teleportation have such boring music?” “Safety regulation.” “That doesn’t make sense.” “Then it must be an official regulation.”</p>
+                <p class="story-sound" data-narrate>The chamber carried them down one floor. Ding.</p>
+                <p class="spoken-line" data-narrate>The silver trail led straight to the hotel laundry room.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The laundry deck" aria-labelledby="sock-caper-page-7-title">
+            <img class="page-art" src="./assets/sock-caper-warm-underwear-wormhole.png" alt="Starbeard and Uni investigate closed laundry machines as enormous underpants float behind one round glass door.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy sock-caper-story-copy story-copy-left">
+                <p class="page-kicker" data-narrate>The laundry deck</p>
+                <h2 id="sock-caper-page-7-title" data-narrate>They entered the Wormhole of Warm Underwear.</h2>
+                <p data-narrate>Inside, great round machines spun behind glass doors. Shirts tumbled. Towels twisted. One pair of enormous underpants floated past a window like a ghost.</p>
+                <p data-narrate>Uni pointed. “The Wormhole of Warm Underwear.” “A fearsome place,” said Starbeard.</p>
+                <p data-narrate>Starblaze’s voice crackled from the communicator. “Strange fact: washing machines do not actually eat socks.”</p>
+                <p data-narrate>“That is exactly what a washing machine would want us to believe,” said Starbeard.</p>
+                <p data-narrate>“Also,” Starblaze continued, “small clothes can hide inside larger clothes. And dry socks sometimes cling to other things because of static electricity.” Uni narrowed her eyes at the machines. “Or because of thieves.” “Also possible,” Starblaze admitted.</p>
+                <p data-narrate>They searched around the folding table. Behind the laundry basket. Beside the quiet machines.</p>
+                <p class="spoken-line" data-narrate>Starbeard made one rule perfectly clear: No pirate, unicorn, space explorer, or anyone else ever climbs inside a washing machine or dryer. Even during an emergency. Especially during an emergency.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The wrong sock" aria-labelledby="sock-caper-page-8-title">
+            <img class="page-art" src="./assets/sock-caper-wrong-sock-rescue.png" alt="Uni lifts an oversized red-and-white striped sock from beneath a chair while Starbeard holds the basket.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy sock-caper-story-copy story-copy-right">
+                <p class="page-kicker" data-narrate>A successful rescue</p>
+                <h2 id="sock-caper-page-8-title" data-narrate>They found the wrong sock.</h2>
+                <p data-narrate>Beneath a chair, Uni spotted a sock. “FOUND IT!” She reached down and pulled it free.</p>
+                <p data-narrate>It was red. It had white stripes. It was far too large for Uni.</p>
+                <p data-narrate>“That’s not mine.” She dropped it into the basket. Then she looked at it again.</p>
+                <p data-narrate>“Do you think someone is searching for this one too?” “Perhaps,” said Starbeard.</p>
+                <p data-narrate>Uni smoothed the striped sock flat. “Then we should take it to the Lost-and-Found Planet.”</p>
+                <p class="spoken-line" data-narrate>“First Mate’s Log,” said Starblaze. “One sock rescued. Wrong sock, but still a successful rescue.”</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Admiral Pigeon" aria-labelledby="sock-caper-page-9-title">
+            <img class="page-art" src="./assets/sock-caper-admiral-pigeon-clue.png" alt="Admiral Pigeon leads Starbeard and Uni from the laundry-room window toward the sunny courtyard.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy sock-caper-story-copy story-copy-left">
+                <p class="page-kicker" data-narrate>A familiar messenger</p>
+                <h2 id="sock-caper-page-9-title" data-narrate>Admiral Pigeon had a clue.</h2>
+                <p data-narrate>Their trail of silver fluff had ended. No purple sock. No thief. No treasure. Uni’s shoulders drooped.</p>
+                <p class="story-sound" data-narrate>Then something tapped against the laundry-room window. Tap. Tap-tap.</p>
+                <p data-narrate>Outside stood a pigeon with his chest puffed out. Uni hurried to the glass. “Admiral Pigeon!”</p>
+                <p data-narrate>The pigeon took three steps. Stopped. Looked backward. Took three more steps. Stopped. Looked backward again.</p>
+                <p class="spoken-line" data-narrate>“He has a clue,” said Uni.</p>
+                <p data-narrate>Starbeard and Uni followed him into the little courtyard, but not far. Uni was feeling better. She was not feeling invincible.</p>
+                <p class="story-lesson" data-narrate>Adventures do not become less important when someone needs to go slowly.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Exactly big enough" aria-labelledby="sock-caper-page-10-title">
+            <img class="page-art" src="./assets/sock-caper-exactly-big-enough.png" alt="A tired Uni leans against Starbeard on a courtyard bench after a purple streamer proves to be a false clue.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy sock-caper-story-copy story-copy-right">
+                <p class="page-kicker" data-narrate>A quiet place to pause</p>
+                <h2 id="sock-caper-page-10-title" data-narrate>Getting better was not something to prove.</h2>
+                <p data-narrate>Near a bush, something purple fluttered. Uni rushed toward it. “My sock!” But it was only a piece of party streamer caught on a branch.</p>
+                <p data-narrate>Uni stopped. Her legs felt heavy. Her nose felt stuffy again. The enormous adventure she had planned for herself suddenly felt too enormous.</p>
+                <p data-narrate>Starbeard sat beside her on a bench. For a little while, neither of them spoke. Admiral Pigeon pecked at the ground nearby.</p>
+                <p data-narrate>At last Uni said, “I wanted to have a giant adventure.” “Aye.” “So everybody would know I’m not the sick unicorn anymore.” Starbeard nodded.</p>
+                <p data-narrate>“Getting better is not something ye have to prove.” “But I’m tired again.” “Then ye are a tired unicorn who is getting better.”</p>
+                <p data-narrate>“Can I still be an adventurer?” “Some of the finest adventurers I know take breaks.”</p>
+                <p class="spoken-line" data-narrate>Uni leaned against him. “Do they complain dramatically?” “Constantly.” That made her smile.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The thief unmasked" aria-labelledby="sock-caper-page-11-title">
+            <img class="page-art" src="./assets/sock-caper-static-reveal.png" alt="Uni pulls her purple star sock from Starbeard’s cape in a tiny blue static spark while Admiral Pigeon watches.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy sock-caper-story-copy story-copy-left">
+                <p class="page-kicker" data-narrate>The thief unmasked</p>
+                <h2 id="sock-caper-page-11-title" data-narrate>The culprit had a beard.</h2>
+                <p data-narrate>Across the courtyard, Admiral Pigeon stopped pecking. He stared at Starbeard. Then he tilted his head. And stared some more.</p>
+                <p data-narrate>“Why is he looking at you?” asked Uni. “Perhaps he admires my hat.” “You’re not wearing your hat.” “Then perhaps he admires my beard.”</p>
+                <p data-narrate>Uni followed the pigeon’s gaze. Behind Starbeard’s shoulder, something purple was peeking from his cape. A tiny golden toe.</p>
+                <p data-narrate>Uni stood. Her eyes widened. She reached behind Starbeard and pulled. The missing sock came free with a tiny:</p>
+                <p class="story-sound" data-narrate>POP! A blue spark jumped between them.</p>
+                <p data-narrate>“YOU HAD IT THE WHOLE TIME!” Starbeard twisted around. “I did?” “You’re the Sock Thief!” “I object to this accusation.” “You were carrying stolen sock property.”</p>
+                <p data-narrate>The communicator crackled. “Static electricity,” Starblaze explained. “The sock clung to Starbeard’s cape after it came out of the dryer.”</p>
+                <p data-narrate>Starbeard stroked his beard thoughtfully. “Static Cling,” he said. “First cousin to the Great Galactic Sock Thief of Sector Nine.”</p>
+                <p class="spoken-line" data-narrate>Uni stared at him. Starbeard stared back. Then they both began to laugh. Admiral Pigeon puffed out his chest. “Coo,” he said. “A fine point,” Starbeard replied.</p>
+            </div>
+        </section>
+
+        <section class="story-page ending-page" data-page-label="Big enough for today" aria-labelledby="sock-caper-page-12-title">
+            <img class="page-art" src="./assets/sock-caper-cozy-ending.png" alt="Uni rests beneath a blanket in both purple star socks while Starbeard folds a mountain of towels and Admiral Pigeon watches from the window.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy sock-caper-story-copy ending-copy story-copy-left">
+                <p class="page-kicker" data-narrate>Back aboard The Starlight Wanderer</p>
+                <h2 id="sock-caper-page-12-title" data-narrate>The adventure was exactly big enough for today.</h2>
+                <p data-narrate>Back aboard <em>The Starlight Wanderer</em>, Uni delivered the striped sock to the Lost-and-Found Planet. Then she climbed beneath her blanket with both purple socks safely on her feet.</p>
+                <p data-narrate>Starbeard folded the rest of the laundry. This was partly because he was captain. And partly because Uni had sentenced him to it.</p>
+                <p data-narrate>“Starbeard?” “Aye?” “That adventure wasn’t very enormous.” “No.”</p>
+                <p data-narrate>Uni thought about the silver trail. The teleportation chamber. The wrong sock waiting for its crew. Admiral Pigeon’s clue. And the purple sock that had traveled the whole galaxy on Starbeard’s back.</p>
+                <p class="spoken-line" data-narrate>She smiled. “It was exactly big enough for today.” Starbeard smiled too.</p>
+                <p data-narrate>From the communicator came Starblaze’s voice. “First Mate’s Log: missing sock recovered. Lost sock rescued. Captain suspiciously fuzzy.”</p>
+                <p data-narrate>Starbeard frowned. “Please remove that last part from the official record.” “Request denied.”</p>
+                <p data-narrate>Outside the window, Admiral Pigeon cooed. “What did he say?” asked Uni. Starbeard looked at the mountain of unfolded laundry. “Apparently, I still have to fold the towels.”</p>
+                <p data-narrate>Uni closed her eyes. The Starlight Wanderer sailed onward beneath a bright Earth sky. Its crew had followed clues. They had rescued the wrong sock. They had unmasked a most unexpected criminal.</p>
+                <p class="story-lesson" data-narrate>And Uni had learned that an adventure did not have to be the biggest in the galaxy. It only had to be big enough for the adventurer having it.</p>
+                <p class="story-ending" data-narrate>The end...</p>
+                <p class="story-ending" data-narrate>...until the next load of laundry.</p>
+                <button class="again-button" type="button" data-story-action="again">
+                    Solve it again
+                    <span aria-hidden="true">↺</span>
+                </button>
+            </div>
+        </section>
+    </template>
+
+    <template id="book-pluto-template">
+        <section class="story-page cover-page pluto-cover is-current" data-page-label="Cover" aria-labelledby="pluto-cover-title">
+            <img class="page-art" src="./assets/book-pluto-labyrinth-cover.png" alt="Starbeard and Uni sail toward frozen Pluto while a golden maze glows among the stars.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy cover-copy pluto-cover-copy">
+                <p class="eyebrow" data-narrate>The Adventures of Starbeard and Uni · Book Three</p>
+                <h2 class="cover-title" id="pluto-cover-title" data-narrate>The Treasure of Pluto<br>and the Luminous Labyrinth</h2>
+                <p class="dek" data-narrate>Starbeard and his best friend Uni travel to frozen Pluto in search of diamonds and rubies. But beyond the treasure wait new friends, a doorway in space, and a golden maze filled with memories.</p>
+                <button class="begin-button" type="button" data-story-action="begin">
+                    Follow the starlight
+                    <span aria-hidden="true">→</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The asteroids" aria-labelledby="pluto-page-2-title">
+            <img class="page-art" src="./assets/pluto-asteroids.png" alt="Starbeard steers through an asteroid field while Uni bounces through the colorful starship bridge.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy pluto-story-copy story-copy-right">
+                <p class="page-kicker" data-narrate>Beyond the familiar planets</p>
+                <h2 id="pluto-page-2-title" data-narrate>Pluto was waiting beyond the asteroids.</h2>
+                <p data-narrate>Starbeard was not a pirate. He was the captain of a starship,and somewhere beneath Pluto’s frozen surface waited diamonds and rubies.</p>
+                <p data-narrate>Starbeard checked the coordinates. Uni checked the snack cabinet. Then she checked it again.</p>
+                <p class="story-sound" data-narrate>Engines ready. WHOOOOOOOM!</p>
+                <p data-narrate>Alarms cried BEEP! BEEP! BEEP! Starbeard dipped beneath one asteroid, twisted around another, and squeezed between two enormous boulders with barely a moonbeam to spare. Uni bounced around the bridge, her purple mane standing straight up.</p>
+                <p data-narrate>When they burst into clear space, they noticed the mysterious little animal clinging to Starbeard’s chair. “Oh! Right! You’re here too!”</p>
+                <p class="spoken-line" data-narrate>Five minutes later, they forgot again.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Pluto" aria-labelledby="pluto-page-3-title">
+            <img class="page-art" src="./assets/pluto-treasure.png" alt="Starbeard, Uni, and a robed Sensei discover a chest of diamonds and rubies beneath Pluto’s ice.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy pluto-story-copy story-copy-left">
+                <p class="planet-badge" data-narrate>Pluto</p>
+                <h2 id="pluto-page-3-title" data-narrate>Beneath the blue ice waited a treasure,and a teacher.</h2>
+                <p data-narrate>Their boots and hooves crunched across Pluto’s glittering blue ice. Ahead stood a robed stranger carrying a sword made of light.</p>
+                <p class="spoken-line" data-narrate>“I am the Sensei.”</p>
+                <p data-narrate>He taught Starbeard the ancient ways of the Space Samurai: how to stand, how to move, how to watch, and how to know when to fight,and when not to.</p>
+                <p data-narrate>When shadowy crystal creatures blocked the frozen caverns, Starbeard lowered his sword, listened to their warning hum, and found a peaceful path around them.</p>
+                <p data-narrate>Beyond a doorway buried in the ice sparkled thousands of diamonds and brilliant red rubies. They filled a treasure chest, but Starbeard already knew the finest part of the journey was exploring with his best friend.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The alien planet" aria-labelledby="pluto-page-4-title">
+            <img class="page-art" src="./assets/lumi-festival.png" alt="Starbeard and Uni dance with rainbow Lumi beside a river of starlight.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy pluto-story-copy story-copy-right">
+                <p class="planet-badge" data-narrate>The Festival of Light</p>
+                <h2 id="pluto-page-4-title" data-narrate>The strange signal was an invitation.</h2>
+                <p data-narrate>After Pluto, a strange signal led them to a planet that was not on any map. Blue plants glowed beside rivers of liquid starlight.</p>
+                <p class="story-sound" data-narrate>Something rustled. POP!</p>
+                <p data-narrate>A tiny rainbow creature appeared. Then another. Then twenty more. “Greetings! We are the Lumi!”</p>
+                <p data-narrate>That evening, thousands of Lumi gathered beneath ribbons of pink, blue, green, and gold. They sang. They danced. Uni danced particularly enthusiastically.</p>
+                <p data-narrate>Before the explorers left, a gentle Lumi elder gave them glowing crystals. “These will help guide you on journeys yet to come.”</p>
+                <p class="story-lesson" data-narrate>It was another treasure,but this one was a gift from friends.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The asteroid station" aria-labelledby="pluto-page-5-title">
+            <img class="page-art" src="./assets/zogo-station.png" alt="A cheerful green alien named Zogo welcomes Starbeard and Uni with a basket of blue fuel crystals.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy pluto-story-copy story-copy-left">
+                <p class="page-kicker" data-narrate>Dangerously low</p>
+                <h2 id="pluto-page-5-title" data-narrate>Their fuel was low, but Zogo had a plan.</h2>
+                <p data-narrate>The fuel gauge fell from half full… to quarter full… to dangerously low. Behind a giant asteroid, Uni spotted a tiny station belonging to a cheerful green alien named Zogo.</p>
+                <p class="spoken-line" data-narrate>“I can refuel your ship! But the special blue crystals are trapped among the asteroids.”</p>
+                <p data-narrate>Starbeard and Uni climbed into a little shuttle. Starbeard piloted between tumbling rocks while Uni’s magical horn revealed one hidden crystal after another.</p>
+                <p data-narrate>Back at the station, Zogo placed the crystals inside the engines.</p>
+                <p class="story-sound" data-narrate>WHOOOOOOOM! The whole ship glowed blue.</p>
+                <p data-narrate>“Full tank!” Zogo announced. He gave them one small humming crystal as a souvenir, and off they went again.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The cosmic café" aria-labelledby="pluto-page-6-title">
+            <img class="page-art" src="./assets/cosmic-cafe.png" alt="Starbeard, Uni, and their mysterious tiny companion sip sparkling drinks in a café among the stars.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy pluto-story-copy story-copy-right">
+                <p class="page-kicker" data-narrate>A sparkling rest stop</p>
+                <h2 id="pluto-page-6-title" data-narrate>Even great explorers need sparkling star juice.</h2>
+                <p data-narrate>Eventually, even great explorers need a break. And Uni was thirsty.</p>
+                <p data-narrate>Fortunately, floating nearby was a café in space. Inside were enormous windows, pink couches, blue chairs, purple lights, and drinks that sparkled.</p>
+                <p data-narrate>Starbeard and Uni sipped star juice and talked about Pluto, the Sensei, the Lumi, and Zogo.</p>
+                <p data-narrate>Then Starbeard frowned. “Didn’t someone else come with us?” Uni tilted her head. “Unicorn?”</p>
+                <p data-narrate>Beside their table, the mysterious little animal lowered its third straw and sighed. Starbeard finally looked down. “Oh! There you are!”</p>
+                <p class="spoken-line" data-narrate>Somehow, five minutes later, they forgot about it again.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The Celestial Isles" aria-labelledby="pluto-page-7-title">
+            <img class="page-art" src="./assets/celestial-isles.png" alt="Estrella guides Starbeard and Uni across a bridge of light toward floating celestial islands.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy pluto-story-copy story-copy-right">
+                <p class="planet-badge" data-narrate>The Celestial Isles</p>
+                <h2 id="pluto-page-7-title" data-narrate>A doorway in space opened onto islands of light.</h2>
+                <p data-narrate>After the café, the Lumi crystals joined their light into a map. It led to an enormous doorway floating in space.</p>
+                <p data-narrate>Beyond it were islands among clouds, glowing mushrooms, rivers of stardust, and bridges made entirely of light.</p>
+                <p data-narrate>A tall guardian named Estrella welcomed them. She guided Starbeard and Uni to an enormous glowing sphere called the Heart of the Isles.</p>
+                <p data-narrate>When Uni touched it, pictures appeared all around them: Pluto, the treasure, the Lumi, Zogo, and every adventure they had shared.</p>
+                <p data-narrate>Then the map glowed again. A new destination appeared:</p>
+                <p class="story-sound" data-narrate>THE LUMINOUS LABYRINTH.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The Luminous Labyrinth" aria-labelledby="pluto-page-8-title">
+            <img class="page-art" src="./assets/luminous-labyrinth.png" alt="Uni reveals a glowing path while Starbeard holds the star crystal at the center of a golden cosmic maze.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy pluto-story-copy story-copy-left">
+                <p class="planet-badge" data-narrate>The Luminous Labyrinth</p>
+                <h2 id="pluto-page-8-title" data-narrate>The maze remembered every step of their journey.</h2>
+                <p data-narrate>The labyrinth floated in space, its golden walls twisting through pink, purple, and blue stardust.</p>
+                <p data-narrate>Inside, left became right. Right became left. Doors appeared and disappeared. Plants changed color, and crystals hummed little songs.</p>
+                <p data-narrate>In a hall of mirrors, Starbeard and Uni saw memories instead of reflections: Pluto’s blue ice, the Lumi festival, Zogo’s smile, and Estrella’s shining bridge.</p>
+                <p data-narrate>Then Uni dipped one hoof into a pool of stardust.</p>
+                <p class="story-sound" data-narrate>PLOOP. Golden symbols revealed the correct path.</p>
+                <p data-narrate>At the maze’s center, a star-shaped crystal settled gently into Starbeard’s hands, and the entire labyrinth shone brighter. They had completed the maze. Now it was time to go home.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Home base" aria-labelledby="pluto-page-9-title">
+            <img class="page-art" src="./assets/home-base-treasures.png" alt="Starbeard and a yawning Uni cuddle by the fire among the glowing treasures from their journey.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy pluto-story-copy story-copy-left">
+                <p class="page-kicker" data-narrate>Home base</p>
+                <h2 id="pluto-page-9-title" data-narrate>The finest treasure was a warm place to share it.</h2>
+                <p data-narrate>At home, Starbeard unpacked the diamonds of Pluto, the red rubies, the color-changing Lumi crystals, Zogo’s humming fuel crystal, and the star crystal from the labyrinth.</p>
+                <p data-narrate>Uni gave a gigantic unicorn yawn. Soon they were wrapped in a thick stitched blanket beside the fireplace, with hot cocoa and marshmallows nearby.</p>
+                <p data-narrate>Their treasures glowed softly around them,blue, red, rainbow, and gold.</p>
+                <p data-narrate>Nearby, the mysterious little animal was already asleep on a cushion. “Oh,” Starbeard whispered. “There you are.” Then he forgot again.</p>
+                <p class="story-sound" data-narrate>Pop. Crackle. Pop.</p>
+                <p data-narrate>Starbeard and Uni closed their eyes.</p>
+            </div>
+        </section>
+
+        <section class="story-page ending-page" data-page-label="The shared dream" aria-labelledby="pluto-page-10-title">
+            <img class="page-art" src="./assets/shared-dream.png" alt="Starbeard and Uni dream of a cosmic elder offering them two tiny stars beside a stardust castle.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy pluto-story-copy ending-copy story-copy-left">
+                <p class="page-kicker" data-narrate>The shared dream</p>
+                <h2 id="pluto-page-10-title" data-narrate>There would always be more stars tomorrow.</h2>
+                <p data-narrate>That night, Starbeard and Uni dreamed the same dream. They floated along a river of starlight to a castle built from stardust.</p>
+                <p data-narrate>An ancient cosmic elder with galaxies in his eyes showed them moving pictures of their adventures. “You have collected many treasures,” he said. “But these are treasures too.”</p>
+                <p class="story-lesson" data-narrate>Their memories. Their friends. And each other.</p>
+                <p data-narrate>The elder gave them one tiny star each for their next journey. Then the dream softened, and they drifted home again. Beside the fireplace, the labyrinth crystal gave one quiet pulse.</p>
+                <p class="story-sound" data-narrate>Glow.</p>
+                <p data-narrate>Outside, shooting stars crossed the sky as the universe whispered, “Good night, Starbeard. Good night, Uni. Sleep well, little explorers.”</p>
+                <p class="story-ending" data-narrate>The end… for tonight.</p>
+                <button class="again-button" type="button" data-story-action="again">
+                    Dream it again
+                    <span aria-hidden="true">↺</span>
+                </button>
+            </div>
+        </section>
+    </template>
+
+    <template id="book-starwater-template">
+        <section class="story-page cover-page is-current" data-page-label="Cover" aria-labelledby="starwater-cover-title">
+            <img class="page-art" src="./assets/book-starwater-cover.png" alt="Starbeard, Juliet, and Uni discover a glowing crystal bottle beneath the moon-sand.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy cover-copy">
+                <p class="eyebrow" data-narrate>A gentle space-pirate adventure</p>
+                <h2 class="cover-title" id="starwater-cover-title" data-narrate>Starbeard and the<br>Starwater</h2>
+                <p class="dek" data-narrate>A buried bottle of gentle light teaches Juliet, Uni, and Starbeard that the finest treasures help every adventurer feel their best.</p>
+                <button class="begin-button" type="button" data-story-action="begin">
+                    Dig into the adventure
+                    <span aria-hidden="true">→</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Treasure Rule No. 1" aria-labelledby="starwater-page-2-title">
+            <img class="page-art" src="./assets/starwater-tool-search.png" alt="Starbeard, Juliet, and Uni search near a singing cactus and a sleepy space crab for a digging tool.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy story-copy-right">
+                <p class="page-kicker" data-narrate>Prepare before you plunder</p>
+                <h2 id="starwater-page-2-title" data-narrate>Every treasure hunt needs a tool.</h2>
+                <p data-narrate>“Arrr, little treasure hunter,” said Starbeard, pointing his silver spyglass toward a glittering patch of moon-sand. “Ye can’t claim the treasure with empty hands!”</p>
+                <p data-narrate>Juliet checked the path while Uni stamped one shiny hoof and gave a tiny sparkle-snort. They needed a trusty shovel, scoop, or space-spade before anyone could dig.</p>
+                <p class="spoken-line" data-narrate>“First we prepare,” Starbeard said. “Then we plunder!”</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Search high and low" aria-labelledby="starwater-page-3-title">
+            <img class="page-art" src="./assets/starwater-tool-found.png" alt="Uni finds a silver space-spade beneath a cluster of humming star-shells.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy story-copy-left">
+                <p class="page-kicker" data-narrate>Look closely</p>
+                <h2 id="starwater-page-3-title" data-narrate>They searched behind, beneath, and beside.</h2>
+                <p data-narrate>The crew looked behind a singing cactus, beneath a sleepy space crab, and beside old treasure stones where silver moss twinkled in the dark.</p>
+                <p data-narrate>Near a pile of star-shells that hummed a lullaby, Uni nudged something with her horn. Moon-sand slipped away from a sturdy silver space-spade.</p>
+                <p class="spoken-line" data-narrate>“Arrr!” cried Starbeard. “A perfect diggin’ tool!”</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Slow and steady" aria-labelledby="starwater-page-4-title">
+            <img class="page-art" src="./assets/starwater-patient-dig.png" alt="Juliet, Uni, and Starbeard dig one neat hole while their space-pack rests safely away from the sand.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy story-copy-right">
+                <p class="page-kicker" data-narrate>Gentle hands</p>
+                <h2 id="starwater-page-4-title" data-narrate>A good pirate digs with patience.</h2>
+                <p data-narrate>Together they dug gently in the sparkling sand. Not too fast. Not too messy. And definitely not tossing sand into anyone’s special space-pack.</p>
+                <p data-narrate>Juliet loosened the moon-sand, Uni brushed it aside, and Starbeard kept their little hole neat. Then the space-spade made a soft sound.</p>
+                <p class="spoken-line" data-narrate>Clink.</p>
+                <p class="story-lesson" data-narrate>Careful work can uncover wonderful things.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="Mystery found" aria-labelledby="starwater-page-5-title">
+            <img class="page-art" src="./assets/starwater-bottle-reveal.png" alt="The three treasure hunters gaze at a crystal bottle of glowing water resting in the moon-sand.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy story-copy-left story-copy-compact">
+                <p class="page-kicker" data-narrate>What could it be?</p>
+                <h2 id="starwater-page-5-title" data-narrate>The treasure was not gold.</h2>
+                <p data-narrate>It was not jewels, and it was not even a cookie chest. Beneath the sand waited a crystal bottle filled with glowing water. Tiny lights swirled inside it like friendly galaxies.</p>
+                <p data-narrate>“Is it star beer?” Juliet asked. “Nay.” Uni tilted her head. “Star energy?” “Nay.” Juliet grinned. “Cyberpunk space soda?”</p>
+                <p class="spoken-line" data-narrate>Starbeard chuckled. “Nay,though that does sound flashy. This, me hearties, is starwater.”</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="The secret of starwater" aria-labelledby="starwater-page-6-title">
+            <img class="page-art" src="./assets/starwater-questions.png" alt="Starbeard lifts the clear starwater toward the sky while Juliet and Uni watch its gentle galaxy lights.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy story-copy-right story-copy-compact">
+                <p class="page-kicker" data-narrate>Sip and shine</p>
+                <h2 id="starwater-page-6-title" data-narrate>No fizz. No tricks. Just starwater.</h2>
+                <p data-narrate>Starbeard held the bottle up to the sky. “Starwater is pure and refreshing,” he said. “It keeps a pirate’s heart bright, a unicorn’s mane shiny, and a sleepy crew ready for kind adventures.”</p>
+                <p data-narrate>It had no sugar, no fizz, no tricks, and no grumpy goblin bubbles,just clear cosmic goodness from the quiet wells between the stars.</p>
+                <p class="story-lesson" data-narrate>Water helps every adventurer feel their best.</p>
+            </div>
+        </section>
+
+        <section class="story-page" data-page-label="A sip of starlight" aria-labelledby="starwater-page-7-title">
+            <img class="page-art" src="./assets/starwater-shared-sip.png" alt="Starbeard, Juliet, and Uni share tiny cups of clear starwater beside their ship.">
+            <div class="art-shade art-shade-left" aria-hidden="true"></div>
+            <div class="page-copy story-copy story-copy-left">
+                <p class="page-kicker" data-narrate>Calm, brave, and cozy</p>
+                <h2 id="starwater-page-7-title" data-narrate>It tasted like moonlight, courage, and bedtime.</h2>
+                <p data-narrate>Starbeard poured three tiny sips. Uni drank first, very daintily, and her horn glowed softly. Juliet followed, smiling as the gentle light warmed her hands.</p>
+                <p data-narrate>Starbeard took the last sip and gave one long, happy sigh. The starwater made them feel calm, brave, and cozy all at once.</p>
+                <p class="spoken-line" data-narrate>“Aye,” he said. “Tastes like moonlight, courage, and bedtime.”</p>
+            </div>
+        </section>
+
+        <section class="story-page ending-page" data-page-label="The finest treasure" aria-labelledby="starwater-page-8-title">
+            <img class="page-art" src="./assets/starwater-homeward.png" alt="Starbeard stores the starwater safely aboard the ship as Juliet and Uni look across the peaceful moon-sand.">
+            <div class="art-shade art-shade-right" aria-hidden="true"></div>
+            <div class="page-copy story-copy ending-copy story-copy-right">
+                <p class="page-kicker" data-narrate>Carry kindness</p>
+                <h2 id="starwater-page-8-title" data-narrate>The best treasure helps you shine.</h2>
+                <p data-narrate>Starbeard tucked the bottle safely away. “Remember this, little pirates. The best treasures do not always shine like gold. Some help ye feel better, sail farther, and share kindness wherever ye go.”</p>
+                <p data-narrate>Juliet and Uni nodded. Then the crew climbed aboard their ship carrying no chest of coins, but something even better: a bottle of starwater.</p>
+                <p class="story-lesson" data-narrate>Pure, refreshing, and full of gentle light.</p>
+                <p class="spoken-line" data-narrate>Above them, the stars blinked goodnight as if they agreed.</p>
+                <button class="again-button" type="button" data-story-action="again">
+                    Find it again
+                    <span aria-hidden="true">↺</span>
+                </button>
+            </div>
+        </section>
+    </template>
+
+    <p class="noscript-message" id="javascript-required-message">This sliding storybook needs JavaScript enabled in your browser. It uses only the local files in this folder.</p>
+</body>
+</html>

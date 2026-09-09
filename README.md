@@ -1,10 +1,10 @@
-![Juliet, Uni, and Starbeard beneath three glowing planets, with the title Juliet’s Grand Adventures.](apps/juju-grand-adventures/assets/social-card.png)
+![Juliet, Uni, and Starbeard beneath three glowing planets, with the title Juliet’s Grand Adventures.](assets/social-card.png)
 
 # Juliet’s Grand Adventures
 
-An illustrated Arcane browser application starring Juliet, Uni, and Starbeard.
+An illustrated Arcane browser application starring Juliet, Uni, and Starbeard, currently in development toward its first production release.
 
-[GitHub Pages app — deployment pending](https://riaevangelist.github.io/starbeards-library/apps/juju-grand-adventures/)
+[GitHub Pages app — deployment pending](https://riaevangelist.github.io/starbeards-library/)
 
 ## Library sections
 
@@ -28,7 +28,7 @@ Completed stories outside the two adventure collections will be added here.
 
 Each book opens in the same full-screen horizontal reader with touch swiping, keyboard navigation, page controls, and JuJu’s existing eight-voice read-aloud controls.
 
-The app pins published `arcane-os@0.28.4` and uses its public browser-speech, AI, DBOPFS, event, and prepared-audio contracts.
+The app pins published `arcane-os@0.29.1` and uses its public browser-speech, AI, DBOPFS, event, and prepared-audio contracts.
 
 JuJu owns story text, voice choice, presentation, passage pauses, and book preparation order. Each Read snapshots every complete page in the selected book. It submits all passages of the selected page to `AI.prepareTTS` and attaches `AI.playPreparedTTS` immediately. The SDK splits at punctuation, with no four-word cadence, queues generation through its bounded provider pool, and plays the selected page in original order on its audio clock. Each passage's 200 ms pause follows only its final punctuation chunk; the page's final passage has no added pause.
 
@@ -50,9 +50,23 @@ The SDK package does not include a Kokoro runtime, model, or voice artifact. JuJ
 
 Every spread has a **Move words** handle. Drag it with a mouse or finger, or focus it and use the arrow keys. Hold Shift for larger keyboard steps, and press Home or **Reset** to restore the original position. **Shrink words** collapses the story panel into a small movable control so the full illustration can be explored; **Show words** restores the text.
 
-## Arcane island boundary
+## Standalone application layout
 
-JuJu declares exact `arcane-os@0.28.4` in its own `package.json`; a normal project-root `npm install` resolves the public package into this repository’s own physical `node_modules`. The app-owned ESM materializer projects the installed SDK into the repository-local `arcane/` tree before the public import-map, development, build, bundle, run, or packaging path uses it. No global install, symlink, Arcane checkout, live source mount, or update poll is part of the package or runtime contract. The SDK materializer and managed import-map generator carry `arcaneVersion=0.28.4` through local browser resource references while preserving ordinary caching, remote provider URLs, and saved user state.
+JuJu declares exact `arcane-os@0.29.1` in its own `package.json`; a normal project-root `npm install` resolves the public package into this repository’s own `node_modules`. App source, descriptors, manifest, and `assets/` live at the repository root. The four documented `installed-v1` routes in `arcane-packager.json` serve the actual installed SDK runtime, browser runtime, runtime dependency, and license files. Runtime and packaging no longer use the obsolete root `arcane/` projection. The physical-runtime materializer is retired; there is no global install, symlink, checkout dependency, or update poll. Public `arcane-os` imports resolve through the SDK-generated map, with `arcaneVersion=0.29.1` on local resource references.
+
+The workspace uses `appsRoot: "."` and `legacyAppPaths: false`. Roshi explicitly retired both the old `arcane` and `apps` redirect families on September 9, 2026. Keep those redirects, aliases, and copied trees retired; do not restore them through a generator default, host rule, or compatibility file. Open `/` when serving this repository as a host root, or `/starbeards-library/` on the intended GitHub Pages host. The former `/apps/juju-grand-adventures/` entry is retired.
+
+The application ID remains `juju-grand-adventures`. The manifest explicitly retains its former implicit installation ID, `./apps/juju-grand-adventures/index.html`, while its launch URL is `./index.html`; that ID is an identifier, not a redirect or a required resource. Same-origin DBOPFS data remains under the unchanged app ID, narration table, book/page/voice keys, and model settings. This layout change does not clear, move, or rewrite browser data.
+
+### Committed generated files
+
+After changing the SDK dependency or app resource selection, prepare the managed root files locally through the public SDK operation, review the source diff, and commit them with the source:
+
+```powershell
+npm run import-map
+```
+
+Commit `modules/arcane.importmap.json`, the managed map and resource references in `index.html`, and `arcane-package.json` alongside its authored `arcane-app.json`. Do not hand-edit managed maps or copy SDK source. Ordinary deployment uses the committed app files plus the normal locked npm installation. Future Actions workflows must copy, archive, or deploy committed inputs without invoking import-map, materialization, offline generation, or an indirect generation hook. This repository currently has no Actions workflows to modify.
 
 JuJu has not enabled the SDK's optional PWA behavior in its app descriptor. The SDK update does not register a PWA worker, mount an installation prompt, or change the app's branding. Existing narration caching remains independent of PWA enablement.
 
@@ -62,7 +76,7 @@ Create the one selected, independently runnable browser artifact with:
 npm run package
 ```
 
-That command refreshes JuJu’s installed SDK projection and managed import map, then packages the Arcane runtime/browser closure and Arcane licensing into `dist/juju-grand-adventures/`. The generated release remains browser-only; the selected Kokoro runtime, model, and voice assets continue to load from their upstream browser sources when narration is first used.
+That explicitly selected operation creates portable output in `dist/juju-grand-adventures/` from the committed app selection and installed npm routes, including the complete selected SDK runtime/browser closure and licensing. It is an output generator, not an ordinary deployment step. `npm run bundle` archives existing selected output; `npm run run` serves existing selected output. These commands do not prepend managed-file regeneration. The generated release remains browser-only; the selected Kokoro runtime, model, and voice assets continue to load from their upstream browser sources when narration is first used. Existing ignored `dist/` output is separate from current root source and remains unchanged until packaging is explicitly selected.
 
 ## Serve locally
 
@@ -88,7 +102,7 @@ For explicit HTTP source development without a certificate pair, use the same pu
 npm run dev -- --http --port 8001
 ```
 
-This selects one HTTP content listener without an HTTPS listener or redirect. Use an available port; do not start a second server on a port already owned by a running server. Open the URL printed by the SDK development server. Browser storage belongs to the exact scheme, host, and port: changing from an existing HTTP address to HTTPS opens separate storage and does not migrate or delete the old origin's prepared narration. Keep the same origin when rereading saved audio. DBOPFS and PWA availability remain subject to browser secure-context requirements, particularly when using a plain HTTP LAN address. The app has no framework, backend, or server-side database; it uses plain HTML, CSS, and JavaScript plus local media under `apps/juju-grand-adventures/assets/`.
+This selects one HTTP content listener without an HTTPS listener or redirect. Use an available port; do not start a second server on a port already owned by a running server. Open the URL printed by the SDK development server. SDK source-development startup manages its own map refresh; deployment does not invoke this development command. Browser storage belongs to the exact scheme, host, and port: changing from an existing HTTP address to HTTPS opens separate storage and does not migrate or delete the old origin's prepared narration. Keep the same origin when rereading saved audio. DBOPFS and PWA availability remain subject to browser secure-context requirements, particularly when using a plain HTTP LAN address. The app has no framework, backend, or server-side database; it uses plain HTML, CSS, and JavaScript plus local media under `assets/`.
 
 ## Privacy
 
