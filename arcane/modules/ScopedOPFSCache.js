@@ -4,7 +4,7 @@ const is=new Is(false);
 import {
     canonicalApplicationId,
     openApplicationDataDirectory
-} from './AppDataScope.js?arcaneVersion=0.26.0';
+} from './AppDataScope.js?arcaneVersion=0.27.0';
 
 function safeSegment(value,label){
     if(!is.string(value)){

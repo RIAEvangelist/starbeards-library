@@ -2,7 +2,7 @@ import Is from 'strong-type';
 const is=new Is(false);
 
 import {createArcaneEventSource} from 'arcane-os/event-manager';
-import Calculation from '../entities/Calculation.js?arcaneVersion=0.26.0';
+import Calculation from '../entities/Calculation.js?arcaneVersion=0.27.0';
 
 const FUNCTIONS={sqrt:Math.sqrt,abs:Math.abs,sin:Math.sin,cos:Math.cos,tan:Math.tan,log:Math.log10,ln:Math.log};
 const CONSTANTS={pi:Math.PI,e:Math.E};

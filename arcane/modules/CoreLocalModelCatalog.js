@@ -1,7 +1,7 @@
 import Is from 'strong-type';
 const is=new Is(false);
 
-import {normalizeOllamaModelIdentifier} from './OllamaModelIdentifier.js?arcaneVersion=0.26.0';
+import {normalizeOllamaModelIdentifier} from './OllamaModelIdentifier.js?arcaneVersion=0.27.0';
 
 const MAX_CORE_LOCAL_SPEECH_MODELS=8;
 

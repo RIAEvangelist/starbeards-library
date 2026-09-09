@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="./arcane/css/layout.css?arcaneVersion=0.26.0">
+<link rel="stylesheet" href="./arcane/css/layout.css?arcaneVersion=0.27.0">
 <style>
     :host{
         display:flex;
@@ -11,7 +11,7 @@
 </style>
 
 <button id="openData" type="button" aria-haspopup="dialog"></button>
-<html-import id="dataModal" class="modal" href="./arcane/components/modal.html?arcaneVersion=0.26.0"></html-import>
+<html-import id="dataModal" class="modal" href="./arcane/components/modal.html?arcaneVersion=0.27.0"></html-import>
 
 <script type="module">
     const {default:Is}=await import('strong-type');
@@ -20,9 +20,10 @@
     const {arcaneLogging}=await import('arcane-os/logging');
 
     const host=this;
+    const componentHref=new URL(host.getAttribute('href'),document.baseURI);
     const openButton=host.shadowRoot.querySelector('#openData');
     const dataModal=host.shadowRoot.querySelector('#dataModal');
-    const {default:waitForComponent}=await import('../modules/WaitForComponent.js?arcaneVersion=0.26.0');
+    const {default:waitForComponent}=await import('../modules/WaitForComponent.js?arcaneVersion=0.27.0');
     const {createArcaneEventSource,projectArcaneDOMEvent}=await import('arcane-os/event-manager');
     const events=createArcaneEventSource(host,{source:'arcane.component.data-view',eventTypes:['data-view-ready']});
     const lifecycleController=new AbortController();
@@ -89,7 +90,7 @@
             fileManager.dataset.layout=host.dataset.layout||'files';
             fileManager.setAttribute(
                 'href',
-                './arcane/components/file-manager.html?v=18'
+                new URL('./file-manager.html?v=18',componentHref).href
             );
 
             content.append(heading,fileManager);

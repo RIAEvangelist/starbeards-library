@@ -1,7 +1,7 @@
-import Is from './dependencies/strong-type/index.js?arcaneVersion=0.26.0';
+import Is from './dependencies/strong-type/index.js?arcaneVersion=0.27.0';
 import EventPubSub from 'event-pubsub';
-import {arcaneLogging} from './logging.mjs?arcaneVersion=0.26.0';
-import {createDOMInstrumentation} from './dom-event-instrumentation.mjs?arcaneVersion=0.26.0';
+import {arcaneLogging} from './logging.mjs?arcaneVersion=0.27.0';
+import {createDOMInstrumentation} from './dom-event-instrumentation.mjs?arcaneVersion=0.27.0';
 
 const is=new Is(false);
 
@@ -14,7 +14,7 @@ export {
     DOM_OBSERVATION_STARTED_EVENT,
     DOM_OBSERVATION_STOPPED_EVENT,
     domSelector
-} from './dom-event-instrumentation.mjs?arcaneVersion=0.26.0';
+} from './dom-event-instrumentation.mjs?arcaneVersion=0.27.0';
 
 export const ARCANE_EVENT_STACK_PROTOCOL='arcane-event-stack/1';
 export const ARCANE_EVENT_AUTHORITY_PROTOCOL='arcane-event-authority/1';

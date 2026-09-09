@@ -338,9 +338,9 @@
 
 <input id="fileUpload" type="file" hidden multiple>
 
-<html-import id="directoryModal" class="modal" href="./arcane/components/modal.html?arcaneVersion=0.26.0"></html-import>
-<html-import id="fileModal" class="modal" href="./arcane/components/modal.html?arcaneVersion=0.26.0"></html-import>
-<html-import id="deleteModal" class="modal" href="./arcane/components/modal.html?arcaneVersion=0.26.0"></html-import>
+<html-import id="directoryModal" class="modal" href="./arcane/components/modal.html?arcaneVersion=0.27.0"></html-import>
+<html-import id="fileModal" class="modal" href="./arcane/components/modal.html?arcaneVersion=0.27.0"></html-import>
+<html-import id="deleteModal" class="modal" href="./arcane/components/modal.html?arcaneVersion=0.27.0"></html-import>
 
 <script type="module">
     const {default:Is}=await import('strong-type');
@@ -348,11 +348,12 @@
 
     const {arcaneLogging}=await import('arcane-os/logging');
 
-    import('../modules/DBOPFS.js?arcaneVersion=0.26.0');
+    import('../modules/DBOPFS.js?arcaneVersion=0.27.0');
     //importing Document at the end of the file to avoid blocking;
 
     const host=this;
-    const {default:waitForComponent}=await import('../modules/WaitForComponent.js?arcaneVersion=0.26.0');
+    const componentHref=new URL(host.getAttribute('href'),document.baseURI);
+    const {default:waitForComponent}=await import('../modules/WaitForComponent.js?arcaneVersion=0.27.0');
     const {createArcaneEventSource,projectArcaneDOMEvent}=await import('arcane-os/event-manager');
     const events=createArcaneEventSource(host,{source:'arcane.component.file-manager',eventTypes:['file-manager-action','file-manager-select','file-manager-open','file-manager-ready']});
     const lifecycleController=new AbortController();
@@ -370,7 +371,7 @@
     const dirs=host.dataset.dirs?.split(',').map(
         directory=>directory.trim()
     ).filter(Boolean);
-    const fileEntityPromise=import('../entities/File.js?arcaneVersion=0.26.0');
+    const fileEntityPromise=import('../entities/File.js?arcaneVersion=0.27.0');
 
     let activeFileURL='';
     let uploadDirectory='';
@@ -830,8 +831,8 @@
         icon.className='tree-entry-icon';
         icon.alt='';
         icon.src=entry.kind==='directory'
-            ?new URL('./arcane/img/folder.svg?arcaneVersion=0.26.0',document.baseURI).href
-            :new URL('./arcane/img/doc.svg?arcaneVersion=0.26.0',document.baseURI).href;
+            ?new URL('../img/folder.svg',componentHref).href
+            :new URL('../img/doc.svg',componentHref).href;
         name.className='tree-entry-name';
         name.innerText=entry.name;
         count.className='tree-file-count';
@@ -1409,7 +1410,7 @@
         deleteButton.innerText='Delete File';
         deleteIcon.alt='';
         deleteIcon.className='action-icon';
-        deleteIcon.src=new URL('./arcane/img/trash.svg?arcaneVersion=0.26.0',document.baseURI).href;
+        deleteIcon.src=new URL('../img/trash.svg',componentHref).href;
         deleteButton.prepend(deleteIcon);
         deleteButton.addEventListener(
             'click',
@@ -1615,7 +1616,7 @@
 
         fileIcon.alt='';
         fileIcon.className='icon file-icon';
-        fileIcon.src=new URL('./arcane/img/doc.svg?arcaneVersion=0.26.0',document.baseURI).href;
+        fileIcon.src=new URL('../img/doc.svg',componentHref).href;
         fileDetails.className='file-details';
         fileLabel.className='file-name';
         fileLabel.innerText=fileName;
@@ -1638,7 +1639,7 @@
 
         deleteIcon.alt='';
         deleteIcon.className='action-icon';
-        deleteIcon.src=new URL('./arcane/img/trash.svg?arcaneVersion=0.26.0',document.baseURI).href;
+        deleteIcon.src=new URL('../img/trash.svg',componentHref).href;
 
         openButton.addEventListener(
             'click',
@@ -1938,7 +1939,7 @@
             directory.dataset.directory=tableName;
             folder.className='file folder';
             folderIcon.className='icon';
-            folderIcon.src=new URL('./arcane/img/folder.svg?arcaneVersion=0.26.0',document.baseURI).href;
+            folderIcon.src=new URL('../img/folder.svg',componentHref).href;
             folderName.innerText=tableName;
             fileCount.className='file-count';
             fileCount.innerText=`${files.length} ${files.length===1?'file':'files'}`;

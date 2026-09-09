@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="./arcane/css/layout.css?arcaneVersion=0.26.0">
+<link rel="stylesheet" href="./arcane/css/layout.css?arcaneVersion=0.27.0">
 <style>
     :host {
         --arcane-speech-padding-block-end: .85rem;
@@ -185,20 +185,20 @@
         projectArcaneDOMEvent
     } = await import('arcane-os/event-manager');
 
-    void import('../modules/DBLS.js?arcaneVersion=0.26.0').catch(
+    void import('../modules/DBLS.js?arcaneVersion=0.27.0').catch(
         function reportDBLSImportFailure(error) {
             arcaneLogging.error('The shared database runtime could not load.');
         }
     );
-    const aiModuleImport = import('../modules/AI.js?arcaneVersion=0.26.0');
+    const aiModuleImport = import('../modules/AI.js?arcaneVersion=0.27.0');
     const {
         requestAIRuntimeIntent,
         subscribeAIRuntimeState
-    } = await import('../modules/AIRuntimeState.js?arcaneVersion=0.26.0');
+    } = await import('../modules/AIRuntimeState.js?arcaneVersion=0.27.0');
     const {
         createSTTActivationController,
         formatAIRuntimeProgress
-    } = await import('../modules/ComponentContracts.js?arcaneVersion=0.26.0');
+    } = await import('../modules/ComponentContracts.js?arcaneVersion=0.27.0');
     const {getBrowserDeviceClass} = await browserDeviceImport;
 
     const host = this;

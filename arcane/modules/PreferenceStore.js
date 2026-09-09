@@ -2,8 +2,8 @@ import Is from 'strong-type';
 const is=new Is(false);
 
 import {createArcaneEventSource} from 'arcane-os/event-manager';
-import Preference,{preferenceSchema} from '../entities/Preference.js?arcaneVersion=0.26.0';
-import {resolveApplicationLocalStorageKey} from './AppDataScope.js?arcaneVersion=0.26.0';
+import Preference,{preferenceSchema} from '../entities/Preference.js?arcaneVersion=0.27.0';
+import {resolveApplicationLocalStorageKey} from './AppDataScope.js?arcaneVersion=0.27.0';
 
 export const PREFERENCE_STORE_ERROR_CODES={
     adapterInvalid:'ARCANE_PREFERENCE_STORE_ADAPTER_INVALID',
