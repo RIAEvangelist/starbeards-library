@@ -2,7 +2,7 @@ import Is from 'strong-type';
 const is=new Is(false);
 
 import { arcaneLogging } from 'arcane-os/logging';
-import {loadAndApplyTheme} from './ThemeManager.js?arcaneVersion=0.27.1';
+import {loadAndApplyTheme} from './ThemeManager.js?arcaneVersion=0.28.1';
 import {createArcaneEventSource} from 'arcane-os/event-manager';
 
 const sharedKey='arcaneThemeReady';

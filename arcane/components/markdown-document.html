@@ -1,6 +1,6 @@
-<link rel="stylesheet" href="./arcane/css/layout.css?arcaneVersion=0.27.1">
-<link rel="stylesheet" href="./arcane/css/theme.css?arcaneVersion=0.27.1">
-<link rel="stylesheet" href="./arcane/css/primitives.css?arcaneVersion=0.27.1">
+<link rel="stylesheet" href="./arcane/css/layout.css?arcaneVersion=0.28.1">
+<link rel="stylesheet" href="./arcane/css/theme.css?arcaneVersion=0.28.1">
+<link rel="stylesheet" href="./arcane/css/primitives.css?arcaneVersion=0.28.1">
 
 <style>
     :host{
@@ -219,7 +219,7 @@
     const host=this;
     host.ready=false;
 
-    const {default:MD}=await import('../modules/MD.js?arcaneVersion=0.27.1');
+    const {default:MD}=await import('../modules/MD.js?arcaneVersion=0.28.1');
     const {createArcaneEventSource,projectArcaneDOMEvent}=await import('arcane-os/event-manager');
     const events=createArcaneEventSource(host,{source:'arcane.component.markdown-document',eventTypes:['markdown-document-state','markdown-document-empty','markdown-document-error','markdown-document-loading','markdown-document-rendered','markdown-document-navigate','markdown-document-ready']});
     const lifecycleController=new AbortController();

@@ -1,6 +1,6 @@
-import {createArcaneEventSource} from './event-manager.mjs?arcaneVersion=0.27.1';
+import {createArcaneEventSource} from './event-manager.mjs?arcaneVersion=0.28.1';
 
-export {PWA_INSTALL_STATE_EVENT, getPwaInstall, mountPwaInstallPrompt} from './pwa-install.mjs?arcaneVersion=0.27.1';
+export {PWA_INSTALL_STATE_EVENT, getPwaInstall, mountPwaInstallPrompt} from './pwa-install.mjs?arcaneVersion=0.28.1';
 
 export const PWA_STATE_EVENT = 'arcane.pwa.state';
 
@@ -156,7 +156,7 @@ export function registerPwa({workerUrl = './arcane-sw.js', scope} = {}) {
 
     async function loadCheckStorage() {
         if (!globalThis.dbopfs) {
-            await import('arcane/DBOPFS');
+            await import('arcane-os/modules/DBOPFS.js');
         }
         const storage = globalThis.dbopfs;
         if (!storage) {

@@ -1,10 +1,10 @@
-import Is from "../dependencies/strong-type/index.js?arcaneVersion=0.27.1";
+import Is from "../dependencies/strong-type/index.js?arcaneVersion=0.28.1";
 import {
   collectSpeechTransferables,
   normalizeSpeechWorkerErrorEnvelope,
   SPEECH_WORKER_PROTOCOL,
-} from "./speech-worker-runtime.mjs?arcaneVersion=0.27.1";
-import { arcaneLogging } from "../logging.mjs?arcaneVersion=0.27.1";
+} from "./speech-worker-runtime.mjs?arcaneVersion=0.28.1";
+import { arcaneLogging } from "../logging.mjs?arcaneVersion=0.28.1";
 
 const is = new Is(false);
 
@@ -81,8 +81,8 @@ class SpeechWorkerClient {
       throw new TypeError("SpeechWorkerClient onTermination must be a function.");
     }
     const workerUrl = role === "stt"
-      ? new URL("./browser-whisper-worker.mjs?arcaneVersion=0.27.1", import.meta.url)
-      : new URL("./browser-kokoro-worker.mjs?arcaneVersion=0.27.1", import.meta.url);
+      ? new URL("./browser-whisper-worker.mjs?arcaneVersion=0.28.1", import.meta.url)
+      : new URL("./browser-kokoro-worker.mjs?arcaneVersion=0.28.1", import.meta.url);
     this.#role = role;
     this.#createWorker = () => new Worker(workerUrl, {
       type: "module",

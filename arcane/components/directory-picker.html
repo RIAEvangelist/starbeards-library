@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="./arcane/css/theme.css?arcaneVersion=0.27.1">
-<link rel="stylesheet" href="./arcane/css/primitives.css?arcaneVersion=0.27.1">
+<link rel="stylesheet" href="./arcane/css/theme.css?arcaneVersion=0.28.1">
+<link rel="stylesheet" href="./arcane/css/primitives.css?arcaneVersion=0.28.1">
 <style>
     :host{display:block;min-width:0}
     .directory-picker{min-width:0}
@@ -37,7 +37,7 @@
 
     const host=this;
     const root=host.shadowRoot;
-    const {default:DirectoryPicker}=await import('../modules/DirectoryPicker.js?arcaneVersion=0.27.1');
+    const {default:DirectoryPicker}=await import('../modules/DirectoryPicker.js?arcaneVersion=0.28.1');
     const {createArcaneEventSource,projectArcaneDOMEvent}=await import('arcane-os/event-manager');
     const events=createArcaneEventSource(host,{source:'arcane.component.directory-picker',eventTypes:['directory-picker-cancel','directory-picker-change','directory-picker-error','directory-picker-ready']});
     const lifecycleController=new AbortController();
