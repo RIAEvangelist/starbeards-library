@@ -1,6 +1,6 @@
 import Is from 'strong-type';
-import './DBOPFS.js?arcaneVersion=0.25.0';
-import UserEntity from '../entities/User.js?arcaneVersion=0.25.0';
+import './DBOPFS.js?arcaneVersion=0.26.0';
+import UserEntity from '../entities/User.js?arcaneVersion=0.26.0';
 import {
     arcaneEvents,
     createArcaneEventSource,

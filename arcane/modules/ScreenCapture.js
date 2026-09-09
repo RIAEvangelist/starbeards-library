@@ -3,7 +3,7 @@ const is=new Is(false);
 
 import { arcaneLogging } from 'arcane-os/logging';
 import {createArcaneEventSource} from 'arcane-os/event-manager';
-import GifEncoder from './GifEncoder.js?arcaneVersion=0.25.0';
+import GifEncoder from './GifEncoder.js?arcaneVersion=0.26.0';
 
 export const SCREEN_CAPTURE_EVENT_TYPES={
     displaySelectionRequested:'capture-requesting',

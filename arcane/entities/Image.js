@@ -1,7 +1,7 @@
 import Is from 'strong-type';
 const is=new Is(false);
 
-import FileEntity from './File.js?arcaneVersion=0.25.0';
+import FileEntity from './File.js?arcaneVersion=0.26.0';
 
 /**
  * ImageEntity

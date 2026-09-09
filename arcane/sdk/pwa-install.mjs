@@ -1,5 +1,5 @@
-import Is from './dependencies/strong-type/index.js?arcaneVersion=0.25.0';
-import {createArcaneEventSource} from './event-manager.mjs?arcaneVersion=0.25.0';
+import Is from './dependencies/strong-type/index.js?arcaneVersion=0.26.0';
+import {createArcaneEventSource} from './event-manager.mjs?arcaneVersion=0.26.0';
 
 const is = new Is(false);
 export const PWA_INSTALL_STATE_EVENT = 'arcane.pwa.install.state';
@@ -273,8 +273,8 @@ export function mountPwaInstallPrompt({appName = ''} = {}) {
         if (!globalThis.document) return null;
         // Both modules may start independently; saved theme loading is not a barrier.
         await Promise.all([
-            import(new URL('../modules/HTMLImport.js?arcaneVersion=0.25.0', import.meta.url).href),
-            import(new URL('../modules/ThemeBootstrap.js?arcaneVersion=0.25.0', import.meta.url).href)
+            import(new URL('../modules/HTMLImport.js?arcaneVersion=0.26.0', import.meta.url).href),
+            import(new URL('../modules/ThemeBootstrap.js?arcaneVersion=0.26.0', import.meta.url).href)
         ]);
         if (owner.state.status === 'disposed') return null;
         if (!document.body) {

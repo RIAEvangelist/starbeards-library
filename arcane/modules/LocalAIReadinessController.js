@@ -5,7 +5,7 @@ import { arcaneLogging } from 'arcane-os/logging';
 import {
     checkLocalAIReadiness,
     deriveLocalAIRequirements
-} from './LocalAIReadiness.js?arcaneVersion=0.25.0';
+} from './LocalAIReadiness.js?arcaneVersion=0.26.0';
 import {
     createArcaneEventSource,
     projectArcaneDOMEvent

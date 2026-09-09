@@ -1,7 +1,7 @@
 import {
   installBrowserSpeechArtifactModuleWorker,
   installBrowserSpeechWorker,
-} from "./speech-worker-runtime.mjs?arcaneVersion=0.25.0";
+} from "./speech-worker-runtime.mjs?arcaneVersion=0.26.0";
 
 const mode = new URL(import.meta.url).searchParams.get("arcaneSpeechWorkerMode");
 

@@ -1,6 +1,6 @@
 import Is from 'strong-type';
-import '../modules/DBOPFS.js?arcaneVersion=0.25.0';
-import MD from '../modules/MD.js?arcaneVersion=0.25.0';
+import '../modules/DBOPFS.js?arcaneVersion=0.26.0';
+import MD from '../modules/MD.js?arcaneVersion=0.26.0';
 
 const is = new Is(false);
 
