@@ -28,7 +28,7 @@ Completed stories outside the two adventure collections will be added here.
 
 Each book opens in the same full-screen horizontal reader with touch swiping, keyboard navigation, page controls, and JuJu’s existing eight-voice read-aloud controls.
 
-The app pins published `arcane-os@0.32.0` and uses its public browser-speech, AI, DBOPFS, event, and prepared-audio contracts.
+The app pins published `arcane-os@0.33.0` and uses its public browser-speech, AI, DBOPFS, event, and prepared-audio contracts.
 
 JuJu owns story text, voice choice, presentation, passage pauses, and book preparation order. Each Read snapshots every complete page in the selected book. It submits all passages of the selected page to `AI.prepareTTS` and attaches `AI.playPreparedTTS` immediately. The SDK splits at punctuation, with no four-word cadence, queues generation through its bounded provider pool, and plays the selected page in original order on its audio clock. Each passage's 200 ms pause follows only its final punctuation chunk; the page's final passage has no added pause.
 
@@ -52,7 +52,7 @@ Every spread has a **Move words** handle. Drag it with a mouse or finger, or foc
 
 ## Standalone application layout
 
-JuJu declares exact `arcane-os@0.32.0` in its own `package.json`; a normal project-root `npm install` resolves the public package into this repository’s own `node_modules`. App source, descriptors, manifest, and `assets/` live at the repository root. The four documented `installed-v1` routes in `arcane-packager.json` serve the actual installed SDK runtime, browser runtime, runtime dependency, and license files. Runtime and packaging no longer use the obsolete root `arcane/` projection. The physical-runtime materializer is retired; there is no global install, symlink, checkout dependency, or update poll. Public `arcane-os` imports resolve through the SDK-generated map, with `arcaneVersion=0.32.0` on local resource references.
+JuJu declares exact `arcane-os@0.33.0` in its own `package.json`; a normal project-root `npm install` resolves the public package into this repository’s own `node_modules`. App source, descriptors, manifest, and `assets/` live at the repository root. The four documented `installed-v1` routes in `arcane-packager.json` serve the actual installed SDK runtime, browser runtime, runtime dependency, and license files. Runtime and packaging no longer use the obsolete root `arcane/` projection. The physical-runtime materializer is retired; there is no global install, symlink, checkout dependency, or update poll. Public `arcane-os` imports resolve through the SDK-generated map, with `arcaneVersion=0.33.0` on local resource references.
 
 The workspace uses `appsRoot: "."`. The SDK’s standalone-root flow generates no nested app navigation pages, redirects, or duplicate PWA files, and has no setting to retain them. Roshi explicitly retired both the old `arcane` and `apps` redirect families on September 9, 2026. Keep those redirects, aliases, and copied trees retired; do not restore them through a generator default, host rule, or compatibility file. Open `/` when serving this repository as a host root, or `/starbeards-library/` on the intended GitHub Pages host. The former `/apps/juju-grand-adventures/` entry is retired.
 

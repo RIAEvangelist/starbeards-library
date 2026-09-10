@@ -3,7 +3,7 @@ import {arcaneEvents} from 'arcane-os/event-manager';
 
 export const JUJU_SPEECH_AUTHORITY_REQUIRED = 'ARCANE_AI_MODEL_AUTHORITY_REQUIRED';
 
-const ARCANE_SDK_VERSION = '0.32.0';
+const ARCANE_SDK_VERSION = '0.33.0';
 const CONFIGURATION_ID = 'juju-grand-adventures-browser-speech';
 const DEFAULT_SPEED = 0.95;
 const NARRATION_TABLE = 'juju_narration_audio';
