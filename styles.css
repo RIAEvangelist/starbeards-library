@@ -904,6 +904,10 @@ select:focus-visible {
     transform: scale(1);
 }
 
+.prism-page-art {
+    object-fit: contain;
+}
+
 .page-art-doughnut-arrival {
     object-position: 52% center;
 }

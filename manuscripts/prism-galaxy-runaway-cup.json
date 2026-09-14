@@ -2,15 +2,16 @@
   "series": "Captain Star Beard & Admiral Pigeon",
   "title": "The Runaway Cup",
   "subtitle": "Adventures in the Prism Galaxy",
-  "description": "Before the Great Galactic Sock Caper, a young captain and a very determined pigeon followed a frightened magical AI cup into Crystal Cave—and found the beginning of a lifelong friendship.",
+  "description": "A long, long time before the Great Galactic Sock Caper, a young captain and a very determined pigeon followed a frightened magical AI cup into Crystal Cave—and found the beginning of a lifelong friendship.",
   "coverAlt": "Young Star Beard offers his hand to a glowing turquoise cup high on an ancient crystal, with Admiral Pigeon beside them in a vast sparkling cave.",
   "artDirection": "Use case: illustration-story. Each image is a distinct full-bleed landscape 16:9 picture-book illustration with no text or lettering. Richly painted tactile storybook world, indigo shadows, luminous turquoise and lavender crystals, warm gold light, subtle embroidered details, expressive readable faces. Match the generated cover for character continuity. Young adult Captain Star Beard has sandy neck-length hair, a short reddish beard, rectangular dark glasses, a navy adventurer jacket with subtle gold star stitching, a teal scarf and brown boots. Keep his appearance grounded in the supplied younger-life photo references. Admiral Pigeon is an ordinary small gray pigeon with iridescent turquoise and violet neck feathers, expressive posture, no clothing or hat. The magical cyber AI cup has a turquoise porcelain body, one golden handle, delicate gold circuit filigree, two small articulated brass legs and feet, and softly luminous expressive eyes on its front. The cup has no arms. Gentle adventure with spectacular scale and warmth. One scene per image; no collage, no panels, no watermarks. Keep important faces and action near the central or upper area, allowing the reader's movable text panel to occupy a lower corner without obscuring the essential scene.",
+  "presentationNotes": "Small page headings display Adventures in the Prism Galaxy without a page number. The reader's existing progress indicator supplies navigation. Illustration revisions vary camera elevation, distance, character placement, head direction and body action across the sequence. Match character identity and costume across reference images without repeating the reference pose. Check complete limb connections, distinct left and right feet, and natural weight-bearing posture before selecting final art. Current replacement prompts and observations are recorded in prism-art-revisions-01-08.md, prism-art-revisions-09-16.md and prism-art-revisions-17-24.md.",
   "pages": [
     {
       "number": 1,
       "title": "A Captain with a Very Small Beard",
       "paragraphs": [
-        "Long before the Great Galactic Sock Caper, Captain Star Beard sailed into the Prism Galaxy with a secondhand starship, a very small beard, and a very large opinion of his parking.",
+        "A long, long time before the Great Galactic Sock Caper, Captain Star Beard sailed into the Prism Galaxy with a secondhand starship, a very small beard, and a very large opinion of his parking.",
         "His sandy hair kept falling across his glasses. His jacket had one golden star sewn above the pocket. He had stitched it there himself, slightly crooked, on the day he became a captain.",
         "Below him, the moon of Luma shone with violet mountains and rivers of silver light. He lowered his ship toward a landing pad outside the Starling Academy.",
         "A pigeon stood in the middle of it.",
@@ -28,7 +29,7 @@
         "“Ah,” said the captain, lifting his ship again. “Pedestrians.”",
         "Once the last robot passed, the pigeon stepped aside. Star Beard landed, climbed out, and offered a formal bow.",
         "“Captain Star Beard. Delivering one crate of learning crystals.”",
-        "“And you've met Admiral Pigeon,” said a teacher coming down the steps. “He looks after our new arrivals.”",
+        "“And you've met Admiral Pigeon,” said a teacher coming down the steps. “Freshly promoted to Admiral of the Galactic Pigean Space Corps Poop Deck. His first assignment is looking after our new arrivals.”",
         "The admiral puffed out his chest. Star Beard glanced at his crooked star and stood a little straighter too."
       ],
       "alt": "Star Beard bows to Admiral Pigeon beside the landed ship while tiny garden robots carry a tall seedling safely across the pad.",
@@ -149,7 +150,7 @@
         "“You find the way. I'll do the climbing.”",
         "The admiral tapped the ridge again. Their first plan together had begun."
       ],
-      "alt": "Pigeon indicates a sloping crystal ridge while Star Beard lays out his climbing rope and studies the route toward the hidden cup.",
+      "alt": "Viewed from above, Star Beard stands with his climbing rope and points toward the sloping ridge indicated by Admiral Pigeon.",
       "artPrompt": "At base of enormous ancient crystal, purposeful cooperative planning. Young Star Beard kneels with rope laid out and looks along rising broad crystal ridges. Pigeon touches one low ridge with beak then looks upward. Climbing route visible as stepped natural ridges toward far crystal crown. Cup absent hidden at summit. Warm lamp gold against lavender and teal."
     },
     {
@@ -286,7 +287,7 @@
         "“We're working out the next part,” the captain said. “We'll stay together while we do.”",
         "A tiny blue light stirred inside the cup. It looked down, surprised."
       ],
-      "alt": "At a dim three-way cave junction, Star Beard holds his lamp while Pigeon feels the air and the cup glows softly inside its scarf sling.",
+      "alt": "Seen from behind, Star Beard raises his lantern while he and Admiral Pigeon study three dark crystal tunnels.",
       "artPrompt": "After sunset dim cavern fork with three natural tunnels visible. Young Star Beard stands holding warm brass lamp, cup rests in teal chest sling with tiny soft blue light gathering inside it. Pigeon stands near tunnel mouth testing air, attentive pose. Crystal colors muted compared to earlier sunlit scenes. Mild uncertainty, companionship and calm rather than horror."
     },
     {
@@ -359,7 +360,7 @@
         "Later, at the ship, the captain set a cushion beside the window. “I'm sailing to the Lantern Islands tomorrow. There's room for a navigator who notices things.”",
         "Admiral Pigeon took three steps up the ramp, looked backward, and waited.",
         "Star Beard laughed and followed.",
-        "They would have many adventures together. Years later, one would involve a very suspicious purple sock. Their first had begun with a cup that needed help—and ended with three friends who knew they could ask each other for it."
+        "They would have many adventures together. A long, long time would pass before one of those adventures involved a very suspicious purple sock. Their first had begun with a cup that needed help—and ended with three friends who knew they could ask each other for it."
       ],
       "alt": "Young Star Beard follows Admiral Pigeon up the starship ramp beneath the stars, while Pip and Mira watch from the glowing academy window.",
       "artPrompt": "Concluding nighttime friendship scene outside warmly lit academy. Modest blue-and-brass starship on landing pad; ordinary gray pigeon walks up short ramp looking back at young Star Beard who follows smiling, teal scarf, navy star-stitched jacket, short ginger beard. Cozy navigator cushion visible through ship window. In nearby academy window Teacher Mira raises hand and turquoise Pip stands beside her with tiny star glow above rim; cup has no arms, just cheerful eyes and brass feet. Violet mountains and beautiful colorful galaxy overhead. Satisfying warm ending, promise of shared adventures."

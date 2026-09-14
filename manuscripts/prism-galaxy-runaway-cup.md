@@ -6,7 +6,7 @@
 
 ### Page 01 — A Captain with a Very Small Beard
 
-Long before the Great Galactic Sock Caper, Captain Star Beard sailed into the Prism Galaxy with a secondhand starship, a very small beard, and a very large opinion of his parking.
+A long, long time before the Great Galactic Sock Caper, Captain Star Beard sailed into the Prism Galaxy with a secondhand starship, a very small beard, and a very large opinion of his parking.
 
 His sandy hair kept falling across his glasses. His jacket had one golden star sewn above the pocket. He had stitched it there himself, slightly crooked, on the day he became a captain.
 
@@ -28,7 +28,7 @@ Once the last robot passed, the pigeon stepped aside. Star Beard landed, climbed
 
 “Captain Star Beard. Delivering one crate of learning crystals.”
 
-“And you've met Admiral Pigeon,” said a teacher coming down the steps. “He looks after our new arrivals.”
+“And you've met Admiral Pigeon,” said a teacher coming down the steps. “Freshly promoted to Admiral of the Galactic Pigean Space Corps Poop Deck. His first assignment is looking after our new arrivals.”
 
 The admiral puffed out his chest. Star Beard glanced at his crooked star and stood a little straighter too.
 
@@ -382,4 +382,4 @@ Admiral Pigeon took three steps up the ramp, looked backward, and waited.
 
 Star Beard laughed and followed.
 
-They would have many adventures together. Years later, one would involve a very suspicious purple sock. Their first had begun with a cup that needed help—and ended with three friends who knew they could ask each other for it.
+They would have many adventures together. A long, long time would pass before one of those adventures involved a very suspicious purple sock. Their first had begun with a cup that needed help—and ended with three friends who knew they could ask each other for it.
