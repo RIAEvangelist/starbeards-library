@@ -32,6 +32,10 @@ const BOOKS = {
     starwater: {
         title: 'Starbeard and the Starwater',
         templateId: 'book-starwater-template'
+    },
+    prismGalaxy: {
+        title: 'The Runaway Cup',
+        templateId: 'book-prism-galaxy-template'
     }
 };
 

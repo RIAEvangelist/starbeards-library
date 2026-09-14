@@ -1,0 +1,368 @@
+{
+  "series": "Captain Star Beard & Admiral Pigeon",
+  "title": "The Runaway Cup",
+  "subtitle": "Adventures in the Prism Galaxy",
+  "description": "Before the Great Galactic Sock Caper, a young captain and a very determined pigeon followed a frightened magical AI cup into Crystal Cave—and found the beginning of a lifelong friendship.",
+  "coverAlt": "Young Star Beard offers his hand to a glowing turquoise cup high on an ancient crystal, with Admiral Pigeon beside them in a vast sparkling cave.",
+  "artDirection": "Use case: illustration-story. Each image is a distinct full-bleed landscape 16:9 picture-book illustration with no text or lettering. Richly painted tactile storybook world, indigo shadows, luminous turquoise and lavender crystals, warm gold light, subtle embroidered details, expressive readable faces. Match the generated cover for character continuity. Young adult Captain Star Beard has sandy neck-length hair, a short reddish beard, rectangular dark glasses, a navy adventurer jacket with subtle gold star stitching, a teal scarf and brown boots. Keep his appearance grounded in the supplied younger-life photo references. Admiral Pigeon is an ordinary small gray pigeon with iridescent turquoise and violet neck feathers, expressive posture, no clothing or hat. The magical cyber AI cup has a turquoise porcelain body, one golden handle, delicate gold circuit filigree, two small articulated brass legs and feet, and softly luminous expressive eyes on its front. The cup has no arms. Gentle adventure with spectacular scale and warmth. One scene per image; no collage, no panels, no watermarks. Keep important faces and action near the central or upper area, allowing the reader's movable text panel to occupy a lower corner without obscuring the essential scene.",
+  "pages": [
+    {
+      "number": 1,
+      "title": "A Captain with a Very Small Beard",
+      "paragraphs": [
+        "Long before the Great Galactic Sock Caper, Captain Star Beard sailed into the Prism Galaxy with a secondhand starship, a very small beard, and a very large opinion of his parking.",
+        "His sandy hair kept falling across his glasses. His jacket had one golden star sewn above the pocket. He had stitched it there himself, slightly crooked, on the day he became a captain.",
+        "Below him, the moon of Luma shone with violet mountains and rivers of silver light. He lowered his ship toward a landing pad outside the Starling Academy.",
+        "A pigeon stood in the middle of it.",
+        "The pigeon looked up. The captain waved. The pigeon remained exactly where he was."
+      ],
+      "alt": "A young Star Beard leans from his small starship above a landing pad where a determined gray pigeon stands, with a bright academy and violet mountains beyond.",
+      "artPrompt": "Establishing wide shot of Luma moon, violet distant mountains, winding silver river and welcoming brass-and-glass academy. A modest blue-and-brass starship hovers just above a landing pad. Young Star Beard leans from its open side window looking down at ordinary Admiral Pigeon standing confidently in the pad center. The cup is absent. Cheerful first meeting and grand space setting."
+    },
+    {
+      "number": 2,
+      "title": "Three Steps and a Look Back",
+      "paragraphs": [
+        "The pigeon took three steps, stopped, and looked backward. Then he did it again.",
+        "Star Beard followed his gaze. A row of tiny gardening robots was crossing the landing pad, carrying a seedling much taller than all of them put together.",
+        "“Ah,” said the captain, lifting his ship again. “Pedestrians.”",
+        "Once the last robot passed, the pigeon stepped aside. Star Beard landed, climbed out, and offered a formal bow.",
+        "“Captain Star Beard. Delivering one crate of learning crystals.”",
+        "“And you've met Admiral Pigeon,” said a teacher coming down the steps. “He looks after our new arrivals.”",
+        "The admiral puffed out his chest. Star Beard glanced at his crooked star and stood a little straighter too."
+      ],
+      "alt": "Star Beard bows to Admiral Pigeon beside the landed ship while tiny garden robots carry a tall seedling safely across the pad.",
+      "artPrompt": "Ground-level comic first introduction. Star Beard stands beside landed modest ship and wooden crate filled with softly glowing crystals, bowing formally to a tiny puffed-chest gray pigeon. A parade of three little round gardening robots carries one tall leafy seedling across landing pad. Friendly academy teacher in warm ochre coat descends distant steps. No cup."
+    },
+    {
+      "number": 3,
+      "title": "The School for New Beginnings",
+      "paragraphs": [
+        "Inside the academy, a mechanical fern practiced growing a new leaf. A little round robot was learning to paint circles. Most of its circles looked like potatoes, and it was delighted with them.",
+        "“We make magical artificial intelligences here,” the teacher explained. “New minds that learn by trying things, asking questions, and getting help. I'm Teacher Mira.”",
+        "She led them into a sunny room. On a cushion stood a turquoise cup with golden circuits, a bright handle, and two folded brass feet.",
+        "“Our newest learner is nearly ready to wake.”",
+        "Star Beard set down his delivery. Admiral Pigeon settled beside the cushion. Together, they waited for the cup's very first moment."
+      ],
+      "alt": "Mira, young Star Beard, and Admiral Pigeon wait beside a sleeping turquoise cyber cup in a sunny learning room, with cheerful robot learners nearby.",
+      "artPrompt": "Warm welcoming academy classroom, rounded brass-and-glass windows, cushions, creative learning tools. Turquoise cyber AI cup with gold handle and folded brass feet rests asleep on yellow cushion, eyes closed. Young Star Beard kneels nearby; Pigeon perches beside cushion; kind Teacher Mira with short silver curly hair and ochre coat watches. Background tiny robot paints a potato-shaped circle and mechanical fern sprouts leaf."
+    },
+    {
+      "number": 4,
+      "title": "Everything, All at Once",
+      "paragraphs": [
+        "Two lights blinked open on the cup's face.",
+        "There was a ceiling. There were people. There was a pigeon, which was rather a lot of pigeon for someone who had never seen anything before.",
+        "“Hello!” said Mira. “Welcome!” said Star Beard. “Coo!” said the admiral.",
+        "A crystal chimed. Someone clapped. The cup discovered its feet, its voice, and the enormous surprising feeling of being awake—all at once.",
+        "“WHAT IS HAPPENING?” it squeaked.",
+        "A ring of blue magic flashed beneath it. BOING! The cup bounced off its cushion, landed by the open garden door, and ran.",
+        "“Wait!” called Mira. The cup heard another loud sound behind it and ran faster."
+      ],
+      "alt": "The startled cup springs from its cushion toward the open garden door as its new eyes glow, surprising Star Beard, Mira, and Pigeon.",
+      "artPrompt": "Dynamic first awakening escape in same warm classroom. Small frightened turquoise AI cup springs into air from yellow cushion, brass feet extended, blue magical ring beneath it, heading toward open sunlit garden door. Star Beard and Mira surprised with open empty hands; gray Pigeon lifts wings. Bright lively motion, cup overwhelmed rather than angry. No written sound effects."
+    },
+    {
+      "number": 5,
+      "title": "The Fastest Cup on Luma",
+      "paragraphs": [
+        "Admiral Pigeon launched through the doorway. Star Beard hurried after him.",
+        "Across the garden, the cup bounced over a flower bed, clattered beneath a bench, and shot between the legs of a watering robot. Each magical hop left a little blue ring that faded behind it.",
+        "“The footpath leads toward Crystal Cave!” Mira called. “I'll bring a blanket and meet you at the garden gate.”",
+        "Star Beard waved to show he had heard. He and the admiral followed the fading lights.",
+        "The captain had expected to deliver a crate and leave. Now he was chasing crockery across a moon with an officer he had met six minutes earlier."
+      ],
+      "alt": "A turquoise cup races through a flower garden leaving blue rings while Admiral Pigeon flies after it and Star Beard ducks around a watering robot.",
+      "artPrompt": "Wide action scene following curved garden path. Turquoise cup on brass legs darts beneath wooden bench past purple flowers leaving small blue rings on ground. Pigeon flies low following cup. Star Beard runs around a round watering robot, teal scarf trailing. Academy behind, cave mountains ahead establishes travel direction. No crowd pursues."
+    },
+    {
+      "number": 6,
+      "title": "The Trouble with Shortcuts",
+      "paragraphs": [
+        "The path crossed a stream on floating stepping-stones. The cup hopped over them so quickly that the stones spun behind it.",
+        "Star Beard put one boot on the nearest stone. It turned. He sat down in the stream with a magnificent SPLASH.",
+        "Admiral Pigeon landed on the bank. Three steps. A look back. Three more steps.",
+        "This time, the captain followed. Behind a curtain of silver reeds stood a perfectly ordinary bridge.",
+        "“Excellent suggestion,” he said, pouring water out of one boot.",
+        "The admiral cooed.",
+        "“Aye. I shall consider looking before leaping.”",
+        "Beyond the bridge, the last blue ring glimmered at the mouth of the cave."
+      ],
+      "alt": "A wet Star Beard empties his boot while Pigeon shows him a small bridge hidden by silver reeds beside spinning floating stepping-stones.",
+      "artPrompt": "Comic but warm garden-stream scene, wet seated young Star Beard on grassy bank tipping water from brown boot, glasses askew, pigeon walking three deliberate steps toward small arched wooden footbridge half-hidden by tall silver reeds. Nearby magical flat stepping stones slowly rotate over shallow silver stream. In distant path a fading blue ring marks cup's passage toward cave. Cup already off scene."
+    },
+    {
+      "number": 7,
+      "title": "Into Crystal Cave",
+      "paragraphs": [
+        "Crystal Cave opened beneath the mountain like a doorway into a sleeping rainbow.",
+        "A blue glow skipped across the entrance and vanished inside. The admiral followed it. Star Beard took his climbing rope and lamp from his pack, then ducked beneath the stone arch.",
+        "Near the first turning, a cluster of crystals looked exactly like a sleeping dragon with a cauliflower nose.",
+        "“I'll remember you,” he told it.",
+        "Sunlight passed through a crack overhead, scattering a hundred colored paths across the floor. From somewhere deeper came a tiny clink.",
+        "Then another.",
+        "Their runaway was still moving. They followed the sound."
+      ],
+      "alt": "Star Beard and Admiral Pigeon enter a luminous crystal cavern beside a formation shaped like a sleeping dragon, following a distant blue glow.",
+      "artPrompt": "Wide cave threshold, young Star Beard holds brass lamp with climbing rope coiled over shoulder, Pigeon stands ahead. Foreground rounded crystal cluster resembles sleeping friendly dragon with knobbly cauliflower nose; clearly rock, not living dragon. Sunbeam through overhead crack creates colored reflections. Deep cave glows blue from tiny retreating cup far away. Grand welcoming magical geology."
+    },
+    {
+      "number": 8,
+      "title": "A Hundred Captains Shouting",
+      "paragraphs": [
+        "“Little cup!” Star Beard called. “We're trying to—”",
+        "“CUP! CUP! CUP!” shouted the cave.",
+        "Blue light flashed ahead. The little clinking footsteps sped up.",
+        "Star Beard stopped. He remembered how many voices had filled the classroom, and how the cup had run faster each time someone called.",
+        "“We're frightening it,” he whispered.",
+        "Admiral Pigeon folded his wings and landed beside him. For a moment, they both listened. Without their footsteps and echoes, they could hear a small, shaky voice.",
+        "“Somewhere quiet. Somewhere quiet.”",
+        "The captain lowered his lamp. The admiral took three slow steps, looked back, and waited. This time, they followed gently."
+      ],
+      "alt": "Star Beard lowers his lamp and listens beside Pigeon as reflected blue light disappears deeper into the echoing cavern.",
+      "artPrompt": "Quiet emotional turning point in huge faceted tunnel. Star Beard pauses with one hand lowering warm brass lamp, expression realizing concern. Gray pigeon beside him folds wings and looks back gently. Many reflections of small blue light recede in crystals ahead; faint distant cup silhouette optional. No text or spectral people. Show stillness after frantic chase."
+    },
+    {
+      "number": 9,
+      "title": "The Oldest Crystal",
+      "paragraphs": [
+        "The tunnel opened into a chamber so enormous that Star Beard's lamp could scarcely find the far wall.",
+        "At its center rose a GIANT ancient crystal. It was taller than the academy, taller than his starship standing on its nose, taller than anything he had ever considered climbing.",
+        "Bands of violet and gold ran through it like memories of a thousand sunrises. Near its summit, smaller crystals formed a crown.",
+        "A blue ring shimmered on a low ledge. Another faded halfway up. The cup had bounced higher and higher, searching for a quiet place.",
+        "Now the chamber was still.",
+        "Somewhere above them, something gave a very small sniff."
+      ],
+      "alt": "Tiny Star Beard and Pigeon stand beneath an enormous ancient violet crystal whose crown disappears high into the sparkling cavern.",
+      "artPrompt": "Spectacular vertical scale within wide landscape frame: enormous ancient lavender crystal monolith towers almost ceiling height inside vast cavern, branching crystal crown at summit. Tiny Star Beard and pigeon at base to show monumental scale. Bands of gold light inside crystal, fading small blue hop rings at ascending ledges. Cup hidden behind crown, not openly visible. Awe, breathtaking depth."
+    },
+    {
+      "number": 10,
+      "title": "Two Explorers, One Plan",
+      "paragraphs": [
+        "Admiral Pigeon flew upward in a slow circle. He could see the ledges, although the thick crystal crown hid whatever lay behind it.",
+        "When he came down, he tapped a sloping ridge with his beak, then looked up.",
+        "“A route?” asked Star Beard.",
+        "“Coo.”",
+        "The captain studied it. He could climb from ridge to ridge. The admiral could scout the next foothold. Neither could do the whole rescue alone: a pigeon could fly up, yet carrying a frightened brass-footed cup down was quite another matter.",
+        "Star Beard laid out his rope.",
+        "“You find the way. I'll do the climbing.”",
+        "The admiral tapped the ridge again. Their first plan together had begun."
+      ],
+      "alt": "Pigeon indicates a sloping crystal ridge while Star Beard lays out his climbing rope and studies the route toward the hidden cup.",
+      "artPrompt": "At base of enormous ancient crystal, purposeful cooperative planning. Young Star Beard kneels with rope laid out and looks along rising broad crystal ridges. Pigeon touches one low ridge with beak then looks upward. Climbing route visible as stepped natural ridges toward far crystal crown. Cup absent hidden at summit. Warm lamp gold against lavender and teal."
+    },
+    {
+      "number": 11,
+      "title": "The First Handhold",
+      "paragraphs": [
+        "Star Beard fastened his climbing line around a broad stone pillar and settled the rope into his harness. Admiral Pigeon carried the loose guiding end onto the first ledge, then stepped clear.",
+        "The captain tested a foothold. Solid. He reached for the next ridge and pulled himself up.",
+        "Below him, the cavern floor began to look surprisingly far away.",
+        "Above him, the admiral waited with his head tilted.",
+        "“I know,” Star Beard said. “My parking is better than my climbing.”",
+        "The pigeon looked down at the damp boot.",
+        "“My parking is usually better than my climbing.”",
+        "One handhold at a time, they climbed toward the crown."
+      ],
+      "alt": "Harnessed Star Beard climbs the first high crystal ledge on a rope anchored around a stone pillar, with Pigeon guiding from above.",
+      "artPrompt": "Low-angle action view young Star Beard beginning monumental crystal climb, climbing harness and rope visibly connected to broad natural stone pillar below. One boot braced on broad lavender ridge, hand reaches next ledge. Gray pigeon waits above beside slack guiding rope end, bird does not hold human weight. Teal scarf tucked close. Expressive determined youthful face, breathtaking luminous setting."
+    },
+    {
+      "number": 12,
+      "title": "The Admiral's Better Idea",
+      "paragraphs": [
+        "Halfway up, Star Beard reached toward a beautiful clear shelf. His glove slid across its smooth surface.",
+        "He pulled his hand back and held the ridge beside him. For a moment, the next step seemed impossible.",
+        "Admiral Pigeon fluttered to the left. Three small steps. A look back.",
+        "There, hidden behind a purple crystal, was a rough little ledge with plenty of room for a boot.",
+        "Star Beard moved across and found his footing.",
+        "“You notice things I hurry past,” he said.",
+        "The admiral settled beside his hand. This time, the captain waited until his new companion had looked ahead before he chose the next step."
+      ],
+      "alt": "Pigeon reveals a hidden rough ledge to the left while Star Beard holds his climbing position high above the cave floor.",
+      "artPrompt": "Close dynamic climbing moment partway up enormous crystal. Star Beard securely holding a broad ridge with taut harness line, looking left where gray pigeon stands on rough safe ledge partly hidden behind purple crystal. Smooth clear slippery shelf to right contrasts textured foot ledge to left. Face focused and trusting; no fall, no injury. Strong depth to distant floor."
+    },
+    {
+      "number": 13,
+      "title": "A Rest Above the Rainbows",
+      "paragraphs": [
+        "On the next wide ledge, Star Beard sat down. The admiral perched beside him. Far below, their lamp was a golden button in a sea of purple light.",
+        "“This is my first voyage as captain,” Star Beard admitted. “I keep thinking I'm supposed to know what to do.”",
+        "Admiral Pigeon looked at the rope, the route they had found, and the captain resting safely beside him.",
+        "“Coo.”",
+        "Star Beard smiled. “Aye. Finding out together seems to work.”",
+        "Above them, a golden handle appeared between two crystal points. It trembled, then disappeared.",
+        "The cup was close enough to hear them now. They rose quietly and continued."
+      ],
+      "alt": "Star Beard and Pigeon rest together on a wide crystal ledge while the cup's small gold handle peeks from the crown above.",
+      "artPrompt": "Tender mid-climb rest on broad luminous violet ledge high over cavern. Young Star Beard sits with harness rope attached, pigeon close beside him, both looking toward summit. A tiny gold cup handle peeks between crystal points above, body still concealed. Golden lamp far below, soft rainbow light across youthful short-bearded face and glasses. Friendship forming, quiet spacious composition."
+    },
+    {
+      "number": 14,
+      "title": "A Cup in the Crown",
+      "paragraphs": [
+        "At last, Star Beard pulled himself onto the highest ledge.",
+        "Behind the crown of the GIANT ancient crystal, tucked inside a smooth hollow, sat the little turquoise cup. Its brass feet were folded tightly beneath it. The gold patterns on its sides flickered with every frightened thought.",
+        "Star Beard stayed at the edge of the hollow.",
+        "“Hello. I'm Captain Star Beard. May I sit here?”",
+        "The cup looked at him for a long time. Then it nodded.",
+        "He sat. Admiral Pigeon landed on a nearby crystal point and tucked in his wings.",
+        "For the first time since waking, the cup had company that was willing to be quiet."
+      ],
+      "alt": "Star Beard sits at a respectful distance from the frightened cup hidden in the crystal crown while Pigeon rests nearby.",
+      "artPrompt": "Emotional discovery at summit, crown of giant ancient crystal encloses smooth sheltered hollow. Small turquoise AI cup sits tucked in hollow frightened eyes and folded brass feet, gold circuit glow. Young Star Beard has climbed onto broad ledge and sits a short distance away with open relaxed hands and gentle face; Pigeon calmly perches nearby. Rope visible. Breathtaking cavern background, intimate composition."
+    },
+    {
+      "number": 15,
+      "title": "The First Question",
+      "paragraphs": [
+        "“Am I in trouble?” the cup asked.",
+        "“You're safe with us,” said Star Beard. “We came to help.”",
+        "The cup looked down through the crystal branches. “I wanted somewhere quiet. Every time I jumped, I went higher. Now I don't know how to go down.”",
+        "Star Beard nodded. “I've been learning about choosing my next step today too.”",
+        "“What was that place? Why did everyone know what was happening except me?”",
+        "The captain glanced at the admiral. They had been so pleased to welcome a new learner that they had forgotten how little the learner could possibly know.",
+        "“Let's start at the beginning,” he said."
+      ],
+      "alt": "The frightened cup looks toward the long descent as Star Beard listens carefully beside it at the summit.",
+      "artPrompt": "Intimate close view of turquoise cup with expressive worried glowing eyes, brass feet tucked under, one gold handle; young Star Beard seated beside it listening attentively at eye level, short reddish beard and rectangular glasses. Pigeon in background. Crystal branches frame immense drop in soft focus. Focus on cup explaining fear, calm warm gold reflected in cool cave."
+    },
+    {
+      "number": 16,
+      "title": "A Place to Learn",
+      "paragraphs": [
+        "“That place is the Starling Academy,” Star Beard explained. “It's where you were made, and it's a school. Your golden circuits help you think. Your magic helps you do things. Your teachers will help you discover how both of them work.”",
+        "“Am I supposed to know already?”",
+        "“You've only just woken up. You get to ask questions. You get to practice. You get to make a truly magnificent mess while learning to paint a circle.”",
+        "The cup's lights steadied a little.",
+        "“What happens if I get frightened again?”",
+        "“You can tell someone. Ask them to slow down. Ask for a quieter place. Learning includes finding out what helps you.”"
+      ],
+      "alt": "Star Beard gently explains the academy to the listening cup as soft light catches its golden circuits and Pigeon sits beside them.",
+      "artPrompt": "Warm explanatory conversation at sheltered crystal summit, young Star Beard gestures gently with open hand while small turquoise cup looks up with increasingly steady warm eyes and softly glowing gold circuit filigree. Pigeon sits close and listens. A bright warm shaft of reflected sunlight fills hollow, richly detailed crystalline background. No diagrams, text, thought bubbles or additional scene panels."
+    },
+    {
+      "number": 17,
+      "title": "A Much Quieter Introduction",
+      "paragraphs": [
+        "Admiral Pigeon stepped into the hollow. He took three small steps, looked back, and waited.",
+        "“What is he doing?” asked the cup.",
+        "Star Beard smiled. “Showing us a way, I think. And making sure we're ready to follow.”",
+        "The admiral gave one soft coo.",
+        "“Earlier, we hurried after you,” the captain said. “I'm sorry we made it more frightening.”",
+        "The cup unfolded one foot, then the other. “Could I see the school again with just one teacher?”",
+        "“Aye. We can ask Mira.”",
+        "“And could you both come with me?”",
+        "Star Beard looked at the pigeon. The admiral stepped closer. This time, the cup stepped toward him too."
+      ],
+      "alt": "The cup unfolds its brass feet and takes a tentative step toward Pigeon while Star Beard smiles beside them.",
+      "artPrompt": "Small trust-building action in summit hollow: gray pigeon has taken three small steps and looks gently back toward turquoise cup, which unfolds brass legs and tentatively takes first step closer. Young Star Beard sits nearby smiling, hands resting open. All three clearly visible, soft welcoming light in violet crystal crown. Cup now cautiously hopeful."
+    },
+    {
+      "number": 18,
+      "title": "The Captain's Most Precious Passenger",
+      "paragraphs": [
+        "Star Beard unwrapped his teal scarf and folded it into a soft sling against his chest.",
+        "“Would you like a lift?”",
+        "The cup peered into the scarf. “Does it bounce?”",
+        "“Only if I hiccup.”",
+        "The cup considered this carefully. “Please don't.”",
+        "With the cup's nod, Star Beard lifted it gently from the ancient crystal and nestled it into the sling. Its golden handle rested above the fabric. Its little feet finally relaxed.",
+        "Admiral Pigeon flew to the first ledge below.",
+        "Together, they began the long climb down: one pigeon finding the way, one captain carrying a new friend, and one cup discovering what it felt like to be helped."
+      ],
+      "alt": "Star Beard carries the cup snugly in a teal scarf sling as he begins the roped descent, with Pigeon waiting on the next ledge.",
+      "artPrompt": "Dramatic successful rescue descent, young Star Beard climbing down ancient crystal securely on harness rope, turquoise cup nestled safely in soft teal scarf sling against his chest with gold handle and relaxed brass feet visible. Pigeon on broad next ledge below guides. Captain careful, cup relieved, huge violet/cyan chamber scale. No floating impossible grip or bird carrying adult."
+    },
+    {
+      "number": 19,
+      "title": "Where Did the Rainbows Go?",
+      "paragraphs": [
+        "By the time they reached the floor, Luma's sun had slipped behind the mountain. The bright crack in the ceiling had turned gray. All the rainbow paths were gone.",
+        "At the next fork, three tunnels opened ahead. In the lamplight, each one looked remarkably like the other two.",
+        "Star Beard remembered a sleeping crystal dragon. Admiral Pigeon remembered a draft from the garden. Neither clue quite reached around the bend.",
+        "The cup pressed close to the scarf. “Are we lost?”",
+        "“We're working out the next part,” the captain said. “We'll stay together while we do.”",
+        "A tiny blue light stirred inside the cup. It looked down, surprised."
+      ],
+      "alt": "At a dim three-way cave junction, Star Beard holds his lamp while Pigeon feels the air and the cup glows softly inside its scarf sling.",
+      "artPrompt": "After sunset dim cavern fork with three natural tunnels visible. Young Star Beard stands holding warm brass lamp, cup rests in teal chest sling with tiny soft blue light gathering inside it. Pigeon stands near tunnel mouth testing air, attentive pose. Crystal colors muted compared to earlier sunlit scenes. Mild uncertainty, companionship and calm rather than horror."
+    },
+    {
+      "number": 20,
+      "title": "One Small Try",
+      "paragraphs": [
+        "“When I ran,” the cup said, “the light jumped out of me. Perhaps I can make a little bit on purpose.”",
+        "“Would you like to try?” asked Star Beard.",
+        "He set it on a broad flat stone. The cup concentrated. A blue bubble emerged, floated upward, and burst on the captain's nose.",
+        "“A promising start,” he said, blinking.",
+        "The cup tried again, more gently. A narrow blue beam shone from its rim. It touched a crystal, bounced to another, and lit the bend of the left-hand tunnel.",
+        "There lay the sleeping dragon with the cauliflower nose.",
+        "Admiral Pigeon cooed triumphantly. The cup's eyes widened. “I did that!”"
+      ],
+      "alt": "The cup projects a small blue beam through cave crystals, illuminating the familiar sleeping-dragon formation while Star Beard and Pigeon watch.",
+      "artPrompt": "Magical first learning success: turquoise cup stands on broad low flat stone deliberately shining a small blue beam from its open rim. Beam reflects between two crystals around left tunnel bend and reveals sleeping-dragon-shaped crystal cluster with knobbly nose. Young Star Beard kneels delighted with lamp, pigeon nearby puffed proudly. No sling on cup now; scarf loose at captain chest. Single scene no montage."
+    },
+    {
+      "number": 21,
+      "title": "The Way Back Together",
+      "paragraphs": [
+        "The admiral led them past the dragon. Star Beard carried the cup beneath the low stone arch, and cool evening air brushed their faces.",
+        "Across the stream, the academy windows glowed like little golden suns. Mira waited at the garden gate with a blanket over one arm.",
+        "“There you are,” she said softly. Then she waited while the cup looked at her.",
+        "“Can we go slowly?” it asked.",
+        "“Of course.”",
+        "Star Beard set the cup down beside the bridge. Admiral Pigeon took three steps and looked back.",
+        "The cup followed on its own brass feet. This time, the blue rings stayed quiet. It wanted to see where the path would lead."
+      ],
+      "alt": "The cup walks beside Pigeon across the garden bridge toward Mira's quiet welcome, with Star Beard following under an evening sky.",
+      "artPrompt": "Wide evening return across small wooden garden bridge established earlier, silver reeds and stream, warm academy windows in background. Turquoise cup walking on its own brass feet toward teacher Mira at garden gate holding blanket. Pigeon ahead takes deliberate step and looks back. Young Star Beard follows with teal scarf now around neck and lamp in hand. Cup's return is calm and voluntary."
+    },
+    {
+      "number": 22,
+      "title": "Pip",
+      "paragraphs": [
+        "Mira brought one cushion to a quiet corner beside a window. She introduced herself again, slowly. Through the glass, the cup could still see the mountain and the first evening stars.",
+        "“We welcomed you all at once,” she said. “I'm sorry. Next time we'll begin with one hello.”",
+        "The cup climbed onto the cushion. “Hello.”",
+        "“Hello,” said Mira.",
+        "A small happy note chimed from the cup's rim. Pip!",
+        "“Was that me?”",
+        "“That was you,” said Star Beard.",
+        "The cup tried it again. Pip! It liked the sound.",
+        "“I think I'd like to be called Pip.”",
+        "Admiral Pigeon bowed his head. Pip bowed back, very carefully, so its feet stayed on the cushion."
+      ],
+      "alt": "Pip and Admiral Pigeon bow to each other beside a window as Mira and Star Beard share the cup's quiet welcome.",
+      "artPrompt": "Intimate peaceful welcome in academy quiet window corner at twilight. Turquoise cup Pip stands on yellow cushion bowing carefully to ordinary pigeon, both gentle and cheerful. Teacher Mira in ochre coat kneels at respectful distance; Star Beard sits nearby smiling. Folded blanket, warm lamp, mountain and first stars visible outside. No text or written name."
+    },
+    {
+      "number": 23,
+      "title": "The First Lesson",
+      "paragraphs": [
+        "“What would you like to learn first?” Mira asked.",
+        "Pip looked at the cushion, then at its feet. “A very small hop. Followed by coming down.”",
+        "They practiced over a soft mat. Pip rose a little, wobbled, and landed sideways with a muffled flump. Mira helped it stand. They tried again.",
+        "On the third try, Pip hopped up and landed on both feet.",
+        "Star Beard began to cheer, remembered, and gave a quiet thumbs-up instead. Admiral Pigeon bobbed his head.",
+        "Pip's golden circuits glowed steadily. It had more questions, and plenty more to learn. Around it were people who would stay for the next try."
+      ],
+      "alt": "Pip makes a small controlled hop above a soft mat while Mira guides, Star Beard gives a quiet thumbs-up, and Pigeon bobs beside them.",
+      "artPrompt": "Joyful small success in warm academy learning room. Pip turquoise cyber cup just a few inches above thick soft mat with brass feet positioned to land, gentle small blue ring underneath. Teacher Mira kneels guiding calmly, young Star Beard gives a quiet thumbs-up, pigeon bobs beside mat. Mechanical fern and round painting robot in background reinforce school. No giant leap or applause crowd."
+    },
+    {
+      "number": 24,
+      "title": "Room for an Admiral",
+      "paragraphs": [
+        "Star Beard stayed for supper. Admiral Pigeon sat beside him, and Pip practiced lighting one tiny star above the table. When it accidentally made a glowing potato, everyone agreed it was a splendid potato.",
+        "Later, at the ship, the captain set a cushion beside the window. “I'm sailing to the Lantern Islands tomorrow. There's room for a navigator who notices things.”",
+        "Admiral Pigeon took three steps up the ramp, looked backward, and waited.",
+        "Star Beard laughed and followed.",
+        "They would have many adventures together. Years later, one would involve a very suspicious purple sock. Their first had begun with a cup that needed help—and ended with three friends who knew they could ask each other for it."
+      ],
+      "alt": "Young Star Beard follows Admiral Pigeon up the starship ramp beneath the stars, while Pip and Mira watch from the glowing academy window.",
+      "artPrompt": "Concluding nighttime friendship scene outside warmly lit academy. Modest blue-and-brass starship on landing pad; ordinary gray pigeon walks up short ramp looking back at young Star Beard who follows smiling, teal scarf, navy star-stitched jacket, short ginger beard. Cozy navigator cushion visible through ship window. In nearby academy window Teacher Mira raises hand and turquoise Pip stands beside her with tiny star glow above rim; cup has no arms, just cheerful eyes and brass feet. Violet mountains and beautiful colorful galaxy overhead. Satisfying warm ending, promise of shared adventures."
+    }
+  ]
+}

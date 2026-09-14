@@ -1001,11 +1001,13 @@ select:focus-visible {
     line-height: 0.9;
 }
 
-.pluto-cover-copy {
+.pluto-cover-copy,
+.prism-cover-copy {
     width: min(60rem, 62vw);
 }
 
-.pluto-cover-copy .cover-title {
+.pluto-cover-copy .cover-title,
+.prism-cover-copy .cover-title {
     font-size: clamp(2.2rem, 4.8vw, 5.4rem);
     line-height: 0.9;
 }
@@ -1064,7 +1066,8 @@ select:focus-visible {
 
 .moonlit-story-copy,
 .sock-caper-story-copy,
-.pluto-story-copy {
+.pluto-story-copy,
+.prism-story-copy {
     width: min(43rem, 48vw);
     max-height: 66vh;
     overflow-y: auto;
@@ -1075,8 +1078,26 @@ select:focus-visible {
 
 .moonlit-story-copy .copy-move-tools,
 .sock-caper-story-copy .copy-move-tools,
-.pluto-story-copy .copy-move-tools {
+.pluto-story-copy .copy-move-tools,
+.prism-story-copy .copy-move-tools {
     top: 0.65rem;
+}
+
+.prism-cover-copy,
+.prism-story-copy {
+    top: auto;
+    bottom: max(6.6rem, 12vh);
+    transform: translate(
+        var(--copy-drag-x),
+        var(--copy-drag-y)
+    );
+}
+
+@media (min-width: 1101px) {
+    .prism-story-copy.prism-compact-copy {
+        width: min(30rem, 34vw);
+        max-height: 50vh;
+    }
 }
 
 .copy-move-tools {
@@ -1235,14 +1256,16 @@ select:focus-visible {
 
 .moonlit-story-copy h2,
 .sock-caper-story-copy h2,
-.pluto-story-copy h2 {
+.pluto-story-copy h2,
+.prism-story-copy h2 {
     font-size: clamp(1.7rem, 3vw, 3.35rem);
     line-height: 1;
 }
 
 .moonlit-story-copy p:not(.page-kicker, .planet-badge, .pirate-badge),
 .sock-caper-story-copy p:not(.page-kicker, .planet-badge, .pirate-badge),
-.pluto-story-copy p:not(.page-kicker, .planet-badge, .pirate-badge) {
+.pluto-story-copy p:not(.page-kicker, .planet-badge, .pirate-badge),
+.prism-story-copy p:not(.page-kicker, .planet-badge, .pirate-badge) {
     margin-top: 0.68rem;
     font-size: clamp(0.84rem, 1.12vw, 1.02rem);
     line-height: 1.42;
@@ -1250,7 +1273,8 @@ select:focus-visible {
 
 .moonlit-story-copy .spoken-line,
 .sock-caper-story-copy .spoken-line,
-.pluto-story-copy .spoken-line {
+.pluto-story-copy .spoken-line,
+.prism-story-copy .spoken-line {
     padding-top: 0.62rem;
 }
 
@@ -1392,7 +1416,8 @@ select:focus-visible {
 
     .moonlit-story-copy,
     .sock-caper-story-copy,
-    .pluto-story-copy {
+    .pluto-story-copy,
+    .prism-story-copy {
         width: min(42rem, 53vw);
     }
 
@@ -1509,7 +1534,8 @@ select:focus-visible {
         line-height: 0.92;
     }
 
-    .pluto-cover-copy .cover-title {
+    .pluto-cover-copy .cover-title,
+    .prism-cover-copy .cover-title {
         font-size: clamp(1.95rem, 9vw, 4rem);
         line-height: 0.92;
     }
@@ -1549,13 +1575,15 @@ select:focus-visible {
 
     .moonlit-story-copy h2,
     .sock-caper-story-copy h2,
-    .pluto-story-copy h2 {
+    .pluto-story-copy h2,
+    .prism-story-copy h2 {
         font-size: clamp(1.65rem, 7.5vw, 3rem);
     }
 
     .moonlit-story-copy p:not(.page-kicker, .planet-badge, .pirate-badge),
     .sock-caper-story-copy p:not(.page-kicker, .planet-badge, .pirate-badge),
-    .pluto-story-copy p:not(.page-kicker, .planet-badge, .pirate-badge) {
+    .pluto-story-copy p:not(.page-kicker, .planet-badge, .pirate-badge),
+    .prism-story-copy p:not(.page-kicker, .planet-badge, .pirate-badge) {
         font-size: clamp(0.82rem, 3.3vw, 0.98rem);
         line-height: 1.38;
     }
@@ -1689,7 +1717,8 @@ select:focus-visible {
         font-size: clamp(1.8rem, 8.6vw, 3.5rem);
     }
 
-    .pluto-cover-copy .cover-title {
+    .pluto-cover-copy .cover-title,
+    .prism-cover-copy .cover-title {
         font-size: clamp(1.65rem, 8vw, 3.3rem);
     }
 
@@ -1753,7 +1782,8 @@ select:focus-visible {
         font-size: clamp(2rem, 4.5vw, 3.85rem);
     }
 
-    .pluto-cover-copy .cover-title {
+    .pluto-cover-copy .cover-title,
+    .prism-cover-copy .cover-title {
         font-size: clamp(1.9rem, 4.2vw, 3.65rem);
     }
 
@@ -1784,7 +1814,8 @@ select:focus-visible {
 
     .moonlit-story-copy p:not(.page-kicker, .planet-badge, .pirate-badge),
     .sock-caper-story-copy p:not(.page-kicker, .planet-badge, .pirate-badge),
-    .pluto-story-copy p:not(.page-kicker, .planet-badge, .pirate-badge) {
+    .pluto-story-copy p:not(.page-kicker, .planet-badge, .pirate-badge),
+    .prism-story-copy p:not(.page-kicker, .planet-badge, .pirate-badge) {
         margin-top: 0.48rem;
         font-size: 0.78rem;
         line-height: 1.3;

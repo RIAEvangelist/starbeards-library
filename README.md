@@ -24,7 +24,7 @@ Only completed books are added to the library. Each finished book belongs to one
 
 ### Other Stories
 
-Completed stories outside the two adventure collections will be added here.
+- **Captain Star Beard & Admiral Pigeon: Adventures in the Prism Galaxy — The Runaway Cup:** a complete twenty-four-page prequel plus cover about their first meeting, a frightened new magical AI cup, a climb up an enormous ancient crystal, and the friendship that brings everyone home. Every story page has its own illustration. Young Star Beard's appearance draws on Roshi's supplied younger photographs; the original photos remain outside the repository.
 
 Each book opens in the same full-screen horizontal reader with touch swiping, keyboard navigation, page controls, and JuJu’s existing eight-voice read-aloud controls.
 
