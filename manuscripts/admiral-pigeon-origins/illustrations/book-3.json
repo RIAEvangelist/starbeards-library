@@ -1,0 +1,187 @@
+{
+  "book": 3,
+  "title": "Admiral of the Pigeon's Poop Deck",
+  "generationTool": "image_gen__imagegen",
+  "status": "Complete: cover and one illustration for each of twelve chapters",
+  "visualContinuity": [
+    "Warm cinematic stylized 3D storybook art; ordinary pigeons with two wings and two feet, no clothes or hats.",
+    "Pigeon has gray feathers, orange eyes and a turquoise-violet iridescent neck.",
+    "Pigeon beaks are dark charcoal above and below, with a small pale ivory cere at the base. Warm mouth interiors are distinct from beak color; avoid ochre, yellow or orange beaks.",
+    "Every pigeon outside a ship occupies a closed transparent flight capsule; interior deck scenes have a visible enclosed canopy.",
+    "The final cup remains an unfinished, unnamed workshop drawing, with one golden handle, two brass legs and no arms."
+  ],
+  "referenceImages": [
+    "assets/prism-galaxy/page-02.png",
+    "assets/prism-galaxy/page-17.png",
+    "assets/admiral-pigeon-origins/book-2/cover.png",
+    "assets/admiral-pigeon-origins/book-1/chapter-01.png",
+    "assets/admiral-pigeon-origins/book-1/chapter-02.png"
+  ],
+  "images": {
+    "cover": {
+      "path": "assets/admiral-pigeon-origins/book-3/cover.png",
+      "scene": "Admiral Pigeon stands on Homeward's command perch with Bellflower Gate and the allied fleet beyond the enclosed canopy.",
+      "alt": "A proud gray pigeon stands on a brass perch inside a glass-domed carrier, with the silver Bellflower Gate and pigeon flight capsules among the stars.",
+      "prompt": "Use case: illustration-story. Create a brand-new premium children's chapter-book cover illustration, one single 16:9 landscape scene with NO text, titles, letters, numbers, borders or collage. Reference images are ONLY for the ordinary gray pigeon's character design and the warm cinematic polished stylized 3D storybook art, fine feather detail, luminous teal violet and golden light; do not copy their humans, cup, palace or composition. Scene: the newly honored Admiral Pigeon stands proudly with puffed chest on a golden-brass command perch inside the enclosed upper rear flight deck of the pigeon carrier Homeward. Show the carrier's curved clear canopy and framing visibly around him so this is a breathable interior, not an exposed bird in space. Hero medium-large full body, two red feet, exactly two feathered wings folded, ordinary gray pigeon with orange eyes and a turquoise-violet iridescent neck, no clothes, hat, badges, human arms or accessories. His rank belongs only to a small unlettered ceremonial brass plate on his perch. Beyond the canopy: a huge silver circular Bellflower Gate filled with blue folded starlight, a triumphant allied fleet and several tiny transparent flight capsules each containing one pigeon, distant black teapot-shaped enemy flagship with humorously smeared white observation lenses. Warm hopeful epic mood after victory, not destruction. Rich depth, beautiful feather anatomy, cinematic gold rim light and purple-teal nebula sky. Keep all hero anatomy and perch inside the frame. No Star Beard, humans, awake cup, suits, helmets, gore, flames or explosions.",
+      "revisionPrompts": [
+        "Use case: precise-object-edit. Edit this cover illustration with ONE specific correction: replace ALL floating islands, castle towers, crystal spires, rocky landforms and atmospheric clouds outside the carrier canopy with unobstructed deep outer space, many tiny stars and subtle purple-teal nebulae. Bellflower Gate is a free-floating SILVER SPACE RING, not a portal beside a city. Keep exactly the existing large ordinary unclothed gray pigeon on the brass command perch, its correct two wings and two feet, orange eye and teal-violet neck, carrier interior clear canopy, the silver blue-lit gate, every spacecraft and transparent pigeon flight capsule, the black teapot-shaped enemy flagship with white-splatted lenses, golden rim lighting, composition and 16:9 landscape dimensions. No new subjects, text, uniforms, hats or cup. The only change is removing the incorrect castle/island/cloud scenery and replacing it with open starry vacuum around the ships."
+      ],
+      "inspection": "Accepted after replacing incorrect castle and island scenery with open starry space; full unclothed pigeon and canopy are visible, and exterior pigeons occupy capsules.",
+      "referenceImages": [
+        "assets/prism-galaxy/page-02.png",
+        "assets/prism-galaxy/page-17.png"
+      ],
+      "revisionReference": "Each revision used the immediately preceding generated version of this same illustration."
+    },
+    "chapter-01": {
+      "path": "assets/admiral-pigeon-origins/book-3/chapter-01.png",
+      "scene": "Pigeon remembers home while a bread crumb rests on his map and Bramble arrives with urgent news.",
+      "alt": "Pigeon studies a crumb on a cloth star map in his warm brass cabin while Bramble waits in the doorway.",
+      "prompt": "Use case: illustration-story. New single 16:9 landscape chapter illustration, no text or labels. References establish ONLY polished warm cinematic 3D storybook feather detail and ordinary pigeon characters: main Pigeon gray with orange eyes, turquoise-violet neck, red feet; Bramble stocky brown-gray. Scene from Chapter One: intimate cozy command cabin aboard the space carrier Homeward. Pigeon stands FULL BODY on a low brass desk-perch, looking thoughtfully at a cloth star-route map on the desktop. A conspicuous little bread crumb rests on one blue circular planet mark. A folded home letter, a small loaf crumb, an old stitched cloth map and a repaired cylindrical map tube are beside it. Bramble stands full body in the cabin doorway, arriving with urgent news. Circular window shows ONLY stars and subtle purple-blue nebula, no cities, landscapes, palace or atmosphere. Antique brass fittings and warm reading lamp, turquoise shadows, intimate emotional storytelling of a commander remembering home while duty calls. Feathered bodies, exactly two wings and two feet per pigeon; wings natural and folded. No clothing, hats, badges, human arms, humans, cup characters, weapons, readable writing, captions, collage or border. Keep heads, feet and tails in frame.",
+      "inspection": "Accepted: distinct cabin scene, clear map and crumb, both unclothed pigeons fully in frame.",
+      "referenceImages": [
+        "assets/admiral-pigeon-origins/book-2/cover.png",
+        "assets/admiral-pigeon-origins/book-3/cover.png"
+      ]
+    },
+    "chapter-02": {
+      "path": "assets/admiral-pigeon-origins/book-3/chapter-02.png",
+      "scene": "Pigeon, Bramble and Tiller arrive at Bellflower Gate as the civilian convoy waits and the Iron Talon fleet gathers.",
+      "alt": "Three pigeons in clear flight capsules watch civilian freighters approach a glowing silver space gate, with the dark teapot flagship beyond.",
+      "prompt": "Use case: illustration-story. Brand-new single 16:9 landscape full-page chapter illustration, NO writing, logos, borders or collage. Use references only for cohesive ordinary pigeon character designs, bronze-and-silver spherical flight capsules, and polished cinematic 3D storybook art with detailed feathers and teal-violet-gold lighting. Chapter Two arrival scene: a gigantic SILVER CIRCULAR SPACE GATE with a blue shimmering starlight road fills the middle distance. An unbroken line of colorful civilian freighters approaches it: a very big rounded cargo ship named Teacup (do NOT put the name on it and do NOT shape it like a teacup), one little shuttle with a strapped-on garden of potted greenery. A small bell-shaped silver control station hangs beneath the ring. Foreground: THREE separate completely closed transparent round flight bubbles with bronze-silver bases, interior perches and glowing little thrusters. Hero Pigeon centered in one bubble, ordinary gray, orange eyes and iridescent turquoise-violet neck; stocky brown-gray Bramble in another and slender pale-gray Tiller in the third. All pigeons sit safely INSIDE capsules, no exposed birds, no clothing or hats, two wings and two feet each. In the far background the dark enemy fleet waits, led by a black teapot-shaped armored flagship with clean polished lens-windows. Pure starry outer space and nebula, no floating cities, islands, mountains or clouds. Wonder and concerned anticipation, no attack yet. Keep all three foreground capsules and their occupants fully in frame.",
+      "inspection": "Accepted: all three pigeons inside individual capsules; gate, convoy, garden shuttle and waiting enemy fleet are distinct.",
+      "referenceImages": [
+        "assets/admiral-pigeon-origins/book-2/cover.png",
+        "assets/admiral-pigeon-origins/book-3/cover.png"
+      ]
+    },
+    "chapter-03": {
+      "path": "assets/admiral-pigeon-origins/book-3/chapter-03.png",
+      "scene": "Fast mechanical cleaners erase the first splat attack while Pigeon calls his flights away.",
+      "alt": "Pigeon retreats in a clear capsule beside an enemy window as a giant wiper clears white splats with violet foam.",
+      "prompt": "Use case: illustration-story. New single 16:9 landscape chapter scene, polished warm cinematic 3D children's storybook, detailed feathers and brass, teal-purple space with golden highlights. Match ordinary pigeon and sealed bronze-silver flight capsule designs in references, not their compositions. Chapter Three: close dramatic view alongside a dark armored enemy cruiser. Its huge polished round observation lens has funny irregular WHITE PIGEON-POOP SPLATS on the glass. A large mechanical wiper and partially lowered metal shutter sweep violet cleaning foam across the lens, revealing a clear area behind, showing that the enemy has fast cleaners. Foreground lower left: Pigeon safely INSIDE a completely closed transparent spherical flight bubble, steering away and looking surprised toward the cleaner, FULL capsule visible. One distant second pigeon capsule withdraws behind him. Every pigeon is an ordinary bird with exactly two wings and two feet, no clothes, hat, helmet or human hands, gray feathers and iridescent teal-violet neck, orange eyes. Bubble has a closed glass enclosure, interior perch and small thrusters. Background: silver Bellflower Gate and two civilian ships crossing its blue glow. All outside the ships is starry vacuum, no landscapes or cities. Funny discovery amid mild adventurous urgency, no injuries, gore, fire or explosions. NO captions, text, signs, border, split panels or collage. Show the wiper, foam, large lens and the hero bubble as the key story subjects.",
+      "revisionPrompts": [
+        "Use case: precise-object-edit. Make ONLY this targeted correction to the existing illustration: remove the three uniform-wearing bird crew figures visible through the clean patch of the enemy cruiser's observation window. Replace them with an unoccupied dim cockpit showing red and blue instrument panels only, no creatures and no people. Preserve the glass, the white splats, violet cleaning foam and mechanical wiper, both foreground ordinary unclothed pigeons inside completely closed transparent flight capsules, Bellflower Gate, spacecraft, rich 3D storybook rendering, all lighting and the exact 16:9 composition. No uniforms, hats, new characters, text or captions anywhere."
+      ],
+      "inspection": "Accepted after removing unintended uniformed bird figures from the enemy cockpit; splats, wiper, intact capsules and civilian crossing are visible.",
+      "referenceImages": [
+        "assets/admiral-pigeon-origins/book-2/cover.png",
+        "assets/admiral-pigeon-origins/book-3/cover.png"
+      ],
+      "revisionReference": "Each revision used the immediately preceding generated version of this same illustration."
+    },
+    "chapter-04": {
+      "path": "assets/admiral-pigeon-origins/book-3/chapter-04.png",
+      "scene": "Pigeon secures a rescue line around the damaged enemy landing boat carrying Lieutenant Rusk and the beetle pilot.",
+      "alt": "Pigeon’s capsule threads a tug’s rescue cable around a bent spacecraft wing while a moth and beetle watch anxiously through the window.",
+      "prompt": "Use case: illustration-story. Create a new single 16:9 landscape chapter illustration in polished cinematic 3D children's storybook style, intricate ordinary pigeon feathers, warm golden brass, purple-teal starry vacuum. Reference images give only Pigeon/capsule design, not layout. Chapter Four rescue scene: Pigeon, an ordinary gray pigeon with orange eyes and iridescent turquoise-violet neck, is FULLY INSIDE a CLOSED clear spherical flight capsule with perch, bronze-silver frame, little thrusters and an EXTERNAL mechanical hook. His bubble is threading a rescue cable around the root of the bent wing of a small dark enemy landing boat; the cable leads toward a sturdy friendly tug farther left. Through the landing boat's intact glass window, show a worried little fuzzy MOTH with feathery antennae and a small beetle pilot, both safe inside, natural insect bodies. A large civilian cargo freighter and the silver blue-glowing Bellflower Gate are in the distance. A small abandoned toy squid in striped pajamas floats near a cargo frame, a gentle comic detail. The critical story is rescuing frightened enemies, not attacking. Clear diagonal cable-and-boat composition, full hero capsule, moth window and damaged wing all visible. No fire, explosion, blood, bodies, real weapons, humans, text, logos, border or collage. Pigeon has exactly two wings and two red feet, NO clothes, hat, helmet, accessories or human arms. No bird outside a capsule, no cities or landscapes.",
+      "revisionPrompts": [
+        "Use case: precise-object-edit. Correct ONLY the anatomy of the gray pigeon inside the central clear rescue capsule. REMOVE the extra red claw-like hands gripping the horizontal control bar in front of its chest. A pigeon has NO hands and no arm-like limbs. Keep its TWO real red feet below its body resting on the lower interior perch, and exactly TWO natural feathered wings folded along its sides. Its chest must be uninterrupted ordinary gray feathers above those two lower feet. Keep its face, orange eyes, iridescent teal-purple neck and pose. Keep the capsule, external hook, rescue cable, damaged landing boat, moth and beetle behind glass, toy squid, all spacecraft, gate, star background and composition completely unchanged. No text, clothing, new objects or other changes."
+      ],
+      "inspection": "Accepted after correcting extra claw-like hands on Pigeon; final bird has folded wings and two lower feet, and the moth and beetle remain safe behind glass.",
+      "referenceImages": [
+        "assets/admiral-pigeon-origins/book-2/cover.png",
+        "assets/admiral-pigeon-origins/book-3/cover.png"
+      ],
+      "revisionReference": "Each revision used the immediately preceding generated version of this same illustration."
+    },
+    "chapter-05": {
+      "path": "assets/admiral-pigeon-origins/book-3/chapter-05.png",
+      "scene": "Pigeon and his crew compare current gate charts with the family route cloth as Rusk explains Clang's command habits.",
+      "alt": "Pigeon and three fellow pigeons study charts across a cabin floor while the moth Rusk stands in the doorway.",
+      "prompt": "Use case: illustration-story. New 16:9 landscape single chapter illustration, polished cinematic 3D children's storybook with fine feather detail and warm gold/teal/violet lighting. Scene from Chapter Five inside Pigeon's breathable brass carrier cabin: low wide view of a circle of ordinary pigeons studying several large PAPER STAR CHARTS spread across the FLOOR. Pigeon, normal gray with orange eyes and turquoise-violet iridescent neck, bends his head to inspect an old STITCHED CLOTH MAP alongside a modern drawing of the silver circular gate and dotted routes. Slender pale-gray Tiller and a smaller untidy gray engineer Dr. Nib examine opposite sides. Captain Vela is a dark gray pigeon with a tiny natural beak notch, standing thoughtfully behind. At the open doorway, a small worried furry moth with feathery antennae (Lieutenant Rusk, natural insect body) speaks to them. A round window reveals only distant silver Bellflower Gate and stars. Map tube, simple bowl and ordinary paper cup nearby, no living cup. All four pigeons have exactly TWO FEATHERED WINGS folded along their bodies and TWO RED FEET on the floor. They have no hands, human arms, clothes, hats, medals, helmets or worn equipment. Full bodies visible. Their body language conveys discussion and careful planning, not posing. Reference images only establish art style, Pigeon/cast designs and warm brass setting; invent a new FLOOR-map composition. No readable text, letters, numbers, captions, borders, panels, humans, scenery outside in space or extra characters.",
+      "inspection": "Accepted: distinct floor-map planning scene, four natural unclothed pigeons, readable expressions and a moth at the doorway.",
+      "referenceImages": [
+        "assets/admiral-pigeon-origins/book-2/cover.png",
+        "assets/admiral-pigeon-origins/book-3/chapter-01.png"
+      ]
+    },
+    "chapter-06": {
+      "path": "assets/admiral-pigeon-origins/book-3/chapter-06.png",
+      "scene": "Nib restores the freight circuit's old signal lamps while Tiller scouts the neighboring platforms.",
+      "alt": "Nib peers from a clear maintenance capsule at amber, cyan and purple signal lamps on an old brass freight platform.",
+      "prompt": "Use case: illustration-story. New one-scene 16:9 landscape children's chapter illustration, cinematic polished 3D storybook, rich feather textures, bronze and silver surfaces, teal-purple space with warm golden lamps. References only set ordinary pigeon anatomy and closed round capsule technology. Chapter Six, a DIFFERENT viewpoint: Dr. Nib restores the forgotten signal lamps on a derelict freight platform circling Bellflower Gate. Foreground right: three large weathered vintage signal lanterns on a bent brass rail glow amber, cyan-green and stubborn PURPLE. Loose old insulated wires run ALONG THE MAINTENANCE CRADLE, never on any bird. Nib is a small untidy ordinary gray pigeon with orange eyes, scruffy crown feathers, exactly two folded feathered wings and two feet, no clothes, goggles, gloves, hat or tools worn on his body. He stands safely INSIDE a COMPLETELY CLOSED clear flight capsule mounted on a brass maintenance cradle, looking with delighted curious concentration at the purple lantern. Controls are built into his capsule. Farther away slender pale-gray Tiller scouts in his own closed transparent capsule among old loading platforms and curled cables; the huge silver gate and stars extend behind. No exposed birds in vacuum, human hands, extra limbs, real people, readable signs, captions, numbers, collage, border or violence. Frame both complete capsules, the three signal lamps and the full maintenance cradle. Charming useful discovery rather than a battle pose.",
+      "inspection": "Accepted: Nib and Tiller remain inside closed capsules; the restored lamps and cradle wiring are visible, with natural pigeon anatomy.",
+      "referenceImages": [
+        "assets/admiral-pigeon-origins/book-2/cover.png",
+        "assets/admiral-pigeon-origins/book-3/cover.png"
+      ]
+    },
+    "chapter-07": {
+      "path": "assets/admiral-pigeon-origins/book-3/chapter-07.png",
+      "scene": "Pigeon leads coordinated flights from the old freight circuit as splat attacks make openings for civilian ships.",
+      "alt": "A fierce, focused Pigeon leads a formation of clear flight capsules while white splat pods obscure enemy lenses beside Bellflower Gate.",
+      "prompt": "Use case: illustration-story. New single 16:9 landscape illustration for Chapter Seven, a fierce and courageous launch into battle. Match reference ordinary pigeon appearance, closed bronze-silver flight capsules and luminous cinematic stylized 3D storybook rendering, not their pose or composition. In deep starry outer space, Pigeon's small spherical transparent FLIGHT CAPSULE leads two diagonal lines of other closed pigeon capsules emerging from old curved freight platforms beside the huge silver Bellflower Gate. Hero capsule foreground FULLY VISIBLE at three-quarter angle, showing normal gray Pigeon on a built-in perch with two red feet below his body, two natural folded feathered wings and turquoise-violet iridescent neck. He has a FIERCE DETERMINED PIGEON FACE: narrowed orange eyes, lowered brow feathers and a firmly set DARK CHARCOAL upper and lower beak with only a SMALL PALE IVORY CERE at its base. No cheerful smile, yellow/gold/orange beak, human eyebrows, hands or extra limbs. His sealed capsule's thrusters glow intensely. Beyond him, coordinated small capsules release a few fictional splat pods toward the polished lenses of dark enemy cruisers while friendly civilian ships start through the blue glowing gate. Every pigeon outside ships is completely INSIDE its own CLOSED clear capsule; birds have no clothes, hats, helmets or accessories. Orange signal lamps on the old platforms, golden rim light, teal-purple nebula, dynamic clear motion and real concentration. No explosions, gore, injured characters, humans, text, numbers, labels, border or collage. The story is courage and coordinated action.",
+      "revisionPrompts": [
+        "Use case: precise-object-edit. Make one targeted color/material correction: every vivid PURPLE liquid splash or streaming blob coming from the small splat pods or striking the enemy's red observation lenses must instead be opaque IVORY-WHITE pigeon poop mixed with stardew gel, like irregular white splats. These are funny wet splat attacks, not purple energy beams. Preserve the BLUE capsule thruster trails and purple nebula background unchanged. Keep all pigeons, exact fierce expression and DARK CHARCOAL beak with PALE IVORY CERE, natural two-wing/two-foot anatomy, closed transparent capsules, ships, silver gate, lighting and 16:9 composition completely unchanged. No other edits, text or new objects."
+      ],
+      "inspection": "Accepted after changing incorrect purple liquid splats to the manuscript's ivory-white mixture; Pigeon has a fierce expression, dark charcoal beak and pale cere.",
+      "referenceImages": [
+        "assets/admiral-pigeon-origins/book-2/cover.png",
+        "assets/admiral-pigeon-origins/book-3/cover.png"
+      ],
+      "revisionReference": "Each revision used the immediately preceding generated version of this same illustration."
+    },
+    "chapter-08": {
+      "path": "assets/admiral-pigeon-origins/book-3/chapter-08.png",
+      "scene": "Pigeon pulls Tiller's trapped capsule free of a twisted platform bracket while the battle continues around them.",
+      "alt": "A determined Pigeon tows frightened Tiller’s trapped capsule away from a twisted metal bracket, with signal lamps glowing behind them.",
+      "prompt": "Use case: illustration-story. New single 16:9 landscape scene from Chapter Eight, cinematic polished 3D children's storybook with detailed feathers, warm gold rim light and deep teal-purple starry space. Reference Pigeon and spacecraft design only, invent a close dramatic rescue composition. Show TWO FULLY VISIBLE completely CLOSED transparent bronze-silver flight capsules beside a damaged old freight platform at the outer silver rim of Bellflower Gate. On the right, slender pale-gray Tiller crouches worried inside his intact clear capsule which is caught under a twisted metal bracket. His orange eyes are wide with fear and concentration, no smile. On the left, Pigeon is safely inside his own closed bubble, using its EXTERNAL rescue hook and a taut cable to pull Tiller's capsule sideways out of the bracket. Pigeon's face is intensely determined and concerned, narrowed orange eyes and a firmly set DARK CHARCOAL upper and lower beak with a SMALL PALE IVORY cere at the base. All pigeon beaks are charcoal, never yellow, gold or orange. Both birds have exactly TWO natural folded wings and TWO red feet on their interior perches, no hands on controls, no extra limbs, clothing, hats or helmets. The capsules have mild scuffs and bent outside guards, but glass is unbroken and both birds safe. Two restored signal lamps glow amber and cyan in the distance, where Homeward protects the other ships. No fire, blasts, injured bodies, exposed birds, humans, text, numbers, border or collage. Focus on cable, trapped bracket, communicating eyes and courageous rescue.",
+      "revisionPrompts": [
+        "Use case: precise-object-edit. Correct only the FLIGHT CAPSULE ENCLOSURES in this rescue illustration. Both pigeons are in outer-space vacuum and must be fully enclosed. The left capsule currently has a raised/open transparent lid: LOWER IT AND LATCH IT SHUT. Show BOTH flight capsules as completely SEALED spherical vehicles, with uninterrupted transparent curved glass across the whole front of each bird, subtle curved glass reflections visibly crossing the foreground, and a continuous closed rim. No open hatches or raised lids. Preserve both pigeons' exact natural two-wing/two-foot anatomy, expressions, charcoal beaks and ivory ceres; preserve rescue cable, metal bracket, all ships, silver gate, lighting and composition. Keep glass clear enough to see birds well. No other changes, new objects, clothes, text or collage."
+      ],
+      "inspection": "Accepted after closing an incorrectly raised canopy; both birds are visibly enclosed, with concerned and determined expressions, dark beaks and pale ceres.",
+      "referenceImages": [
+        "assets/admiral-pigeon-origins/book-2/cover.png",
+        "assets/admiral-pigeon-origins/book-3/cover.png"
+      ],
+      "revisionReference": "Each revision used the immediately preceding generated version of this same illustration."
+    },
+    "chapter-09": {
+      "path": "assets/admiral-pigeon-origins/book-3/chapter-09.png",
+      "scene": "Pigeon signals beside the Bellhouse while the gate reopens, civilians cross and allied escorts surround the splatted Crown of Order.",
+      "alt": "Pigeon watches from a sealed capsule beside the control station as civilian ships cross the reopened gate and allied ships surround the splattered teapot flagship.",
+      "prompt": "Use case: illustration-story. New single 16:9 landscape Chapter Nine illustration, warm cinematic polished 3D children's storybook with intricate feathers and brass, dark teal-violet starry space. Use references only for Pigeon identity, CLOSED flight-capsule construction and the silver gate/black teapot flagship. Compose a grand decisive moment from beside the SMALL SILVER BELL-SHAPED CONTROL STATION hanging beneath Bellflower Gate. Foreground left, Pigeon is inside his completely SEALED transparent round bronze-silver capsule with CONTINUOUS CLOSED RIM and clear curved glass over the entire bird; a built-in CYAN SIGNAL LAMP shines toward a friendly recovery vessel docking safely at the bell-shaped station. His expression is alert, courageous and fiercely concentrated, orange eyes narrowed, DARK CHARCOAL upper/lower beak with small PALE IVORY cere; ordinary gray body, teal-purple neck, two folded feathered wings, two red feet on his perch, no arms or hands. Middle distance: huge silver ring opens wide, blue starlight road with civilian ships escaping. On the right, the black TEAPOT-SHAPED Crown of Order flagship has broad funny IVORY-WHITE poop smears covering several observation lenses, surrounded by golden allied escort ships that block its path. Three small CLOSED clear pigeon capsules hover near its windows; all birds fully inside vehicles. No exploding ships, gore, exposed birds, clothes, hats, humans, weapons firing, text, labels, numbers, collage or borders. The victory must visibly depend on the station recovery, civilian passage and allied fleet together, not a lone pigeon. All main subjects in frame, distinct from the launch scene.",
+      "inspection": "Accepted: Pigeon remains visibly behind closed glass with a fierce focused face and dark beak; civilian crossing, station and surrounded flagship convey the combined victory.",
+      "referenceImages": [
+        "assets/admiral-pigeon-origins/book-3/chapter-08.png",
+        "assets/admiral-pigeon-origins/book-3/cover.png"
+      ]
+    },
+    "chapter-10": {
+      "path": "assets/admiral-pigeon-origins/book-3/chapter-10.png",
+      "scene": "Nib and Pigeon share a relieved greeting after the battle while Bramble brings the pajama squid to recovering Tiller.",
+      "alt": "Pigeon and Nib gently touch foreheads on Homeward’s deck while Tiller rests beside Bramble and a toy squid in pajamas.",
+      "prompt": "Use case: illustration-story. New single 16:9 landscape illustration for Chapter Ten, quiet relief after the battle, polished warm cinematic 3D children's storybook, detailed ordinary feathers and brass surfaces. Reference images give only cast and carrier design. Scene INSIDE Homeward's enclosed breathable upper rear flight deck, clear canopy and brass roof beams visibly surrounding everyone, distant peaceful silver Bellflower Gate and stars outside. Center: normal gray Pigeon with iridescent teal-violet neck and small scruffy gray engineer Nib gently touch FOREHEADS in heartfelt relieved friendship. Their eyes are softly closed or tender, not battle-angry. Show both FULL BODY, each with exactly two natural feathered wings folded and two red feet on the deck. Their beaks are DARK CHARCOAL upper and lower with a SMALL PALE IVORY cere, never yellow/orange/gold. To the right, slender pale-gray Tiller rests on a padded medical perch which supports one slightly extended feathered wing; no injury or bandage shown. Stocky brown-gray Bramble stands beside him, having placed a little toy SQUID IN STRIPED PAJAMAS on the perch. Tiller looks tired and relieved, Bramble warmly concerned. Behind them a scuffed flight capsule with a bent outer landing guard is parked for repair. No clothes, hats, medals, goggles, hands, human arms or extra limbs on ANY pigeon. No humans, text, labels, captions, borders, panels, fire or gore. Intimate comforting composition with room around all four birds and the toy.",
+      "inspection": "Accepted: tender expressions, four natural unclothed pigeons, visible enclosed carrier canopy, supporting perch and toy; dark beaks and pale ceres retained.",
+      "referenceImages": [
+        "assets/admiral-pigeon-origins/book-2/cover.png",
+        "assets/admiral-pigeon-origins/book-3/chapter-06.png"
+      ]
+    },
+    "chapter-11": {
+      "path": "assets/admiral-pigeon-origins/book-3/chapter-11.png",
+      "scene": "Vela unveils Pigeon's command plate at the promotion ceremony while family and fellow flyers celebrate.",
+      "alt": "Pigeon stands proudly beside Vela and a brass command perch as an audience of pigeons celebrates his promotion above Bellflower Gate.",
+      "prompt": "Use case: illustration-story. New single 16:9 landscape Chapter Eleven illustration: Pigeon's promotion ceremony above Bellflower Gate. Polished cinematic stylized 3D children's storybook with detailed ordinary feathers, luminous gold, teal and violet. Reference images establish Pigeon and fellow birds, not a repeated composition. A beautiful BREATHABLE INTERIOR ceremonial viewing hall with clear panoramic glass walls and visible brass roof arches, blue starry space and the reopened silver gate beyond. At the center on a small raised stage, ordinary gray Pigeon stands FULL BODY with turquoise-violet iridescent neck, two red feet and two natural folded wings, chest proudly puffed, orange eyes showing humble happy astonishment. Beside him Captain Vela, a dark slate-gray pigeon with tiny natural notch in her DARK CHARCOAL beak, unveils a polished brass command plate on a PERCH PEDESTAL. The plate has a simple feather/star emblem but ABSOLUTELY NO LETTERS OR WRITING. Rank is on the perch, NOT on Pigeon. Audience rows contain natural unclothed pigeons in gray/brown plumage, including three family pigeons in the front looking proud and touched, a few young pigeons joyfully cooing. Warm ribbons and simple nonlettered flags decorate the hall, an untouched seed cake on a side table. EVERY pigeon has DARK CHARCOAL upper/lower beak with a SMALL PALE IVORY cere, never gold/orange/yellow beak, exactly two wings/two feet, NO clothes, hats, medals, badges, helmets, gloves, human arms or hands. No people, cup, text, titles, numbers, border or collage. Joyful and dignified rather than battle-fierce; main birds fully framed.",
+      "inspection": "Accepted: delighted dignified expressions, rank emblem on the perch rather than the bird, no baked lettering or costumes, and dark beaks with pale ceres.",
+      "referenceImages": [
+        "assets/admiral-pigeon-origins/book-3/cover.png",
+        "assets/admiral-pigeon-origins/book-3/chapter-05.png"
+      ]
+    },
+    "chapter-12": {
+      "path": "assets/admiral-pigeon-origins/book-3/chapter-12.png",
+      "scene": "At the family home, Pigeon and his parents and Gran Cora examine the workshop drawing enclosed with his first academy assignment.",
+      "alt": "Pigeon and his family gather in their warm stone home around a paper drawing of an unfinished turquoise cup with one golden handle and two brass legs.",
+      "prompt": "Use case: illustration-story. New single 16:9 landscape final-chapter illustration, tender homecoming and curious new beginning, cinematic polished 3D children's storybook. Reference one establishes the warm little rock-wall family home with BLUE CURTAIN, shelves and bowls; reference two establishes silver-browed Gran Cora and original cloth route map; reference three establishes the ADULT gray Pigeon, not a chick. Show the adult Pigeon back at the little family home in ancient Old Wing Cavern, with Mother Tansy, Father Bram and Gran Cora: exactly FOUR ordinary natural pigeons, all gray with subtle iridescent teal-violet necks, orange eyes, DARK CHARCOAL upper/lower beaks with SMALL PALE IVORY ceres, two feathered wings and two red feet each, no clothes, hats, glasses, badges, arms or hands. Pigeon stands beside a low wooden table, smiling gently with eager curiosity; Gran Cora has soft silvery brow feathers, parents look warmly proud. The table holds their intact old stitched route CLOTH, its repaired map tube, a seed loaf, an opened envelope and ONE LARGE SHEET OF PAPER LYING FLAT. On THAT PAPER ONLY is a clearly flat colored workshop DRAWING of an UNFINISHED TURQUOISE CUP with delicate incomplete GOLD CIRCUIT FILIGREE, ONE golden handle, TWO brass legs, NO ARMS and NO FACE. It is an inanimate design drawing, not a living cup or a three-dimensional cup in the room; do not awaken or animate it. No cup name or other writing anywhere. Warm lantern and morning sunlight; blue curtain at nook window, crooked wooden shelf, ordinary bowls, potted greenery; outside the window glimpse cozy cave ledges and ancient pigeon stonework, not space. Keep all four birds and the complete paper drawing visible. No Star Beard, humans, ships, text, letters, numbers, collage, panels or border.",
+      "inspection": "Accepted: four natural pigeons with charcoal beaks and pale ceres, blue-curtained home matched to Book One, and the unnamed cup exists only as a flat faceless drawing with one handle, two legs and no arms.",
+      "referenceImages": [
+        "assets/admiral-pigeon-origins/book-1/chapter-01.png",
+        "assets/admiral-pigeon-origins/book-1/chapter-02.png",
+        "assets/admiral-pigeon-origins/book-3/cover.png"
+      ]
+    }
+  },
+  "inspectionNotes": "Every selected image was displayed by ImageGen and visually reviewed for its actual scene, pigeon anatomy, facial emotion, dark-beak and pale-cere colors, clothing exclusion, and required space enclosure. Five targeted revisions corrected scene leakage, unintended uniforms, extra limbs, splat color, and an open capsule lid. No image was recolored or edited by another tool."
+}

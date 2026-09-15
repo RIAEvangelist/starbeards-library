@@ -1,0 +1,245 @@
+{
+  "book": 1,
+  "title": "The Little Pigeon in the Great Stone Wall",
+  "styleNotes": [
+    "Cinematic stylized 3D children's illustrations with detailed ordinary pigeon feathers, warm gold light and teal-violet shadows.",
+    "All pigeons retain dark charcoal upper and lower beaks with a small pale ivory or white cere at the base, including under warm lighting.",
+    "Ordinary pigeon anatomy with two wings and two feet; no clothing, hats or worn badges.",
+    "Expressions follow each scene: wonder, humor, concern, fierce determination, tenderness, relief and pride.",
+    "Landscape artwork without embedded title text, letters, numbers, borders or collages.",
+    "References preserve character appearance and rendering style; initial prompts and subsequent corrections are retained in full."
+  ],
+  "images": [
+    {
+      "id": "cover",
+      "path": "assets/admiral-pigeon-origins/book-1/cover.png",
+      "alt": "A young gray pigeon stands outside his blue-curtained rock-wall home, beneath the enormous carved wings of an ancient pigeon cavern.",
+      "scene": "Young Pigeon on the doorstep of his small blue-curtained home in the monumental Old Wing Cavern.",
+      "prompt": "Create ONE lavish cinematic stylized 3D children's storybook illustration, landscape 16:9, for the COVER of The Little Pigeon in the Great Stone Wall. Match ONLY the painterly cinematic rendering, detailed soft feather texture, expressive ordinary pigeon appearance, violet/teal/gold light and warm wonder of the two supplied style references; exclude their humans, robots, cup and crystalline academy. No typography, letters, numbers, words, logos, watermarks, border, or collage.\nA small young ordinary gray pigeon with an iridescent turquoise-violet throat, bright orange eyes, black wing bars, small pink feet and gently fluffy youth feathers stands proudly on the broad stone doorstep of his tiny home high in a colossal ancient pigeon cavern. Both feet visible, wings folded naturally, entire bird within frame, NO clothing, hat, jewelry, uniform or badge. Low pigeon-eye camera, hero occupying foreground left third, gazing into a breathtaking enormous cavern. His cozy rock-wall nook at left has a soft blue curtain, seedgrass pots, a slightly crooked wooden shelf glimpsed inside and warm amber lamplight. An old intact cream route cloth folded on the doorstep has simple blue/brown winding lines and one crooked stitched star, purely pictorial, no writing. Monumental ancient pigeon wings carved into the far stone arch, many tiny illuminated pigeon homes, winding ledges and delicate footbridges reveal scale. A high opening admits golden dawn rays through violet mist; subtle teal bounce light on stone. Whimsical and inviting yet truly epic, exceptionally detailed weathered rock and feathers, atmospheric perspective, balanced readable composition, no humans anywhere. This is an original cover scene, not a reproduction of a reference image.",
+      "references": [
+        "assets/prism-galaxy/page-02.png",
+        "assets/prism-galaxy/page-17.png"
+      ]
+    },
+    {
+      "id": "chapter-01",
+      "path": "assets/admiral-pigeon-origins/book-1/chapter-01.png",
+      "alt": "Young Pigeon sits surprised in a bowl of millet while his parents look on beside the crooked shelf and blue curtain.",
+      "scene": "Young Pigeon lands in Father's millet bowl inside the little rock-wall home.",
+      "prompt": "Create ONE lavish cinematic stylized 3D children's storybook illustration, landscape 16:9, detailed soft feathers and weathered warm stone, violet/teal/gold lighting, affectionate visual comedy. Use the supplied cover to preserve the appearance of young Pigeon and his blue-curtained ancient rock-wall home, while creating a wholly different indoor scene. No text, letters, numbers, logos, watermarks, border or collage. No humans, robots, cups, hats, clothes, uniforms or worn badges.\nInside a modest little pigeon home carved into the immense ancient cave wall, the small young gray Pigeon has accidentally landed bottom-first in a round wooden bowl of golden millet on a low wooden table. His head and shoulders rise out of the seed bowl, both folded wings anatomically natural, his expression a surprised earnest dignity, a few seeds scattered on the tabletop. He has orange eyes, fluffy gray head, teal-violet neck and dark wing bars. His ordinary gray pigeon mother Tansy stands beside the bowl, tilting her head fondly; his slightly larger ordinary gray pigeon father Bram stands at the other side, amused at the millet situation. Exactly three living birds, each with normal two wings and two feet; main subjects fully framed, tiny pink feet visible on both parents. Pigeon-scale room, three bowls on a slightly crooked wooden shelf leaning left, soft blue curtain at open window, father's pots of seedgrass on sill. Through the window glimpse vast violet Old Wing Cavern with golden lit ledge homes and a distant monumental carved-wing arch. Warm golden lantern casts cozy light, cinematic depth, tactile feathers and wood, humorous loving family moment. No anthropomorphic hands. This scene depicts Chapter One's millet-bowl landing, not the cover doorstep pose.",
+      "references": [
+        "assets/admiral-pigeon-origins/book-1/cover.png"
+      ],
+      "chapter": 1,
+      "corrections": [
+        {
+          "purpose": "Restore the established dark charcoal beak and pale ivory cere palette while preserving scene and expression.",
+          "prompt": "Make a narrowly targeted color correction to this existing chapter illustration. Preserve composition, framing, characters, age, identities, every expression, pose, eyes, feather color, scene, props and lighting. On ALL THREE pigeons, color the exterior of BOTH upper and lower beak DARK CHARCOAL GRAY with only a small PALE IVORY/WHITE CERE at the base near the forehead. The beak's hard surface remains charcoal even in golden lighting; no yellow, gold, ochre, orange or pink beak surface. The tiny mouth interior may retain natural warm color. Preserve all other image details exactly, including the young pigeon sitting in the millet bowl. Match the original ordinary pigeon beak shown in the second reference. No added text, marks or clothing.",
+          "references": [
+            "assets/admiral-pigeon-origins/book-1/chapter-01.png",
+            "assets/prism-galaxy/page-17.png"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chapter-02",
+      "path": "assets/admiral-pigeon-origins/book-1/chapter-02.png",
+      "alt": "Young Pigeon and Gran Cora study a cream route cloth beneath a sunbeam in the ancient Hall of Returning Wings.",
+      "scene": "Gran Cora tells young Pigeon about Messenger Fern and the family route cloth in the Hall of Returning Wings.",
+      "prompt": "Create ONE lavish cinematic stylized 3D children's storybook illustration, landscape 16:9. Match the supplied Book One cover's gray pigeon appearance, rich detailed feathers, ancient warm stone and luminous teal/violet/gold palette. Wholly new scene for Chapter Two, quiet wonder and family history. No text, letters, numbers, logo, watermarks, borders, collage; no humans, robots, cups, hats, clothes, glasses or badges.\nIn the Hall of Returning Wings inside an ancient warrior-pigeon cave, a small young fluffy gray pigeon with orange eyes and iridescent turquoise-violet throat stands beside his grandmother Cora at a low broad stone table. Gran is an elderly ordinary gray pigeon with softer silver head feathers, kind attentive expression and a subtly crooked tail, no costume. Both birds fully in frame, normal two folded wings and two pink feet each, facing an OLD CREAM CLOTH ROUTE MAP laid open between them. Gran's beak indicates a crooked brown stitched star along a winding blue and brown route; the cloth has shelter circles and simple pictorial marks only, no words. Young Pigeon leans forward, discovering his family's history. Their heads and eyes are sharp and expressive. Around them are monumental worn stone pigeon-wing carvings, shelves of old wooden message cylinders and a humble old spoon beside an ancient wind gauge. The wall bears only abstract weathered marks with no readable characters. A high crack sends a golden sunbeam onto the intact map and both birds; the immense hall recedes into violet dust and teal shadows. Pigeon-eye camera, intimate foreground within epic architecture, tactile fabric threads and feathers, warm and emotionally sincere, not a military battle.",
+      "references": [
+        "assets/admiral-pigeon-origins/book-1/cover.png"
+      ],
+      "chapter": 2,
+      "corrections": [
+        {
+          "purpose": "Restore the established dark charcoal beak and pale ivory cere palette while preserving scene and expression.",
+          "prompt": "Make a narrowly targeted BEAK COLOR correction to this existing Chapter Two illustration. Preserve all composition, framing, two foreground pigeons' ages and identities, tender interested expressions, eyes, feather colors, poses, ancient hall, map, props and lighting. On BOTH young Pigeon and elderly Gran Cora, make the exterior hard surface of BOTH upper and lower beak DARK CHARCOAL GRAY, with only a small PALE IVORY/WHITE CERE at the base near the forehead. No yellow, gold, ochre, orange, pink or ivory hard beak surface, even in warm lighting; the cere alone is ivory. Preserve everything else, no new text or clothing. The second reference shows the original ordinary pigeon beak palette to match.",
+          "references": [
+            "assets/admiral-pigeon-origins/book-1/chapter-02.png",
+            "assets/prism-galaxy/page-17.png"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chapter-03",
+      "path": "assets/admiral-pigeon-origins/book-1/chapter-03.png",
+      "alt": "Grown Pigeon looks back at his parents and Gran Cora beside his service chest, with the open sky beyond the cavern entrance.",
+      "scene": "Now grown, Pigeon says goodbye to his family and takes the route cloth with him to enlist.",
+      "prompt": "Create ONE lavish cinematic stylized 3D children's storybook illustration, landscape 16:9, for Chapter Three's enlistment farewell. Use supplied images to preserve Pigeon's gray feathers, black wing bars, orange eyes, iridescent teal-violet throat, Gran Cora's silver-gray appearance and the intact cream route cloth with brown/blue winding lines and crooked stitched star. Years have passed: Pigeon is now a fully grown young adult ordinary pigeon, leaner and taller than the child. Never clothing, hats, glasses, worn badges, humans, robots or cups. No text, letters, numbers, logos, borders, watermarks or collage.\nAt a broad sunlit ledge just inside the enormous mouth of Old Wing Cavern, young adult Pigeon pauses before leaving to enlist in the Planetary Pigeon Airforce. His small plain wooden service chest sits beside him with the folded family route cloth draped over it, no writing on either. Gran Cora stands near the chest, her subtly crooked tail visible. His ordinary gray parents Tansy and Bram stand close behind, loving and proud. Exactly four full living pigeons in the foreground, each normal two folded wings and two pink feet, no anthropomorphic hands. Pigeon turns his head gently backward toward his family, while his body points toward the boundless clear blue sky on the right. The blue curtain of the family's tiny distant rock-wall home is visible across the cavern behind them, warm lantern dots and weathered ancient carved wings giving a sense of home. Vast green valleys and pale mountains beyond the cave entrance promise a larger world. Golden dawn rim lighting, soft teal shadows, cinematic wide view and touching restrained emotion. Leave breathing room around all tails and feet. A new threshold-departure scene, not the cover pose or an indoor map discussion.",
+      "references": [
+        "assets/admiral-pigeon-origins/book-1/cover.png",
+        "assets/admiral-pigeon-origins/book-1/chapter-02.png"
+      ],
+      "chapter": 3,
+      "corrections": [
+        {
+          "purpose": "Restore the established dark charcoal beak and pale ivory cere palette while preserving scene and expression.",
+          "prompt": "Correct ONLY beak colors in the first image, preserving the whole family farewell illustration and every pose, expression, feather, prop, scene and framing. On all four foreground pigeons, upper and lower hard beak surfaces must be DARK CHARCOAL GRAY. Keep a small PALE IVORY/WHITE CERE only at the base near the forehead. Eliminate ochre, gold, yellow, orange and pink coloring from the hard beak surfaces even in warm lighting. Use the second original pigeon reference for this beak palette only. Preserve the grown Pigeon's backward glance, the three relatives, service chest, map, blue curtain and sunlit mountain view. No added clothing, markings or text.",
+          "references": [
+            "assets/admiral-pigeon-origins/book-1/chapter-03.png",
+            "assets/prism-galaxy/page-17.png"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chapter-04",
+      "path": "assets/admiral-pigeon-origins/book-1/chapter-04.png",
+      "alt": "On a training tower ledge, Pigeon uses his beak to free a teal streamer caught around Bramble's foot while Tiller flies in the distance.",
+      "scene": "Pigeon turns back during the training flight to free Bramble's foot from a loose streamer.",
+      "prompt": "Create ONE lavish cinematic stylized 3D children's storybook illustration, landscape 16:9, for Chapter Four of a pigeon adventure. Use supplied cover ONLY as rendering/pigeon-appearance reference; wholly different airy outdoor military training location, no cavern-home composition. Rich feathery detail and gold/teal/violet light. NO text, letters, numbers, watermarks, borders, collage, humans, robots, cups, hats, clothing, uniforms or worn insignia.\nOn a broad maintenance ledge of a sandstone training marker tower at High Perch Station, grown young adult Pigeon has turned back from a race to help his new friend Bramble. Pigeon is a lean ordinary gray pigeon with orange eyes, dark wing bars and turquoise-violet throat. He stands beside Bramble and gently draws the loose end of a teal cloth streamer free with his BEAK. Bramble is a distinctly stockier, round gray-BROWN ordinary pigeon with warm rust-brown wing feathers, a small muted purple throat and pink feet. A loose cloth streamer lies around one Bramble foot, its free end visibly pulled by Pigeon; Bramble looks grateful and mildly embarrassed, calm and unhurt. Exactly two main full birds on the ledge, folded wings, both feet anatomically natural, no human hands. Farther away their lean pale-gray friend Tiller is a small bird flying ahead around a second tower, too far to dominate. Three clearly separated stone marker towers form a flight course over a breathtaking mountain valley, training station arches and perches in the background, clear morning sky, warm sun, light wind moving streamers. The two foreground birds fit fully inside the frame with generous space for tails and feet; the small distant flyer has a normal pair of wings. Vivid, readable action about returning for a friend.",
+      "references": [
+        "assets/admiral-pigeon-origins/book-1/cover.png"
+      ],
+      "chapter": 4,
+      "corrections": [
+        {
+          "purpose": "Restore the established dark charcoal beak and pale ivory cere palette while preserving scene and expression.",
+          "prompt": "Correct ONLY the pigeon beak colors in the first image. Preserve the training-tower scene, all poses and expressions, and Pigeon using his beak to pull the teal streamer free from Bramble's foot. All foreground pigeons must have DARK CHARCOAL GRAY hard upper and lower beak surfaces, with a small PALE IVORY/WHITE CERE at the base near the forehead. Specifically change Bramble's peach-orange beak to charcoal, and preserve Pigeon's grip on the cloth with a charcoal beak. No ochre, gold, yellow, orange or pink hard beak surfaces under warm light. Use the second original pigeon reference only for the beak palette. Preserve colors of eyes, feet, feathers, cloth, sun, landscape, and the full-body framing. No text or clothing.",
+          "references": [
+            "assets/admiral-pigeon-origins/book-1/chapter-04.png",
+            "assets/prism-galaxy/page-17.png"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chapter-05",
+      "path": "assets/admiral-pigeon-origins/book-1/chapter-05.png",
+      "alt": "Three pigeon recruits lift a bowl in a wooden carrying frame as sparkling water spills beneath Pigeon's tail.",
+      "scene": "Pigeon, Bramble and Tiller practice carrying a water bowl together and learn to balance their load.",
+      "prompt": "Create ONE lavish cinematic stylized 3D children's storybook illustration, landscape 16:9, a new Chapter Five scene of three pigeon recruits learning to carry a water bowl together. Match Pigeon and Bramble exactly as ordinary uncostumed birds in the supplied training-tower reference: Pigeon gray, dark wing bars, orange eyes, bright teal-violet throat; Bramble stocky gray-brown with brown wing feathers and muted violet neck. Third recruit Tiller is a noticeably leaner PALE GRAY pigeon, pale wings with subtle dark bars and a little silver-teal neck sheen. Normal bird anatomy, two wings and two feet per bird. No humans, hands, clothes, hats, glasses, worn badges, cup character. No text, letters, numbers, borders, collage, watermarks.\nA wide clear view at bird height over the stone practice courtyard of High Perch Station: the three recruits are hovering just above the landing platform carrying one small water-filled ceramic BOWL in a triangular wooden carrying frame slung from short rope foot loops. Their feet grip the three separate rope loops, wings open, all three birds and all six wings fully visible with ample clear space around each, no overlap confusing anatomy. Pigeon at upper left is surprised as the slightly tilted bowl splashes a bright arc of sparkling water beneath his tail. Round Bramble at upper right looks comically patient, pale lean Tiller centered slightly farther back concentrates on leveling the load. The bowl and frame hang visibly below their feet so the mechanics are readable. A sturdy dark-slate ordinary pigeon Sergeant Flint watches from a distant stone rail, no uniform. Warm afternoon sunlight through spray, turquoise water, gold sandstone, violet mountain shadows, charming earnest teamwork and beautiful tactile feathers. Keep the three main flyers large enough to read expressions, never crowded or cropped. No route cloth in this exercise.",
+      "references": [
+        "assets/admiral-pigeon-origins/book-1/chapter-04.png"
+      ],
+      "chapter": 5,
+      "corrections": [
+        {
+          "purpose": "Restore complete wing framing.",
+          "prompt": "Revise this image by widening the camera framing approximately twenty percent. Preserve the exact scene, characters, colors, rendering style, action, water bowl, ropes, and outdoor training station. The leftmost gray pigeon's raised wing is clipped by the top edge: show its COMPLETE tip and all feathers with clear sky above it. Keep all three flying pigeons, every wing and tail entirely inside the frame with comfortable margins, and show the dark slate instructor on the right fully within the frame too. Ordinary pigeon anatomy only, two wings and two feet each; no new birds in the foreground. Maintain landscape 16:9, no text, words, letters, numbers, watermarks, borders, collage, clothes, hats or badges.",
+          "references": [
+            "assets/admiral-pigeon-origins/book-1/chapter-05.png"
+          ]
+        },
+        {
+          "purpose": "Restore the established dark charcoal beak and pale ivory cere palette while preserving scene and expression.",
+          "prompt": "Correct ONLY beak colors in this water-bowl training illustration. Preserve the exact wide framing with all wings fully visible, all pigeon identities and expressions, flight poses, ropes, bowl, splash, instructor, station and lighting. All three flying pigeons and the dark-slate instructor have DARK CHARCOAL GRAY exterior upper and lower beak surfaces and a small PALE IVORY/WHITE CERE at the base near the forehead. Remove peach, yellow, gold, ochre and orange from hard beak surfaces. Preserve open beaks and natural warm mouth interiors where visible; preserve surprised and concentrated expressions. The second reference shows the correct original beak palette. No added text, clothing or new objects.",
+          "references": [
+            "assets/admiral-pigeon-origins/book-1/chapter-05.png",
+            "assets/prism-galaxy/page-17.png"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chapter-06",
+      "path": "assets/admiral-pigeon-origins/book-1/chapter-06.png",
+      "alt": "Pigeon and Gran Cora watch their blue curtain billow inward while storm clouds gather beyond the cavern and supper waits behind them.",
+      "scene": "During the homecoming supper, Pigeon and Gran notice the blue curtain blowing the wrong way as the storm approaches.",
+      "prompt": "Create ONE lavish cinematic stylized 3D children's storybook illustration, landscape 16:9, Chapter Six: Weather at the Window. Preserve the pigeon and home appearance from supplied references: ordinary gray Pigeon, dark wing bars, orange eyes, turquoise-violet neck; Gran Cora elderly silver-gray, slightly crooked tail; soft blue curtain, modest rough stone walls, crooked wooden shelf. No humans, hands, robots, cup characters, clothing, hats, glasses or badges. No text, letters, numbers, watermarks, borders or collage.\nA homecoming supper inside the little rock-wall pigeon home has been interrupted by an unusual gust. In a dramatic diagonal composition, grown Pigeon and Gran Cora stand together on the low interior window ledge, looking alertly at the soft BLUE CURTAIN billowing inward. Both birds entirely within frame, normal folded wings and pink feet visible, ordinary pigeon anatomy. The curtain is clearly moving into the room, lifted by wind. Beyond the open window the distant mouth of Old Wing Cavern shows a wall of deep slate and violet storm clouds, tiny cold rain streaks; nearer protected roof gardens are strangely still. Golden lamps inside cast warm light onto Pigeon's orange eye and detailed teal feathers. At left a low supper table holds bowls of seed cakes and seeds, and only in soft background focus stocky gray-brown Bramble and lean pale-gray Tiller sit by the table, startled out of their supper. The crooked shelf has a fresh simple wooden support beneath it; three bowls stay upright. Keep the cozy small home and threatening vast weather readable at once, suspenseful and warm rather than frightening horror. Do not show a flood inside the home, and do not make birds human-sized.",
+      "references": [
+        "assets/admiral-pigeon-origins/book-1/chapter-01.png",
+        "assets/admiral-pigeon-origins/book-1/chapter-02.png",
+        "assets/admiral-pigeon-origins/book-1/chapter-04.png"
+      ],
+      "chapter": 6,
+      "corrections": [
+        {
+          "purpose": "Restore the established dark charcoal beak and pale ivory cere palette while preserving scene and expression.",
+          "prompt": "Correct ONLY the beak colors of all four pigeons in the first illustration. Keep Pigeon and Gran at the window, their alert concerned expressions, Bramble and Tiller behind, blowing curtain, storm and supper unchanged. Every exterior upper and lower beak surface must be DARK CHARCOAL GRAY with a small PALE IVORY/WHITE CERE at the base near the forehead, matching the original pigeon in the second reference. Remove pink, peach, orange, gold, ochre or yellow from hard beak surfaces even under golden interior light. Preserve all feather colors, eyes, feet, positions, dramatic lighting and full scene; no new text, clothing or objects.",
+          "references": [
+            "assets/admiral-pigeon-origins/book-1/chapter-06.png",
+            "assets/prism-galaxy/page-17.png"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chapter-07",
+      "path": "assets/admiral-pigeon-origins/book-1/chapter-07.png",
+      "alt": "Four determined pigeon rescuers pause inside a dark mountain passage with a route cloth, lantern, empty baskets and coiled rescue line.",
+      "scene": "Pigeon, Flint, Bramble and Tiller enter the mountain with the route cloth, baskets and rescue lines.",
+      "prompt": "Create ONE lavish cinematic stylized 3D children's storybook illustration, landscape 16:9, Chapter Seven: the four Airforce rescuers enter the mountain. Use references for appearance and luxurious detailed-feather rendering. All ordinary pigeons without clothes, hats, glasses or worn badges; two wings and two pink feet each, no hands. NO humans, robots, cup characters, text, letters, numbers, borders, collage, watermarks.\nAn adventurous low wide camera inside a rough dark mountain passage looks back toward the golden-lit entrance. Four FULL pigeons, clearly separated, move from that warm home light into the unknown. At front left grown Pigeon, gray with black wing bars and teal-violet neck, stands at a dry stone bend studying the tunnel with intense determined orange eyes, beak closed, eyebrows and feather posture expressing concentration and a trace of fear, NOT smiling. The old intact cream route cloth with blue/brown winding lines and a crooked stitched star lies open on the ledge directly before his feet; no writing on it. Beside him stands sturdy dark-slate Sergeant Flint, stern calm gaze toward the passage. Behind them stocky gray-brown Bramble stands next to two empty broad wicker rescue baskets and a neatly coiled rescue line, worried yet ready. Lean pale-gray Tiller waits one ledge above, alert to scout. Their wings are naturally folded so all anatomy is readable, tails fully framed. A small lantern rests safely on stone, its amber light revealing grit and water droplets; teal reflected storm light and violet shadows deepen farther inside the mountain. The entrance behind them is a distant warm arch with family pigeon silhouettes, not a second foreground crowd. Visual storytelling about duty and resolve, atmospheric suspense, no battle, no smiling through danger, no flooded foreground yet.",
+      "references": [
+        "assets/admiral-pigeon-origins/book-1/chapter-05.png",
+        "assets/admiral-pigeon-origins/book-1/chapter-02.png"
+      ],
+      "chapter": 7,
+      "corrections": [
+        {
+          "purpose": "Restore the established dark charcoal beak and pale ivory cere palette while preserving scene and expression.",
+          "prompt": "Apply ONLY a beak color correction to the first illustration of the four rescuers in a mountain passage. Preserve fierce concentration on Pigeon's face, Flint's stern expression, Bramble's worry, Tiller's alertness, all eyes, pose, feathers, anatomy, exact composition, map, baskets, lantern, cavern and light. All four pigeons' hard upper and lower beak surfaces must be DARK CHARCOAL GRAY; a small PALE IVORY/WHITE CERE stays only at the base near the forehead. Remove peach, pink, yellow, orange, gold and ochre from the beaks even in amber lighting. Match the original beak palette in the second image. No new text, clothing or objects.",
+          "references": [
+            "assets/admiral-pigeon-origins/book-1/chapter-07.png",
+            "assets/prism-galaxy/page-17.png"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chapter-08",
+      "path": "assets/admiral-pigeon-origins/book-1/chapter-08.png",
+      "alt": "Three pigeon rescuers watch pale-gray Tiller fly toward a high opening above a crashing waterfall inside the mountain.",
+      "scene": "When falling water blocks the lower route, Pigeon hears air above it and Tiller scouts the upper opening toward Bell Hollow.",
+      "prompt": "Create ONE lavish cinematic stylized 3D children's chapter-book illustration, landscape 16:9, new scene for Chapter Eight, The Passage That Sang. Use the supplied corrected Book One references to preserve all four pigeons' identities and the gorgeous detailed feather rendering. ALL PIGEON upper and lower hard BEAK SURFACES are DARK CHARCOAL GRAY with small PALE IVORY/WHITE CERES; never yellow, orange, ochre, gold or pink even under warm lighting. Ordinary pigeon anatomy, two wings and two pink feet each, no hands, clothes, hats, glasses, badges, humans, robots, cup characters. No text, letters, numbers, watermarks, border or collage.\nInside a dramatic rugged mountain passage a waterfall crashes down from a ceiling crack at the right, filling the lower route with turquoise-white spray. On a dry sheltered rock ledge to the left stand grown Pigeon (gray, black wing bars, bright teal-violet throat, orange eyes), sturdy dark-slate Sergeant Flint, and stocky gray-brown Bramble with muted violet throat. All three full bodies visible with natural folded wings, tense and alert, each watching the fourth pigeon. Pigeon has lifted his head toward a narrow opening HIGH ABOVE the waterfall: his eyes show a sudden focused discovery amid genuine concern, beak slightly open, not a cheerful smile. Lean pale-gray Tiller, silver-teal throat, is flying up to inspect this opening, both wings fully spread but all wing tips comfortably within frame, one normal tail and two pink feet. Tiller's determined gaze points into the dark high crack, where a dry ledge can be seen beyond. Bramble's two empty wicker rescue baskets and a coil of line rest safely on the dry ledge; a little amber lantern and the folded cream route cloth with blue/brown pictorial lines are nearby. Powerful teal water and violet stone contrast with lantern gold on expressive faces. Epic peril with a clear possible route, carefully readable separated birds, no injury. This image takes place deeper in the mountain, with no sunlight or home entrance in view.",
+      "references": [
+        "assets/admiral-pigeon-origins/book-1/chapter-07.png",
+        "assets/admiral-pigeon-origins/book-1/chapter-05.png"
+      ],
+      "chapter": 8
+    },
+    {
+      "id": "chapter-09",
+      "path": "assets/admiral-pigeon-origins/book-1/chapter-09.png",
+      "alt": "Pigeon pauses in a warm-lit tunnel and looks gently back at frightened little Button, who lifts a foot to follow him out of the storm-battered watch hall.",
+      "scene": "Pigeon takes three steps, stops and looks back so frightened Button can follow him through the messenger doorway.",
+      "prompt": "Create ONE lavish cinematic stylized 3D children's storybook illustration, landscape 16:9, Chapter Nine: Fourteen at the Door. Use the supplied corrected references for Pigeon's appearance and luminous detailed feather style. This is a tender moment during dangerous weather, not an action battle. All ordinary pigeons have DARK CHARCOAL GRAY upper and lower hard beak surfaces with small PALE IVORY/WHITE CERES, never pink, yellow, ochre, orange or gold beaks even in warm lighting. Two wings and two pink feet per bird. No humans, hands, robots, cup characters, hats, clothes, uniforms or badges. No text, letters, numbers, watermarks, borders or collage.\nAt the small wooden messenger doorway of a storm-battered stone watch hall, grown Pigeon has taken three small steps into the dry sheltered tunnel, STOPPED, and turned his head back gently toward frightened little Button. Pigeon is the lean gray bird with dark wing bars, iridescent turquoise-violet throat and orange eyes, body pointing into the warm-lit passage while looking lovingly backward. His expression is attentive tenderness and quiet resolve, no giant fixed grin. Button is a very small fluffy gray pigeon youngster with orange-brown eyes, a little teal at the throat and a charcoal beak with ivory cere; he crouches nervously on the doorway threshold but has just lifted one little pink foot to follow. Both main birds completely visible, naturally folded wings and tails inside frame, close enough for Button to see Pigeon's face clearly. Low pigeon-eye viewpoint makes the small distance between them feel achievable. Warm lantern rests on the dry passage ledge beside them. Behind Button through the doorway, the watch hall has blue rainlight, water below the dry upper perches, a damaged wooden shutter and several softly focused resident pigeons waiting together. Stocky gray-brown Bramble tends a wicker carrying basket farther inside the hall, sturdy dark-slate Flint stands reassuringly at the doorway edge; they remain secondary, no crowd covering Button. Golden lantern light bridges the safe next few steps and catches Pigeon's bright neck. Emotional contrast: small frightened child, patient caring guide, storm urgency in background.",
+      "references": [
+        "assets/admiral-pigeon-origins/book-1/chapter-07.png",
+        "assets/admiral-pigeon-origins/book-1/chapter-01.png"
+      ],
+      "chapter": 9
+    },
+    {
+      "id": "chapter-10",
+      "path": "assets/admiral-pigeon-origins/book-1/chapter-10.png",
+      "alt": "Bramble tends the rescue ropes as a basket carries Button and a sleeping youngster across the watery gap toward Tiller, while Pigeon guides the waiting flock.",
+      "scene": "Chapter Ten: The Long Way Home",
+      "prompt": "Use case: illustration-story. NEW wide 16:9 cinematic stylized 3D children's book illustration. Scene: The Long Way Home, a careful pigeon rescue at a split stone ledge inside a storm-soaked mountain. Reference supplies Pigeon, Bramble, Tiller, natural anatomy, wicker baskets, and cave style; NEW action/composition. A broad wicker carrying basket slides on TWO taut rescue ropes secured between two sheltered stone ledges across a narrow washed-away gap, with rushing water visible far below. Inside the basket tiny gray Button sits worried beside a sleeping younger pigeon, both tucked safely below basket rim. Near side, stocky brown-gray Bramble braces his pink feet by the rope anchor, focused and dependable. Far side, lean pale-gray Tiller waits with wings lifted just enough to receive the basket. Main gray Pigeon with teal-violet neck and orange eyes stands beside the inner safe rock wall, guiding a small tired group of elderly pigeons toward the crossing; his face shows exhausted fierce determination and care, no grin. Warm lanterns illuminate the safe landing points against cool teal rain spray and cavern shadow; glowing lights of home very far down the tunnel. Every living pigeon has dark charcoal upper and lower beak with small pale ivory cere, never yellow/ochre/gold. Exactly two wings/two pink feet, no clothing, hats, worn insignia or human limbs. Clear physical rope/basket relationship, reassuring teamwork, no injury. Principal characters wholly framed. No stars or spacecraft, words, labels, watermark, borders, collage or panels.",
+      "references": [
+        "assets/admiral-pigeon-origins/book-1/chapter-07.png"
+      ],
+      "corrections": [
+        {
+          "prompt": "Use case: precise-object-edit. Keep this exact pigeon basket-rescue scene and action. Widen the camera framing slightly so Tiller's complete rightmost wingtip and Bramble's complete leftmost tail are visible with comfortable space inside the frame. Preserve all faces, dark charcoal beaks with ivory cere, feather colors, the two young pigeons in the rope-supported basket, the waterfall, stone ledges and lanterns. Change only framing and extend the surrounding cave naturally. Landscape 16:9, no added characters, text or panels.",
+          "reason": "Widened framing to show the main birds' complete wing and tail tips."
+        }
+      ]
+    },
+    {
+      "id": "chapter-11",
+      "path": "assets/admiral-pigeon-origins/book-1/chapter-11.png",
+      "alt": "An exhausted Pigeon dozes beside his breakfast bowl as Father Bram brings a seed cake and Gran Cora watches over the safely returned flock.",
+      "scene": "Chapter Eleven: Breakfast for a Flock",
+      "prompt": "Use case: illustration-story. New wide 16:9 cinematic stylized 3D children's book illustration, Breakfast for a Flock. After a long storm rescue, ordinary gray Pigeon with teal-violet neck and orange eyes has almost fallen asleep beside a shallow millet breakfast bowl in Old Wing Cavern's warm rescue shelter. His eyes are half closed, head drooping gently, weary feathers slightly ruffled, safe and deeply relieved. His father Bram, a taller ordinary gray pigeon, brings a small seed cake in his beak. Gran Cora, plump elderly gray pigeon with subtle pale eyebrow feathers and crooked tail feather as in second reference, sits close with a tender proud expression. Stocky gray-brown Bramble and slim pale-gray Tiller rest exhausted on a low rail behind. A damp dusty folded CREAM LINEN route cloth lies on a stone table, blue/brown hand-drawn route lines on it. In the deeper background the rescued pigeon youngsters sleep safely in cozy wicker bedding. Warm amber lanterns, carved pigeon-wing stone details, soft dawn entering a high cavern opening, a bowl within easy reach. No battle action, expressions are tired relief and family love, not exuberant performance. Every pigeon upper/lower beak DARK CHARCOAL with small ivory-white cere, no yellow/orange/gold beaks under warm light. Natural two wings/two pink feet, no costumes, hats or human hands. Keep main bodies fully visible. References establish family and cast/style only. No text, numbers, watermark, border, panels, collage or space technology.",
+      "references": [
+        "assets/admiral-pigeon-origins/book-1/chapter-07.png",
+        "assets/admiral-pigeon-origins/book-1/chapter-02.png",
+        "assets/admiral-pigeon-origins/book-1/chapter-03.png"
+      ]
+    },
+    {
+      "id": "chapter-12",
+      "path": "assets/admiral-pigeon-origins/book-1/chapter-12.png",
+      "alt": "Pigeon, Tiller, and Bramble open their wings together and rise from High Perch Station into the golden morning sky.",
+      "scene": "Chapter Twelve: His Own Place in the Sky",
+      "prompt": "Use case: illustration-story. NEW wide 16:9 cinematic stylized 3D children's book ending, His Own Place in the Sky. Three young qualified Planetary Pigeon Airforce flyers take off together at dawn from a broad stone rail of High Perch Station into the enormous open sky of planet Pebble. Main Pigeon in the center, gray with bright teal-violet iridescent neck and orange eyes, stocky gray-brown Bramble on one side, lean pale-gray Tiller on the other. Their expressions show earned pride, friendship, freedom and hopeful joy. All three have two fully spread ordinary pigeon wings, two pink feet just leaving the rail; natural pigeon bodies with NO CLOTHING, hats, helmets, necklaces, worn medals or human limbs. ALL upper/lower beaks dark charcoal with small ivory-white cere, no golden/yellow beaks despite sunrise. Whole wings, tails and feet of all three birds comfortably inside frame. Dynamic low three-quarter camera with the golden valley and blue mountains open ahead, ancient stone training towers and teal feather-emblem banners receding behind, clouds bright with dawn. Light dust lifts from rail. No bowls, training ropes or water from reference: reference defines exact cast, natural flight anatomy, visual style and station only. Detailed soft feathers, amber-gold sun and teal-violet accents, uplifting complete final scene. No text, numerals, badges on birds, watermark, panels, collage or border.",
+      "references": [
+        "assets/admiral-pigeon-origins/book-1/chapter-05.png"
+      ]
+    }
+  ]
+}

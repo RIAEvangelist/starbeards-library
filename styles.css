@@ -904,7 +904,8 @@ select:focus-visible {
     transform: scale(1);
 }
 
-.prism-page-art {
+.prism-page-art,
+.admiral-page-art {
     object-fit: cover;
 }
 
@@ -1006,12 +1007,14 @@ select:focus-visible {
 }
 
 .pluto-cover-copy,
-.prism-cover-copy {
+.prism-cover-copy,
+.admiral-cover-copy {
     width: min(60rem, 62vw);
 }
 
 .pluto-cover-copy .cover-title,
-.prism-cover-copy .cover-title {
+.prism-cover-copy .cover-title,
+.admiral-cover-copy .cover-title {
     font-size: clamp(2.2rem, 4.8vw, 5.4rem);
     line-height: 0.9;
 }
@@ -1088,13 +1091,53 @@ select:focus-visible {
 }
 
 .prism-cover-copy,
-.prism-story-copy {
+.prism-story-copy,
+.admiral-cover-copy,
+.admiral-story-copy {
     top: auto;
     bottom: max(6.6rem, 12vh);
     transform: translate(
         var(--copy-drag-x),
         var(--copy-drag-y)
     );
+}
+
+.storybook[data-book^="admiralPigeon"] .story-track {
+    touch-action: pan-x pan-y pinch-zoom;
+}
+
+.storybook[data-book^="admiralPigeon"] .story-page {
+    min-height: 0;
+}
+
+.story-copy.admiral-story-copy {
+    width: min(43rem, 48vw);
+    max-height: none;
+    overflow: visible;
+    padding-top: 3.6rem;
+}
+
+.admiral-story-copy .copy-move-tools {
+    top: 0.65rem;
+}
+
+.admiral-chapter-text {
+    max-height: min(54dvh, calc(100dvh - 16rem));
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    touch-action: pan-y pinch-zoom;
+    scrollbar-color: rgba(255, 226, 150, 0.7) rgba(8, 15, 42, 0.45);
+    scrollbar-width: thin;
+}
+
+.admiral-chapter-text:focus-visible {
+    outline: 2px solid var(--gold-bright);
+    outline-offset: 0.35rem;
+}
+
+.story-copy.admiral-story-copy h2 {
+    font-size: clamp(1.7rem, 3vw, 3.35rem);
+    line-height: 1;
 }
 
 @media (min-width: 1101px) {
@@ -1539,7 +1582,8 @@ select:focus-visible {
     }
 
     .pluto-cover-copy .cover-title,
-    .prism-cover-copy .cover-title {
+    .prism-cover-copy .cover-title,
+    .admiral-cover-copy .cover-title {
         font-size: clamp(1.95rem, 9vw, 4rem);
         line-height: 0.92;
     }
@@ -1561,6 +1605,14 @@ select:focus-visible {
             var(--copy-drag-x),
             var(--copy-drag-y)
         );
+    }
+
+    .story-copy.admiral-story-copy:not(.is-collapsed) {
+        width: auto;
+    }
+
+    .admiral-chapter-text {
+        max-height: min(48dvh, calc(100dvh - 17rem));
     }
 
     .copy-move-tools {
@@ -1722,7 +1774,8 @@ select:focus-visible {
     }
 
     .pluto-cover-copy .cover-title,
-    .prism-cover-copy .cover-title {
+    .prism-cover-copy .cover-title,
+    .admiral-cover-copy .cover-title {
         font-size: clamp(1.65rem, 8vw, 3.3rem);
     }
 
@@ -1787,7 +1840,8 @@ select:focus-visible {
     }
 
     .pluto-cover-copy .cover-title,
-    .prism-cover-copy .cover-title {
+    .prism-cover-copy .cover-title,
+    .admiral-cover-copy .cover-title {
         font-size: clamp(1.9rem, 4.2vw, 3.65rem);
     }
 

@@ -24,9 +24,14 @@ Only completed books are added to the library. Each finished book belongs to one
 
 ### Other Stories
 
+- **Before He Was Admiral Pigeon, Book One — The Little Pigeon in the Great Stone Wall:** twelve complete illustrated chapters plus cover, following Pigeon from his family's home in an ancient warrior-pigeon cave to his first great Airforce rescue.
+- **Before He Was Admiral Pigeon, Book Two — The Pigeon Beyond the Sky:** twelve complete illustrated chapters plus cover, following his transfer to the Galactic Pigean Space Corps and a convoy rescue through an Iron Talon blockade.
+- **Before He Was Admiral Pigeon, Book Three — Admiral of the Pigeon's Poop Deck:** twelve complete illustrated chapters plus cover, following the Great War, Pigeon's earned appointment, and his first assignment as admiral. Read the trilogy before **The Runaway Cup**.
 - **Captain Star Beard & Admiral Pigeon: Adventures in the Prism Galaxy — The Runaway Cup:** a complete twenty-four-page prequel plus cover about their first meeting, a frightened new magical AI cup, a climb up an enormous ancient crystal, and the friendship that brings everyone home. Every story page has its own illustration. Young Star Beard's appearance draws on Roshi's supplied younger photographs; the original photos remain outside the repository.
 
 Each book opens in the same full-screen horizontal reader with touch swiping, keyboard navigation, page controls, and JuJu’s existing eight-voice read-aloud controls.
+
+The Admiral Pigeon trilogy preserves the [complete reading manuscripts](manuscripts/admiral-pigeon-origins/README.md), including all paragraphs and emphasis. Each chapter occupies one illustrated page with vertically scrolling text. Focus the text area to use Page Up, Page Down, Home, or End within the chapter; left and right arrows still turn pages. Move words and Shrink words remain outside the scrolling text. Its thirty-nine illustrations and scene descriptions are recorded in the [Book One](manuscripts/admiral-pigeon-origins/illustrations/book-1.json), [Book Two](manuscripts/admiral-pigeon-origins/illustrations/book-2.json), and [Book Three](manuscripts/admiral-pigeon-origins/illustrations/book-3.json) art manifests.
 
 The app pins published `arcane-os@0.33.2` and uses its public browser-speech, AI, DBOPFS, event, and prepared-audio contracts.
 

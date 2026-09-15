@@ -34,4 +34,6 @@ Read the trilogy before **Captain Star Beard & Admiral Pigeon: The Runaway Cup**
 
 All of this takes place a long, long time before **The Great Galactic Sock Caper**.
 
-These editions contain the complete chapter-book manuscripts. The existing illustrated library and its other stories are separate editions.
+These files contain the complete chapter-book manuscripts. The [illustrated library](../../index.html) presents the same complete text as three books in **Other Stories**, immediately before **The Runaway Cup**. Each book has a cover and twelve individually illustrated chapter pages. Scroll within the text to read each full chapter, or use the existing read-aloud controls; the page arrows move between chapters.
+
+Illustration scenes and alt text are recorded in the [Book One](illustrations/book-1.json), [Book Two](illustrations/book-2.json), and [Book Three](illustrations/book-3.json) art manifests. The manuscripts remain the story-text source for these library editions.

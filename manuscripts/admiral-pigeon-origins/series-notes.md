@@ -4,7 +4,9 @@
 
 Three connected chapter books about the small pigeon who grew up in a rock wall, joined the Planetary Pigeon Airforce, transferred into the Galactic Pigean Space Corps, and earned the extraordinarily serious appointment of **Admiral of the Galactic Pigean Space Corps Poop Deck**. The third book's shorter title is **Admiral of the Pigeon's Poop Deck**.
 
-These are reading manuscripts. Each volume has a complete adventure and an ending, with characters, consequences, and discoveries continuing into the next. Illustrated library editions can follow the manuscripts without compressing their stories into summaries.
+Each volume has a complete adventure and an ending, with characters, consequences, and discoveries continuing into the next. The reading manuscripts are the story-text source for the illustrated library editions: twelve complete chapter pages plus a cover in each book, preserving every paragraph and emphasis. The library places the trilogy in order in **Other Stories**, immediately before **The Runaway Cup**. Chapter text scrolls vertically inside the existing horizontal reader, with the same page navigation, movable text panels, and read-aloud controls.
+
+Each of the thirty-nine reader pages has its own illustration under `assets/admiral-pigeon-origins/book-1/`, `book-2/`, or `book-3/`. The corresponding `illustrations/book-1.json`, `book-2.json`, and `book-3.json` manifests record the scene, alt text, and art prompt. These editions add illustrations and reading presentation without changing the manuscript continuity below.
 
 ## Reading order
 
@@ -17,6 +19,7 @@ These are reading manuscripts. Each volume has a complete adventure and an endin
 ### Pigeon and his family
 
 - The hero is called **Pigeon** throughout. He is an ordinary small gray pigeon with an iridescent turquoise-and-violet neck. His bearing grows into the familiar chest-puffing admiral; he wears no clothes or hat. Service insignia belong on perch plates and cabin doors. Equipment belongs to the vehicle or the job.
+- Illustrated pigeons retain natural anatomy and dark charcoal beaks with a small pale ivory or white cere at the base, including under warm lighting. Their expressions can show fierceness, fear, tenderness, relief, humor, and joy as each scene requires.
 - Pigeons converse in their own coos. The narrator renders those conversations as dialogue for the reader. This does not establish human speech: humans in the later Star Beard story hear his coos and interpret his posture.
 - His home is a small, comfortable family nook in the rock wall of **Old Wing Cavern**, an ancient warrior-pigeon cave on **Pebble**, in the **Bellflower Galaxy**. The family home is called **the little home in the wall**. It contains ordinary bowls, crumbs, a crooked shelf, and a window opening into the cavern.
 - **Mother Tansy** repairs and makes practical things. **Father Bram** tends the cavern's rooftop seed gardens. **Gran Cora** is a retired military messenger and the keeper of family stories. All three remain alive throughout the trilogy.

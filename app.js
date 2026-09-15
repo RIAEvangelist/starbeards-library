@@ -33,6 +33,18 @@ const BOOKS = {
         title: 'Starbeard and the Starwater',
         templateId: 'book-starwater-template'
     },
+    admiralPigeonOne: {
+        title: 'The Little Pigeon in the Great Stone Wall',
+        templateId: 'book-admiral-pigeon-1-template'
+    },
+    admiralPigeonTwo: {
+        title: 'The Pigeon Beyond the Sky',
+        templateId: 'book-admiral-pigeon-2-template'
+    },
+    admiralPigeonThree: {
+        title: 'Admiral of the Pigeon\'s Poop Deck',
+        templateId: 'book-admiral-pigeon-3-template'
+    },
     prismGalaxy: {
         title: 'The Runaway Cup',
         templateId: 'book-prism-galaxy-template'
@@ -1034,6 +1046,15 @@ function handleKeydown(event) {
     if (event.key === 'Escape') {
         event.preventDefault();
         returnToLibrary();
+        return;
+    }
+
+    if (event.target.closest('.admiral-chapter-text') && (
+        event.key === 'PageDown'
+        || event.key === 'PageUp'
+        || event.key === 'Home'
+        || event.key === 'End'
+    )) {
         return;
     }
 

@@ -1,0 +1,146 @@
+{
+  "book": 2,
+  "title": "The Pigeon Beyond the Sky",
+  "generationTool": "Built-in ImageGen",
+  "visualContinuity": "Natural pigeons with dark charcoal upper and lower beaks and small pale ivory-white cere. Gray Pigeon has a teal-violet neck, orange eyes and pink feet. Bramble is stocky brown-gray; Tiller is slim pale-gray. Expressions follow each scene's emotion. All birds outside spacecraft are fully enclosed in sealed flight bubbles.",
+  "images": [
+    {
+      "id": "cover",
+      "path": "assets/admiral-pigeon-origins/book-2/cover.png",
+      "alt": "Pigeon, Bramble, and Tiller stand beside their flight capsules beneath Homeward's glass canopy, with Pebble glowing beyond.",
+      "scene": "Cover: three friends ready to begin their space service.",
+      "prompt": "Use case: illustration-story. Create a NEW 16:9 landscape chapter-book COVER ILLUSTRATION, no typography, for The Pigeon Beyond the Sky. References show the established cinematic storybook style and the exact ordinary pigeon hero only; do not include the human captain, teacher, cup, or crystal city. On the upper rear launch deck INSIDE a vast transparent-canopied space carrier, the small gray pigeon stands proudly in the foreground, turquoise and violet iridescent neck, orange amber eyes, delicate pink feet, natural rounded bird proportions. His two friends are a stocky gray-brown pigeon and a lean pale-gray pigeon. Three transparent spherical flight capsules with bronze perches, little steering pedals, small thruster rings and open boarding hatches sit behind them. Beyond the canopy, their blue-and-brown home planet Pebble glows under a rich purple-blue starfield and a gentle golden sunrise. The carrier is a broad silver wing, warm brass details and cozy amber lamps. Adventurous wonder, affectionate subtle humor, rich polished stylized 3D children's-book rendering, exquisite soft feathers and tactile metal, matching reference palette. Entire bodies and feet visible, hero clear and memorable, simple strong cover composition with depth. All birds have exactly two wings and two feet and wear NO clothes, hats, collars or insignia; no human hands. Atmosphere is contained by the ship canopy. No words, lettering, numbers, logos, border, collage or watermark.",
+      "references": [
+        "assets/prism-galaxy/page-02.png",
+        "assets/prism-galaxy/page-17.png"
+      ]
+    },
+    {
+      "id": "chapter-01",
+      "path": "assets/admiral-pigeon-origins/book-2/chapter-01.png",
+      "alt": "Pigeon watches Pebble through the shuttle window while Bramble chases a floating seed and Tiller drifts upside down.",
+      "scene": "Chapter One: Pebble Through a Window",
+      "prompt": "Use case: illustration-story. NEW 16:9 landscape illustration for chapter one, Pebble Through a Window. Use reference ONLY for consistent characters, feather rendering and warm cinematic stylized 3D storybook art; create a completely different scene. Inside a small cozy brass-and-blue space SHUTTLE in weightlessness, ordinary gray Pigeon with orange eyes and turquoise-violet neck leans close to a huge round window, gazing wistfully at his blue-and-brown home planet Pebble now fitting entirely in the glass. Behind him, stocky warm gray-brown Bramble reaches his beak toward a single floating millet seed, while lean pale-gray Tiller drifts gently backward upside-down after trying to catch it, a sweet comic background beat. A repaired cloth-map tube is tucked in a storage nook. Main focus Pigeon's wondering expression and round distant planet, full bird bodies visible. No carrier hangar or flight pods here, this is an enclosed shuttle cabin. Beautiful golden cabin lamps against violet stars, tactile feathers, endearing natural pigeon proportions, exactly two wings and two feet each, no clothing, hats, collars, humanoid arms or hands. No humans or cups. No words, numbers, labels, watermark, collage, borders. Reference is visual cast/style only, not a scene to reproduce.",
+      "references": [
+        "assets/admiral-pigeon-origins/book-2/cover.png"
+      ]
+    },
+    {
+      "id": "chapter-02",
+      "path": "assets/admiral-pigeon-origins/book-2/chapter-02.png",
+      "alt": "Pigeon tilts through a padded training hoop inside his clear flight bubble while Tiller hangs upside down and Bramble follows.",
+      "scene": "Chapter Two: The Problem with Stopping",
+      "prompt": "Use case: illustration-story. NEW wide 16:9 cinematic stylized 3D children's chapter illustration, The Problem with Stopping. Exact pigeon cast/colors and friendly lavish rendering from reference, NEW composition. Outside the broad silver-wing carrier Homeward in starry space, Pigeon is clearly ENCLOSED inside a small transparent spherical flight capsule with a brass perch and foot pedals, wings lifted awkwardly as the capsule tilts sideways just beside a large padded training hoop. His startled expression is comic, not terrified. A second smaller capsule containing lean pale-gray Tiller has rotated upside-down farther back. A third capsule with stocky gray-brown Bramble proceeds level through a distant hoop. ALL birds completely inside their sealed clear bubbles, no bare birds in vacuum. Visible capsule thrusters, transparent front AND sides, each capsule only large enough for one pigeon with spread wings. Hoops attached by long booms to carrier, glimmering home planet below, warm amber lamps and teal-violet space. Clear spatial layout and silhouettes, every main body and wing tip fully visible, no crashes or injury. Natural gray Pigeon with turquoise-violet iridescent neck, orange eyes, exactly two wings and two feet, no clothes/hats/human arms. No lettering, numbers, signs, watermark, borders, panels or collage. Reference only defines cast/style, do not reproduce hangar-cover scene.",
+      "references": [
+        "assets/admiral-pigeon-origins/book-2/cover.png"
+      ]
+    },
+    {
+      "id": "chapter-03",
+      "path": "assets/admiral-pigeon-origins/book-2/chapter-03.png",
+      "alt": "Pigeon and tousle-feathered Nib admire a creamy splat on a practice lens while Tiller peers from the observation booth.",
+      "scene": "Chapter Three: An Extremely Serious Deck",
+      "prompt": "Use case: illustration-story. Landscape 16:9 cinematic stylized 3D children's book illustration, new scene inside the warm brass-and-glass laboratory of the pigeon carrier Homeward. Reference supplies Pigeon's appearance and visual style only. Ordinary small gray Pigeon with vivid turquoise/violet neck and orange eyes stands full-body beside Nib, a smaller untidy gray engineer pigeon with a few tousled head feathers. Both look delighted at a large round upright practice camera lens covered by a funny creamy-white pigeon-poop splat; the splat is clean cartoon cream, not disgusting or realistic. A small tray holds three round translucent splat pods. Slim pale-gray Tiller peers comically through the glass observation booth in the background where a stray white splat landed. Interesting small brass foot levers, shutter pieces and curved pipes make this a practical workshop; no screens with text. Amber lamplight, purple stars through a small porthole, detailed soft feathers and rounded friendly shapes. The scene explains a strange invention through clear acting and expressions. Every pigeon has exactly two ordinary wings and two pink feet; full main bodies visible. No clothes, hats, humans, humanoid arms, words, numbers, labels, watermark, border, collage or panels. Reference hangar scene must not be repeated.",
+      "references": [
+        "assets/admiral-pigeon-origins/book-2/cover.png"
+      ]
+    },
+    {
+      "id": "chapter-04",
+      "path": "assets/admiral-pigeon-origins/book-2/chapter-04.png",
+      "alt": "Bramble waits inside his flight bubble with a wide medical crate caught beneath a padded training bar, while Pigeon looks back.",
+      "scene": "Chapter Four: The Long Way Round",
+      "prompt": "Use case: illustration-story. New 16:9 cinematic stylized 3D children's chapter illustration, The Long Way Round. Use the reference for pigeon appearance and sealed flight-capsule technology only. Outer-space cargo training near the silver pigeon carrier Homeward, starfield and blue planet low behind. Center is stocky gray-brown Bramble safely enclosed inside a complete clear round one-bird flight bubble with brass perch and pedals. His bubble's external mechanical cargo arm carries a wide rectangular padded medical crate; that crate has caught beneath a soft padded horizontal training crossbar because the shortcut is too narrow. No damage, he has stopped and looks patiently frustrated. Nearby Pigeon in his own fully sealed clear bubble looks back with a concerned, realizing expression; Pigeon is small gray with vivid teal-violet neck, orange eyes and natural feathered wings. Show a clearly wider training passage in the distance so the long way can be understood. Strong readable silhouettes, gentle situational comedy, warm amber brass, cobalt-violet space, detailed feathers. Each bird entirely inside separate closed bubble, exactly two wings/two pink feet, no costumes or human arms. Principal bubbles and crate fully within frame. No words, numbers, symbols resembling writing, signs, borders, panels, collage or watermark.",
+      "references": [
+        "assets/admiral-pigeon-origins/book-2/chapter-02.png"
+      ]
+    },
+    {
+      "id": "chapter-05",
+      "path": "assets/admiral-pigeon-origins/book-2/chapter-05.png",
+      "alt": "Pigeon and his companions study a star map showing three cargo ships trapped inside a broken moon's rocky ring.",
+      "scene": "Chapter Five: Three Ships Waiting",
+      "prompt": "Use case: illustration-story. Landscape 16:9 luxurious cinematic stylized 3D children's book illustration. NEW scene: the pigeon carrier Homeward's warm bronze briefing room, an ensemble of FIVE natural pigeons around a low round glowing map table. Main Pigeon has gray feathers, vivid teal-violet iridescent neck and amber-orange eyes, Bramble stocky gray-brown, Tiller lean pale gray (reference supplies these three). Commander Vela is a dark gray composed pigeon with a small beak notch; engineer Nib is little and scruffy gray. No bird clothing. The table shows a clear pictorial three-dimensional star map: broken crescent moon encircled by floating rock fragments, THREE tiny amber cargo-ship models sheltered within the ring, FOUR small dark patrol-ship models outside, one faint dotted amber path curving between the rocks. No text or numerals. Pigeon leans forward noticing the old lamp route while Vela watches thoughtfully; feet remain on surrounding broad table-edge perches, no human hands. Focus on intent expressive faces and the tiny trapped convoy. Deep violet starfield through curved window, amber side lamps, tactile brass and cloth map tube nearby. Show complete principal bodies. Exactly two feathered wings and two pink feet per pigeon, no humans, hats, uniforms, written symbols, watermark, border, collage or panels. Do not repeat reference hangar.",
+      "references": [
+        "assets/admiral-pigeon-origins/book-2/cover.png"
+      ]
+    },
+    {
+      "id": "chapter-06",
+      "path": "assets/admiral-pigeon-origins/book-2/chapter-06.png",
+      "alt": "An intent Pigeon and worried Tiller hide in sealed flight bubbles beneath an abandoned ore berth while a patrol ship searches outside.",
+      "scene": "Chapter Six: The Places Between",
+      "prompt": "Use case: illustration-story. New 16:9 cinematic stylized 3D children's book illustration, suspenseful scouting scene in deep space. Reference defines Pigeon, Tiller and transparent spherical flight bubbles ONLY. In a shadowed recess beneath a disused bronze ore-loading berth bolted onto an enormous asteroid, TWO fully sealed small clear flight bubbles hover quietly. Foreground Pigeon, gray with teal-violet iridescent neck and orange eyes, crouches on his brass perch, beak closed, brow lowered and eyes intensely alert, listening with wary concentration. In second bubble slim pale-gray Tiller looks worried and holds very still. Both are completely enclosed with visible rounded glass all around them, pink feet at pedals. Through the huge rocky opening, a dark wedge-shaped enemy patrol spacecraft glides past with a bright white observation lens searching the starfield; its searchlight passes just outside their hiding place. One weathered old navigation lamp on a rusty post marks the abandoned route. Dramatic violet shadow and soft amber capsule reflections on feathers, blue stars beyond, suspense that feels adventurous and emotionally real, no smiling in this danger. Keep full capsules and principal bodies visible and understandable. Exactly two wings/two feet per bird, no costumes, human hands, exposed birds in vacuum, injury, text, symbols resembling writing, watermark, border, collage or panels.",
+      "references": [
+        "assets/admiral-pigeon-origins/book-2/chapter-02.png"
+      ],
+      "correction": {
+        "prompt": "Use case: precise-object-edit. Edit the FIRST image only. Correct BOTH pigeons' beak colors to match the SECOND reference image: upper and lower beaks are DARK CHARCOAL GRAY, with the small pale ivory-white cere at the base. Currently the first image's beaks incorrectly look yellow/ochre/gold. Their final material color must visibly read charcoal, even under the warm lamp. Change only these two beak colors; preserve the precise beak shapes, fierce watchful Pigeon's expression and worried Tiller's expression, eyes, body poses, natural anatomy, all feathers, sealed transparent flight bubbles, old berth, rocks, enemy patrol ship, searchlight, lighting, composition and landscape framing. Do not copy any hangar element from the second image. No other changes.",
+        "reason": "Restored both beaks to established charcoal color with pale cere; preserved expressions and composition."
+      }
+    },
+    {
+      "id": "chapter-07",
+      "path": "assets/admiral-pigeon-origins/book-2/chapter-07.png",
+      "alt": "Pigeon gently shelters a worried mouse child beneath one wing as the child holds a folded paper bird aboard Lantern.",
+      "scene": "Chapter Seven: Cargo and Courage",
+      "prompt": "Use case: illustration-story. New landscape 16:9 tender cinematic stylized 3D children's book illustration inside the clinic cargo spaceship Lantern. Pigeon (reference establishes his natural gray feathers, bright teal-violet neck, orange eyes and two pink feet) stands full-body on the warm wood-and-brass cabin floor beside a small FIELD MOUSE CHILD. Pigeon lowers his head kindly to the child's eye level, eyes soft with concern and gentle reassurance, closed relaxed beak, one ordinary feathered wing slightly raised in a comforting gesture. The worried little brown mouse with big rounded ears clutches a folded WHITE PAPER BIRD in two small paws near its chest, looking up with tentative trust. No human characters. Behind them a low berth with pale blankets, simple medicine crates with no lettering, and a round window showing distant floating rocks and violet stars. Pigeon's empty transparent flight bubble is docked behind an inner glass partition. The cabin has breathable air; neither character wears a spacesuit. Warm amber lamp pools create intimacy against cool starlight, detailed feathers and fine mouse fur, emotionally expressive faces. No pigeon clothes or hats, exactly two wings and two feet, no human hands. Keep all main bodies visible, no captions, writing, numbers, watermark, border, collage, panels or battlefield action.",
+      "references": [
+        "assets/admiral-pigeon-origins/book-2/cover.png"
+      ]
+    },
+    {
+      "id": "chapter-08",
+      "path": "assets/admiral-pigeon-origins/book-2/chapter-08.png",
+      "alt": "A fierce Pigeon banks away after splatting a patrol ship's front lens, discovering that a second lens can still see the retreating convoy.",
+      "scene": "Chapter Eight: A Very Brief Victory",
+      "prompt": "Use case: illustration-story. New wide 16:9 cinematic stylized 3D children's space-adventure chapter illustration, A Very Brief Victory. Pigeon is fully ENCLOSED in a small sealed transparent spherical capsule with brass perch, pedals and thruster ring, banking near the front observation lens of a dark wedge-shaped Iron Talon patrol spaceship. A large funny creamy-WHITE pigeon-poop splat covers that ship's front lens, with a second small splat near it. On the ship's flank a SECOND clean observation lens has just slid open, glowing cool white and pointing toward the hidden amber cargo convoy in the rocky moon ring. The important story beat is that the enemy can see again. Pigeon's face shows shocked realization turning to fierce determination: lowered focused brow, alert orange eyes and partly open DARK CHARCOAL beak with a small pale ivory-white cere. His upper and lower beak remain charcoal, never yellow/gold/orange, even in warm reflections; natural gray plumage with vivid teal-violet neck. Smaller lean pale-gray Tiller in a separate completely closed clear bubble banks toward the freighters. Three small amber cargo ships withdraw toward protective asteroids beyond. Expressive acting, dramatic diagonal motion, purple stars, amber thrusters, readable action without injuries/explosions. Both birds completely inside capsules, two ordinary wings and two pink feet, no costumes/hats/human limbs. Reference defines consistent capsule/bird style, not scene. No words, symbols resembling text, watermark, borders, panels or collage.",
+      "references": [
+        "assets/admiral-pigeon-origins/book-2/chapter-06.png"
+      ]
+    },
+    {
+      "id": "chapter-09",
+      "path": "assets/admiral-pigeon-origins/book-2/chapter-09.png",
+      "alt": "Pigeon listens closely as Bramble points out a wider route on their cloth map, with Tiller and the three remaining splat pods beside them.",
+      "scene": "Chapter Nine: A Map with Everyone on It",
+      "prompt": "Use case: illustration-story. New 16:9 cinematic stylized 3D children's book illustration of a quiet turning point after a failed space rescue attempt. Reference defines the three pigeons only. Inside Lantern's small warm bronze cargo cabin, Pigeon stands beside a low table with his worn rolled-out CLOTH ROUTE MAP, its simple ink drawings of rocks, three cargo ships, wide curved paths and small lamp circles; all pictorial, absolutely no writing. THREE round translucent creamy-white splat pods rest in a plain shallow tray beside the map. Pigeon is gray with teal-violet iridescent neck, attentive orange eyes and a humble, thoughtful closed-beak expression, looking toward stocky brown-gray Bramble who indicates a wider route with the tip of one ordinary feathered wing. Lean pale-gray Tiller stands nearby pointing his gaze to a second passage. Show genuine listening, trust rebuilt, friends solving a problem together. All pigeons have DARK CHARCOAL upper and lower beaks with small pale ivory-white cere, never gold/yellow/orange. Each has exactly two wings/two pink feet, no clothing, hats or human hands. A folded white paper bird rests near warm cabin lamp; dark violet rocks through round porthole recall the danger outside. More intimate smaller practical cabin than grand briefing room. Fully visible principal bodies, clear feathers and emotionally engaging faces. No text, numbers, watermark, borders, panels or collage.",
+      "references": [
+        "assets/admiral-pigeon-origins/book-2/cover.png"
+      ]
+    },
+    {
+      "id": "chapter-10",
+      "path": "assets/admiral-pigeon-origins/book-2/chapter-10.png",
+      "alt": "Beside the last navigation lamp, Pigeon turns toward Lantern as an enemy clamp beam catches the cargo ship near the rocky passage.",
+      "scene": "Chapter Ten: The Last Lamp",
+      "prompt": "Use case: illustration-story. New landscape 16:9 cinematic stylized 3D children's space adventure illustration, The Last Lamp. Use reference for natural Pigeon design, flight bubble and ships only; NEW composition. A large ancient bronze navigation lamp hangs from a craggy stone arch in an asteroid ring. Amber clinic cargo ship Lantern is almost through the arch toward open stars, when a clear focused AMBER CLAMP BEAM from a dark wedge-shaped patrol spaceship catches the cargo ship's stern and holds it still. Two other smaller amber cargo freighters already emerge safely beyond the rocks. A wide silver-winged carrier waits very far away in open space. Foreground Pigeon in a completely closed transparent round flight bubble has wheeled toward the trapped ship. His orange eyes are wide with alarm beneath a determined brow, dark charcoal beak set tight, wings braced close; his expression says he has seen the danger and must act. Gray feathers, vivid teal-violet neck, dark charcoal upper/lower beak with small pale ivory cere, pink feet on brass pedals. Bubble fully contains bird with no limb outside it. Emphasize a clear connection of the beam between enemy emitter and cargo stern; no destructive laser, injuries, wreckage or explosion. Dramatic violet shadows, cold stars and amber lamp, emotionally urgent, no cheerful grins. Exactly two natural wings/two feet, no costumes/humans. Fully visible principal capsule. No words, numbers, watermark, collage, border or panels.",
+      "references": [
+        "assets/admiral-pigeon-origins/book-2/chapter-08.png"
+      ]
+    },
+    {
+      "id": "chapter-11",
+      "path": "assets/admiral-pigeon-origins/book-2/chapter-11.png",
+      "alt": "Bramble's cargo arm tows Pigeon's powerless bubble through the rocky arch while Tiller leads them toward the freed convoy.",
+      "scene": "Chapter Eleven: Bring Me Along",
+      "prompt": "Use case: illustration-story. NEW 16:9 cinematic stylized 3D children's book illustration, emotionally powerful rescue in space. Reference 1 supplies capsule technology; reference 2 supplies stocky gray-brown Bramble. Bramble's sealed clear one-bird flight bubble is towing Pigeon's powerless sealed clear one-bird flight bubble through an old rocky navigation arch. A short bronze mechanical CARGO ARM fixed OUTSIDE Bramble's capsule has visibly latched onto the outside tow ring of Pigeon's capsule, firmly connecting them; no bird touches space. Pigeon's capsule thruster is dark because he used his fuel to rescue others. Pigeon sits exhausted with wings lowered, orange eyes relieved and vulnerable as he looks toward Bramble; Bramble looks fiercely protective and determined as he steers. Ahead, lean pale-gray Tiller leads in a third sealed bubble. Beyond the arch the warm-lit clinic freighter Lantern now travels freely toward the broad silver-wing carrier, with blue-violet stars all around. Contrasting amber capsule reflections, rocky shadows and hopeful light. Pigeon gray with teal-violet neck; all THREE pigeons have dark charcoal upper/lower beaks and small ivory-white cere, no yellow/gold beaks. Natural two wings and two pink feet each, no clothes/hats/human limbs. Both principal capsule spheres completely within frame and visibly enclosing birds. Clear tow connection is the focal action; no injuries or explosions. No writing, numerals, watermark, border, collage or panels.",
+      "references": [
+        "assets/admiral-pigeon-origins/book-2/chapter-06.png",
+        "assets/admiral-pigeon-origins/book-2/cover.png"
+      ]
+    },
+    {
+      "id": "chapter-12",
+      "path": "assets/admiral-pigeon-origins/book-2/chapter-12.png",
+      "alt": "Pigeon stands proudly on his new command perch as Vela appoints him Flight Lieutenant and his friends gather beside his paper bird and map.",
+      "scene": "Chapter Twelve: Name on a Perch",
+      "correction": {"prompt":"Use case: precise-object-edit. Edit ONLY the rolled cloth map lying at lower right beside the paper bird in the FIRST image. It must be the same family's old CREAM LINEN route cloth shown in the SECOND image: cream/tan woven fabric with faded blue/brown route lines and small mountain pictograms. It is incorrectly navy blue with gold star markings in the first image. Preserve its exact rolled position, angle and overall dimensions while restoring the cream material and old route-map markings. Keep everything else exactly: all five pigeons and their faces/colors, dark charcoal beaks with ivory ceres, Pigeon's command perch and wing emblem, white folded paper bird, capsule hangar, glass canopy, garden station, warm sunrise, composition and 16:9 framing. No new text. Do not copy the second image's tabletop or poses.","reason":"Restored the established cream linen family route cloth while preserving the promotion scene."},
+      "prompt": "Use case: illustration-story. New 16:9 cinematic stylized 3D children's book ending illustration, Name on a Perch. Intimate promotion ceremony inside the warm bronze hangar of pigeon carrier Homeward after a successful convoy rescue. Main Pigeon stands full-body on a modest new wooden COMMAND PERCH mounted low on a stand, with a small brass plate that carries only a simple engraved WING EMBLEM and absolutely no text. He is still an ordinary small gray pigeon with teal-violet iridescent neck, orange eyes, two wings, two pink feet, DARK CHARCOAL upper/lower beak with pale ivory-white cere. His expression is moved, quietly proud and a little overwhelmed, eyes bright with earned happiness. Commander Vela, dark-gray pigeon with small notch in beak, stands respectfully beside the perch announcing the appointment. Stocky brown-gray Bramble, slim pale-gray Tiller and little tousled gray Nib gather nearby with warm pleased smiles. All pigeons have charcoal beaks/pale cere and NO clothes, hats, ribbons or worn medals. A white folded paper bird and his old rolled cloth map rest beside his perch. Behind the transparent sealed canopy is Mallow's lovely distant green garden space station; parked empty flight capsules sit to one side. Warm sunrise glow, amber/gold and teal/violet palette, detailed feathers, emotionally satisfying friendship scene, complete principal bodies. Match reference cast and style only, use new composition. No humans, human arms, writing, numerals, watermark, border, panels or collage.",
+      "references": [
+        "assets/admiral-pigeon-origins/book-2/cover.png",
+        "assets/admiral-pigeon-origins/book-2/chapter-05.png"
+      ]
+    }
+  ]
+}
