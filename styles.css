@@ -905,7 +905,7 @@ select:focus-visible {
 }
 
 .prism-page-art {
-    object-fit: contain;
+    object-fit: cover;
 }
 
 .page-art-doughnut-arrival {
