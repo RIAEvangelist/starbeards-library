@@ -21,6 +21,6 @@
     "run": "arcane run --target browser --app juju-grand-adventures"
   },
   "dependencies": {
-    "arcane-os": "0.33.6"
+    "arcane-os": "0.34.0"
   }
 }
