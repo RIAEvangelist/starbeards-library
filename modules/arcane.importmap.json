@@ -117,6 +117,8 @@
     "./node_modules/arcane-os/runtime/arcane/sdk/ai/browser-speech-providers.mjs": "./node_modules/arcane-os/browser-runtime/ai/browser-speech-providers.mjs",
     "./node_modules/arcane-os/browser-runtime/ai/browser-speech-recognition.mjs": "./node_modules/arcane-os/browser-runtime/ai/browser-speech-recognition.mjs",
     "./node_modules/arcane-os/runtime/arcane/sdk/ai/browser-speech-recognition.mjs": "./node_modules/arcane-os/browser-runtime/ai/browser-speech-recognition.mjs",
+    "./node_modules/arcane-os/browser-runtime/ai/browser-speech-synthesis.mjs": "./node_modules/arcane-os/browser-runtime/ai/browser-speech-synthesis.mjs",
+    "./node_modules/arcane-os/runtime/arcane/sdk/ai/browser-speech-synthesis.mjs": "./node_modules/arcane-os/browser-runtime/ai/browser-speech-synthesis.mjs",
     "./node_modules/arcane-os/browser-runtime/ai/browser-speech.mjs": "./node_modules/arcane-os/browser-runtime/ai/browser-speech.mjs",
     "./node_modules/arcane-os/runtime/arcane/sdk/ai/browser-speech.mjs": "./node_modules/arcane-os/browser-runtime/ai/browser-speech.mjs",
     "./node_modules/arcane-os/browser-runtime/ai/browser-wasm-llm-provider.mjs": "./node_modules/arcane-os/browser-runtime/ai/browser-wasm-llm-provider.mjs",
