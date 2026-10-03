@@ -71,10 +71,6 @@ const readerMusicSlot = document.querySelector('#reader-music-slot');
 const voiceControl = document.querySelector('#voice-control');
 const voiceSelect = document.querySelector('#voice-select');
 const narrationStatus = document.querySelector('#narration-status');
-const bookPreparation = document.createElement('div');
-const bookPreparationStatus = document.createElement('p');
-const bookPreparationErrors = document.createElement('div');
-const bookPreparationStopButton = document.createElement('button');
 const chapterLabel = document.querySelector('#chapter-label');
 const statusText = document.querySelector('#page-status-text');
 const progressDots = document.querySelector('#progress-dots');
@@ -88,33 +84,8 @@ const COPY_EDGE_GAP = 12;
 const COPY_CONTROL_GAP = 8;
 
 const BACKGROUND_MUSIC_VOLUME = 0.005;
-const VOICE_STORAGE_KEY = 'juju-grand-adventures.kokoro-voice';
+const VOICE_STORAGE_KEY = 'juju-grand-adventures.web-speech-voice';
 const PASSAGE_BREAK_PAUSE_MS = 200;
-const JUJU_KOKORO_AUTHORITY = {
-    providerId: 'juju-grand-adventures-kokoro',
-    defaultVoice: 'af_heart',
-    model: {
-        id: 'onnx-community/Kokoro-82M-v1.0-ONNX',
-        repository: 'onnx-community/Kokoro-82M-v1.0-ONNX',
-        revision: 'main',
-        dtype: 'fp32',
-        defaultVoice: 'af_heart',
-        files: []
-    },
-    runtime: {
-        adapter: 'kokoro-js',
-        version: '1.2.1',
-        revision: '1.2.1',
-        entry: 'kokoro.web.js',
-        files: [
-            {
-                path: 'kokoro.web.js',
-                url: 'https://cdn.jsdelivr.net/npm/kokoro-js@1.2.1/dist/kokoro.web.js',
-                mediaType: 'text/javascript'
-            }
-        ]
-    }
-};
 
 let pages = [];
 let currentBookId = '';
@@ -123,7 +94,7 @@ let scrollFrame = 0;
 let narrationActive = false;
 let narrationReady = false;
 let narrationRevision = 0;
-let narrationWaitingForGesture = false;
+let preferredVoice = null;
 let jujuSpeech = null;
 let lastOpenButton = null;
 let activeCopyDrag = null;
@@ -527,14 +498,14 @@ function keepCopyPositionsVisible() {
 
 function getSelectedVoiceLabel() {
     if (!voiceSelect) {
-        return 'Kokoro';
+        return 'the browser voice';
     }
 
     const selectedOption = voiceSelect.options[voiceSelect.selectedIndex];
 
     return selectedOption
         ? selectedOption.textContent.trim()
-        : 'Kokoro';
+        : 'the browser voice';
 }
 
 function updateNarrationStatus(message) {
@@ -543,109 +514,50 @@ function updateNarrationStatus(message) {
     }
 }
 
-function initializeBookPreparationControls() {
-    bookPreparation.id = 'book-preparation';
-    bookPreparation.className = 'book-preparation';
-    bookPreparation.hidden = true;
-    bookPreparationStatus.id = 'book-preparation-status';
-    bookPreparationStatus.setAttribute('role', 'status');
-    bookPreparationStatus.setAttribute('aria-live', 'polite');
-    bookPreparationErrors.setAttribute('aria-live', 'polite');
-    bookPreparationStopButton.type = 'button';
-    bookPreparationStopButton.className = 'read-button';
-    bookPreparationStopButton.textContent = 'Stop preparation and reading';
-    bookPreparationStopButton.setAttribute(
-        'aria-describedby',
-        'book-preparation-status'
+function updateVoiceOptions(voices) {
+    const englishVoices = voices.filter(
+        function isEnglishVoice(voice) {
+            return /^en(?:[-_]|$)/i.test(voice.lang);
+        }
     );
-    bookPreparationStopButton.addEventListener(
-        'click',
-        handleBookPreparationStopClick
+    const defaultVoice = englishVoices.find(
+        function isGoogleUSEnglish(voice) {
+            return voice.name === 'Google US English';
+        }
+    ) || englishVoices.find(
+        function isGoogleEnglish(voice) {
+            return /google/i.test(voice.name);
+        }
+    ) || englishVoices.find(
+        function isDefaultEnglish(voice) {
+            return voice.default;
+        }
+    ) || englishVoices[0];
+    const requestedVoice = preferredVoice ?? (
+        narrationActive ? voiceSelect.value : null
     );
-    bookPreparation.append(
-        bookPreparationStatus,
-        bookPreparationErrors,
-        bookPreparationStopButton
+    const savedVoice = voices.find(
+        function matchesPreferredVoice(voice) {
+            return voice.id === requestedVoice;
+        }
     );
-    narrationStatus.after(bookPreparation);
-}
 
-function clearBookPreparationStatus() {
-    bookPreparation.hidden = true;
-    bookPreparationStatus.textContent = '';
-    bookPreparationErrors.replaceChildren();
-}
+    voiceSelect.replaceChildren(new Option('Browser default', ''));
 
-function handleBookPreparationStopClick() {
-    stopNarration();
-}
-
-function handleBookPreparationState(detail) {
-    const selectedVoice = voiceSelect
-        ? voiceSelect.value
-        : JUJU_KOKORO_AUTHORITY.defaultVoice;
-
-    if (detail.bookId !== currentBookId || detail.voice !== selectedVoice) {
-        return;
+    for (const voice of voices) {
+        voiceSelect.add(new Option(voice.name + ' · ' + voice.lang, voice.id));
     }
 
-    if (detail.state === 'book-stopped') {
-        clearBookPreparationStatus();
-        return;
+    if (requestedVoice && !savedVoice) {
+        voiceSelect.add(
+            new Option(requestedVoice + ' · waiting for this voice', requestedVoice)
+        );
     }
 
-    const voiceLabel = getSelectedVoiceLabel();
-    const bookTitle = BOOKS[currentBookId].title;
-    const preparationProgress = detail.completedPages
-        + ' of '
-        + detail.totalPages
-        + ' pages ready';
+    voiceSelect.value = requestedVoice ?? defaultVoice?.id ?? '';
 
-    bookPreparation.hidden = false;
-    bookPreparationStopButton.hidden = detail.state === 'book-prepared';
-
-    if (detail.state === 'book-preparing') {
-        bookPreparationStatus.textContent = bookTitle
-            + ': preparing page '
-            + (detail.pageIndex + 1)
-            + ' with '
-            + voiceLabel
-            + '. '
-            + preparationProgress
-            + '.';
-        return;
-    }
-
-    if (detail.state === 'book-prepared') {
-        bookPreparationStatus.textContent = bookTitle
-            + ': preparation finished with '
-            + voiceLabel
-            + '. '
-            + preparationProgress
-            + '.'
-            + (detail.failedPages > 0
-                ? ' ' + detail.failedPages + ' pages could not be prepared.'
-                : '');
-        return;
-    }
-
-    if (detail.state === 'book-preparation-error') {
-        const pageError = document.createElement('p');
-
-        pageError.textContent = 'Page '
-            + (detail.pageIndex + 1)
-            + ' could not be prepared with '
-            + voiceLabel
-            + ': '
-            + narrationFailureMessage(detail.error);
-        bookPreparationErrors.append(pageError);
-        bookPreparationStatus.textContent = bookTitle
-            + ': '
-            + preparationProgress
-            + ' with '
-            + voiceLabel
-            + '. Preparation will continue for the remaining pages.';
-        reportApplicationError(detail.error);
+    if (narrationReady && !narrationActive) {
+        updateNarrationStatus('Ready to read with ' + getSelectedVoiceLabel() + '.');
     }
 }
 
@@ -654,6 +566,10 @@ function updateNarrationButton(isReading, label, isBusy = false) {
     readButton.disabled = !narrationReady;
     readButton.setAttribute('aria-pressed', String(isReading));
     readButton.setAttribute('aria-busy', String(isBusy));
+    readButton.setAttribute(
+        'aria-label',
+        isReading ? 'Stop reading' : 'Read this page aloud'
+    );
     readButtonLabel.textContent = label || (
         isReading
             ? 'Stop reading'
@@ -687,85 +603,44 @@ function reportApplicationError(error) {
     console.error(error);
 }
 
-function narrationFailureMessage(error) {
-    const message = typeof error?.message === 'string'
-        ? error.message
-        : '';
-
-    return message || 'Local read aloud stopped unexpectedly.';
-}
-
 function handleSpeechPlaybackState(detail) {
-    if (!detail || typeof detail !== 'object') {
-        return;
-    }
-
-    if (
-        detail.state === 'book-preparing'
-        || detail.state === 'book-prepared'
-        || detail.state === 'book-preparation-error'
-        || detail.state === 'book-stopped'
-    ) {
-        handleBookPreparationState(detail);
-        return;
-    }
-
-    if (detail.state === 'queued') {
-        narrationWaitingForGesture = false;
-        clearNarrationError();
-        updateNarrationButton(true, 'Stop reading');
-        updateNarrationStatus(
-            'Preparing and reading this page with '
-            + getSelectedVoiceLabel()
-            + '.'
-        );
-        return;
-    }
-
-    if (detail.state === 'waiting-for-gesture') {
-        narrationWaitingForGesture = true;
-        updateNarrationButton(false, 'Play narration');
-        updateNarrationStatus(
-            'Select Play narration to let the browser play the queued audio.'
-        );
+    if (detail.state === 'ended') {
+        handleNarrationEnd();
         return;
     }
 
     if (detail.state === 'error') {
-        handleUnexpectedNarrationFailure(detail.error);
+        const error = new Error(detail.message);
+        error.code = detail.code;
+        handleUnexpectedNarrationFailure(error);
+        return;
+    }
+
+    if (detail.state === 'buffering') {
+        updateNarrationButton(true, 'Stop reading', true);
+        updateNarrationStatus('Preparing browser speech. You can stop reading at any time.');
+        return;
+    }
+
+    if (
+        detail.state === 'playing'
+        || detail.state === 'pausing'
+    ) {
+        clearNarrationError();
+        updateNarrationButton(true, 'Stop reading');
+        updateNarrationStatus('Reading this page with ' + getSelectedVoiceLabel() + '.');
     }
 }
 
-async function beginKokoroNarration(bookId, narrationPages, pageIndex, voice, revision) {
+async function beginPageNarration(passages, voice, revision) {
     try {
-        const completed = await jujuSpeech.read(
-            {
-                bookId,
-                pages: narrationPages,
-                pageIndex,
-                voice,
-                speed: 0.95
-            }
+        await jujuSpeech.read(
+            {passages, voice}
         );
-
-        if (revision !== narrationRevision) {
-            return;
-        }
-
-        if (completed) {
-            handleNarrationEnd();
-        } else {
-            stopNarration(
-                {
-                    cancelPreparation: false
-                }
-            );
-            updateNarrationStatus(
-                'Narration stopped before the page finished. Select Read this page to try again.'
-            );
-        }
+        // The SDK's ended event, not prepare(), reports the final spoken word.
     } catch (error) {
         if (revision !== narrationRevision) {
+            reportApplicationError(error);
             return;
         }
 
@@ -774,62 +649,35 @@ async function beginKokoroNarration(bookId, narrationPages, pageIndex, voice, re
 }
 
 function handleUnexpectedNarrationFailure(error) {
-    stopNarration(
-        {
-            cancelPreparation: false
-        }
-    );
+    narrationRevision += 1;
+    updateNarrationButton(false);
     narrationStatus.dataset.speechStatusCode = error?.code
         || 'ARCANE_AI_TTS_FAILED';
     updateNarrationStatus(
-        narrationFailureMessage(error)
-        + ' The visual story remains available. Please try again.'
+        'Read aloud could not finish. Try another voice or select Read this page again. The visual story remains available.'
     );
     reportApplicationError(error);
 }
 
-function handleNarrationStopFailure(error) {
-    narrationStatus.dataset.speechStatusCode = error?.code
-        || 'ARCANE_AI_TTS_STOP_FAILED';
-    updateNarrationStatus(
-        narrationFailureMessage(error)
-        + ' Read aloud could not finish stopping cleanly. Please try again.'
-    );
-    reportApplicationError(error);
-}
-
-function stopNarration({cancelPreparation = true} = {}) {
+function stopNarration() {
     narrationRevision += 1;
-    narrationWaitingForGesture = false;
 
-    const revision = narrationRevision;
-
-    if (cancelPreparation) {
-        clearBookPreparationStatus();
-    }
-
-    if (jujuSpeech) {
-        jujuSpeech.stop(
-            {
-                cancelPreparation
-            }
-        ).catch(
-            function reportCurrentNarrationStopFailure(error) {
-                if (revision === narrationRevision) {
-                    handleNarrationStopFailure(error);
-                } else {
-                    reportApplicationError(error);
-                }
-            }
-        );
-    }
-
-    if (!narrationReady) {
+    try {
+        jujuSpeech?.stop();
+        if (jujuSpeech?.inspect().playbackState === 'error') {
+            updateNarrationStatus('Read aloud could not stop. Close this page to stop narration.');
+            return;
+        }
+    } catch (error) {
+        reportApplicationError(error);
+        updateNarrationStatus('Read aloud could not stop. Close this page to stop narration.');
         return;
     }
 
-    updateNarrationButton(false);
-    updateNarrationStatus('Ready to read with ' + getSelectedVoiceLabel() + '.');
+    if (narrationReady) {
+        updateNarrationButton(false);
+        updateNarrationStatus('Ready to read with ' + getSelectedVoiceLabel() + '.');
+    }
 }
 
 function updateReaderState(index) {
@@ -907,11 +755,7 @@ function goToPage(index, useSmoothScroll = true) {
     const safeIndex = Math.max(0, Math.min(index, pages.length - 1));
     const pageWidth = storyTrack.clientWidth;
 
-    stopNarration(
-        {
-            cancelPreparation: false
-        }
-    );
+    stopNarration();
     storyTrack.scrollTo(
         {
             left: pageWidth * safeIndex,
@@ -1091,11 +935,7 @@ function syncPageFromScroll() {
     const nearestIndex = Math.round(storyTrack.scrollLeft / pageWidth);
 
     if (nearestIndex !== currentPageIndex) {
-        stopNarration(
-            {
-                cancelPreparation: false
-            }
-        );
+        stopNarration();
         updateReaderState(nearestIndex);
     }
 }
@@ -1139,20 +979,8 @@ function collectNarrationPassages(page) {
     return narrationPassages;
 }
 
-function collectBookNarrationPages() {
-    return pages.map(
-        function collectBookNarrationPage(page, pageIndex) {
-            return {
-                id: page.getAttribute('aria-labelledby') || String(pageIndex),
-                passages: collectNarrationPassages(page)
-            };
-        }
-    );
-}
-
 function handleNarrationEnd() {
     narrationRevision += 1;
-    narrationWaitingForGesture = false;
     clearNarrationError();
     updateNarrationButton(false);
     updateNarrationStatus('Ready to read with ' + getSelectedVoiceLabel() + '.');
@@ -1164,90 +992,28 @@ function handleReadClick() {
     }
 
     if (narrationActive) {
-        stopNarration(
-            {
-                cancelPreparation: false
-            }
-        );
+        stopNarration();
         return;
     }
 
-    if (narrationWaitingForGesture) {
-        const revision = narrationRevision;
+    const passages = collectNarrationPassages(pages[currentPageIndex]);
 
-        narrationWaitingForGesture = false;
-        updateNarrationButton(true, 'Stop reading');
-        updateNarrationStatus('Resuming narration…');
-        jujuSpeech.resume().then(
-            function handleNarrationResume(resumed) {
-                if (revision !== narrationRevision) {
-                    return;
-                }
-
-                if (resumed) {
-                    updateNarrationStatus(
-                        'Preparing and reading this page with '
-                        + getSelectedVoiceLabel()
-                        + '.'
-                    );
-                }
-            }
-        ).catch(
-            function reportNarrationResumeFailure(error) {
-                if (revision === narrationRevision) {
-                    handleUnexpectedNarrationFailure(error);
-                } else {
-                    reportApplicationError(error);
-                }
-            }
-        );
-        return;
-    }
-
-    const narrationPages = collectBookNarrationPages();
-    const revision = narrationRevision + 1;
-
-    if (narrationPages[currentPageIndex].passages.length === 0) {
+    if (passages.length === 0) {
         updateNarrationStatus('This page has no text to read.');
         return;
     }
 
-    const selectedVoice = voiceSelect
-        ? voiceSelect.value
-        : 'af_heart';
+    const revision = ++narrationRevision;
 
-    narrationRevision = revision;
     clearNarrationError();
-    clearBookPreparationStatus();
-    updateNarrationButton(true, 'Preparing narration…', true);
-    updateNarrationStatus(
-        'Preparing '
-        + getSelectedVoiceLabel()
-        + ' narration. Saved audio is reused; missing audio is generated locally.'
-    );
-    beginKokoroNarration(
-        currentBookId,
-        narrationPages,
-        currentPageIndex,
-        selectedVoice,
-        revision
-    ).catch(handleUnexpectedNarrationFailure);
+    updateNarrationButton(true, 'Stop reading', true);
+    updateNarrationStatus('Starting narration with ' + getSelectedVoiceLabel() + '.');
+    beginPageNarration(passages, voiceSelect.value, revision).catch(handleUnexpectedNarrationFailure);
 }
 
 function restoreVoicePreference() {
-    if (!voiceSelect) {
-        return;
-    }
-
     try {
-        const savedVoice = window.localStorage.getItem(VOICE_STORAGE_KEY);
-        const savedOption = savedVoice
-            ? voiceSelect.querySelector('option[value="' + savedVoice + '"]')
-            : null;
-
-        if (savedOption) {
-            voiceSelect.value = savedVoice;
-        }
+        preferredVoice = window.localStorage.getItem(VOICE_STORAGE_KEY);
     } catch (error) {
         // Voice persistence is optional when storage is unavailable.
         reportApplicationError(error);
@@ -1255,6 +1021,7 @@ function restoreVoicePreference() {
 }
 
 function handleVoiceChange() {
+    preferredVoice = voiceSelect.value;
     stopNarration();
 
     try {
@@ -1272,7 +1039,7 @@ function applyNarrationUnavailable(error) {
     updateNarrationButton(false, 'Read aloud unavailable');
     readButton.disabled = true;
     readButton.setAttribute('aria-label', 'Read aloud unavailable');
-    readButton.title = narrationFailureMessage(error);
+    readButton.title = 'This browser could not provide read aloud. Try a browser with Web Speech synthesis.';
 
     if (voiceControl) {
         voiceControl.setAttribute('aria-disabled', 'true');
@@ -1285,21 +1052,20 @@ function applyNarrationUnavailable(error) {
     narrationStatus.dataset.speechStatusCode = error?.code
         || 'ARCANE_AI_BROWSER_SPEECH_UNAVAILABLE';
     updateNarrationStatus(
-        narrationFailureMessage(error)
-        + ' The visual story remains available.'
+        'This browser could not provide read aloud. The visual story remains available.'
     );
 }
 
 async function initializeNarration() {
     readButton.disabled = true;
     readButton.setAttribute('aria-busy', 'true');
-    updateNarrationStatus('Preparing local read-aloud controls…');
+    updateNarrationStatus('Loading browser voices…');
 
     try {
         jujuSpeech = createJuJuSpeech(
             {
-                authority: JUJU_KOKORO_AUTHORITY,
-                onState: handleSpeechPlaybackState
+                onState: handleSpeechPlaybackState,
+                onVoices: updateVoiceOptions
             }
         );
         await jujuSpeech.initialize();
@@ -1355,7 +1121,6 @@ backgroundMusic.addEventListener('error', handleBackgroundMusicError);
 updateMusicButton();
 
 restoreVoicePreference();
-initializeBookPreparationControls();
 
 if (voiceSelect) {
     voiceSelect.disabled = true;
