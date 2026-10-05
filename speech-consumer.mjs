@@ -1,7 +1,7 @@
 import {createBrowserSpeechSynthesisProvider} from 'arcane-os/ai/browser-speech';
 import SpeechPlayback from 'arcane-os/speech-playback';
 
-const ARCANE_SDK_VERSION = '0.52.1';
+const ARCANE_SDK_VERSION = '0.53.0';
 
 export function createJuJuSpeech({onState, onVoices}) {
     const provider = createBrowserSpeechSynthesisProvider(
