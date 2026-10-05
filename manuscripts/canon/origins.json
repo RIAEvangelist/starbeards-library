@@ -1,0 +1,847 @@
+[
+  {
+    "id": "mother-tansy",
+    "name": "Mother Tansy",
+    "kind": "creature",
+    "role": "Maker, repairer, and Pigeon's mother",
+    "summary": "Tansy can mend a carrying loop, improve a crooked shelf, and spot the strand of grass her grown son missed behind his eye.",
+    "appearance": "An ordinary gray pigeon with natural wings and feet, a dark charcoal beak, and a small pale cere. Existing illustrations show her without clothing or worn accessories.",
+    "image": "assets/admiral-pigeon-origins/book-1/chapter-01.png",
+    "imageAlt": "Young Pigeon sits in a millet bowl while his ordinary gray pigeon parents look on inside their blue-curtained home.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["admiralPigeonOne", "admiralPigeonTwo", "admiralPigeonThree"],
+    "established": [
+      "Tansy makes and repairs practical things in the little home in the wall of Old Wing Cavern. She made its soft blue curtain, repaired Pigeon's lower practice perch, and later strengthened the crooked shelf while preserving its familiar shape. As Pigeon grows, she teaches him how a load should rest before it is lifted.",
+      "During the storm emergency she helps families move into shelter and checks the carrying loop she made for Pigeon's route cloth. Later she repairs the cloth's traveling tube and writes warmly about his learning maps. She remains alive, attends his admiral promotion, and welcomes him home with a seed loaf before his first academy assignment."
+    ],
+    "backstory": [
+      "The ledges around Tansy's home have become an informal repair route. A neighbor leaves a basket that pulls sideways; another brings a bowl stand that tips whenever breakfast becomes enthusiastic. Tansy begins by asking how the object is used. Her favorite repairs preserve the parts everyone already knows how to live with, so a familiar room can become more dependable without losing its character.",
+      "She keeps short lengths of useful thread in a shallow dish beneath the shelf. Young visitors are allowed to sort them and explain what they think each piece could hold. Her lessons usually produce something ordinary and immediately useful: a straighter carrying loop, a curtain tie, or a comfortable place to set a bowl."
+    ],
+    "relationships": [
+      {"name": "Admiral Pigeon", "detail": "His living mother; teaches practical balance and supports his service through repairs, meals, and letters."},
+      {"name": "Father Bram", "detail": "Shares the family home with him and their son."},
+      {"name": "Gran Cora", "detail": "Part of Pigeon's living family circle; their precise parental-side relationship is unstated."}
+    ],
+    "sources": [
+      {"storyId": "admiralPigeonOne", "location": "Chapters 1, 3, 6–7, 11–12"},
+      {"storyId": "admiralPigeonTwo", "location": "Chapters 1, 4, 12"},
+      {"storyId": "admiralPigeonThree", "location": "Chapters 1, 11–12"}
+    ],
+    "notes": ["Tansy remains alive throughout the trilogy.", "These fictional family details establish nothing about the author's real family."]
+  },
+  {
+    "id": "father-bram",
+    "name": "Father Bram",
+    "kind": "creature",
+    "role": "Rooftop gardener and Pigeon's father",
+    "summary": "Bram reads the wind through his rooftop gardens and considers a returning rescue flight an excellent reason to serve breakfast.",
+    "appearance": "An ordinary gray pigeon, shown slightly larger or taller than Tansy in existing art, with a charcoal beak and pale cere. He wears no clothes.",
+    "image": "assets/admiral-pigeon-origins/book-1/chapter-11.png",
+    "imageAlt": "An exhausted Pigeon dozes by a breakfast bowl as Father Bram brings a seed cake and Gran Cora sits nearby.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["admiralPigeonOne", "admiralPigeonTwo", "admiralPigeonThree"],
+    "established": [
+      "Bram grows little pots of seed grass on the family windowsill and larger gardens on the cavern roof. He teaches Pigeon to judge the wind there. Before the great storm, he notices that the roof gardens are unusually still despite approaching clouds. He helps shelter families and brings food when the rescuers return.",
+      "His letters follow Pigeon into space with news of ambitious peas and drawings of gardening equipment. A crumb of Tansy's seed loaf accidentally travels inside one letter and rests on Commander Pigeon's map. Bram is present at the admiral ceremony and the family homecoming, still surrounded by familiar gardening tools."
+    ],
+    "backstory": [
+      "Bram knows his rooftop plots by the way the wind crosses them. He describes one bed as the place where the leaves lean before a shower and another as the corner that always receives the last warm light. Visitors expecting a neat row number usually receive a small weather story and enough seeds to make the explanation worthwhile.",
+      "Seed exchanges have given him acquaintances on many cavern ledges. He remembers what grows well near each opening and enjoys suggesting a modest improvement that somehow requires another pot. His idea of a successful visit is returning home with empty seed bowls and news of someone else's first harvest."
+    ],
+    "relationships": [
+      {"name": "Admiral Pigeon", "detail": "His living father; teaches weather awareness and keeps him connected to home."},
+      {"name": "Mother Tansy", "detail": "Shares their home, meals, and care for Pigeon."},
+      {"name": "Bramble", "detail": "Pigeon's friend and a guest at the family table; a separate character despite the similar name."}
+    ],
+    "sources": [
+      {"storyId": "admiralPigeonOne", "location": "Chapters 1, 3, 6–7, 11–12"},
+      {"storyId": "admiralPigeonTwo", "location": "Chapters 1, 4, 12"},
+      {"storyId": "admiralPigeonThree", "location": "Chapters 1, 11–12"}
+    ],
+    "notes": ["Bram remains alive throughout the trilogy.", "Father Bram and Bramble are distinct identities."]
+  },
+  {
+    "id": "gran-cora",
+    "name": "Gran Cora",
+    "kind": "creature",
+    "role": "Retired military messenger and family storyteller",
+    "summary": "Cora's stories come with route marks, inconvenient questions, and a healthy interest in everything that went wrong.",
+    "appearance": "An elderly ordinary gray pigeon with a slightly crooked tail feather. Art gives her softer silver head and brow feathers, a charcoal beak, and a pale cere. She can still fly competently and wears no costume or glasses.",
+    "image": "assets/admiral-pigeon-origins/book-1/chapter-02.png",
+    "imageAlt": "Young Pigeon and silver-gray Gran Cora study the cream route cloth in the Hall of Returning Wings.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["admiralPigeonOne", "admiralPigeonTwo", "admiralPigeonThree"],
+    "established": [
+      "Cora lives three ledges below Pigeon's childhood home. A retired military messenger whose name appears in the Hall of Returning Wings, she introduces him to Messenger Fern's history and the inherited route cloth. She teaches him to describe the actual landscape before consulting the map and gives him the cloth when he reaches enlistment age.",
+      "Her remembered landmarks help the rescuers plan their journey to Lantern Ledge. Throughout Pigeon's space service she asks for honest letters and fresh learning maps. She attends his admiral promotion and listens to his complete Bellflower account at home. Her affection includes curiosity, humor, and the patience to hear frightening parts of a story."
+    ],
+    "backstory": [
+      "During messenger service, Cora learned to keep the useful parts of an account together: where a flyer waited, what changed, and which confident assumption turned out to be wrong. Her private recollections include meals and weather as readily as ceremonies. The ordinary details help her picture a journey clearly enough to explain it to the next pair of wings.",
+      "At home she sometimes spreads a route cloth beside a bowl of crumbs and invites a young visitor to tell her what happened that morning. She gives the grand beginning its proper attention, then asks about the awkward landing halfway through. That is usually where both of them begin enjoying the conversation."
+    ],
+    "relationships": [
+      {"name": "Admiral Pigeon", "detail": "His living grandmother, teacher of observation, and keeper of the family service stories."},
+      {"name": "Messenger Fern", "detail": "Preserves and explains their ancestor's records."},
+      {"name": "Dr. Nib", "detail": "Expresses a wish to meet him and says she has questions; a meeting is not established."}
+    ],
+    "sources": [
+      {"storyId": "admiralPigeonOne", "location": "Chapters 1–3, 6–7, 11–12"},
+      {"storyId": "admiralPigeonTwo", "location": "Chapters 1, 4, 12"},
+      {"storyId": "admiralPigeonThree", "location": "Chapters 11–12"}
+    ],
+    "notes": ["Cora remains alive throughout the trilogy.", "The manuscripts do not specify whether she is Tansy's mother or Bram's mother."]
+  },
+  {
+    "id": "messenger-fern",
+    "name": "Messenger Fern",
+    "kind": "creature",
+    "role": "Ancestor whose routes still guide the family",
+    "summary": "Fern left useful paths, a remembered storm rescue, and an impressively forceful complaint about the soup.",
+    "appearance": "A female pigeon. Her individual plumage, age, and portrait are not specified by the manuscripts or illustration manifests.",
+    "image": "assets/admiral-pigeon-origins/book-1/chapter-02.png",
+    "imageAlt": "Pigeon and Gran Cora examine the family route cloth while discussing Fern's history; Fern is not pictured.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["admiralPigeonOne", "admiralPigeonThree"],
+    "established": [
+      "Fern is an ancestor remembered through service records, route markings, letters, and a surviving complaint about soup. She carried orders and reports during several battles through places too narrow for large flying machines. Cora tells Pigeon about her in the Hall of Returning Wings.",
+      "When a winter gale scattered Fern's messenger flight, she reached shelter and discovered that three flyers were missing. Remembering a ledge, she returned and found all three, one with an injured wing. She repeatedly traveled between ledge and shelter to guide them through the changing wind. Her small crooked-star route mark later helps Pigeon connect family history to practical observation."
+    ],
+    "backstory": [
+      "Fern's habit was to add the detail another messenger would wish someone had mentioned: the ledge that stayed sheltered, the awkward turn with room to wait, or the kitchen whose soup inspired a separate letter. Her accounts made space for both a difficult assignment and the bird who had to eat afterward.",
+      "Later generations kept her route notes beside her opinions about daily service. That mixture gave the family someone they could recognize and learn from, a capable messenger whose extraordinary return flights belonged to the same life as an ordinary disappointing supper."
+    ],
+    "relationships": [
+      {"name": "Admiral Pigeon", "detail": "His ancestor; her recorded storm rescue influences his understanding of service."},
+      {"name": "Gran Cora", "detail": "Retells Fern's history and preserves the family's knowledge of her routes."},
+      {"name": "Old Wing's neighbors and rescuers", "detail": "Includes the three remembered flightmates whom Fern guided to shelter during a winter gale."}
+    ],
+    "sources": [
+      {"storyId": "admiralPigeonOne", "location": "Chapters 2 and 12"},
+      {"storyId": "admiralPigeonThree", "location": "Chapter 12"}
+    ],
+    "notes": ["No exact generation, dates, lifespan, or complete military career is established.", "The route cloth is a practical inherited map, not a prophecy or magical weapon."]
+  },
+  {
+    "id": "bramble",
+    "name": "Bramble",
+    "kind": "creature",
+    "role": "Load handler, rescuer, and steadfast friend",
+    "summary": "Bramble understands crates, inconvenient corners, and the value of having someone ready to tow you home.",
+    "appearance": "A sturdy gray-brown pigeon. Existing art adds warm brown wing feathers, a muted violet throat, a broad build, pink-to-red feet, and the shared charcoal beak with pale cere. No clothing.",
+    "image": "assets/admiral-pigeon-origins/book-2/chapter-11.png",
+    "imageAlt": "Bramble's capsule tows Pigeon's powerless bubble through a rocky arch while Tiller leads the way.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["admiralPigeonOne", "admiralPigeonTwo", "admiralPigeonThree"],
+    "established": [
+      "Bramble meets Pigeon during Airforce training while trying to move a crate through a narrow doorway. His patience, load judgment, practical improvisation, and dry humor help the trio carry water and bring Lantern Ledge's residents home in rescue baskets. He transfers into the Galactic Pigean Space Corps with Pigeon and Tiller.",
+      "A cargo exercise goes wrong when Pigeon interrupts his warning about a sticking cradle. During the real convoy rescue, Bramble works with Hobb to rearrange Kettle's tanks, removes a trapped strap, steadies Lantern, and tows Pigeon's fuel-empty bubble home. Years later he commands a rescue formation at Bellflower Gate and helps make the battle plan independent of any one pigeon."
+    ],
+    "backstory": [
+      "Before enlistment, Bramble helped carry supplies between ledges whose builders had held different opinions about doorway width. He learned to set a load down, examine its shape, and try a useful turn before making a more impressive effort. The experience left him with an affection for equipment that does its job and room enough to use it.",
+      "He enjoys preparing a departure so thoroughly that the passengers have nothing exciting to report. A balanced basket, a clear receiving ledge, and someone waiting at the other end make a satisfying arrangement. If the journey becomes frightening anyway, Bramble usually finds one perfectly ordinary detail worth saying aloud."
+    ],
+    "relationships": [
+      {"name": "Admiral Pigeon", "detail": "Close friend from training; challenges his mistakes and rescues him after the Hearth Convoy escape."},
+      {"name": "Tiller", "detail": "Longtime fellow flyer whose speed complements Bramble's load handling and rescue work."},
+      {"name": "Captain Hobb", "detail": "Collaborates on Kettle's cargo arrangement."}
+    ],
+    "sources": [
+      {"storyId": "admiralPigeonOne", "location": "Chapters 4–12"},
+      {"storyId": "admiralPigeonTwo", "location": "Chapters 1–12"},
+      {"storyId": "admiralPigeonThree", "location": "Chapters 1–12"}
+    ],
+    "notes": ["Bramble is distinct from Father Bram.", "The pajama squid he retrieves is a passenger's stuffed toy, not his own living companion."]
+  },
+  {
+    "id": "tiller",
+    "name": "Tiller",
+    "kind": "creature",
+    "role": "Fast flyer and trusted scout",
+    "summary": "Tiller likes arriving first. His finest flights make sure everyone else can arrive too.",
+    "appearance": "A quick pigeon in the prose; existing art establishes a lean pale-gray body, subtle wing bars, a little silver-teal neck sheen, orange eyes, and natural uncostumed anatomy.",
+    "image": "assets/admiral-pigeon-origins/book-3/chapter-08.png",
+    "imageAlt": "Pigeon works to free pale-gray Tiller's sealed capsule from a twisted platform bracket.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["admiralPigeonOne", "admiralPigeonTwo", "admiralPigeonThree"],
+    "established": [
+      "Tiller begins Airforce training by landing on the station bell and treating a formation exercise as an individual race. Cooperation changes his judgment without taking away his speed or humor. He helps update Pigeon's map, scouts the storm passages, and repeatedly crosses to receive rescue baskets.",
+      "In space, Tiller learns capsule control and becomes a careful scout of moving rocks and hidden routes. He draws a patrol away during the Hearth Convoy escape and guides Bramble's tow. Years later he leads scouts around Bellflower Gate. After checking his last scout has cleared Platform Six, his own bubble becomes trapped; Pigeon frees him. His bruised wing is healing at the admiral ceremony."
+    ],
+    "backstory": [
+      "Young Tiller discovered that a quick circuit could attract attention from an entire ledge, especially if the landing rang something. He practiced sharp turns and exact arrivals because being fast felt immediately understandable. Training gave those same skills companions, cargo, and a destination worth sharing.",
+      "As a scout he enjoys being the first to notice a moving shadow or an opening another flyer overlooked. His private satisfaction now comes from returning with information precise enough that a slower ship can use it. He still appreciates an elegant dash when the route actually needs one."
+    ],
+    "relationships": [
+      {"name": "Admiral Pigeon", "detail": "Training rival turned trusted friend and commander; rescued by him at Bellflower Gate."},
+      {"name": "Bramble", "detail": "Fellow recruit, space patrol member, and rescue partner."},
+      {"name": "Sergeant Flint", "detail": "Instructor who makes him account for his whole flight."}
+    ],
+    "sources": [
+      {"storyId": "admiralPigeonOne", "location": "Chapters 4–12"},
+      {"storyId": "admiralPigeonTwo", "location": "Chapters 1–12"},
+      {"storyId": "admiralPigeonThree", "location": "Chapters 1–12"}
+    ],
+    "notes": ["His early rivalry resolves through earned cooperation, preserving his ability and dignity."]
+  },
+  {
+    "id": "sergeant-flint",
+    "name": "Sergeant Flint",
+    "kind": "creature",
+    "role": "Planetary Pigeon Airforce instructor",
+    "summary": "Flint wants the whole flight back. His rare smile can matter more than a splendid command plate.",
+    "appearance": "An outwardly unremarkable pigeon with an arresting direct gaze. Art establishes a sturdy dark-slate body, charcoal beak and pale cere. His service does not give him clothing or a hat.",
+    "image": "assets/admiral-pigeon-origins/book-1/chapter-07.png",
+    "imageAlt": "Pigeon, stern dark-slate Flint, Bramble and Tiller prepare to enter a mountain passage with lamps and rescue equipment.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["admiralPigeonOne", "admiralPigeonTwo", "admiralPigeonThree"],
+    "established": [
+      "Flint trains the recruits at High Perch Station through formation circuits, load exercises, difficult weather, and navigation. He makes Tiller bring back his flight and asks Pigeon what the actual air told him about a blocked route. During the Lantern Ledge emergency he assigns specific useful jobs, checks passages before moving residents, and commands the rescue.",
+      "He reviews the rescue's weaknesses afterward and later qualifies the trio as Airforce flyers. He sees them off when they transfer to space service and attends Pigeon's admiral promotion years later. He remains in the planetary service. At the ceremony he asks whether Pigeon counted his flock, then gives him a smile."
+    ],
+    "backstory": [
+      "Flint assembled his training exercises from problems that appear small until a whole flight encounters them at once: a wet rail, an awkward frame, a confident flyer who has stopped looking behind. He keeps enough variation in each exercise that remembering yesterday's answer is less useful than observing today's conditions.",
+      "He recognizes former recruits by their habits before he reads their new ranks. A flyer who waits at a bend or asks about a loaded basket tells him something a polished plate cannot. His satisfaction is usually visible for only a moment, which makes those moments memorable."
+    ],
+    "relationships": [
+      {"name": "Admiral Pigeon", "detail": "Instructor and rescue commander whose standards remain important throughout Pigeon's career."},
+      {"name": "Bramble", "detail": "Trains him and assigns him rescue-equipment work."},
+      {"name": "Tiller", "detail": "Teaches him to use speed in service of the whole flight."}
+    ],
+    "sources": [
+      {"storyId": "admiralPigeonOne", "location": "Chapters 4–12"},
+      {"storyId": "admiralPigeonTwo", "location": "Chapter 1"},
+      {"storyId": "admiralPigeonThree", "location": "Chapter 11"}
+    ],
+    "notes": ["Flint does not transfer to the Galactic Pigean Space Corps with the trio."]
+  },
+  {
+    "id": "keeper-moss",
+    "name": "Keeper Moss",
+    "kind": "creature",
+    "role": "Keeper of Lantern Ledge's watch hall",
+    "summary": "Moss knows every resident's name and exactly which shutter will fail first.",
+    "appearance": "An elderly female pigeon. Individual plumage and a definitive portrait are not established; the linked illustration shows the watch-hall rescue context.",
+    "image": "assets/admiral-pigeon-origins/book-1/chapter-09.png",
+    "imageAlt": "Pigeon guides Button from the storm-battered watch hall while other residents and rescuers wait behind them.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["admiralPigeonOne"],
+    "established": [
+      "Moss answers the old messenger door when Flint's rescuers reach Lantern Ledge. She knows everyone in the watch hall, the food baskets, and the dangerous shutter. Although frightened and relieved, she immediately helps organize the fourteen residents for departure.",
+      "She remembers that her grandmother used Bell Hollow and admits she once questioned the need for so many mountain routes. She helps settle the youngest residents into baskets, checks names against Pigeon's count, and continues counting on the return journey. At Old Wing she gives the names to the receiving officer."
+    ],
+    "backstory": [
+      "Moss learned the watch hall through daily use rather than ceremony: which perch catches a draft, where food can stay dry, and who prefers to be asked quietly whether they need help. Residents bring her small complaints because she can usually connect them to a practical task before the next meal.",
+      "She has a habit of walking the hall after everyone settles, noticing the objects left in unexpected places. A moved basket may explain an awkward crossing; a new scrape may explain a sticking door. She regards a well-kept hall as one whose people can find what they need even on a difficult night."
+    ],
+    "relationships": [
+      {"name": "Button", "detail": "Knows his flying ability and explains his fear to Pigeon."},
+      {"name": "Admiral Pigeon", "detail": "Helps Button begin the return journey and counts the residents while Moss checks their names."},
+      {"name": "Sergeant Flint", "detail": "Commands the rescue flight helping Moss's residents leave the watch hall."},
+      {"name": "Old Wing's neighbors and rescuers", "detail": "Includes Moss's remembered grandmother, who used the old Bell Hollow passage."}
+    ],
+    "sources": [{"storyId": "admiralPigeonOne", "location": "Chapters 8–11"}],
+    "notes": ["Moss is included among the fourteen rescued residents.", "She is distinct from Old Wing's unnamed cavern keeper and from Gran Cora."]
+  },
+  {
+    "id": "button",
+    "name": "Button",
+    "kind": "creature",
+    "role": "Young Lantern Ledge resident",
+    "summary": "A doorway feels possible when Pigeon takes three steps, stops, and looks back for Button.",
+    "appearance": "A small young pigeon; art shows fluffy gray feathers, orange-brown eyes, a little teal at the throat, pink feet, and a charcoal beak with pale cere.",
+    "image": "assets/admiral-pigeon-origins/book-1/chapter-09.png",
+    "imageAlt": "Small frightened Button lifts one foot to follow Pigeon into a warm-lit passage.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["admiralPigeonOne"],
+    "established": [
+      "Button is one of the fourteen people sheltering in Lantern Ledge's old watch hall. He can fly its length, yet storm noise leaves him unable to approach the dark messenger door. Pigeon makes the next distance manageable by taking three steps and waiting where Button can see him.",
+      "During the return through Bell Hollow, Button laughs at Pigeon's echoing joke. Exhausted at the washed-out gap, he accepts a place in a basket beside a sleeping youngster. Once safely at Old Wing, he proudly describes the excellent basket to Tansy. Later he helps another youngster on the stairs by moving ahead and looking back."
+    ],
+    "backstory": [
+      "After the rescue, Button begins learning the short stair journeys between Old Wing's familiar ledges. He enjoys finding the place where a nervous younger bird can still see the companion waiting ahead. He treats each completed little journey as something worth reporting at supper.",
+      "Baskets retain a special place in his opinion of good equipment. If someone calls one ordinary, he can explain several of its finest qualities, beginning with the comfortable rim and the fact that an excellent basket can cross a hole while its passenger stays seated."
+    ],
+    "relationships": [
+      {"name": "Admiral Pigeon", "detail": "Helps him leave the hall through the three-step gesture."},
+      {"name": "Keeper Moss", "detail": "Knows his abilities and recognizes that fear has stopped him."},
+      {"name": "Bramble", "detail": "Organizes the basket crossing that carries him over the washed-out gap."},
+      {"name": "Tiller", "detail": "Waits on the receiving ledge while Button watches him throughout the basket crossing."}
+    ],
+    "sources": [{"storyId": "admiralPigeonOne", "location": "Chapters 9–11"}],
+    "notes": ["Button is separate from the two very young initial basket passengers.", "No exact age or later military career is established."]
+  },
+  {
+    "id": "captain-vela",
+    "name": "Captain Vela",
+    "kind": "creature",
+    "role": "Captain of Homeward",
+    "summary": "Vela gives inexperienced space flyers a meal, a manageable first maneuver, and room to develop their own judgment.",
+    "appearance": "A dark-gray female pigeon with a small notch in her beak and an unhurried walk. Charcoal beak, pale cere, natural anatomy, no uniform or hat.",
+    "image": "assets/admiral-pigeon-origins/book-2/chapter-12.png",
+    "imageAlt": "Captain Vela stands beside Pigeon's new command perch as Bramble, Tiller, and Nib gather for his promotion.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["admiralPigeonTwo", "admiralPigeonThree"],
+    "established": [
+      "Vela commands the carrier Homeward and supervises the trio's conversion from planetary flying to capsule flight. She gives homesick Pigeon something ordinary to do, helps him learn to stop, and asks him to compare his planned route with the route Bramble's actual load can make.",
+      "She coordinates the Hearth Convoy rescue while letting Pigeon halt a failing plan, then announces his Flight Lieutenant appointment. At Bellflower Gate she works with the pigeon flights, risks a crossing that exposes Homeward's damaged side, takes over flight timing when Pigeon rescues Tiller, and demands surrender with care promised for enemy crews. She presents Pigeon's admiral promotion on behalf of the Corps Council."
+    ],
+    "backstory": [
+      "Earlier postings gave Vela a collection of small answers to enormous first days: where supper is served, when the mail leaves, and which two points a beginner can travel between successfully. She remembers how much of command consists of making the next useful action visible to someone who has lost sight of it.",
+      "She prefers a chart table large enough for other people to put their observations beside her own. When she asks a developing officer a question, she leaves enough silence for an actual answer. The habit helps Homeward become a place where capable crews keep learning without having to pretend every assignment feels familiar."
+    ],
+    "relationships": [
+      {"name": "Admiral Pigeon", "detail": "Senior captain and mentor who entrusts him with increasing responsibility."},
+      {"name": "Dr. Nib", "detail": "Supports his experiments while making their practical limits explicit."},
+      {"name": "Captain Marr", "detail": "Coordinates protection and civilian passage for Teacup at Bellflower Gate."},
+      {"name": "The Hearth Convoy's crews and neighbors", "detail": "Coordinates the three captains' passage from Larkspur to Mallow."}
+    ],
+    "sources": [
+      {"storyId": "admiralPigeonTwo", "location": "Chapters 1–12"},
+      {"storyId": "admiralPigeonThree", "location": "Chapters 1–11"}
+    ],
+    "notes": ["Authoritative manuscript title: Captain Vela.", "Book Two's chapter 5 and 12 art prompts incorrectly call her Commander Vela; those prompt labels do not change her rank."]
+  },
+  {
+    "id": "doctor-nib",
+    "name": "Dr. Nib",
+    "kind": "creature",
+    "role": "Space-corps engineer and splat-pod inventor",
+    "summary": "Nib's drawers are labeled carefully. Their contents have developed independent opinions about where to stay.",
+    "appearance": "A small ordinary gray pigeon, shown with tousled crown feathers. Charcoal beak and pale cere; no glasses, goggles, lab coat, gloves, or worn tools.",
+    "image": "assets/admiral-pigeon-origins/book-3/chapter-06.png",
+    "imageAlt": "Nib examines glowing freight lamps from a closed maintenance capsule while Tiller scouts nearby.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["admiralPigeonTwo", "admiralPigeonThree"],
+    "established": [
+      "Nib's laboratory occupies a corner of Homeward's upper rear flight deck. He studies collected pigeon droppings mixed with fictional stardew gel and develops pods that spread across exterior observation lenses. Tests reveal misses, motion problems, and cleaning shutters. He treats the resulting embarrassment with enthusiasm while acknowledging that an obscured lens leaves a working ship and an annoyed crew.",
+      "At Bellflower Gate he brings old station plans and restores freight lamps so flights can signal wait, move, and help. After the battle he complains about Pigeon's damaged capsule, then gently presses his forehead against Pigeon's. His engineering serves the combined work of scouts, rescuers, civilians and allied ships."
+    ],
+    "backstory": [
+      "Nib's interest in invention began with equipment whose usefulness depended on a humble part doing something precise. He enjoyed finding that a small adjustment could change an entire job, especially when the useful material was something everyone else had already decided to sweep away.",
+      "His workshop contains drawers for current questions as well as completed parts. A diagram left beside a meal can become tomorrow's experiment; a stubborn purple lamp can remain a perfectly useful purple lamp. He likes discoveries most when another crew member can explain what the invention lets them do."
+    ],
+    "relationships": [
+      {"name": "Captain Vela", "detail": "His commanding captain; keeps experimental enthusiasm connected to actual operating limits."},
+      {"name": "Admiral Pigeon", "detail": "Uses Nib's engineering in patrol and fleet operations and shares flight observations with him."},
+      {"name": "Bramble", "detail": "Contributes load judgment to the splat-pod trials and later rescue operations."},
+      {"name": "Tiller", "detail": "Tests viewing effects and capsule approach angles, then works with the restored signal system."},
+      {"name": "Gran Cora", "detail": "She expresses interest in meeting him and preparing questions."}
+    ],
+    "sources": [
+      {"storyId": "admiralPigeonTwo", "location": "Chapters 3–12"},
+      {"storyId": "admiralPigeonThree", "location": "Chapters 2–11"}
+    ],
+    "notes": ["Stardew gel and splat pods are fantastical; provide no real fabrication recipe.", "Splat pods obscure lenses temporarily and do not disable every instrument or engine."]
+  },
+  {
+    "id": "commander-grint",
+    "name": "Commander Grint",
+    "kind": "being",
+    "role": "Iron Talon commander at Larkspur Passage",
+    "summary": "Grint calls it inspection. The waiting convoy knows its food, water, and medicine belong to Mallow.",
+    "appearance": "The manuscripts do not specify Grint's species or personal appearance. The illustration shows an Iron Talon patrol ship, not a portrait of him.",
+    "image": "assets/admiral-pigeon-origins/book-2/chapter-08.png",
+    "imageAlt": "An Iron Talon patrol ship opens a second observation lens after pigeons smear its front window.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["admiralPigeonTwo"],
+    "established": [
+      "Grint commands the local Iron Talon blockade that closes Larkspur Passage after the Hearth Convoy enters the broken moon's ring. Acting under Marshal Clang's authority, he demands surrender of the cargo for inspection and reassignment. Homeward arrives while the freighters wait with insufficient fuel for a long return route.",
+      "After the first splat attack reveals the convoy's movement, Grint orders an auxiliary patrol to watch the side channels. Vela occupies his main ships while the pigeon patrol guides the freighters through the old service route. The convoy reaches Mallow; Grint's blockade still exists when the book ends."
+    ],
+    "backstory": [
+      "Grint built his command routine around arrivals, holds, and permissions entered on a passage schedule. A tidy sequence reassures him, and he prefers cargo to wait until the proper instruction reaches the proper station. Clang's expanding authority gives that preference power over ships that never agreed to place their journeys in his care.",
+      "The Hearth Convoy troubles him because its captains keep treating their destination as the point of the voyage. Grint can alter an inspection order quickly; he has more difficulty understanding a crew that considers a waiting clinic's medicine more urgent than his timetable."
+    ],
+    "relationships": [
+      {"name": "Marshal Clang", "detail": "Commands the blockade under Clang's authority."},
+      {"name": "Captain Vela", "detail": "Opposed by her demand that civilian cargo travel freely."},
+      {"name": "The Hearth Convoy's crews and neighbors", "detail": "Grint attempts to seize or reassign supplies carried by its three ships."}
+    ],
+    "sources": [{"storyId": "admiralPigeonTwo", "location": "Chapters 5, 8, 10, 12"}],
+    "notes": ["Grint is explicitly distinct from Lieutenant Rusk.", "His species, later fate, and personal relationship with Clang are not established."]
+  },
+  {
+    "id": "marshal-clang",
+    "name": "Marshal Clang",
+    "kind": "being",
+    "role": "Commander of the Iron Talon Fleet",
+    "summary": "Clang wants every important turn approved from his observation deck. A galaxy full of moving lives proves difficult to hold still.",
+    "appearance": "Clang's species and body are unspecified. His flagship, Crown of Order, resembles an enormous black teapot with cannons and polished observation lenses.",
+    "image": "assets/admiral-pigeon-origins/book-3/chapter-09.png",
+    "imageAlt": "Allied ships surround Clang's splattered teapot-shaped flagship while civilians cross Bellflower Gate.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["admiralPigeonTwo", "admiralPigeonThree"],
+    "established": [
+      "Clang's Iron Talon Fleet takes shared routes and blocks supplies to make worlds submit. His authority is invoked at Larkspur Passage; later he occupies travel gates across the Bellflower Galaxy. At Bellflower Gate he threatens to close the civilian evacuation road and uses the stranded convoy as pressure for surrender.",
+      "He insists that important maneuvers wait for approval from Crown of Order. The allies exploit delays between his cleaned observation windows and the decisions he must make, while his instruments continue working. Allied ships surround the flagship and he surrenders. His orders help end blockades, although representatives and fleets need weeks to reopen all crossings under agreed peace terms."
+    ],
+    "backstory": [
+      "Clang first attracted followers with a promise that journeys could become predictable if one authority settled every dispute over passage. He grew fond of charts that showed a fleet obeying a single direction. Each new crossing added to his command made the picture grander and the decisions arriving at his observation deck more numerous.",
+      "Over time, he came to treat a delayed shipment as evidence that someone had resisted his order rather than evidence that a traveler needed a different plan. By the time of Bellflower Gate, the reassurance he found in personal control had become a demand imposed on entire worlds."
+    ],
+    "relationships": [
+      {"name": "Commander Grint", "detail": "A local commander enforcing his authority at Larkspur Passage."},
+      {"name": "Lieutenant Rusk", "detail": "An officer whose damaged landing boat suffers under Clang's permission system."},
+      {"name": "Captain Vela", "detail": "Commands Homeward and allied escorts during the operation that forces his surrender."},
+      {"name": "Admiral Pigeon", "detail": "Commands the pigeon flights that help defeat his attempt to close Bellflower Gate."}
+    ],
+    "sources": [
+      {"storyId": "admiralPigeonTwo", "location": "Chapters 5 and 12"},
+      {"storyId": "admiralPigeonThree", "location": "Chapters 1–10"}
+    ],
+    "notes": ["Do not assign an inherently evil species to the Iron Talon Fleet.", "His ships retain instruments, radio, engines, and cleaning systems during the splat attacks.", "No death, escape after surrender, or later political career is established."]
+  },
+  {
+    "id": "captain-hobb",
+    "name": "Captain Hobb",
+    "kind": "being",
+    "role": "Captain of Kettle",
+    "summary": "Hobb has kept his cargo aboard for eleven seasons and expects a good explanation before anyone rearranges it.",
+    "appearance": "A male captain whose species and personal appearance are unspecified. Kettle is an old practical freighter with prominent water tanks.",
+    "image": "assets/admiral-pigeon-origins/book-2/chapter-10.png",
+    "imageAlt": "The convoy's freighters move through the rocky passage while an enemy beam catches the rear ship, Lantern.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["admiralPigeonTwo"],
+    "established": [
+      "Hobb commands Kettle, the Hearth Convoy freighter whose wide side loads cannot initially make the lamp route's turns. He discusses Bramble's proposed changes, objects to three details, and accepts an arrangement they devise together that brings the tanks inboard far enough for the ship to pass.",
+      "He proudly reports that nothing has fallen off his ship in eleven seasons. When the first escape attempt fails, he turns toward shelter; Bramble frees a loose strap caught in a thruster guard. During the final attempt, Hobb follows the wider outer curve they planned together. Kettle reaches Mallow with the convoy."
+    ],
+    "backstory": [
+      "Long freight runs taught Hobb to remember cargo through its behavior: the load that shifts at a turn, the tank that changes a stopping distance, the spare space worth leaving by a hatch. He regards a familiar arrangement as useful accumulated knowledge and expects anyone changing it to understand why it was there.",
+      "He is willing to listen when a visitor starts with his ship rather than a splendid general theory. Working beside someone who can suggest a practical fourth arrangement earns more of his trust than winning an argument about the first three."
+    ],
+    "relationships": [
+      {"name": "Bramble", "detail": "Collaborates with him to fit Kettle through the service route."},
+      {"name": "Apricot's captain", "detail": "Fellow Hearth Convoy captain commanding the lead freighter."},
+      {"name": "Lantern's captain", "detail": "Fellow Hearth Convoy captain commanding the clinic ship."},
+      {"name": "Admiral Pigeon", "detail": "Follows his coordinated waiting and passage instructions during the rescue."}
+    ],
+    "sources": [{"storyId": "admiralPigeonTwo", "location": "Chapters 6–10 and 12"}],
+    "notes": ["Do not merge Hobb with the unnamed exhausted captain who falls asleep at Mallow; that captain's identity is unspecified."]
+  },
+  {
+    "id": "captain-marr",
+    "name": "Captain Marr",
+    "kind": "creature",
+    "role": "Fieldmouse captain of Teacup",
+    "summary": "Marr's enormous Teacup can make room for another nursery—and, once the engine is repaired, another rescue.",
+    "appearance": "A female fieldmouse. The prose does not establish specific fur coloring or clothing. Her vessel is a large freighter, not literally a teacup.",
+    "image": "assets/admiral-pigeon-origins/book-3/chapter-02.png",
+    "imageAlt": "Civilian freighters, including the large Teacup, wait near Bellflower Gate as three pigeon capsules watch the approach.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["admiralPigeonThree"],
+    "established": [
+      "Marr commands Teacup, a large civilian ship carrying so many evacuees that its kitchen has become a nursery and its nursery a second nursery. When one of its old engines fails during the first crossing attempt, she calls for help with deliberate calm while Bramble's rescuers and the tugs clear the lane.",
+      "Later she restarts the surviving engine and crosses the reopened gate while towing the small ship with a garden tied to its roof. She volunteers to return for more passengers, subject to repairing the engine. Her subsequent letter reports that the pajama squid has reached its owner and received the playful rank of Bed Admiral."
+    ],
+    "backstory": [
+      "Passenger voyages taught Marr to ask what a compartment could become when a journey changed. She knows how to make a waiting area comfortable, how to divide a meal, and how to explain a delay without making passengers do the crew's worrying for them. Teacup's useful spaces matter to her because people live through the journey inside them.",
+      "She remembers many ports through the needs of the travelers who came aboard there: a quiet corner, a steady seat, room for a precious pot of soil. Her ambition for a completed voyage is pleasantly concrete—everyone and the things they care about arriving somewhere they can begin again."
+    ],
+    "relationships": [
+      {"name": "Admiral Pigeon", "detail": "Coordinates the flights helping protect Teacup and open its crossing route."},
+      {"name": "Bramble", "detail": "Works with the rescue tugs to clear Teacup's lane and keep it moving."},
+      {"name": "Captain Vela", "detail": "Provides allied cover and insists on repairing Marr's engine before another run."},
+      {"name": "Bellflower Gate's crews and rescuers", "detail": "Includes the passenger aboard Teacup who receives the returned pajama squid."}
+    ],
+    "sources": [{"storyId": "admiralPigeonThree", "location": "Chapters 2–4, 7, 9–10"}],
+    "notes": ["Marr is distinct from Lantern's unnamed captain and its young fieldmouse passenger."]
+  },
+  {
+    "id": "lieutenant-rusk",
+    "name": "Lieutenant Rusk",
+    "kind": "creature",
+    "role": "Iron Talon officer rescued at Bellflower Gate",
+    "summary": "Rusk was asking which direction his broken boat was allowed to fall when a pigeon decided to bring him home.",
+    "appearance": "A male moth with antennae and natural insect anatomy. The illustrations describe a small fuzzy body and feathery antennae.",
+    "image": "assets/admiral-pigeon-origins/book-3/chapter-04.png",
+    "imageAlt": "Rusk the moth and a young beetle pilot watch through their damaged boat's window as Pigeon's capsule secures a rescue cable.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["admiralPigeonThree"],
+    "established": [
+      "Rusk serves aboard an Iron Talon landing boat trying to take the Bellhouse. After its steering is struck, it spins toward Teacup with him and a young beetle pilot aboard. Pigeon spends an opportunity to attack the flagship on catching the boat instead, bringing the enemy pair to Homeward's medical crew.",
+      "Rusk explains that Clang requires permission for course changes even when a landing boat's steering has failed. His account helps the allies understand the command delays. After surrender he helps locate Iron Talon crews whose ships have lost contact and remains aboard a medical transport until the last are collected."
+    ],
+    "backstory": [
+      "Early in service, Rusk found reassurance in knowing exactly which superior should answer a question. Procedures offered a clear place to send uncertainty, and a properly acknowledged instruction felt like progress. The damaged landing boat exposes the dreadful gap between receiving permission and actually being able to use it.",
+      "Once rescued, his knowledge of the fleet's reporting habits becomes useful in a different way. He can recognize which missing reply might mean a crew is stranded rather than defiant. Helping find those crews gives him work whose result can be seen in someone arriving safely at a hatch."
+    ],
+    "relationships": [
+      {"name": "The young beetle pilot", "detail": "Shares the damaged landing boat and rescue."},
+      {"name": "Admiral Pigeon", "detail": "Rescues him despite knowing the boat's hostile mission."},
+      {"name": "Marshal Clang", "detail": "Serves under his restrictive command structure before surrender."}
+    ],
+    "sources": [{"storyId": "admiralPigeonThree", "location": "Chapters 4–5 and 10"}],
+    "notes": ["Rusk is a moth and is distinct from Commander Grint.", "His later aid is established; a formal change of allegiance or future commission is not."]
+  },
+  {
+    "id": "lantern-captain",
+    "name": "Lantern's captain",
+    "kind": "being",
+    "role": "Captain of the Hearth Convoy's clinic ship",
+    "summary": "She asks the question that gives the escape its purpose: will Mallow's children receive their medicine?",
+    "appearance": "An unnamed female captain. Species, clothing, and individual visual traits are unspecified.",
+    "image": "assets/admiral-pigeon-origins/book-2/chapter-10.png",
+    "imageAlt": "Lantern is caught by an enemy clamp beam near the last navigation lamp while Pigeon turns toward the ship.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["admiralPigeonTwo"],
+    "established": [
+      "Lantern's captain commands the convoy's clinic freighter, carrying medicine and passengers toward Mallow. She asks whether the children there will receive their medicine, studies Pigeon's route and Tiller's observations, and asks directly what happens if the ships must stop.",
+      "After reversing into shelter consumes precious fuel, she needs a steady final passage. She follows the revised sequence through the rocks and reports when the second patrol boat catches her stern. When Pigeon's final pod disrupts its aim, she fires the engines and clears the closing stone shelves."
+    ],
+    "backstory": [
+      "Clinic voyages have taught her to read a route through the needs of the least comfortable passenger and the ship's remaining reserves. She keeps room in a briefing for practical questions that a grand escape plan can overlook: how sharply to turn, where to wait, and whether another stop will leave enough fuel to finish.",
+      "Her preferred arrival is quiet enough that the clinic can begin unloading before anyone gives a speech. A successful journey means medicine reaching the hands that need it and passengers finding somewhere steadier than a ship's waiting berth."
+    ],
+    "relationships": [
+      {"name": "The paper-bird passenger", "detail": "A young fieldmouse traveling aboard her ship."},
+      {"name": "Admiral Pigeon", "detail": "Works with him to make Lantern's escape compatible with its fuel and turning needs."},
+      {"name": "Captain Hobb", "detail": "Fellow Hearth Convoy captain aboard Kettle."},
+      {"name": "Apricot's captain", "detail": "Fellow Hearth Convoy captain leading the freighters into the escape route."}
+    ],
+    "sources": [{"storyId": "admiralPigeonTwo", "location": "Chapters 5 and 7–11"}],
+    "notes": ["She has no established personal name.", "Do not merge her with Captain Marr or the unnamed tired captain at Mallow."]
+  },
+  {
+    "id": "apricot-captain",
+    "name": "Apricot's captain",
+    "kind": "being",
+    "role": "Captain of the lead Hearth Convoy freighter",
+    "summary": "Apricot needs time to turn before accelerating. Its captain makes sure the rescue plan allows for that simple fact.",
+    "appearance": "An unnamed captain with no specified gender, species, or individual appearance. Apricot has mismatched loading doors.",
+    "image": "assets/admiral-pigeon-origins/book-2/chapter-10.png",
+    "imageAlt": "The convoy's forward freighters emerge from the rocky passage while Lantern remains under threat behind them.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["admiralPigeonTwo"],
+    "established": [
+      "Apricot leads the Hearth Convoy's movement into the old lamp route. During the interrupted first attempt, the ship shelters in a marked pocket. When Pigeon asks what every vessel needs, Apricot requires time to complete its turn before accelerating.",
+      "During the final attempt its captain asks whether to move and waits for Tiller's report. Apricot then leaves the waiting pocket ahead of Kettle and Lantern and crosses into Homeward's protection. The convoy reaches Mallow together."
+    ],
+    "backstory": [
+      "Mixed freight has made Apricot's captain attentive to the part of a maneuver that happens before speed becomes useful. The ship's mismatched doors are familiar working parts, and its crew knows which loads need patience. Clear readiness reports are welcome because they let a loaded vessel begin a turn once and finish it properly.",
+      "The captain enjoys the moment a following ship appears exactly where the convoy plan said it would. A lead vessel sets a pace others can use, and Apricot's work is most satisfying when the whole line keeps its shape through an awkward stretch."
+    ],
+    "relationships": [
+      {"name": "Captain Hobb", "detail": "Fellow Hearth Convoy captain aboard Kettle."},
+      {"name": "Lantern's captain", "detail": "Fellow Hearth Convoy captain aboard the clinic ship."},
+      {"name": "Admiral Pigeon", "detail": "Relies on his timing and instructions to wait or move."},
+      {"name": "Tiller", "detail": "Waits for his current scouting report before beginning the final escape attempt."}
+    ],
+    "sources": [{"storyId": "admiralPigeonTwo", "location": "Chapters 7–10 and 12"}],
+    "notes": ["No personal name or species is established.", "The captain who falls asleep at Mallow is not explicitly identified as Apricot's captain."]
+  },
+  {
+    "id": "paper-bird-passenger",
+    "name": "The paper-bird passenger",
+    "kind": "creature",
+    "role": "Young fieldmouse aboard Lantern",
+    "summary": "Her paper bird has no thrusters. It has her—and a destination beyond the blockade.",
+    "appearance": "A young female fieldmouse. Existing art shows a small brown mouse with rounded ears holding a folded white paper bird.",
+    "image": "assets/admiral-pigeon-origins/book-2/chapter-07.png",
+    "imageAlt": "A worried fieldmouse child holds a folded white paper bird beside Pigeon in Lantern's warm cabin.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["admiralPigeonTwo"],
+    "established": [
+      "The young fieldmouse watches Pigeon's bubble come aboard Lantern and asks whether it flies by itself. Comparing it with her folded paper bird, she says hers has her. The bird remains near the window through the escape planning, a small white shape pointed toward Mallow.",
+      "She sleeps during the regrouping, later sets her paper bird upright, and points Pigeon out to somebody taller during the final passage. At Mallow she gives him the bird and says it arrived. One folded wing is crooked; Pigeon keeps the gift beside his letters and family route cloth."
+    ],
+    "backstory": [
+      "She began folding little birds to give long waits something to do. A scrap of paper can become a passenger, and a windowsill can become the edge of a very large sky. She likes adjusting the wings until each bird can stand facing the place she hopes to reach.",
+      "The bird she gives Pigeon becomes special because its journey is complete. Keeping it would remember her own waiting; giving it away lets the flyer who helped them carry that arrival into his next adventure. She can fold another when another journey begins."
+    ],
+    "relationships": [
+      {"name": "Admiral Pigeon", "detail": "Shares a conversation with him and gives him her paper bird after the rescue."},
+      {"name": "Lantern's captain", "detail": "Commands the ship on which she travels."},
+      {"name": "The Hearth Convoy's crews and neighbors", "detail": "Includes the unnamed taller companion to whom she points out Pigeon; their relationship is unstated."}
+    ],
+    "sources": [{"storyId": "admiralPigeonTwo", "location": "Chapters 7–12"}],
+    "notes": ["She remains unnamed and is distinct from Captain Marr.", "The paper bird is an inanimate keepsake.", "The illustration's comforting wing gesture is staging beyond the prose's recorded conversation."]
+  },
+  {
+    "id": "young-beetle-pilot",
+    "name": "The young beetle pilot",
+    "kind": "creature",
+    "role": "Pilot of Rusk's damaged landing boat",
+    "summary": "His first landing without permission ends beside the people his boat had been sent to fight.",
+    "appearance": "A very young male beetle with natural insect anatomy. No specific shell color, clothing, or personal name is established.",
+    "image": "assets/admiral-pigeon-origins/book-3/chapter-04.png",
+    "imageAlt": "A small beetle pilot and the moth Rusk watch from inside a damaged landing boat as Pigeon brings a rescue cable around its wing.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["admiralPigeonThree"],
+    "established": [
+      "The beetle pilots an Iron Talon landing boat carrying Lieutenant Rusk during the attack on the Bellhouse. Damage to its steering leaves it spinning toward Teacup. Pigeon catches it with a tug's line and brings the occupants to Homeward instead of leaving them to their danger.",
+      "After reaching the carrier, the young pilot repeatedly says he has never landed without permission before. Rusk later explains the fleet's requirement to obtain approval for changes of course, including while their disabled craft was falling out of control."
+    ],
+    "backstory": [
+      "Fresh instruction has taught the pilot to value a correctly acknowledged order. He can picture the next permitted step more easily than a situation in which the craft no longer answers the controls. The damaged landing boat confronts him with the difference all at once, while someone outside the permission chain works to catch it.",
+      "In the days after rescue, he begins asking what a direction is meant to accomplish alongside asking who issued it. He pays particular attention to the practical language of the medical transport and rescue crews, where a useful observation can come from the person nearest the problem."
+    ],
+    "relationships": [
+      {"name": "Lieutenant Rusk", "detail": "Officer sharing the boat and rescue."},
+      {"name": "Admiral Pigeon", "detail": "Rescues him and Rusk from their disabled enemy craft."},
+      {"name": "Marshal Clang", "detail": "The fleet command whose permission culture shapes the pilot's behavior."}
+    ],
+    "sources": [{"storyId": "admiralPigeonThree", "location": "Chapters 4–5"}],
+    "notes": ["No formal defection, later rank, or exact age is established."]
+  },
+  {
+    "id": "independent-cruiser-captain",
+    "name": "The independent cruiser captain",
+    "kind": "being",
+    "role": "Iron Talon captain who acts without Clang's permission",
+    "summary": "She understands the pigeons' plan, makes a dangerous turn, and later recognizes when it is time to ask for terms.",
+    "appearance": "An unnamed female captain whose species and bodily appearance are unspecified. She commands the cruiser on the right of the battle formation.",
+    "image": "assets/admiral-pigeon-origins/book-3/chapter-08.png",
+    "imageAlt": "Pigeon frees Tiller's capsule from a damaged freight platform after the independent cruiser's attack.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["admiralPigeonThree"],
+    "established": [
+      "This Iron Talon captain recognizes the coordinated splat attacks and turns her cruiser without waiting for Clang. Keeping its shutters down and trusting instruments, she attacks the old freight circuit. A struck platform and rail trap Tiller's bubble and disrupt two signal lamps.",
+      "Vela crosses Homeward's damaged side into danger to protect the Bellhouse recovery approach, and allied flights adapt around the cruiser. When the captain later tries to withdraw, Vela's escorts block her path. She lowers her guns and asks for surrender terms, which Homeward answers immediately."
+    ],
+    "backstory": [
+      "Commanding a crew has made her attentive to the difference between an instruction and a situation. She keeps track of what her ship can still observe when an expected view disappears. That practical competence makes her a serious opponent to the pigeon flights, even while the fleet around her waits for Clang.",
+      "She regards surrender terms as a command decision with living consequences. Once the surrounding ships leave no useful withdrawal, she can recognize the changed situation and act on it. Her independence has a cost in the battle and a purpose when the battle is lost."
+    ],
+    "relationships": [
+      {"name": "Marshal Clang", "detail": "Acts outside his approval chain while commanding one of his cruisers."},
+      {"name": "Tiller", "detail": "Her attack damages the platform whose rail traps his capsule."},
+      {"name": "Captain Vela", "detail": "Opposes her maneuver and answers her request for terms."}
+    ],
+    "sources": [{"storyId": "admiralPigeonThree", "location": "Chapters 7–9"}],
+    "notes": ["The captain in chapters 8 and 9 is explicitly the same independently turning captain.", "No personal name, species, or postwar career is established."]
+  },
+  {
+    "id": "bellhouse-worker-leader",
+    "name": "The Bellhouse worker leader",
+    "kind": "being",
+    "role": "Leader of the gate workers returning to their station",
+    "summary": "She has spent half her life keeping the Bellhouse working. Clang gives her eight minutes to leave it.",
+    "appearance": "An unnamed female worker whose species is unspecified. Her identifying object is a battered toolbox tied shut with string, carried aboard the recovery ship.",
+    "image": "assets/admiral-pigeon-origins/book-3/chapter-09.png",
+    "imageAlt": "A recovery vessel approaches the small bell-shaped control station while Pigeon signals from a closed capsule.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["admiralPigeonThree"],
+    "established": [
+      "The Bellhouse workers retreat to lower rooms when Iron Talon takes the main controls, then escape through the loading hatch in a service shuttle. Aboard Homeward they are eager to recover their station. Their leader has spent half her life keeping it working and carries a battered toolbox tied with string.",
+      "The recovery ship returns the workers with an allied boarding crew through the hatch they know. Pigeon moves his capsule into a failed signal lamp's former position and uses its light to show the docking lane is clear. Inside the station, the workers reach the closing controls and reopen the gate, making their knowledge essential to the civilians' escape."
+    ],
+    "backstory": [
+      "She remembers the Bellhouse through the repairs it has needed: a latch that catches in cold conditions, the reach to a difficult fitting, and a useful place to rest a tool during an awkward repair. Years of keeping the station useful have made its ordinary workings as familiar as the route home.",
+      "Her toolbox contains equipment selected by repeated use. String keeps it shut because the tools still matter more than the case's appearance. When she teaches a new worker, she explains where a control leads and what someone elsewhere in the station will experience when it moves."
+    ],
+    "relationships": [
+      {"name": "Bellflower Gate's crews and rescuers", "detail": "Includes the Bellhouse workers she leads, whose station knowledge makes recovery possible."},
+      {"name": "Admiral Pigeon", "detail": "His signal clears the recovery ship's final docking approach."},
+      {"name": "Captain Vela", "detail": "Protects the recovery route with Homeward and allied escorts."}
+    ],
+    "sources": [{"storyId": "admiralPigeonThree", "location": "Chapters 3, 5, 8–10"}],
+    "notes": ["Species and anatomical tool-use details are unspecified; the toolbox is established.", "She is not assigned a military rank or personal name in the manuscript."]
+  },
+  {
+    "id": "tortoise-governor",
+    "name": "The tortoise governor",
+    "kind": "creature",
+    "role": "Entire government of an unnamed moon",
+    "summary": "A whole moon's government can fit inside one deeply offended tortoise.",
+    "appearance": "A tortoise. No specific size, shell coloring, gender, clothing, or portrait is established.",
+    "image": "",
+    "imageAlt": "",
+    "imagePosition": "50% 50%",
+    "storyIds": ["admiralPigeonThree"],
+    "established": [
+      "During the years between his first patrol command and the Bellflower battle, Pigeon negotiated the release of a survey crew from a moon whose entire government was a deeply offended tortoise. The anecdote establishes an unusual diplomatic encounter within his growing service experience.",
+      "The manuscript does not name the tortoise or moon, explain the offense, or describe how the negotiation succeeded. Pigeon's involvement ends in the survey crew's release."
+    ],
+    "backstory": [
+      "The tortoise prefers visitors to arrive with enough time to understand where they are. An audience can include long pauses in which the governor considers a question from several angles while the visitors become increasingly aware of their own hurry. Local customs receive the same deliberate attention as practical requests.",
+      "The moon's modest government works at the tortoise's pace, so a visitor benefits from explaining what a proposed activity means for the place where it will happen. The precise cause of the survey dispute remains an untold adventure rather than an invented grievance attached to the existing account."
+    ],
+    "relationships": [
+      {"name": "Admiral Pigeon", "detail": "Negotiates the survey crew's release during his intervening years of service."},
+      {"name": "Bellflower Gate's crews and rescuers", "detail": "Includes the survey crew remembered from Pigeon's earlier service; its release is the only recorded outcome of the dispute."}
+    ],
+    "sources": [{"storyId": "admiralPigeonThree", "location": "Chapter 1"}],
+    "notes": ["Governor is a descriptive directory label, not an established formal title.", "The moon, precise offense, and personal name remain open."]
+  },
+  {
+    "id": "old-wing-cavern-keeper",
+    "name": "The Old Wing cavern keeper",
+    "kind": "being",
+    "role": "Keeper of current mountain-route knowledge",
+    "summary": "An old map promises a dry floor. The cavern keeper knows where water will be running tonight.",
+    "appearance": "The keeper's individual species, gender, and visual traits are not explicitly described in the relevant scene.",
+    "image": "assets/admiral-pigeon-origins/book-1/chapter-07.png",
+    "imageAlt": "The rescue flight prepares to enter the mountain with a route cloth, lamps, baskets, and lines after comparing old and current route information.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["admiralPigeonOne"],
+    "established": [
+      "Flint calls the cavern keeper and Gran Cora to examine the family route cloth before the Lantern Ledge rescue. Cora supplies remembered landmarks; the keeper supplies recent notes from workers maintaining the eastern water channels.",
+      "At a place where the old cloth promises a dry floor, the keeper explains that running water will cross the route that night. Pigeon adds the information. The route becomes useful through this combination of historical knowledge and present maintenance observations."
+    ],
+    "backstory": [
+      "The keeper treats small maintenance reports as part of the cavern's living map. A worker's note about a new trickle or a loosened stone can matter more on the next storm night than a beautifully drawn line. Reports are arranged so someone preparing a journey can find what has changed along its actual path.",
+      "There is particular satisfaction in bringing an old route back into useful discussion. The keeper enjoys hearing why a passage once mattered, then adding what the people tending it have discovered lately. Old Wing's history remains useful because present work keeps answering it."
+    ],
+    "relationships": [
+      {"name": "Gran Cora", "detail": "Combines current maintenance knowledge with her remembered landmarks."},
+      {"name": "Sergeant Flint", "detail": "Supplies information for his rescue planning."},
+      {"name": "Old Wing's neighbors and rescuers", "detail": "Includes the eastern water-channel workers whose recent observations inform the keeper's contribution."}
+    ],
+    "sources": [{"storyId": "admiralPigeonOne", "location": "Chapter 7"}],
+    "notes": ["Distinct from Keeper Moss at Lantern Ledge.", "The later station keeper who amends official maps may be this individual; the text does not confirm or reject that identity."]
+  },
+  {
+    "id": "storm-warning-messenger",
+    "name": "The storm-warning messenger",
+    "kind": "creature",
+    "role": "Flyer who brings Lantern Ledge's distress report",
+    "summary": "Her arrival turns a storm warning into a rescue mission for fourteen trapped residents.",
+    "appearance": "A female pigeon messenger, arriving breathless and gripping the landing rail. Individual feather colors and accessories are unspecified; ordinary pigeon anatomy applies.",
+    "image": "assets/admiral-pigeon-origins/book-1/chapter-06.png",
+    "imageAlt": "Pigeon and Gran Cora watch the blue curtain move unusually as storm clouds gather beyond Old Wing Cavern.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["admiralPigeonOne"],
+    "established": [
+      "During the approaching storm, trained Airforce flights carry warnings while recruits prepare shelter and supplies. By nightfall this returning messenger lands hard at Old Wing and delivers the urgent Lantern Ledge report between breaths.",
+      "She reports fourteen residents in the old watch hall, an outer approach blocked by debris, and water entering the low rooms. Flint calls for the route board, leading Pigeon to recognize a possible protected passage through the mountain."
+    ],
+    "backstory": [
+      "Regular journeys between exposed ledges have taught the messenger how to arrange a report while still catching breath. People, shelter, blocked approach, rising water: she carries the useful observations in an order that lets the receiving flight begin its own work immediately.",
+      "She values a well-kept landing rail and the ordinary bowl of water waiting near it. Much of her work happens before the most visible rescue begins, connecting one settlement's urgent knowledge with another settlement's rested wings and equipment."
+    ],
+    "relationships": [
+      {"name": "Sergeant Flint", "detail": "Receives her report and organizes the rescue."},
+      {"name": "Old Wing's neighbors and rescuers", "detail": "Includes the fourteen Lantern Ledge residents whose predicament she reports to Old Wing."},
+      {"name": "Admiral Pigeon", "detail": "Her report prompts him to consider the family route cloth."}
+    ],
+    "sources": [{"storyId": "admiralPigeonOne", "location": "Chapter 6"}],
+    "notes": ["She has no established name or later identified appearance."]
+  },
+  {
+    "id": "old-wing-neighbors-and-rescuers",
+    "name": "Old Wing's neighbors and rescuers",
+    "kind": "group",
+    "role": "Remembered relatives, cavern neighbors, and the storm-rescue community",
+    "summary": "Behind one little pigeon's first adventure stands a whole cavern of families, skilled workers, tired passengers, and remembered wings.",
+    "appearance": "The onstage community is described as pigeons with natural anatomy. Individual appearances are mostly unstated; shared art conventions give pigeons charcoal beaks and pale ceres without clothing.",
+    "image": "assets/admiral-pigeon-origins/book-1/chapter-10.png",
+    "imageAlt": "A rope-supported basket carries Button and a sleeping youngster across a mountain gap while the rescue flock waits and assists.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["admiralPigeonOne"],
+    "established": [
+      "Chapter 1: Cora remembers an unnamed captain who puffed himself up before having anything to report. The carved warrior pigeons and generations of messengers, weather watchers, and families establish Old Wing's history; the carvings are representations, not living characters.",
+      "Chapter 2: Pigeon's unnamed grandfather complained that the route cloth's water-bowl mark made him hungry. Cora also knew the owner of an old spoon. Neither person's identity is connected explicitly to the captain or to each other. Fern's remembered messenger flight includes three stranded flyers, one with an injured wing, whom she guides to shelter.",
+      "Chapter 3: The recruiting officer asks Pigeon's name, home, and reason for serving and opens the enlistment book. Chapters 4–6: Other training recruits and cavern families form the community around the named trio; families from outer ledges move inward during the storm.",
+      "Chapter 7: Eastern water-channel workers provide maintenance observations through the cavern keeper. Two experienced flyers prepare the rescue party's return route. Chapter 10: They stand across the split ledge, and one reports that the remaining route home is open. Their names and individual histories are unstated.",
+      "Chapter 9: Moss remembers her grandmother using Bell Hollow. Among the fourteen Lantern Ledge residents are two very young pigeons and an older resident whose aching wing prevents the return flight. Other residents can manage short flights with rests. Moss and Button belong within the fourteen, rather than being additional people.",
+      "Chapter 10: A sleeping youngster shares Button's crossing basket. The text does not identify which initial basket passenger this is. The other residents wait and travel with the rescuers, whose slow return accommodates their actual abilities.",
+      "Chapter 11: A receiving officer takes Moss's names; a station healer examines the basket passengers; a station keeper amends official maps during the debrief. The station keeper may be the earlier cavern keeper, but that identity is not established. Another youngster follows Button on the stairs; whether this is a previously described rescued youngster is unstated.",
+      "Chapter 12: A ceremony visitor asks Bram whether a seat is taken and receives a harvest account. Later a curious neighbor looks through the home window when the family laughs over Fern's soup letter. These brief appearances have no personal names or confirmed connections to other roles."
+    ],
+    "backstory": [
+      "Old Wing's many ledges encourage small forms of cooperation long before a rescue bell rings. A resident carrying an awkward frame waits while another clears a turn; a neighbor leaves a bowl where a tired arrival can reach it. Information travels beside these ordinary favors, keeping the enormous cavern connected at the scale of a doorway or a short flight.",
+      "After the storm, the new route observations join the old knowledge in everyday use. Youngsters hear about the baskets and the funny echo, while the people tending the passages pay attention to changed water and sheltered waiting places. The rescue becomes part of the cavern's history without erasing the ordinary work that made it possible."
+    ],
+    "relationships": [
+      {"name": "Mother Tansy", "detail": "Contributes practical repairs and helps families move into shelter."},
+      {"name": "Father Bram", "detail": "Contributes food, gardening knowledge, and observations of the approaching weather."},
+      {"name": "Gran Cora", "detail": "Preserves family service stories and shares remembered mountain routes."},
+      {"name": "Keeper Moss", "detail": "Named member of the fourteen rescued residents who organizes their passage and checks their names."},
+      {"name": "Button", "detail": "Named member of the fourteen rescued residents; later helps another youngster on the stairs."},
+      {"name": "Sergeant Flint", "detail": "Commands the flight working alongside experienced rescuers, keepers, receiving staff, and residents."}
+    ],
+    "sources": [
+      {"storyId": "admiralPigeonOne", "location": "Chapters 1–3: remembered individuals and recruiting officer"},
+      {"storyId": "admiralPigeonOne", "location": "Chapters 4–7: recruits, cavern families, maintenance workers, and two experienced rescuers"},
+      {"storyId": "admiralPigeonOne", "location": "Chapters 9–10: Moss's grandmother and the fourteen residents"},
+      {"storyId": "admiralPigeonOne", "location": "Chapters 11–12: receiving staff, station keeper, youngsters, ceremony visitor, and neighbor"}
+    ],
+    "notes": ["This is a coverage group, not a claim that every role mention identifies a different person.", "Pigeon's grandfather's name, living status, and precise family branch remain unspecified.", "No identity is inferred between Cora's captain acquaintance, the spoon's owner, and Pigeon's grandfather.", "The cavern keeper and station keeper may be one person; the manuscripts leave this open."]
+  },
+  {
+    "id": "hearth-convoy-crews-and-neighbors",
+    "name": "The Hearth Convoy's crews and neighbors",
+    "kind": "group",
+    "role": "Travelers, working crews, and briefly glimpsed people around Larkspur and Mallow",
+    "summary": "A convoy carries more than freight: a sleepy captain, a child's excited gesture, and whole gardens and clinics waiting at the destination.",
+    "appearance": "An interplanetary supporting cast. Most individuals have no specified species or appearance; the paper-bird child is a fieldmouse and Homeward's recurring flyers are ordinary pigeons.",
+    "image": "assets/admiral-pigeon-origins/book-2/chapter-05.png",
+    "imageAlt": "Pigeon and his companions examine a pictorial map of the three convoy ships trapped near a broken moon.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["admiralPigeonTwo"],
+    "established": [
+      "Chapter 1: An unnamed shuttle pilot carries the transferring pigeons, after Gran Cora has inspected pilot, shuttle, and departure bench. Chapter 4: Bram's letter mentions a neighboring gardener whose fence has been defeated by the rooftop peas. Neither figure receives further identification.",
+      "Chapters 3–4: Homeward's deck crew collects droppings during cleaning; most go to the gardens, with some reserved for Nib's experiments. A deck tug frees Bramble's snagged medical crate during training. Chapters 7–11: Cargo and clinic crews prepare the convoy ships, maintain stations, and respond to the escape maneuvers.",
+      "Chapter 8: Two separate voices aboard the first splatted patrol boat ask what is on the window and warn against wiping sideways. The boat's pilot reports switching to flank observation. These voices are not assigned names, species, or a confirmed identity relationship with the pilot.",
+      "Chapter 10: The fieldmouse child points Pigeon out to somebody taller. The taller person's species, name, and relationship to her are not established. The text does not identify this person as her parent or guardian.",
+      "Chapter 11: The second patrol boat's pilot warns Pigeon's bubble to turn away. A crew member behind its glass leans forward upon recognizing the pod. That crew member may be the pilot or another person; the source does not decide. Homeward's deck crew brings the rescued bubbles inside.",
+      "Chapter 12: Mallow's gardeners want watering cans, cooks want food, and the clinic's medicine takes priority. Families embrace while trolleys unload. An exhausted captain falls asleep mid-sentence; identity among the convoy captains is unspecified, so this is not evidence for an additional fourth captain. Allied patrol crews arrive to escort later traffic while the Larkspur blockade remains."
+    ],
+    "backstory": [
+      "Mallow's receiving docks measure a useful arrival by what can begin once it is unloaded. A clinic can resume its work, a kitchen can plan supper, and a garden can distribute water along another growing row. The station's arguments about delivery order are usually conducted by people who know exactly what their neighbors have been waiting for.",
+      "Convoy crews develop small familiar routines across repeated journeys: a signal understood by the next ship, a place to leave a returning cargo frame, a quiet berth for someone who has fallen asleep before reaching the end of a sentence. Those routines become especially valuable when a route changes and everyone must learn a new sequence together."
+    ],
+    "relationships": [
+      {"name": "Captain Hobb", "detail": "Commands Kettle through the convoy's changing route."},
+      {"name": "Lantern's captain", "detail": "Commands the clinic ship carrying medicine and passengers."},
+      {"name": "Apricot's captain", "detail": "Commands the lead freighter through the waiting places and final crossing."},
+      {"name": "Admiral Pigeon", "detail": "Coordinates the escape route and frees Lantern with the last splat pod."},
+      {"name": "Bramble", "detail": "Adapts cargo arrangements and supplies practical rescue support."},
+      {"name": "Tiller", "detail": "Scouts the changing route and leads a patrol boat away."},
+      {"name": "Commander Grint", "detail": "Commands the blockade and patrols opposed to the convoy's departure."}
+    ],
+    "sources": [
+      {"storyId": "admiralPigeonTwo", "location": "Chapters 1 and 4: shuttle pilot and neighboring gardener"},
+      {"storyId": "admiralPigeonTwo", "location": "Chapters 3–4 and 7–11: Homeward, cargo, clinic, and tug crews"},
+      {"storyId": "admiralPigeonTwo", "location": "Chapter 8: first patrol boat's voices and pilot"},
+      {"storyId": "admiralPigeonTwo", "location": "Chapters 10–11: taller companion, second patrol pilot, and window crew member"},
+      {"storyId": "admiralPigeonTwo", "location": "Chapter 12: Mallow workers, families, sleeping captain, and arriving patrols"}
+    ],
+    "notes": ["Role instances remain unmerged when their identities are uncertain; the record does not assert that every voice is a distinct confirmed recurring character.", "The folded paper bird is an inanimate gift, not an additional passenger or sentient being."]
+  },
+  {
+    "id": "bellflower-gate-crews-and-rescuers",
+    "name": "Bellflower Gate's crews and rescuers",
+    "kind": "group",
+    "role": "The many wings and working crews behind the open gate",
+    "summary": "The gate reopens because scouts, passengers, mechanics, rescuers, and commanders keep making useful decisions together.",
+    "appearance": "A mixed allied, civilian, and enemy cast. Pigeon flyers retain ordinary natural anatomy and use sealed capsules outside ships; most other briefly mentioned people's species are unspecified.",
+    "image": "assets/admiral-pigeon-origins/book-3/chapter-09.png",
+    "imageAlt": "Civilian ships cross Bellflower Gate as a recovery vessel reaches the control station and allied ships surround the flagship.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["admiralPigeonThree"],
+    "established": [
+      "Chapter 1: Pigeon's earlier service includes searching for a lost school ferry and negotiating a survey crew's release from the tortoise-governed moon. Neither episode supplies individual identities for the people involved. Chapter 2: Civilian evacuees fill hospital ships and freighters; a sign says a baby is asleep without identifying the baby or the sign's author.",
+      "Chapter 3: An unnamed flyer tumbles when a warning pulse clips a capsule's guard; Bramble steadies it. A young flyer asks whether more pods could defeat the new cleaners. These are role appearances with no confirmed identity link to later young flyers. Bellhouse workers retreat as enemy landing crews seize the controls.",
+      "Chapter 4: A rescue flyer asks whether to push the damaged enemy boat clear. A tug captain objects that people are waiting; a rear tug supplies Pigeon's line. The objecting captain's relationship to that rear tug is unstated. Medical crew receive Rusk and the beetle pilot. The escaped cargo includes stuffed bear and rabbit toys and a squid in pajamas; these are objects, not living passengers.",
+      "Chapter 5: A medical attendant accompanies Rusk to Pigeon's cabin. Escaped Bellhouse workers contribute their knowledge from Homeward. Chapter 6: A female flight leader rehearses holding an early-turning cruiser with her escorts. Other scouts check route clearances and report to neighboring teams as well as the carrier.",
+      "Chapter 7: A young female flyer struggles to adjust her perch with both feet; Pigeon reassures her from his own experience. The last flyer settles before launch. Whether those mentions refer to one pigeon is not established.",
+      "Chapter 8: Tiller checks that his last scout has cleared a threatened rail. Pigeon sends a changed plan to a neighboring flight leader before rescuing him. Neither person's identity is confirmed against the earlier rehearsal leader or young flyers.",
+      "Chapter 9: A scout answers Pigeon's help light and a rescue bubble takes Tiller's tow line; their exact identity relationship is unspecified. The recovery pilot sees Pigeon's replacement signal and docks. Gate workers and an allied boarding crew recover the controls. Crown of Order's navigator shows Clang the surrounding ships. Other cruiser captains report their changing situations; surrender and rescue remain possible for their crews.",
+      "Chapter 10: A young flyer asks whether it is over and hears that the battle is finished while other gates still need help. The pajama squid returns to its unnamed owner aboard Teacup and receives a playful promotion to Bed Admiral. Allied representatives, envoys, and fleets work for weeks; at two gates, refusing local commanders relent after their crews demand food, medical care, and a route home.",
+      "Chapter 11: The Corps Council authorizes the promotion presented by Vela. One child giggles at the appointment's wording, then another. Three photographers struggle to catch Pigeon's shining neck at the same time. The children and photographers have no personal names or specified species. Chapter 12: An unnamed pigeon in Old Wing argues with an echo; the echo is an ordinary acoustic effect."
+    ],
+    "backstory": [
+      "The working community around Bellflower Gate has learned to recognize a voyage from its ordinary traces: blankets in cabin windows, a garden tied down for travel, a toolbox carried toward a familiar hatch. Keeping the crossing useful means knowing that every hull encloses different needs, even when a distant chart reduces it to a single moving mark.",
+      "During the weeks after surrender, former battle routes become supply routes and waiting lists become passenger arrangements. A pilot who once reported an approaching ship can help guide it to repairs; a scout can check the route by which a crew will return home. The reopened gate gives this practical work somewhere to lead."
+    ],
+    "relationships": [
+      {"name": "Admiral Pigeon", "detail": "Coordinates the flights and arranges for decisions to continue when he leaves his command position."},
+      {"name": "Captain Vela", "detail": "Protects the recovery approach and assumes flight timing when Pigeon rescues Tiller."},
+      {"name": "Bramble", "detail": "Leads rescue work across the broader formation."},
+      {"name": "Tiller", "detail": "Leads scouts through the freight circuit and checks on his team before leaving danger."},
+      {"name": "The Bellhouse worker leader", "detail": "Returns with the workers who know how to reopen the gate."},
+      {"name": "Captain Marr", "detail": "Delivers evacuees and reports the toy's return to its owner."}
+    ],
+    "sources": [
+      {"storyId": "admiralPigeonThree", "location": "Chapters 1–2: earlier rescued groups and civilian convoy"},
+      {"storyId": "admiralPigeonThree", "location": "Chapters 3–4: damaged-bubble flyer, young flyer, rescue flyer, tug captain, medical crew, and toys"},
+      {"storyId": "admiralPigeonThree", "location": "Chapters 5–8: medical attendant, workers, rehearsal leader, young female flyer, last scout, and neighboring leader"},
+      {"storyId": "admiralPigeonThree", "location": "Chapter 9: answering scout, rescue flyer, recovery pilot, boarding crew, navigator, and cruiser captains"},
+      {"storyId": "admiralPigeonThree", "location": "Chapters 10–12: questioning flyer, toy owner, envoys, local commanders and crews, Corps Council, children, photographers, and echo-arguing pigeon"}
+    ],
+    "notes": ["Brief similar roles may belong to previously mentioned individuals; no unconfirmed identity merger or invented separation is asserted.", "The pajama squid and its Bed Admiral title belong to a stuffed toy with no established sentience.", "The pigeons are pivotal participants in a combined victory, not the sole people ending the war."]
+  }
+]

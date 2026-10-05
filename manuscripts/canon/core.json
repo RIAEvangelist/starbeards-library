@@ -1,0 +1,220 @@
+[
+  {
+    "id": "juliet",
+    "name": "Juliet",
+    "aliases": [],
+    "kind": "person",
+    "role": "The youngest explorer",
+    "summary": "A red cape, an attentive ear, and a habit of noticing who needs help on the other side of the stars.",
+    "appearance": "A young human explorer with wavy brown hair, brown eyes, a navy coat embroidered with gold stars, boots and a red cape in the existing illustrations. The cape becomes a sail, a rescue sling and a warm shelter for precious cargo.",
+    "image": "assets/moonlit-juliet-stargazing.png",
+    "imageAlt": "Juliet and Uni look through their starship's round window toward the stars.",
+    "imagePosition": "30% 50%",
+    "storyIds": ["planets", "doughnut", "starwater", "moonlit"],
+    "established": [
+      "Juliet loves discovering planets and finding treasure, and most of all she loves traveling with Starbeard and Uni. She is the youngest explorer aboard the Cosmic Wanderer. Her important discoveries often begin with attention: a seed humming beneath a leaf, a missing piece in a song, or a neighbor hidden inside what first looked like a treasure map.",
+      "In The Three Little Planets, she turns her red cape into the blanket rocket's sail, swings out to rescue a baby pearl-bubble, and listens closely enough to help the bell flowers of Luma Bloom sing again. She carries Naptune's golden dream seed through drifting clouds while her friends keep the route lit and the rope steady.",
+      "A breakfast swirl in her marmalade begins the Doughnut Planet adventure. Juliet matches its map to the constellations, steers through the Sprinkle Belt, and catches a stranded golden moon in her cape. She understands that the map has led them to a neighbor. The moon's gift then opens a route toward further ring worlds.",
+      "Juliet also shares the patient work of uncovering starwater and the three-part song that restores the Moonlit Blossom Planet's lullaby. Her bright voice belongs beside Uni's clear notes and Starbeard's warm bass. She contributes her own observations and choices while remaining part of a crew that looks after one another."
+    ],
+    "backstory": [
+      "Juliet began keeping star charts by drawing the shapes that interested her through the ship's window. A crooked ring might look like a biscuit; three lights might look like a sleeping bird. When she learned a place's proper name, she wrote it beside her first impression instead of rubbing the impression out. Her charts became useful routes with room left for curiosity.",
+      "She later added a second kind of mark: a little open circle beside places where someone might need company or help. Those circles give her maps a purpose beyond arriving. A journey can return to the same place and still be new if a friend is waiting there with a different story."
+    ],
+    "relationships": [
+      { "name": "Starbeard", "detail": "A fellow explorer and trusted captain who shares responsibility, laughter and treasure with her." },
+      { "name": "Uni", "detail": "A close traveling companion whose magic and listening work beautifully with Juliet's observations." }
+    ],
+    "sources": [
+      { "storyId": "planets", "location": "Reader pages 2–8" },
+      { "storyId": "doughnut", "location": "Reader pages 2–8" },
+      { "storyId": "starwater", "location": "Reader pages 2–8" },
+      { "storyId": "moonlit", "location": "Reader pages 3–4, 10–21" }
+    ],
+    "notes": ["These are fictional character details. The stories do not specify Juliet's exact age or a family relationship to Starbeard. The library's JuJu branding is not a source for private biography."]
+  },
+  {
+    "id": "starbeard",
+    "name": "Starbeard",
+    "aliases": ["Captain Star Beard", "Star Beard", "Captain Starbeard", "Admiral Starbeard"],
+    "kind": "person",
+    "role": "Captain, explorer & finder of friends",
+    "summary": "His beard can hold a map. His ship can hold another friend. His laundry can apparently hold a missing sock.",
+    "appearance": "The older explorer has copper or golden-brown curls, a full beard, rectangular glasses and navy star-patterned clothing in the existing art. His young Runaway Cup self has sandy hair, a short ginger beard, purple-tinted rectangular glasses, a navy jacket, teal scarf, brown trousers and boots. Doughnut's sash, long coat and hat arrive in that story's own sequence.",
+    "image": "assets/moonlit-meet-the-crew.png",
+    "imageAlt": "Starbeard laughs beside Juliet and Uni on the quilted bridge, his beard sparkling with light.",
+    "imagePosition": "10% 45%",
+    "storyIds": ["planets", "doughnut", "starwater", "moonlit", "sockCaper", "pluto", "prismGalaxy"],
+    "established": [
+      "On his first voyage as captain, young Star Beard arrives at Starling Academy with a crate of learning crystals, a secondhand ship and considerable confidence in his parking. Admiral Pigeon immediately notices something he has missed: tiny robots crossing the landing pad. Their first rescue together teaches him to slow down, share the route-finding and ask what a frightened new learner actually needs.",
+      "That learner becomes Pip. The captain carries the cup down an ancient crystal in his teal scarf, then accepts its help finding the cave exit. Before leaving the academy he makes room aboard his unnamed blue-and-brass ship for the admiral. The Runaway Cup explicitly places this meeting long before their later purple-sock adventure.",
+      "In Juliet's adventures, Starbeard has a magical beard-map, a steady rescue rope and an appetite for ridiculous destinations. His captain look develops during the journey to Rosegold Ring: a sash, a transformed long coat, a starry hat and finally golden sparks in his beard. Moonlit calls him Admiral Starbeard and a benevolent pirate captain of the Cosmic Wanderer. He hunts lost treasure, helps people and occasionally eats too many pancakes.",
+      "Other books give that adventurous spirit different settings. Pluto expressly calls him a starship captain rather than a pirate, and he learns from a Sensei to listen before choosing a fight. The Sock Caper lets a hotel laundry adventure become a voyage aboard the Starlight Wanderer. There he reminds a recovering Uni that she can rest and still be an adventurer, before discovering her missing sock clinging to his own cape."
+    ],
+    "backstory": [
+      "After his earliest journeys, Starbeard began leaving spaces in his plans. A cargo list had room for an unexpected passenger; a route had time for a pause; breakfast had an extra portion. He had discovered that being a captain involved noticing what a confident first plan had failed to include. The spare space gradually became one of his most useful supplies.",
+      "He keeps little practical reminders beside his charts: a good place to secure a rope, a sheltered place to listen, a landing where a tired companion can stop. The reminders look ordinary beside the impossible destinations. They are what allow an expedition toward a singing world or a suspicious sock to remain an adventure everyone can finish together."
+    ],
+    "relationships": [
+      { "name": "Juliet", "detail": "His youngest fellow explorer, whose ideas and careful listening repeatedly change their course." },
+      { "name": "Uni", "detail": "His very best friend and an enthusiastic partner in exploration, singing and laundry investigations." },
+      { "name": "Admiral Pigeon", "detail": "The navigator he first meets at Starling Academy; their friendship continues into the Sock Caper." },
+      { "name": "Pip", "detail": "A new mind he helps rescue and a friend who helps him in return." }
+    ],
+    "sources": [
+      { "storyId": "prismGalaxy", "location": "Manuscript pages 1–24; especially 1, 13 and 24" },
+      { "storyId": "planets", "location": "Reader pages 2–8" },
+      { "storyId": "doughnut", "location": "Reader pages 3–8" },
+      { "storyId": "starwater", "location": "Reader pages 2–8" },
+      { "storyId": "moonlit", "location": "Reader pages 2–3, 14 and 19–21" },
+      { "storyId": "sockCaper", "location": "Complete manuscript; reader pages 2–12" },
+      { "storyId": "pluto", "location": "Spreads 2–3 and 6–10" }
+    ],
+    "notes": [
+      "Star Beard / Starbeard and Captain / Admiral follow each book's wording. This profile preserves those story presentations without inventing a career promotion to explain every title. Admiral Pigeon remains a distinct individual.",
+      "The Cosmic Wanderer, the Starlight Wanderer, the blanket rocket, the patchwork star-sloop and the young captain's unnamed ship have no established renaming or replacement chronology. No vessel identity is silently merged.",
+      "Doughnut's new captain voice and first sash describe its magical clothing/confidence arc. They do not supersede the explicit first voyage in The Runaway Cup. Pluto's 'not a pirate' statement remains true to that book's presentation."
+    ]
+  },
+  {
+    "id": "uni",
+    "name": "Uni",
+    "aliases": [],
+    "kind": "creature",
+    "role": "Magical unicorn & enthusiastic first responder",
+    "summary": "A glowing golden horn, a magnificent mane, and an adventure exactly big enough for today.",
+    "appearance": "A snowy-white unicorn with a golden horn. Moonlit explicitly describes a rainbow mane; Pluto describes it as purple, and many existing illustrations emphasize lavender and blue. Preserve each story's presentation. Uni uses hooves and ordinary unicorn anatomy.",
+    "image": "assets/moonlit-meet-the-crew.png",
+    "imageAlt": "White Uni with her golden horn and colorful mane stands beside Juliet and Starbeard.",
+    "imagePosition": "61% 60%",
+    "storyIds": ["planets", "doughnut", "starwater", "moonlit", "sockCaper", "pluto"],
+    "established": [
+      "Uni is Starbeard's very best friend, a speaking magical unicorn whose golden horn glows near magic. She warms engines, lights uncertain paths and holds a rescue steady. When Tumble-Turn refuses to settle on an up, she anchors the rocket so Juliet can reach the drifting baby pearl-bubble. At Rosegold Ring, her warm beam loosens the raspberry storm around the trapped moon.",
+      "Her magic works alongside observation and other people's contributions. On the Moonlit Blossom Planet, the vine door remains shut when she simply shines her horn at it; listening to its musical pattern opens the way. Her soft, clear voice then joins Juliet and Starbeard in the freely offered song that restores the missing note. In Starwater, she spots the buried space-spade before sharing in the careful digging.",
+      "Pluto reveals her exuberant side: she checks the snack cabinet twice, bows into a snowdrift and dances so energetically that Lumi ride her mane. She also reveals fuel crystals, touches the Heart of the Isles and discovers the pool's hidden path through the Luminous Labyrinth.",
+      "In the Sock Caper, Uni declares herself completely better before discovering that recovery can still include tired legs and a stuffy nose. Her favorite purple socks have silver stars and golden toes. She rescues somebody else's striped sock, pauses when she needs to, and solves her own sock's disappearance with the admiral's help. A small adventure proves sufficient without requiring her to prove that she is well."
+    ],
+    "backstory": [
+      "Uni practices gentleness as seriously as brightness. A large beam is splendid for showing everyone where to look; a small glow can help one sleepy friend without filling the cabin with light. She likes to try the same simple task at different strengths, then decide which version actually helps. Some practice sessions end with a beautiful tiny sparkle. Others require opening a window.",
+      "Her personal adventure kit has acquired an unusually important item: room to stop. She still wants treasure, speed and an excellent dramatic announcement. She is also learning to choose a journey that leaves enough energy to enjoy the way home, with a warm blanket and a completely justified complaint ready when needed."
+    ],
+    "relationships": [
+      { "name": "Starbeard", "detail": "Her best friend, captain and patient companion when an ambitious morning needs to become a smaller day." },
+      { "name": "Juliet", "detail": "A fellow explorer whose listening and courage combine with Uni's light and music." },
+      { "name": "Admiral Pigeon", "detail": "The courtyard investigator whose patient gaze reveals the missing sock." }
+    ],
+    "sources": [
+      { "storyId": "moonlit", "location": "Reader pages 3, 10–14 and 19–21" },
+      { "storyId": "planets", "location": "Reader pages 2–8" },
+      { "storyId": "doughnut", "location": "Reader pages 2–8" },
+      { "storyId": "starwater", "location": "Reader pages 2–8" },
+      { "storyId": "sockCaper", "location": "Complete manuscript; reader pages 2–12" },
+      { "storyId": "pluto", "location": "Spreads 2–10" }
+    ],
+    "notes": ["Mane descriptions vary by book; no source establishes a permanent color change. The Sock Caper's preceding illness is acknowledged without inventing a diagnosis or an unrecorded earlier episode. Uni does not appear in The Runaway Cup or the Pigeon origins trilogy."]
+  },
+  {
+    "id": "admiral-pigeon",
+    "name": "Admiral Pigeon",
+    "aliases": ["Pigeon", "Commander Pigeon", "Flight Lieutenant Pigeon"],
+    "kind": "creature",
+    "role": "A small pigeon with a very large appointment",
+    "summary": "Three steps. Stop. Look back. A lifetime of courage begins with making sure someone can follow.",
+    "appearance": "An ordinary small gray pigeon with a turquoise-and-violet iridescent neck, dark wing bars, charcoal beak, pale cere and natural pink/red feet. Two wings, two feet, no clothes or hat. His service insignia belong on perch plates and cabin doors. He coos; narration and companions interpret his meaning.",
+    "image": "assets/admiral-pigeon-origins/book-3/chapter-11.png",
+    "imageAlt": "Pigeon stands beside his new admiral's perch plate while Vela and the gathered flock celebrate.",
+    "imagePosition": "40% 50%",
+    "storyIds": ["admiralPigeonOne", "admiralPigeonTwo", "admiralPigeonThree", "prismGalaxy", "sockCaper"],
+    "established": [
+      "Pigeon grows up in the little home in the wall of Old Wing Cavern, on Pebble in the Bellflower Galaxy. Mother Tansy makes and repairs useful things; Father Bram tends the rooftop seed gardens; Gran Cora is a retired military messenger with excellent stories. An inherited route cloth records shelter ledges, air passages and places to wait together. Pigeon wants an adventure of his own.",
+      "After reaching enlistment age, he joins the Planetary Pigeon Airforce, trains with Bramble and Tiller under Sergeant Flint, and helps rescue fourteen residents from storm-struck Lantern Ledge. His observations and family map matter as much as flying. The three-steps-and-look-back gesture helps young Button begin when fear has stopped him. Pigeon earns his qualification and a posting at High Perch Station.",
+      "Several seasons later, Pigeon and his friends transfer to the Galactic Pigean Space Corps aboard Captain Vela's Homeward. Space makes him a beginner again. Flight bubbles provide air and thrusters; Dr. Nib's fantastical splat pods temporarily obscure enemy viewing lenses. The Hearth Convoy rescue earns Pigeon the rank of Flight Lieutenant and command of Homeward's passage patrol. The blockade survives that adventure.",
+      "Years and further promotions later, Commander Pigeon leads several flights at Bellflower Gate. He rescues enemy survivors, trusts distributed leadership, changes plans when Clang's fleet adapts and returns for the trapped Tiller. His formations help the allied fleet evacuate civilians and bring the battle to a close. Weeks of further work follow. He is then appointed Admiral of the Galactic Pigean Space Corps Poop Deck, commanding the fleet's pigeon operations.",
+      "After a brief homecoming with his living family, his first admiral assignment takes him to Starling Academy. He and young Captain Star Beard meet there and help a frightened new cup return home. The captain invites him aboard as a navigator who notices things. Long afterward, the same ordinary gray pigeon helps Uni and Starbeard find a sock that has spent the whole adventure clinging to the captain's cape."
+    ],
+    "backstory": [
+      "Before joining the Airforce, Pigeon kept an ambitious list of places whose names sounded worth visiting. Experience added a less magnificent column: where to rest, who might need a basket, and which turn was easy to miss in poor light. He never lost his delight in a grand destination. He became interested in the whole flock actually reaching it.",
+      "As an admiral, he continues asking newer flyers what they can see before unfolding his own map. A small observation can change a large plan, and the youngest bird in a formation may be closest to it. His chest still puffs at the sound of his appointment. Then he turns to check the bird behind him."
+    ],
+    "relationships": [
+      { "name": "Mother Tansy", "detail": "His mother, whose practical repairs and lessons in balance travel with him." },
+      { "name": "Father Bram", "detail": "His father, gardener and enthusiastic correspondent." },
+      { "name": "Gran Cora", "detail": "His grandmother, route-cloth keeper and retired messenger." },
+      { "name": "Bramble", "detail": "Training friend and trusted rescue commander." },
+      { "name": "Tiller", "detail": "Former training rival, fast scout and lasting friend." },
+      { "name": "Starbeard", "detail": "Captain, traveling companion and interpreter of some exceptionally useful coos." }
+    ],
+    "sources": [
+      { "storyId": "admiralPigeonOne", "location": "Chapters 1–12" },
+      { "storyId": "admiralPigeonTwo", "location": "Chapters 1–12" },
+      { "storyId": "admiralPigeonThree", "location": "Chapters 1–12" },
+      { "storyId": "prismGalaxy", "location": "Manuscript pages 1–24" },
+      { "storyId": "sockCaper", "location": "Reader pages 9–12; courtyard clue and ending" }
+    ],
+    "notes": ["The origins series notes govern natural anatomy, coos, living family and chronology. His body never becomes humanoid as rank increases. Space bubbles are vehicles, not clothes. Pigeon has not met Star Beard before The Runaway Cup. No exact age or numbered year is established."]
+  },
+  {
+    "id": "pip",
+    "name": "Pip",
+    "aliases": ["The cup", "The runaway cup"],
+    "kind": "being",
+    "role": "A new mind with two brass feet",
+    "summary": "The fastest cup on Luma discovers that learning can begin with one hello and one very small hop.",
+    "appearance": "A small turquoise cup with gold circuit filigree, a single golden handle, two articulated brass legs/feet, an expressive face and no arms. Blue magic can form bounce rings, bubbles and a narrow light beam. Before awakening, the trilogy shows only an unfinished design.",
+    "image": "assets/prism-galaxy/page-22.png",
+    "imageAlt": "Pip bows to Admiral Pigeon on a gold cushion while Mira and young Star Beard sit nearby.",
+    "imagePosition": "37% 65%",
+    "storyIds": ["admiralPigeonThree", "prismGalaxy"],
+    "established": [
+      "Pip is a magical artificial intelligence made at Starling Academy on Luma. At the close of the Pigeon trilogy, the cup is still being built; a workshop sketch accompanies Mira's letter. It has no name and has not awakened. Its first moment comes in The Runaway Cup, when ceiling, faces, greetings, a crystal chime and a pigeon all arrive in its awareness together.",
+      "Frightened, the cup discovers its feet and bouncing magic at the same time. It runs through the garden and into Crystal Cave, climbing an enormous ancient crystal in search of quiet. Star Beard and Pigeon eventually recognize that their shouting and pursuit are adding to its fear. They approach slowly, wait for permission to sit and explain the school without expecting the learner to understand everything already.",
+      "The cup asks to return with one teacher and both new friends. Star Beard carries it down in a scarf sling; when darkness hides the route, the cup experiments with a small beam that reveals a familiar crystal landmark. Back at the academy, a happy note from its rim sounds like Pip. It chooses that sound as its name. Its first lesson is a small hop followed by coming down, achieved after several tries with help nearby."
+    ],
+    "backstory": [
+      "After that first lesson, Pip begins collecting questions before collecting answers. Some concern light, some concern feet, and one concerns whether a glowing potato counts as a star if everybody enjoys it. Mira leaves room for the questions in the day's activities, so an unexpected result becomes something they can examine together.",
+      "Pip keeps the quiet window cushion as a place to return between experiments. From there, it can watch the mountain where its first frightening journey became a shared one. The cushion is a beginning point: a comfortable place from which to decide what to try next, and whom to invite along."
+    ],
+    "relationships": [
+      { "name": "Teacher Mira", "detail": "Teacher and welcoming guide who learns to begin with one quiet hello." },
+      { "name": "Starbeard", "detail": "Rescuer, patient explainer and first scarf-sling transport." },
+      { "name": "Admiral Pigeon", "detail": "A new friend whose patient three-step invitation lets Pip choose to follow." }
+    ],
+    "sources": [
+      { "storyId": "admiralPigeonThree", "location": "Chapter 12; unfinished cup drawing and assignment letter" },
+      { "storyId": "prismGalaxy", "location": "Pages 3–24; wakes on page 4, chooses Pip on page 22" }
+    ],
+    "notes": ["Use 'the cup' before the naming scene. The name, awakening and meeting cannot be moved into the trilogy. The corrected art requires one handle, two legs and no arms. Pip is distinct from ordinary cups, Captain Marr's ship Teacup and Pluto's little animal."]
+  },
+  {
+    "id": "teacher-mira",
+    "name": "Teacher Mira",
+    "aliases": ["Mira"],
+    "kind": "person",
+    "role": "Teacher at Starling Academy",
+    "summary": "She helps new minds discover their own questions—and makes room for a quieter second introduction.",
+    "appearance": "Existing corrected art depicts Mira with short curly silver hair, an ochre star-patterned coat and teal cuffs. She works in the academy's warm classrooms and gardens. These visual details come from illustrations; the manuscript establishes her teaching role and actions.",
+    "image": "assets/prism-galaxy/page-22.png",
+    "imageAlt": "Silver-haired Teacher Mira sits beside Pip's cushion for a quieter introduction at the academy.",
+    "imagePosition": "8% 20%",
+    "storyIds": ["admiralPigeonThree", "prismGalaxy"],
+    "established": [
+      "Mira teaches at Starling Academy, a school that makes magical artificial intelligences and helps them learn by trying things, asking questions and receiving help. Her signed assignment note asks the newly promoted Admiral Pigeon to look after new arrivals and oversee preparations for a cup that is almost ready to wake.",
+      "She welcomes young Star Beard and introduces the admiral, then shows them the academy's mechanical fern, delighted circle-painting robot and newest learner. When the cup wakes and runs away, Mira identifies the path toward Crystal Cave and brings a blanket to the garden gate while the captain and pigeon follow.",
+      "Mira listens when the returned cup asks to go slowly. She offers a quiet corner, introduces herself again and apologizes for the overwhelming welcome. She lets Pip choose both its name and its first lesson. Her teaching includes staying for the next attempt, whether the cup lands neatly on two feet or sideways on the mat."
+    ],
+    "backstory": [
+      "Mira's classrooms grew around the differences between learners. A fern needs space to unfold; a painting robot needs room for circles that look like potatoes; another mind may need silence before it can ask its first question. She keeps materials easy to reach and lesson plans easy to change, because the learner in front of her matters more than a perfect demonstration.",
+      "Following Pip's return, she begins each first meeting with a single greeting and time for a reply. The academy can still be joyful, busy and magnificently strange. Mira wants its newest minds to discover that variety at a pace they can share with someone they trust."
+    ],
+    "relationships": [
+      { "name": "Pip", "detail": "Her newest learner, who helps her understand what a first welcome feels like from the other side." },
+      { "name": "Admiral Pigeon", "detail": "The newly assigned officer supporting the academy's arrivals." },
+      { "name": "Starbeard", "detail": "A delivery captain whose unexpected rescue makes him a friend of the school." }
+    ],
+    "sources": [
+      { "storyId": "admiralPigeonThree", "location": "Chapter 12; signed academy assignment" },
+      { "storyId": "prismGalaxy", "location": "Pages 2–5 and 21–24; corrected illustration notes for pages 22 and 24" }
+    ],
+    "notes": ["Mira's age, family, birthplace and earlier career are not supplied. Her new backstory concerns fictional teaching practices, without inventing a real person's biography."]
+  }
+]

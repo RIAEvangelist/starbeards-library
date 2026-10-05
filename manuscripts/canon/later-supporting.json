@@ -1,0 +1,421 @@
+[
+  {
+    "id": "starblaze",
+    "name": "Starblaze",
+    "kind": "being",
+    "role": "The first mate on the communicator",
+    "summary": "A steady voice, useful science, and an official log that even the captain cannot edit to escape a good joke.",
+    "appearance": "The story establishes a voice heard through a communicator. It gives Starblaze no physical description, species, or pronouns.",
+    "image": "",
+    "imageAlt": "",
+    "imagePosition": "50% 50%",
+    "storyIds": ["sockCaper"],
+    "established": [
+      "Starblaze contacts Captain Starbeard through a communicator after instruments detect a missing sock. Starblaze accepts Uni's improved mission name and stays with the investigation by radio.",
+      "Starblaze explains that small clothes can hide inside larger ones and that static electricity can make a dry sock cling to another object. When Uni finds her purple sock on Starbeard's cape, Starblaze identifies the actual cause: it stuck there after leaving the dryer.",
+      "The First Mate's Log records both the recovery of Uni's sock and the rescue of somebody else's red-and-white striped sock. Starblaze also records that the captain is suspiciously fuzzy and refuses his request to remove that observation."
+    ],
+    "backstory": [
+      "Starblaze learned the craft of keeping a ship's log by recording the little things that grand expedition accounts tended to miss: a tired explorer's rest, a useful question, the moment a lost possession found its way toward home. Over time, those notes became as valuable as the route charts. Starblaze carries that habit into every mission, keeping the facts straight while leaving plenty of room for the crew's delightfully excessive names for ordinary problems."
+    ],
+    "relationships": [
+      {"name": "Starbeard", "detail": "Addresses him as captain, supports his investigation, and keeps an independent first mate's log."},
+      {"name": "Uni", "detail": "Accepts her mission name, explains the clues, and recognizes the value of rescuing the wrong sock."}
+    ],
+    "sources": [
+      {"storyId": "sockCaper", "location": "manuscripts/book-2-great-galactic-sock-caper.md: communicator introduction, laundry-room explanation, wrong-sock rescue, static reveal, and closing log; index.html #sock-caper-page-4-title, #sock-caper-page-7-title, #sock-caper-page-8-title, #sock-caper-page-11-title, #sock-caper-page-12-title."}
+    ],
+    "notes": ["Starblaze is distinct from Starbeard. A physical body, gender, species, and earlier meeting with the crew remain undescribed."]
+  },
+  {
+    "id": "great-galactic-sock-thief",
+    "name": "The Great Galactic Sock Thief of Sector Nine",
+    "kind": "being",
+    "role": "A feared figure in the captain's stories",
+    "summary": "One missing sock is enough to bring an old galactic legend back into the investigation.",
+    "appearance": "No appearance is described. The Sock Thief is discussed and suspected, never seen in this adventure.",
+    "image": "",
+    "imageAlt": "",
+    "imagePosition": "50% 50%",
+    "storyIds": ["sockCaper"],
+    "established": [
+      "Uni remembers Starbeard telling her that he escaped the Great Galactic Sock Thief of Sector Nine. Starbeard confirms that he escaped and says he did not catch him. The adventure presents that earlier encounter through their conversation; it does not show the encounter or establish the thief's identity.",
+      "Uni initially treats the missing purple sock and trail of silver fluff as evidence of the thief. The actual missing sock is attached to Starbeard's cape by static electricity. Starbeard jokingly calls Static Cling the Sock Thief's first cousin."
+    ],
+    "backstory": [
+      "In an additional tale told aboard the ship, the Sock Thief keeps a magnificent cabinet of single socks arranged by the adventures they might have had. One shelf is reserved for socks fit for a moon landing, another for socks clearly destined to attend an important dinner. The legend leaves the cabinet's location and its owner's identity cheerfully uncertain. It gives Uni another ridiculous theory to examine without changing what happened to her purple sock."
+    ],
+    "relationships": [
+      {"name": "Starbeard", "detail": "The captain reports an earlier escape and later uses the legend in a joke."},
+      {"name": "Uni", "detail": "She remembers the story and suspects the thief during the sock investigation."}
+    ],
+    "sources": [
+      {"storyId": "sockCaper", "location": "manuscripts/book-2-great-galactic-sock-caper.md: the missing sock conversation and static-electricity reveal; index.html #sock-caper-page-4-title, #sock-caper-page-5-title, #sock-caper-page-11-title."}
+    ],
+    "notes": ["The new backstory is explicitly an in-world legend, not a confirmed off-page crime.", "Static Cling is humorous personification in dialogue. It is not established as an independent living cousin.", "Starbeard's accidental carrying of Uni's sock does not establish that he is the legendary thief."]
+  },
+  {
+    "id": "sensei",
+    "name": "The Sensei",
+    "kind": "person",
+    "role": "Teacher of the Space Samurai ways",
+    "summary": "On frozen Pluto, a teacher with a sword of light offers a lesson that succeeds when the sword is lowered.",
+    "appearance": "The manuscript describes a robed man carrying a sword made of light. The existing Pluto illustration depicts an older man with long silver hair tied high, a long silver beard, and a dark blue robe patterned in gold.",
+    "image": "assets/pluto-treasure.png",
+    "imageAlt": "The silver-haired Sensei stands beside Starbeard and Uni in Pluto's blue ice cavern near a chest of gems.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["pluto"],
+    "established": [
+      "Starbeard and Uni meet the Sensei on Pluto's glittering blue ice. He introduces himself by his teaching title and bows. Uni's answering bow sends her tumbling into a snowdrift.",
+      "The Sensei teaches Starbeard how to stand, move, watch, and know when to fight and when to refrain. They then travel through the frozen caverns together. Starbeard applies the lesson by lowering his glowing sword, listening to the crystal creatures' warning hum, and finding a peaceful route around them."
+    ],
+    "backstory": [
+      "Before welcoming travelers on Pluto, the Sensei spent years learning how movement changes from one world to another: careful steps on ice, patient balance on a shifting deck, a quiet stance beneath a meteor shower. He came to value observation above any impressive flourish. His favorite lesson begins with a student watching a place long enough to notice something that a raised sword would have hidden."
+    ],
+    "relationships": [
+      {"name": "Starbeard", "detail": "His student during the Pluto expedition."},
+      {"name": "Uni", "detail": "A fellow explorer who greets him with an enthusiastic bow."},
+      {"name": "The Space Samurai", "detail": "He teaches their ancient ways."},
+      {"name": "Pluto's Crystal Creatures", "detail": "Their warning provides the occasion for Starbeard to apply his lesson."}
+    ],
+    "sources": [
+      {"storyId": "pluto", "location": "manuscripts/book-3-pluto-labyrinth.md: Spread 3 — Pluto; index.html #pluto-page-3-title; assets/pluto-treasure.png."}
+    ],
+    "notes": ["Sensei is a title; no personal name or home world is established.", "He is distinct from the Lumi elder and the cosmic elder in the shared dream."]
+  },
+  {
+    "id": "space-samurai",
+    "name": "The Space Samurai",
+    "kind": "group",
+    "role": "An ancient teaching tradition",
+    "summary": "A tradition whose practice includes watching carefully and recognizing when a fight can be avoided.",
+    "appearance": "The story gives the wider tradition no uniform or shared physical appearance. The Sensei's robe and sword belong to his individual depiction.",
+    "image": "",
+    "imageAlt": "",
+    "imagePosition": "50% 50%",
+    "storyIds": ["pluto"],
+    "established": [
+      "The Sensei teaches Starbeard the ancient ways of the Space Samurai on Pluto. Their stated lessons concern stance, movement, observation, and deciding whether to fight.",
+      "The story names the tradition without introducing another individual member, an organization chart, a home planet, or a historical battle. Starbeard's peaceful passage past the crystal creatures demonstrates the lesson he has just learned."
+    ],
+    "backstory": [
+      "The tradition grew through teachers who compared what careful travelers learned on very different worlds. A lesson that worked on one planet might need a new stance on another, so students practiced explaining why a movement helped instead of merely copying it. Their old teaching stories celebrate the explorer who notices an open path as readily as the explorer who performs a difficult feat."
+    ],
+    "relationships": [
+      {"name": "The Sensei", "detail": "The named teacher who introduces their practice."},
+      {"name": "Starbeard", "detail": "Learns their ways during the Pluto journey; no rank or formal membership is conferred in the source."}
+    ],
+    "sources": [
+      {"storyId": "pluto", "location": "manuscripts/book-3-pluto-labyrinth.md: Spread 3 — Pluto; index.html #pluto-page-3-title."}
+    ],
+    "notes": ["This is a named tradition in the story, not a newly invented on-page crowd.", "Keep any future ranks or ceremonies separate from Starbeard's established lesson."]
+  },
+  {
+    "id": "pluto-crystal-creatures",
+    "name": "Pluto's Crystal Creatures",
+    "kind": "group",
+    "role": "The cavern's humming residents",
+    "summary": "Shadowy figures across a frozen path become a reason to listen before advancing.",
+    "appearance": "The manuscript calls them shadowy crystal creatures. It establishes no number, body plan, personal names, or clothing.",
+    "image": "",
+    "imageAlt": "",
+    "imagePosition": "50% 50%",
+    "storyIds": ["pluto"],
+    "established": [
+      "The crystal creatures block the route through Pluto's frozen caverns and make a warning hum. Starbeard lowers his glowing sword, listens, and finds a peaceful path around them.",
+      "The account shows a tense encounter resolved without combat. It gives no claim that the creatures attack, guard the treasure by appointment, or understand human speech."
+    ],
+    "backstory": [
+      "Within their cavern community, the creatures learn to recognize the changing songs of ice. A low note can carry around a bend where a traveler cannot see, while several voices together can draw attention to a crowded passage. Young crystal creatures practice joining that chorus until they can make themselves understood without filling every chamber with noise. To an unfamiliar visitor, even a practical warning can sound wonderfully mysterious."
+    ],
+    "relationships": [
+      {"name": "Starbeard", "detail": "He listens to their warning and travels around them."},
+      {"name": "The Sensei", "detail": "His preceding lesson helps the visitors approach the encounter peacefully."},
+      {"name": "Uni", "detail": "She accompanies the explorers through the caverns."}
+    ],
+    "sources": [
+      {"storyId": "pluto", "location": "manuscripts/book-3-pluto-labyrinth.md: Spread 3 — Pluto; index.html #pluto-page-3-title."}
+    ],
+    "notes": ["Treat them as residents encountered along the route, not proven villains.", "These living creatures are distinct from the nonliving dragon-shaped crystal landmark in The Runaway Cup."]
+  },
+  {
+    "id": "lumi",
+    "name": "The Lumi",
+    "kind": "group",
+    "role": "Hosts of the Festival of Light",
+    "summary": "Tiny rainbow hosts turn a strange signal into an invitation and a new friendship into a guiding gift.",
+    "appearance": "The prose describes tiny rainbow creatures. Existing festival art depicts rounded, luminous creatures in varied colors with expressive faces, small limbs, and antenna-like projections.",
+    "image": "assets/lumi-festival.png",
+    "imageAlt": "Starbeard and Uni dance among colorful rounded Lumi beside a bright river of starlight.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["pluto"],
+    "established": [
+      "After leaving Pluto, Starbeard and Uni follow a signal to an unmapped planet with glowing blue plants and rivers of liquid starlight. Tiny rainbow creatures introduce themselves as the Lumi. Their signal is an invitation to the Festival of Light.",
+      "Thousands of Lumi gather beneath colored ribbons to sing and dance. Uni spins so enthusiastically that three Lumi use her flowing mane as a merry-go-round. A gentle elder gives the departing explorers glowing crystals to guide future journeys."
+    ],
+    "backstory": [
+      "Long before the visiting starship arrived, Lumi communities shared news through festivals along the starlight rivers. Each gathering gave young singers a place to try a new melody and travelers a chance to bring a color or dance from farther downstream. Over time, their invitations reached beyond the riverbanks and out among the stars. A stranger following the light became another possible friend to welcome."
+    ],
+    "relationships": [
+      {"name": "The Lumi Elder", "detail": "A distinct individual among their people who presents the guiding crystals."},
+      {"name": "Uni", "detail": "An enthusiastic festival guest and dancing companion."},
+      {"name": "Starbeard", "detail": "A welcomed visitor who receives their friendship and gift with Uni."}
+    ],
+    "sources": [
+      {"storyId": "pluto", "location": "manuscripts/book-3-pluto-labyrinth.md: Spread 4 — The Lumi; index.html #pluto-page-4-title; assets/lumi-festival.png."}
+    ],
+    "notes": ["Lumi names a people. Their planet is unnamed in this story.", "Do not identify their planet with Luma or Luma Bloom solely because the names sound alike."]
+  },
+  {
+    "id": "lumi-elder",
+    "name": "The Lumi Elder",
+    "kind": "creature",
+    "role": "Giver of the guiding crystals",
+    "summary": "A gentle festival elder sends new friends onward with a gift that still has places to show them.",
+    "appearance": "The manuscript identifies a gentle Lumi elder without a personal name or gender. Festival art depicts the elder as a larger pale luminous figure with a white beard and glowing antenna tips, holding a crystal cluster.",
+    "image": "assets/lumi-festival.png",
+    "imageAlt": "The pale bearded Lumi elder holds glowing crystals beside the festival's starlight river.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["pluto"],
+    "established": [
+      "At the end of the Festival of Light, a gentle Lumi elder gives Starbeard and Uni a cluster of glowing crystals and tells them the gift will help guide later journeys.",
+      "After the cosmic café visit, those crystals form a map leading to the Celestial Isles. The map later indicates the Luminous Labyrinth. Those are properties of the gift; the source does not explain how the elder obtained it."
+    ],
+    "backstory": [
+      "The elder once helped prepare the quiet closing hours of each festival, when guests collected their belongings and wondered which road to take next. That work became a lifelong interest in farewells: listening to what a traveler hoped to find, then offering something small enough to carry. The elder keeps no requirement that a gift be repaid. A visitor who finds a new friend along the way has already given the festival a worthy continuation."
+    ],
+    "relationships": [
+      {"name": "The Lumi", "detail": "An elder within the festival community."},
+      {"name": "Starbeard", "detail": "Receives the glowing crystal gift with Uni."},
+      {"name": "Uni", "detail": "Receives the glowing crystal gift with Starbeard."},
+      {"name": "Estrella", "detail": "The gift leads the travelers to her realm; a personal acquaintance between the two is not established."}
+    ],
+    "sources": [
+      {"storyId": "pluto", "location": "manuscripts/book-3-pluto-labyrinth.md: Spread 4 — The Lumi and Spread 7 — The Celestial Isles; index.html #pluto-page-4-title and #pluto-page-7-title; assets/lumi-festival.png."}
+    ],
+    "notes": ["The Lumi elder is distinct from the Sensei and the cosmic elder in the shared dream.", "The source leaves the elder's personal name and the crystals' manufacture unspecified."]
+  },
+  {
+    "id": "zogo",
+    "name": "Zogo",
+    "kind": "creature",
+    "role": "Owner of the asteroid fuel station",
+    "summary": "A cheerful station keeper has the knowledge to get a starship moving and a humming souvenir for the road.",
+    "appearance": "A cheerful green alien. The existing illustration gives him a rounded face, two antennae, pointed ears, textured green skin, and practical brown overalls.",
+    "image": "assets/zogo-station.png",
+    "imageAlt": "Green Zogo welcomes Starbeard and Uni beside a basket of blue crystals at his asteroid station.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["pluto"],
+    "established": [
+      "Zogo owns a tiny brass-and-glass station behind a giant asteroid. When the explorers arrive with dangerously little fuel, he offers to refuel their ship and explains that the needed blue crystals are trapped among the asteroids.",
+      "Starbeard pilots a shuttle while Uni uses her glowing horn to find the crystals. Back at the station, Zogo places them inside the engines, and the ship glows blue with a full tank. He gives the travelers a small humming fuel crystal as a souvenir."
+    ],
+    "backstory": [
+      "Zogo began by repairing the little lamps and heaters that travelers brought to an asteroid market. He liked hearing where every object had been, especially when its owner stayed to watch the repair. His station grew from that same pleasure in getting people moving again. He arranged the workbench so visitors could ask questions, and kept a place beside it for the small mementos that make a practical stop worth remembering."
+    ],
+    "relationships": [
+      {"name": "Starbeard", "detail": "A visiting captain whose ship he refuels."},
+      {"name": "Uni", "detail": "She spots the station and illuminates the hidden fuel crystals during the collection trip."}
+    ],
+    "sources": [
+      {"storyId": "pluto", "location": "manuscripts/book-3-pluto-labyrinth.md: Spread 5 — The Asteroid Station, with his souvenir recalled in Spread 9 — Home Base; index.html #pluto-page-5-title and #pluto-page-9-title; assets/zogo-station.png."}
+    ],
+    "notes": ["Zogo's species and home planet are unnamed.", "His blue fuel crystals, the Lumi gift, and the labyrinth's star crystal are separate treasures with different established functions."]
+  },
+  {
+    "id": "mysterious-little-companion",
+    "name": "The Mysterious Little Companion",
+    "kind": "creature",
+    "role": "The fellow traveler everyone keeps noticing again",
+    "summary": "A tiny explorer is already aboard, already enjoying the star juice, and very much hoping to be remembered.",
+    "appearance": "The manuscript calls it a mysterious little animal without naming a species. Existing café, Celestial Isles, and home illustrations show a small teal furry creature with pointed ears, large dark eyes, a pale muzzle, and small paws.",
+    "image": "assets/cosmic-cafe.png",
+    "imageAlt": "A tiny teal furry companion drinks star juice beside Uni and Starbeard in the cosmic café.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["pluto"],
+    "established": [
+      "The little animal accompanies Starbeard and Uni from the asteroid passage onward. It clings to the captain's chair, is noticed with surprise, and is forgotten again five minutes later.",
+      "At the cosmic café it has a straw and a drink of its own. It sighs when its companions wonder whether someone else came along, then brightens when Starbeard sees it. At home it sleeps on a cushion and opens one hopeful eye when the captain notices it once more.",
+      "The illustrated Celestial Isles scene also places the creature beside Uni on the bridge. The story gives the companion no spoken words, personal name, origin, or reason for the recurring forgetfulness."
+    ],
+    "backstory": [
+      "The little companion learned to explore by observing where larger travelers paused. A low shelf offered the best view of a map; a warm cushion made an excellent place to listen; the quiet side of a table often held a spare drink. It carries a private collection of remembered details from each stop, all the tiny discoveries that fit beneath everyone else's eye level. Its history leaves the mystery of its name intact while giving its patient presence a life of its own."
+    ],
+    "relationships": [
+      {"name": "Starbeard", "detail": "Its traveling companion, repeatedly surprised to notice it again."},
+      {"name": "Uni", "detail": "Shares the expedition, café visit, and cozy return home with it."}
+    ],
+    "sources": [
+      {"storyId": "pluto", "location": "manuscripts/book-3-pluto-labyrinth.md: Spread 2 — The Asteroids, Spread 6 — The Cosmic Café, Spread 9 — Home Base; index.html #pluto-page-2-title, #pluto-page-6-title, #pluto-page-9-title; assets/cosmic-cafe.png and assets/celestial-isles.png."}
+    ],
+    "notes": ["Keep this animal distinct from Admiral Pigeon, Pip, and every other named companion.", "No magical invisibility, memory-erasing power, exact species, or prior meeting is established.", "The phrase 'third straw' describes the café moment; it does not establish three mouths or another anatomical feature."]
+  },
+  {
+    "id": "estrella",
+    "name": "Estrella",
+    "kind": "being",
+    "role": "Guardian of the Celestial Isles",
+    "summary": "A star-skinned guide welcomes visitors across a bridge of light into a place that remembers their journey.",
+    "appearance": "A tall guardian whose midnight skin shimmers with tiny stars. Existing art gives her flowing dark blue hair, a long blue-and-gold celestial gown, and gold adornments.",
+    "image": "assets/celestial-isles.png",
+    "imageAlt": "Tall, star-skinned Estrella leads Starbeard, Uni, and their small companion across a golden bridge among floating islands.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["pluto"],
+    "established": [
+      "The Lumi crystal map leads Starbeard and Uni through a doorway in space to the Celestial Isles. Estrella welcomes them to floating islands, glowing mushrooms, stardust rivers, and bridges made of light.",
+      "She guides them along a golden bridge to the Heart of the Isles, described in the manuscript as an enormous glowing sphere. When Uni touches it with her horn, pictures of their shared adventures appear. The crystal map then reveals the Luminous Labyrinth as their next destination."
+    ],
+    "backstory": [
+      "Estrella learned the paths of the Isles by accompanying travelers at their own pace. Each visitor noticed something different in the luminous bridges and drifting clouds, and she came to treat those observations as part of the landscape's story. As guardian, she carries that practice into every welcome: offer a steady route, leave room for wonder, and let a visitor recognize the meaning of a memory before explaining it for them."
+    ],
+    "relationships": [
+      {"name": "Starbeard", "detail": "A guest whom she guides to the Heart of the Isles."},
+      {"name": "Uni", "detail": "Her guest touches the Heart with her horn, revealing memories of the journey."},
+      {"name": "The Lumi Elder", "detail": "The elder's gift brings the guests to her; the source establishes no direct meeting between them."}
+    ],
+    "sources": [
+      {"storyId": "pluto", "location": "manuscripts/book-3-pluto-labyrinth.md: Spread 7 — The Celestial Isles; index.html #pluto-page-7-title; assets/celestial-isles.png."}
+    ],
+    "notes": ["No species, royal title, age, or family relationship is established.", "The illustration's heart-shaped glow does not replace the manuscript's description of the Heart as a sphere.", "Background memory portraits in the illustration do not independently establish new encounters or character identities."]
+  },
+  {
+    "id": "cosmic-elder",
+    "name": "The Cosmic Elder",
+    "kind": "being",
+    "role": "The guide in the shared dream",
+    "summary": "In a castle of stardust, an ancient elder reminds two explorers which treasures can never fit inside a chest.",
+    "appearance": "An ancient elder with galaxies in his eyes. Existing dream art depicts a vast blue-violet figure with flowing silver-white hair, a long beard, and robes scattered with golden stars.",
+    "image": "assets/shared-dream.png",
+    "imageAlt": "The cosmic elder offers tiny stars to Starbeard and Uni within their shared stardust dream.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["pluto"],
+    "established": [
+      "After returning home, Starbeard and Uni share a dream in which they travel along a river of starlight to a castle built from stardust. An ancient cosmic elder shows them moving pictures of their adventures.",
+      "He calls their memories, friends, and one another treasures. He gives each explorer a tiny star and says the stars will point toward their next journey when they wake. The story ends with the dream fading and the labyrinth crystal pulsing beside the fireplace; it does not show the stars after waking."
+    ],
+    "backstory": [
+      "Within the dream-world, the elder has spent long ages listening to the stories travelers carry into sleep. He gathers their moments of courage, kindness, and delighted surprise into moving constellations, so an exhausted explorer can see a whole journey again. His gifts are small because their purpose is to invite a next step. He believes that a good memory should leave room for another adventure."
+    ],
+    "relationships": [
+      {"name": "Starbeard", "detail": "A dreamer whom he welcomes and gives a tiny star."},
+      {"name": "Uni", "detail": "Shares Starbeard's dream and receives a tiny star of her own."}
+    ],
+    "sources": [
+      {"storyId": "pluto", "location": "manuscripts/book-3-pluto-labyrinth.md: Spread 10 — The Shared Dream; index.html #pluto-page-10-title; assets/shared-dream.png."}
+    ],
+    "notes": ["Keep the established appearance within the shared dream; a physical waking-world visit is unconfirmed.", "He is distinct from the Sensei and the Lumi elder. No creator-god identity or family relationship is established."]
+  },
+  {
+    "id": "academy-gardening-robots",
+    "name": "The Academy Gardening Robots",
+    "kind": "group",
+    "role": "Small gardeners with a very tall delivery",
+    "summary": "Their seedling needs the whole team, and their crossing gives a new captain his first reason to listen to Pigeon.",
+    "appearance": "Tiny gardening robots carrying a seedling taller than themselves. Existing page art depicts rounded pale bodies, brass joints and trim, blue lights, and small articulated legs.",
+    "image": "assets/prism-galaxy/page-02.png",
+    "imageAlt": "Small pale-and-brass gardening robots carry a tall seedling past the newly landed captain and Admiral Pigeon.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["prismGalaxy"],
+    "established": [
+      "A row of tiny gardening robots carries a tall seedling across Starling Academy's landing pad. Admiral Pigeon remains in the pad's center until Captain Star Beard notices the crossing and lifts his ship away.",
+      "Once the last robot passes, Pigeon steps aside and the captain lands. The robots have no individual names or spoken dialogue in the story."
+    ],
+    "backstory": [
+      "The academy's small gardeners first learned teamwork by moving pots that no single robot could carry. They developed a patient walking rhythm: settle the load, look toward the next gardener, and take the next step together. A seedling's arrival became a little procession because each new plant needed many kinds of care. Their proudest garden beds are the ones every helper can point to and say, in a blink or a gesture, that they had a part in making them grow."
+    ],
+    "relationships": [
+      {"name": "Admiral Pigeon", "detail": "He holds the landing pad while they cross."},
+      {"name": "Captain Star Beard", "detail": "His first landing at the academy pauses for their procession."},
+      {"name": "Teacher Mira", "detail": "They share the Starling Academy setting where she teaches."}
+    ],
+    "sources": [
+      {"storyId": "prismGalaxy", "location": "manuscripts/prism-galaxy-runaway-cup.md and .json: Page 02 — Three Steps and a Look Back; index.html #prism-galaxy-page-02-title; assets/prism-galaxy/page-02.png."}
+    ],
+    "notes": ["The prose gives no exact team size; an older art prompt's count is not a roster.", "No source establishes that the watering robot or painting learner is one of these individuals."]
+  },
+  {
+    "id": "mechanical-fern",
+    "name": "The Mechanical Fern",
+    "kind": "being",
+    "role": "A learner growing one new leaf",
+    "summary": "At Starling Academy, even a new leaf can be the beginning of a lesson.",
+    "appearance": "A mechanical fern practicing a new leaf. Existing classroom art depicts green fronds in a brass mechanical planter with blue light and articulated fittings.",
+    "image": "assets/prism-galaxy/page-03.png",
+    "imageAlt": "A mechanical fern in a brass planter grows beside the academy's cushion while the new cup sleeps nearby.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["prismGalaxy"],
+    "established": [
+      "As Teacher Mira introduces the academy, a mechanical fern practices growing a new leaf. Its small lesson appears beside a robot learning to paint and a cup that has yet to wake.",
+      "The scene establishes an academy where magical artificial intelligences learn by trying, asking questions, and receiving help. The fern has no personal name, dialogue, or stated age."
+    ],
+    "backstory": [
+      "The fern's earliest lessons centered on a single frond: turn toward the window, pause, and discover how much room a new leaf needs. Its planter became a favorite place for slower classroom observations, since progress could be noticed without an announcement or a race. With each new growth, the fern added another shape to its own patient collection, demonstrating that a quiet learner can fill a room with interest."
+    ],
+    "relationships": [
+      {"name": "Teacher Mira", "detail": "A teacher in its academy setting; no individual lesson between them is narrated."},
+      {"name": "The Painting Robot", "detail": "A fellow learner in the same introductory classroom scene."},
+      {"name": "Pip", "detail": "The cup is introduced in the academy alongside this already-practicing learner."}
+    ],
+    "sources": [
+      {"storyId": "prismGalaxy", "location": "manuscripts/prism-galaxy-runaway-cup.md and .json: Page 03 — The School for New Beginnings; the .json Page 23 art prompt also returns the fern to the classroom background; index.html #prism-galaxy-page-03-title; assets/prism-galaxy/page-03.png."}
+    ],
+    "notes": ["Keep the fern distinct from the ordinary seedling carried by the gardening robots.", "A precise origin, consciousness model, and personal name remain unspecified."]
+  },
+  {
+    "id": "academy-painting-robot",
+    "name": "The Painting Robot",
+    "kind": "being",
+    "role": "The delighted painter of potato-shaped circles",
+    "summary": "This round academy learner finds something worth celebrating in every wonderfully uneven circle.",
+    "appearance": "A little round robot. Existing classroom art depicts pale rounded head and body sections, brass fittings, luminous blue eyes, and an articulated arm holding a paintbrush.",
+    "image": "assets/prism-galaxy/page-03.png",
+    "imageAlt": "A small pale-and-brass robot paints a potato-shaped circle at an easel behind Teacher Mira and the sleeping cup.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["prismGalaxy"],
+    "established": [
+      "When Captain Star Beard enters Starling Academy, a little round robot is learning to paint circles. Most of its circles resemble potatoes, and it is delighted with them.",
+      "Later, while reassuring the frightened cup, the captain uses the freedom to make a magnificent mess while learning to paint a circle as an example of how school works. The painter has no personal name or spoken dialogue."
+    ],
+    "backstory": [
+      "The painter began with the pleasure of leaving a mark and gradually learned to notice how different movements changed it. A slow turn made one kind of circle; an excited swoop made another. Rather than hide the early attempts, the robot kept them together so each new painting had a history beside it. The collection became a cheerful reminder that learning produces interesting things long before it produces the thing a lesson originally requested."
+    ],
+    "relationships": [
+      {"name": "Teacher Mira", "detail": "Shares her academy classroom, where learners receive help and time to practice."},
+      {"name": "Captain Star Beard", "detail": "He observes the painter and later refers to circle-painting while reassuring the cup."},
+      {"name": "Pip", "detail": "A fellow academy learner whose later glowing-potato attempt echoes the painting scene; no direct conversation is established."}
+    ],
+    "sources": [
+      {"storyId": "prismGalaxy", "location": "manuscripts/prism-galaxy-runaway-cup.md and .json: Page 03 — The School for New Beginnings, Page 16 — A Place to Learn, and Page 24 — Room for an Admiral; index.html #prism-galaxy-page-03-title and #prism-galaxy-page-16-title; assets/prism-galaxy/page-03.png."}
+    ],
+    "notes": ["The painting robot and Pip are separate learners.", "The shared potato motif does not establish that the robot caused Pip's glowing-potato light shape in the cave."]
+  },
+  {
+    "id": "academy-watering-robot",
+    "name": "The Watering Robot",
+    "kind": "being",
+    "role": "A garden helper beside an unexpected chase",
+    "summary": "A quiet round of watering briefly becomes part of the fastest cup's route across Luma.",
+    "appearance": "A watering robot in the academy garden. The prose describes the cup passing between its legs; existing art shows a round pale body with brass fittings, blue lights, and a watering nozzle.",
+    "image": "assets/prism-galaxy/page-05.png",
+    "imageAlt": "A round watering robot sprays the garden path while the frightened cup, Pigeon, and young captain race past.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["prismGalaxy"],
+    "established": [
+      "During the cup's flight from the academy, it crosses a flower bed, runs beneath a bench, and passes between the legs of a watering robot. Admiral Pigeon and Captain Star Beard follow its fading blue hop rings toward Crystal Cave.",
+      "The watering robot has no personal name or spoken response. Its role belongs to the garden passage; the text does not identify it as one of the seedling carriers from the landing pad."
+    ],
+    "backstory": [
+      "The watering robot learned its garden route one bed at a time, discovering which leaves liked a gentle mist and which roots needed a slower drink. It came to recognize the usual traffic along the paths: gardeners carrying pots, teachers taking a breath between lessons, and learners trying out newly discovered ways to move. Its favorite moment comes after the visitors pass, when the droplets settle and the garden grows quietly around it again."
+    ],
+    "relationships": [
+      {"name": "Pip", "detail": "The cup, still unnamed at the time, runs past during its first frightened escape."},
+      {"name": "Captain Star Beard", "detail": "Follows the cup through its garden workplace."},
+      {"name": "Admiral Pigeon", "detail": "Follows the cup's route through the academy garden."},
+      {"name": "The Academy Gardening Robots", "detail": "They work in the same academy surroundings; shared individual identity is unestablished."}
+    ],
+    "sources": [
+      {"storyId": "prismGalaxy", "location": "manuscripts/prism-galaxy-runaway-cup.md and .json: Page 05 — The Fastest Cup on Luma; index.html #prism-galaxy-page-05-title; assets/prism-galaxy/page-05.png."}
+    ],
+    "notes": ["Preserve the story's passage between the robot's legs when staging an adaptation, even where the illustration's lower mechanism is ambiguous.", "Do not silently merge this helper with the painting robot or the seedling-carrying team."]
+  }
+]

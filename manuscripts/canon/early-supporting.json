@@ -1,0 +1,613 @@
+[
+  {
+    "id": "baby-pearl-bubble",
+    "name": "The Baby Pearl-Bubble",
+    "kind": "creature",
+    "role": "Tumble-Turn's drifting youngster",
+    "summary": "A tiny giggling neighbor whose journey away from a branch-nest brings three explorers into one long rescue chain.",
+    "appearance": "A small pearl-bubble. The existing rescue illustration gives the baby a smiling face inside a translucent, softly colored round bubble.",
+    "image": "assets/tumble-turn-rescue.png",
+    "imageAlt": "Juliet returns a smiling pearl-bubble to its branch-nest while Starbeard holds the rescue rope and Uni anchors the rocket.",
+    "imagePosition": "53% 30%",
+    "storyIds": ["planets"],
+    "established": [
+      "The baby pearl-bubble has bounced out of a nest high in a twisting branch on Tumble-Turn. As the little planet rolls, the baby spins farther from safety. Its predicament is the first rescue encountered along Starbeard's beard-map.",
+      "Uni anchors the rocket, Starbeard secures a rope of stars, and Juliet swings through the floating forest. She catches the giggling baby and returns it to its branch-nest. The bubble trees settle and the first silver route on the map shines again."
+    ],
+    "backstory": [
+      "Before the explorers arrived, the baby had been practicing tiny floats between the nearest leaves. A curled leaf made an excellent landing place, and the movement of a branch made even a short trip feel enormous. The rescue gives it a new favorite game: a little journey with a welcoming friend waiting at each end.",
+      "The baby remains curious about everything beyond the nest. When the explorers next visit, it hopes to show them a route of its own, beginning with the safest branch and ending somewhere with an especially good view of the stars."
+    ],
+    "relationships": [
+      {"name": "Juliet", "detail": "Catches the baby and carries it back to its branch-nest."},
+      {"name": "Uni", "detail": "Helps keep Juliet's rescue steady through the crew's anchor and rope."},
+      {"name": "Starbeard", "detail": "Helps keep Juliet's rescue steady through the crew's anchor and rope."},
+      {"name": "The Pearl-Bubble Nestmates", "detail": "Other pearl-bubbles appear together in the nest in the existing rescue illustration; family relationships are unspecified."}
+    ],
+    "sources": [
+      {"storyId": "planets", "location": "Reader page 3, Tumble-Turn; index.html #planets-page-3-title."},
+      {"storyId": "planets", "location": "Reader page 4, The first path; index.html #planets-page-4-title; assets/tumble-turn-rescue.png."}
+    ],
+    "notes": ["The source gives no personal name, gender, parents, or exact age beyond baby.", "The baby's disappearance is not established as the cause of Tumble-Turn's unusual gravity."]
+  },
+  {
+    "id": "pearl-bubble-nestmates",
+    "name": "The Pearl-Bubble Nestmates",
+    "kind": "group",
+    "role": "The waiting faces in the branch-nest",
+    "summary": "Small neighbors waiting among the floating branches when Juliet brings the wandering baby home.",
+    "appearance": "The rescue illustration shows two additional small, translucent pearl-bubbles with faces together in the branch-nest behind the rescued baby.",
+    "image": "assets/tumble-turn-rescue.png",
+    "imageAlt": "Two pearl-bubbles wait in a branch-nest as Juliet returns the rescued baby to them.",
+    "imagePosition": "60% 20%",
+    "storyIds": ["planets"],
+    "established": [
+      "The existing illustration of the Tumble-Turn rescue includes two pearl-bubbles already in the branch-nest. Their individual names, ages, and relationships are absent from the accompanying story. They are distinct visual supporting beings rather than additional rescuers."
+    ],
+    "backstory": [
+      "The nestmates know the comfortable places in their extraordinary tree: the branch that rocks slowly, the leaf that catches a gentle glow, and the hollow where returning travelers can settle. Welcoming someone home is an important part of their days, especially on a planet where the direction of home can briefly become confusing.",
+      "After the rescue, they begin making a game of calling attention to the nearest safe resting place. The baby enjoys finding each place, and the nestmates enjoy being the familiar faces at the end of the journey."
+    ],
+    "relationships": [
+      {"name": "The Baby Pearl-Bubble", "detail": "Shares their branch-nest in the rescue illustration; kinship remains unspecified."},
+      {"name": "Tumble-Turn's Bubble Trees", "detail": "Their nest rests in one of the floating trees."}
+    ],
+    "sources": [
+      {"storyId": "planets", "location": "Reader page 4, The first path; assets/tumble-turn-rescue.png, additional faces in the branch-nest."}
+    ],
+    "notes": ["These supporting beings are established by the illustration, not individually described in the prose.", "Do not call them the baby's parents or siblings without marking that as a further authored addition."]
+  },
+  {
+    "id": "tumble-turn-bubble-trees",
+    "name": "Tumble-Turn's Bubble Trees",
+    "kind": "group",
+    "role": "A floating forest full of shelter",
+    "summary": "Trees that drift above their roots and still provide a place for small creatures to belong.",
+    "appearance": "Floating bubble trees with twisting branches and branch-nests. The rescue illustration places leafy trees within large translucent bubbles among the stars.",
+    "image": "assets/tumble-turn-rescue.png",
+    "imageAlt": "Bubble trees float around the explorers as Juliet reaches a nest in a twisting branch.",
+    "imagePosition": "68% 25%",
+    "storyIds": ["planets"],
+    "established": [
+      "On Tumble-Turn, bubble trees drift above their roots while paths curl through the sky and raindrops rise from puddles. A high branch holds the nest from which the baby pearl-bubble has bounced.",
+      "When the explorers return the baby, the bubble trees settle around their roots and the planet turns right-side up. The story describes a responsive living forest without assigning individual trees names, speech, or motives."
+    ],
+    "backstory": [
+      "Over many slow turns of their little world, the trees have grown places where small lives can rest: sheltered forks, gently cupped leaves, and branches that make room for a nest. Their forest is a collection of homes as much as a collection of trees.",
+      "The oldest branches keep their familiar shapes while fresh leaves unfold around them. That slow growth lets a small creature learn its way through the forest a little at a time, finding new places within reach of a remembered shelter."
+    ],
+    "relationships": [
+      {"name": "The Baby Pearl-Bubble", "detail": "The trees provide the branch-nest seen during the rescue."},
+      {"name": "The Pearl-Bubble Nestmates", "detail": "The trees provide the branch-nest seen during the rescue."},
+      {"name": "Juliet", "detail": "Travels through their floating branches to return the baby."}
+    ],
+    "sources": [
+      {"storyId": "planets", "location": "Reader pages 3–4, Tumble-Turn and The first path; index.html #planets-page-3-title and #planets-page-4-title."}
+    ],
+    "notes": ["A living ensemble and setting; individual humanlike consciousness or speech is not established."]
+  },
+  {
+    "id": "luma-bloom-humming-seed",
+    "name": "The Humming Seed",
+    "kind": "being",
+    "role": "Luma Bloom's smallest singer",
+    "summary": "A nearly overlooked voice beneath a leaf holds the beginning of a bridge-building song.",
+    "appearance": "A tiny seed sheltering under a leaf. The story supplies its small scale and humming voice; no face, color, or personal name is established.",
+    "image": "assets/luma-bloom.png",
+    "imageAlt": "Juliet, Uni, and Starbeard listen together among Luma Bloom's glowing bell flowers.",
+    "imagePosition": "43% 65%",
+    "storyIds": ["planets"],
+    "established": [
+      "Juliet discovers the seed humming under a leaf while Luma Bloom's bell flowers hang silent. She kneels beside it and hums the same note back. Uni contributes a silver harmony and Starbeard a jingling bass.",
+      "The bell flowers lift their heads one by one, a bridge of light blooms across the valley, and the second route in the beard-map brightens. Juliet tells the seed that it already had the song; the explorers needed to listen."
+    ],
+    "backstory": [
+      "The seed has practiced its small note through evenings beneath the leaf, hearing the larger bells answer the air around it. It has only one note to offer, and it offers that note faithfully. What feels small from beneath a leaf can still be the beginning of something that reaches an entire valley.",
+      "After the explorers' visit, the seed listens for other quiet beginnings around the meadow. Its future place in Luma Bloom's music can grow alongside it, while the note that Juliet first heard remains its own."
+    ],
+    "relationships": [
+      {"name": "Juliet", "detail": "Hears the seed and answers its note."},
+      {"name": "Uni", "detail": "Joins the seed's melody with a harmony of their own."},
+      {"name": "Starbeard", "detail": "Joins the seed's melody with a harmony of their own."},
+      {"name": "Luma Bloom's Bell Flowers", "detail": "Respond to the shared song by raising the light bridge."}
+    ],
+    "sources": [
+      {"storyId": "planets", "location": "Reader page 5, Luma Bloom; index.html #planets-page-5-title."}
+    ],
+    "notes": ["Distinct from Naptune's golden dream seed, which is a different magical object.", "Luma Bloom is distinct from the Moonlit Blossom Planet."]
+  },
+  {
+    "id": "luma-bloom-bell-flowers",
+    "name": "Luma Bloom's Bell Flowers",
+    "kind": "group",
+    "role": "Singers of the light bridge",
+    "summary": "Their evening music makes a way across a dark valley, once the quietest singer is heard.",
+    "appearance": "Glowing bell-shaped flowers that hang silent and then lift their heads. Existing art shows a meadow of luminous blue, violet, and pink bells.",
+    "image": "assets/luma-bloom.png",
+    "imageAlt": "The three explorers sit among glowing bell flowers as music fills Luma Bloom.",
+    "imagePosition": "68% 70%",
+    "storyIds": ["planets"],
+    "established": [
+      "Luma Bloom's bell flowers should ring each evening to grow a bridge of light. When the explorers arrive, every flower is silent and the dark valley blocks their way toward the map's next star.",
+      "The flowers respond after Juliet hears the humming seed and the whole crew joins its note. They lift their heads in sequence, and the bridge blooms across the valley. Their specific function is passage across the landscape."
+    ],
+    "backstory": [
+      "Each part of the meadow hears the evening song a little differently. Bells near the valley send their sound across the open air, while flowers sheltered by leaves begin more softly. Together they have made the crossing a familiar part of life on Luma Bloom.",
+      "Since the explorers' visit, the meadow's music leaves a listening space for the smallest beginnings. The flowers nearest the seed wait for its little hum, then carry the growing melody toward the valley. Their bridge begins close to the ground before it reaches across the open air."
+    ],
+    "relationships": [
+      {"name": "The Humming Seed", "detail": "Its answered note precedes the flowers' renewed singing."},
+      {"name": "Juliet", "detail": "Their shared singing helps restore the bridge and the crew's route."},
+      {"name": "Uni", "detail": "Their shared singing helps restore the bridge and the crew's route."},
+      {"name": "Starbeard", "detail": "Their shared singing helps restore the bridge and the crew's route."}
+    ],
+    "sources": [
+      {"storyId": "planets", "location": "Reader page 5, Luma Bloom; index.html #planets-page-5-title; assets/luma-bloom.png."}
+    ],
+    "notes": ["Keep this bridge-making chorus distinct from the Moonlit Blossom Planet's sleeping song."]
+  },
+  {
+    "id": "naptune-crescent-moon",
+    "name": "Naptune's Crescent Moon",
+    "kind": "being",
+    "role": "The dreamer at the final silver path",
+    "summary": "A wide-awake crescent needs its lost dream seed before the explorers can find their own way home.",
+    "appearance": "A crescent moon among cloud rings. Existing art depicts a large golden crescent with a face and a broad sleepy yawn.",
+    "image": "assets/naptune-dream.png",
+    "imageAlt": "Juliet brings the golden dream seed to a yawning crescent moon while Uni and Starbeard keep the rescue steady.",
+    "imagePosition": "49% 38%",
+    "storyIds": ["planets"],
+    "established": [
+      "The last route of the beard-map leads to Naptune, where every sleepy star is yawning except the crescent moon. Naptune's golden dream seed has blown into a maze of cloud rings. Without it, the moon cannot sleep; without the moon's dream, the map cannot reveal the way home.",
+      "Juliet carries the recovered seed in her cape while Uni lights a safe ring and Starbeard steadies the rope. She places the seed beside the moon. A peaceful yawn follows, the sleepy stars settle into clouds, and all three silver routes join into a homeward trail."
+    ],
+    "backstory": [
+      "The crescent keeps a gentle evening rhythm with the cloud rings and surrounding stars. Its favorite dreams travel through places it already knows, finding new shapes in familiar wisps of cloud. The dream seed belongs beside it as naturally as a favorite blanket belongs beside a sleeper.",
+      "The explorers' visit becomes a welcome image in those dreams: a red cape carrying a small glow through the clouds. The crescent dreams of familiar friends finding one another across the drifting rings, and wakes with a particular fondness for any bright little sail passing through its sky."
+    ],
+    "relationships": [
+      {"name": "Naptune's Sleepy Stars", "detail": "Share its cloud-filled setting and settle after the dream seed is returned."},
+      {"name": "Juliet", "detail": "Returns the lost dream seed."},
+      {"name": "Uni", "detail": "Helps guide and secure the journey through the cloud rings."},
+      {"name": "Starbeard", "detail": "Helps guide and secure the journey through the cloud rings."}
+    ],
+    "sources": [
+      {"storyId": "planets", "location": "Reader pages 6–7, Naptune and The third path; index.html #planets-page-6-title and #planets-page-7-title; assets/naptune-dream.png."}
+    ],
+    "notes": ["The world is named Naptune; the moon has no unequivocally established personal name.", "Distinct from Rosegold Ring's small round golden moon.", "The prose's statement that Naptune yawns is poetic wording, not proof of a second moon identity."]
+  },
+  {
+    "id": "naptune-sleepy-stars",
+    "name": "Naptune's Sleepy Stars",
+    "kind": "group",
+    "role": "Small sleepers among the cloud rings",
+    "summary": "Even the stars need a comfortable place to tuck in when a long night is finally put right.",
+    "appearance": "Sleepy stars among drifting clouds. Existing art depicts small golden star shapes with faces and closed, resting eyes.",
+    "image": "assets/naptune-dream.png",
+    "imageAlt": "Small sleepy golden stars rest among the clouds around Naptune's yawning crescent moon.",
+    "imagePosition": "66% 31%",
+    "storyIds": ["planets"],
+    "established": [
+      "The stars around Naptune are already yawning when the explorers discover the moon's problem. Once Juliet returns the dream seed, the stars tuck themselves into the clouds as the final silver route brightens. Their sleepy behavior is explicit, although no individual star is named."
+    ],
+    "backstory": [
+      "The stars each favor a different fold of cloud: a rounded puff, a narrow curl, or a drifting pocket with a clear view of the crescent. Settling in is a small community occasion, with just enough light left showing for a late traveler to see the way.",
+      "After the explorers' visit, the stars enjoy choosing cloud shapes that resemble the friendly rocket and its red cape-sail. Their quiet pastime gives returning friends something recognizable to find in an otherwise changing sky."
+    ],
+    "relationships": [
+      {"name": "Naptune's Crescent Moon", "detail": "Their neighboring dreamer, whose returned seed ends the night's difficulty."},
+      {"name": "Juliet", "detail": "One of the visitors who restore the moon's rest and the route home."},
+      {"name": "Uni", "detail": "One of the visitors who restore the moon's rest and the route home."},
+      {"name": "Starbeard", "detail": "One of the visitors who restore the moon's rest and the route home."}
+    ],
+    "sources": [
+      {"storyId": "planets", "location": "Reader pages 6–7, Naptune and The third path; index.html #planets-page-6-title and #planets-page-7-title; assets/naptune-dream.png."}
+    ],
+    "notes": ["No individual names, ages, or family relationships are established."]
+  },
+  {
+    "id": "three-petaled-starflower",
+    "name": "The Three-Petaled Starflower",
+    "kind": "being",
+    "role": "A living reminder beside the porch",
+    "summary": "A tiny gift from Naptune brings the light of three helped worlds home.",
+    "appearance": "A small starflower with three glowing petals, one for each world the explorers helped.",
+    "image": "assets/home.png",
+    "imageAlt": "Juliet, Starbeard, and Uni rest at dawn beside a tiny glowing starflower.",
+    "imagePosition": "50% 70%",
+    "storyIds": ["planets"],
+    "established": [
+      "When the beard-map guides the patchwork rocket back to the blanket fort at dawn, the explorers plant a tiny gift from Naptune beside the porch. It opens into a starflower with three glowing petals, one for Tumble-Turn, one for Luma Bloom, and one for Naptune.",
+      "The starflower remains part of the homecoming while Starbeard curls the map into his beard and Juliet tucks her cape around Uni. It is a living gift, with no speaking voice or independent personality established in the story."
+    ],
+    "backstory": [
+      "The starflower's life beside the porch begins with the explorers' return. As it grows, its three lights make a familiar meeting place for pauses between journeys: a place to remember a floating nest, a quiet song, and a moon finally ready to dream.",
+      "The flower grows among ordinary signs of home: the passing shadow of a cape, footsteps beside the porch, and the sound of breakfast being prepared. Its small patch of light belongs to those daily comforts as much as to the remarkable journey that brought it there."
+    ],
+    "relationships": [
+      {"name": "Juliet", "detail": "Helps plant the gift beside the porch after the three-planet journey."},
+      {"name": "Uni", "detail": "Helps plant the gift beside the porch after the three-planet journey."},
+      {"name": "Starbeard", "detail": "Helps plant the gift beside the porch after the three-planet journey."},
+      {"name": "Naptune", "detail": "The gift comes from this world; the specific giver is unestablished."}
+    ],
+    "sources": [
+      {"storyId": "planets", "location": "Reader page 8, Home again; index.html #planets-page-8-title."}
+    ],
+    "notes": ["A living supporting presence rather than an established talking character.", "The source does not say the gift is the returned dream seed or Luma Bloom's humming seed; keep all three distinct."]
+  },
+  {
+    "id": "rosegold-golden-moon",
+    "name": "Rosegold Ring's Golden Moon",
+    "kind": "being",
+    "role": "The little neighbor at the heart of a round rescue",
+    "summary": "Its proper orbit wakes an entire doughnut world, and its thank-you opens a trail of new horizons.",
+    "appearance": "A tiny golden moon that calls with a bell-small peep. Existing art depicts a round, cratered gold body with a friendly face.",
+    "image": "assets/doughnut-homeward.png",
+    "imageAlt": "The rescued golden moon follows the glowing orbit drawn by Juliet's marmalade compass above Rosegold Ring.",
+    "imagePosition": "56% 23%",
+    "storyIds": ["doughnut"],
+    "established": [
+      "The marmalade map shows a tiny golden moon disappearing beneath a raspberry-colored storm. At Rosegold Ring, the crew discovers that the missing moon is tangled below in the planet's hollow center. Without the moon's pull, the glaze seas and chiming trees have gone still.",
+      "Uni loosens the storm with a warm beam, Juliet catches the moon in her cape, and Starbeard steadies the rope. The marmalade compass draws a visible orbit; the crew places the moon on that path and the world wakes. In thanks, the moon presses a crumb-shaped star into the compass, revealing a trail of more ring worlds."
+    ],
+    "backstory": [
+      "The golden moon knows its neighborhood by the small changes visible on every round: a shifting glaze sea, a chiming grove, and another moonlet appearing above the rim. Its journeys are part of the planet's everyday rhythm, so returning to its orbit means returning to familiar company as well as a familiar course.",
+      "The crumb-shaped star gives the rescuers a share in that wider neighborhood. Since the rescue, the moon watches for the patchwork star-sloop during its rounds. A glimpse of its bright sail is worth a cheerful peep and a particularly proud sweep around the familiar horizon."
+    ],
+    "relationships": [
+      {"name": "Rosegold Ring's Moonlets", "detail": "The other moonlets worry over its absence."},
+      {"name": "Rosegold Ring's Chiming Trees", "detail": "Their movement and music return with its proper orbit."},
+      {"name": "Juliet", "detail": "One of its rescuers, sharing the crumb-star gift with the crew."},
+      {"name": "Uni", "detail": "One of its rescuers, sharing the crumb-star gift with the crew."},
+      {"name": "Starbeard", "detail": "One of its rescuers, sharing the crumb-star gift with the crew."}
+    ],
+    "sources": [
+      {"storyId": "doughnut", "location": "Reader page 2, The map in the marmalade; index.html #doughnut-page-2-title."},
+      {"storyId": "doughnut", "location": "Reader pages 5–8, The roundest horizon through Round horizons; index.html #doughnut-page-5-title through #doughnut-page-8-title; assets/doughnut-homeward.png."}
+    ],
+    "notes": ["The moon has no established personal name or gender.", "The source never establishes who sent the initial marmalade map.", "Distinct from Naptune's crescent moon and from Rosegold Ring's other moonlets."]
+  },
+  {
+    "id": "rosegold-moonlets",
+    "name": "Rosegold Ring's Moonlets",
+    "kind": "group",
+    "role": "The worried neighbors around the ring",
+    "summary": "A whole neighborhood of little moons watches the hollow sky for its missing companion.",
+    "appearance": "Small moonlets surrounding Rosegold Ring. Existing arrival art depicts several round, cratered bodies with worried faces, distinct from the rescued golden moon.",
+    "image": "assets/doughnut-arrival.png",
+    "imageAlt": "Worried moonlets gather around the silent doughnut planet as the explorers approach its storm-filled center.",
+    "imagePosition": "88% 70%",
+    "storyIds": ["doughnut"],
+    "established": [
+      "When the explorers reach Rosegold Ring, its seas and trees are still. The moonlets stare worriedly into the empty middle, where the golden moon has become trapped below. The arrival illustration gives these witnesses separate visible faces, while the prose treats them as a community."
+    ],
+    "backstory": [
+      "The moonlets are accustomed to watching their world from different places around the ring. Each knows a favorite stretch of glaze sea or a particular grove of chiming trees. Their shared view of the planet comes from noticing what another neighbor might miss.",
+      "After the golden moon returns, they take particular pleasure in recognizing each familiar movement again. They compare the changes they notice, joining separate views into an understanding of the whole ring. A quiet grove matters to a moonlet that remembers exactly how it usually sounds."
+    ],
+    "relationships": [
+      {"name": "Rosegold Ring's Golden Moon", "detail": "Its disappearance worries them; the story establishes neighboring moons without specifying kinship."},
+      {"name": "Juliet", "detail": "One of the visitors who discover and resolve the missing moon's predicament."},
+      {"name": "Uni", "detail": "One of the visitors who discover and resolve the missing moon's predicament."},
+      {"name": "Starbeard", "detail": "One of the visitors who discover and resolve the missing moon's predicament."}
+    ],
+    "sources": [
+      {"storyId": "doughnut", "location": "Reader page 5, The roundest horizon; index.html #doughnut-page-5-title; assets/doughnut-arrival.png."}
+    ],
+    "notes": ["Individual names, ages, genders, and family relationships are unestablished.", "Do not identify these moonlets as the Moonlit Blossom Planet's three moons."]
+  },
+  {
+    "id": "rosegold-chiming-trees",
+    "name": "Rosegold Ring's Chiming Trees",
+    "kind": "group",
+    "role": "The voice of a world set moving again",
+    "summary": "When the golden moon finds its orbit, these quiet groves recover their ringing song.",
+    "appearance": "Forests of chiming sugar trees on Rosegold Ring, also described as sprinkle trees when the world wakes. A sturdy sugar-crystal root anchors the rescue rope.",
+    "image": "assets/doughnut-homeward.png",
+    "imageAlt": "Chiming groves rise from the doughnut world's glowing landscape beneath the rescued golden moon.",
+    "imagePosition": "74% 72%",
+    "storyIds": ["doughnut"],
+    "established": [
+      "Rosegold Ring has glaze seas, icing clouds, and forests of chiming sugar trees. The trees are silent while the golden moon is missing. On the inner rim, Starbeard uses a sturdy sugar-crystal root to secure the crew's rope.",
+      "When the moon rolls onto its proper orbit, the seas rush and the trees ring. Their renewed music is one of the signs that the entire world has awakened."
+    ],
+    "backstory": [
+      "The groves have grown with the rhythms of a round world, their roots holding steady while their upper branches answer movement with sound. Travelers can come to recognize a place by its particular chime long before they distinguish it through the icing clouds.",
+      "The rescue leaves one ordinary root with an extraordinary place in the crew's memory. Around it, the grove continues its slow growth, sending new branches toward the hollow sky while keeping its hold on the inner rim. The steady part of the tree remains beneath all that bright movement."
+    ],
+    "relationships": [
+      {"name": "Rosegold Ring's Golden Moon", "detail": "Their music resumes when its orbit restores the world's movement."},
+      {"name": "Starbeard", "detail": "Anchors the rescue rope to a sugar-crystal root."}
+    ],
+    "sources": [
+      {"storyId": "doughnut", "location": "Reader pages 5–7, The roundest horizon through One round rescue; index.html #doughnut-page-5-title through #doughnut-page-7-title."}
+    ],
+    "notes": ["The story uses both sugar trees and sprinkle trees; this directory treats those as descriptions of the local chiming groves without inventing a botanical separation.", "Individual speech or motives are unestablished."]
+  },
+  {
+    "id": "sleepy-space-crab",
+    "name": "The Sleepy Space Crab",
+    "kind": "creature",
+    "role": "A quiet resident of the moon-sand",
+    "summary": "This drowsy neighbor is one of the places a determined treasure crew looks beneath.",
+    "appearance": "A sleepy space crab. Existing art depicts a small purple crab with claws, closed eyes, and a brown ridged shell.",
+    "image": "assets/starwater-tool-search.png",
+    "imageAlt": "A purple space crab sleeps beside a singing cactus while the explorers search the moon-sand for a digging tool.",
+    "imagePosition": "69% 76%",
+    "storyIds": ["starwater"],
+    "established": [
+      "During the search for a shovel, scoop, or space-spade, the crew looks beneath a sleepy space crab. The crab is a resident of the moon-sand setting, alongside the singing cactus, treasure stones, silver moss, and humming star-shells.",
+      "The story assigns the crab no dialogue and makes no claim that it owns, hides, or guards either the silver space-spade or the bottle of starwater."
+    ],
+    "backstory": [
+      "The crab favors resting places where the moon-sand still holds a little warmth and the nearby star-shells can be heard. It has become an expert at choosing a comfortable hollow without disturbing the small shining things around it.",
+      "When awake, the crab takes its time finding the next comfortable hollow. A useful patch needs room for its shell, an agreeable stretch of sand, and a little music within hearing. Choosing well can occupy a very satisfying portion of the evening."
+    ],
+    "relationships": [
+      {"name": "The Singing Cactus", "detail": "A nearby resident shown beside the crab in the existing illustration."},
+      {"name": "The Humming Star-Shells", "detail": "Part of the same moon-sand neighborhood."},
+      {"name": "Juliet", "detail": "Joins the search beneath the crab for a proper digging tool."},
+      {"name": "Uni", "detail": "Joins the search beneath the crab for a proper digging tool."},
+      {"name": "Starbeard", "detail": "Joins the search beneath the crab for a proper digging tool."}
+    ],
+    "sources": [
+      {"storyId": "starwater", "location": "Reader page 3, Search high and low; index.html #starwater-page-3-title. Visual reference: reader page 2, assets/starwater-tool-search.png."}
+    ],
+    "notes": ["No personal name, gender, speaking ability, or guardianship of the treasure is established."]
+  },
+  {
+    "id": "singing-cactus",
+    "name": "The Singing Cactus",
+    "kind": "being",
+    "role": "A musical neighbor of the moon-sand",
+    "summary": "A cheerful singer makes the search for a space-spade sound like part of an evening concert.",
+    "appearance": "A singing cactus. Existing art depicts a small green cactus with a smiling face, raised branching arms, and a pink flower on top.",
+    "image": "assets/starwater-tool-search.png",
+    "imageAlt": "A green cactus with a pink flower sings beside the sleepy space crab and the searching explorers.",
+    "imagePosition": "58% 61%",
+    "storyIds": ["starwater"],
+    "established": [
+      "The crew looks behind the singing cactus during the search for a digging tool. Its singing is an explicit feature of the moon-sand landscape. The page illustration shows it performing beside the sleeping space crab while the explorers look nearby."
+    ],
+    "backstory": [
+      "The cactus practices with the changing night breeze, holding a note while the star-shells supply their softer humming. Staying rooted in one place has made it attentive to returning sounds and familiar visitors; the landscape provides a different accompaniment each evening.",
+      "Its favorite nearby listener is the sleepy crab, who usually rests before the final verse. The cactus considers a peaceful audience an excellent result. Once the crab settles, the singer eases into the gentler part of its repertoire and lets the star-shells carry more of the tune."
+    ],
+    "relationships": [
+      {"name": "The Sleepy Space Crab", "detail": "A neighboring resident in the existing scene; their musical companionship is newly authored backstory."},
+      {"name": "The Humming Star-Shells", "detail": "Another musical presence in the same setting."},
+      {"name": "Juliet", "detail": "Joins the search behind the cactus while preparing the treasure hunt."},
+      {"name": "Uni", "detail": "Joins the search behind the cactus while preparing the treasure hunt."},
+      {"name": "Starbeard", "detail": "Joins the search behind the cactus while preparing the treasure hunt."}
+    ],
+    "sources": [
+      {"storyId": "starwater", "location": "Reader page 3, Search high and low; index.html #starwater-page-3-title. Visual reference: reader page 2, assets/starwater-tool-search.png."}
+    ],
+    "notes": ["The source establishes singing, not conversational speech or a personal name."]
+  },
+  {
+    "id": "humming-star-shells",
+    "name": "The Humming Star-Shells",
+    "kind": "group",
+    "role": "A lullaby beside the buried spade",
+    "summary": "Their soft music marks the place where Uni discovers the tool the treasure hunt needs.",
+    "appearance": "A pile of star-shells in the moon-sand. The story describes their humming; the tool-search art shows spiral shells and small luminous shell forms among the stones.",
+    "image": "assets/starwater-tool-search.png",
+    "imageAlt": "Spiral shells and glowing small shell forms lie in the moon-sand near the singing cactus and sleepy crab.",
+    "imagePosition": "44% 83%",
+    "storyIds": ["starwater"],
+    "established": [
+      "The star-shells hum a lullaby near the place where Uni nudges something with her horn. Moon-sand slips away to reveal a sturdy silver space-spade. Their music belongs to the story's quiet landscape, and their position helps identify where the tool is found."
+    ],
+    "backstory": [
+      "Over time, the shells have gathered in a shallow place where the moving sand leaves them together. Their different curves catch a passing breeze in different ways, making a small, changing lullaby from the same familiar surroundings.",
+      "Their little chorus continues while the nearby cactus sings and the crab finds somewhere to sleep. A shift in the sand changes the arrangement, giving an old tune a slightly different sound. The shells remain a familiar landmark even as the landscape softly rearranges itself."
+    ],
+    "relationships": [
+      {"name": "Uni", "detail": "Finds the silver space-spade near their humming pile."},
+      {"name": "The Singing Cactus", "detail": "Shares the moon-sand setting with the shells."},
+      {"name": "The Sleepy Space Crab", "detail": "Shares the moon-sand setting with the shells."}
+    ],
+    "sources": [
+      {"storyId": "starwater", "location": "Reader page 3, Search high and low; index.html #starwater-page-3-title. Supporting scene reference: assets/starwater-tool-search.png."}
+    ],
+    "notes": ["A magical natural ensemble; conscious speech, individual names, and deliberate concealment of the spade are unestablished."]
+  },
+  {
+    "id": "eldest-melodian",
+    "name": "The Eldest Melodian",
+    "kind": "creature",
+    "role": "Caretaker of the unfinished Moonlight Song",
+    "summary": "An experienced listener recognizes the missing note and explains why an entire flower world cannot rest.",
+    "appearance": "One of three tiny Melodians with round bodies, long ears, and small antennae that bounce when they speak. Existing art shows a golden, a blue, and a lavender individual. New directory continuity assigns the golden figure to the eldest role.",
+    "image": "assets/moonlit-missing-note.png",
+    "imageAlt": "Three worried Melodians show the explorers a glowing ribbon of song with a missing section; the golden Melodian raises a paw.",
+    "imagePosition": "27% 72%",
+    "storyIds": ["moonlit"],
+    "established": [
+      "The eldest belongs to the group of three Melodians encountered behind a giant blue blossom. The Melodians introduce themselves as caretakers of the Moonlit Blossom Planet and welcome the travelers from the stars.",
+      "The eldest explains that the flowers sing the Moonlight Song every night so they can sleep until the following evening. One note is missing, leaving the song unfinished and the flowers restless. After the explorers find the note, the Melodians dance while the completed song becomes a lullaby."
+    ],
+    "backstory": [
+      "The eldest has spent many evenings learning how one part of the meadow answers another. Remembering the order of the song means noticing a silence as clearly as a sound. That experience helps the caretaker explain the problem even when the solution lies beyond the familiar meadow.",
+      "The golden caretaker keeps shared memories of unusual evenings through stories told beside the blue blossom. The visiting crew joins that collection as friends whose different voices helped the flowers finish a song. Remembering their visit gives the eldest a happy reason to leave room in the evening's plans for an unexpected guest."
+    ],
+    "relationships": [
+      {"name": "The Blue Melodian", "detail": "A fellow caretaker who welcomes the explorers and shares the restored song."},
+      {"name": "The Lavender Melodian", "detail": "A fellow caretaker who welcomes the explorers and shares the restored song."},
+      {"name": "The Moonlit Blossoms", "detail": "Explains their nightly song and their inability to sleep while it is unfinished."},
+      {"name": "Juliet", "detail": "One of the visitors who offer help and bring the missing note back into the song."},
+      {"name": "Uni", "detail": "One of the visitors who offer help and bring the missing note back into the song."},
+      {"name": "Starbeard", "detail": "One of the visitors who offer help and bring the missing note back into the song."}
+    ],
+    "sources": [
+      {"storyId": "moonlit", "location": "Reader pages 8–9, The Melodians and The missing note; index.html #moonlit-page-8-title and #moonlit-page-9-title."},
+      {"storyId": "moonlit", "location": "Reader pages 15–16, The planet sings and A lullaby; index.html #moonlit-page-15-title and #moonlit-page-16-title. Visual reference: assets/moonlit-missing-note.png."}
+    ],
+    "notes": ["The prose identifies an eldest Melodian without assigning a color. Golden equals eldest is a new editorial continuity decision, not a claim about the original wording.", "No personal name, exact age, gender, or family relationship is established.", "Do not assign each greeting on page 8 to a particular individual as a source fact."]
+  },
+  {
+    "id": "blue-melodian",
+    "name": "The Blue Melodian",
+    "kind": "creature",
+    "role": "One of the three meadow caretakers",
+    "summary": "A small blue caretaker belongs to the welcoming trio whose flowers need one final note.",
+    "appearance": "The blue member of the illustrated trio has a small round body, long ears, large eyes, and glowing-tipped antennae. The shared species description establishes antennae that bounce during speech.",
+    "image": "assets/moonlit-melodians.png",
+    "imageAlt": "A blue Melodian stands between lavender and golden companions as Juliet, Uni, and Starbeard greet them.",
+    "imagePosition": "18% 73%",
+    "storyIds": ["moonlit"],
+    "established": [
+      "The blue Melodian is visually distinguished within the group of three caretakers waiting behind the giant blue blossom. Together they welcome the travelers and introduce their people. The story gives this individual no personal name or separately attributed dialogue.",
+      "The trio's concern is the unfinished Moonlight Song. When the missing note reaches the meadow, the Melodians dance and listen as the flowers finally settle into sleep."
+    ],
+    "backstory": [
+      "The blue caretaker tends the smallest blossoms. Listening close to the ground reveals the delicate notes that disappear when everyone stands beside the tallest flowers. Careful attention to those small voices has become this Melodian's particular contribution to the meadow.",
+      "After meeting the explorers, the blue caretaker begins showing visiting friends where the quiet flowers grow. Its favorite stopping place is a low cluster where several tiny notes can be heard separately before they join the larger song. There is always something new to notice at that scale."
+    ],
+    "relationships": [
+      {"name": "The Eldest Melodian", "detail": "Another member of the pictured caretaking trio."},
+      {"name": "The Lavender Melodian", "detail": "Another member of the pictured caretaking trio."},
+      {"name": "The Moonlit Blossoms", "detail": "Shares the group's established caretaking role; tending the smallest blossoms is newly authored specialization."},
+      {"name": "Juliet", "detail": "A new friend welcomed by the trio."},
+      {"name": "Uni", "detail": "A new friend welcomed by the trio."},
+      {"name": "Starbeard", "detail": "A new friend welcomed by the trio."}
+    ],
+    "sources": [
+      {"storyId": "moonlit", "location": "Reader pages 8–9, The Melodians and The missing note; index.html #moonlit-page-8-title and #moonlit-page-9-title; assets/moonlit-melodians.png and assets/moonlit-missing-note.png."},
+      {"storyId": "moonlit", "location": "Reader pages 15–16 and 20, the restored song, lullaby, and departing friends."}
+    ],
+    "notes": ["Blue is an existing visual identifier, not a personal name supplied by the prose.", "This directory's new golden-eldest assignment keeps the blue and lavender figures as the two other caretakers.", "Specific duties and personal history in the backstory are authored additions."]
+  },
+  {
+    "id": "lavender-melodian",
+    "name": "The Lavender Melodian",
+    "kind": "creature",
+    "role": "One of the three meadow caretakers",
+    "summary": "A long-eared lavender caretaker shares the worry, welcome, and dancing when the planet's song returns.",
+    "appearance": "The lavender member of the illustrated trio has a small round body, long ears, large eyes, and glowing-tipped antennae. All three belong to the same source-described Melodian people.",
+    "image": "assets/moonlit-melodians.png",
+    "imageAlt": "A lavender Melodian stands beside blue and golden companions beneath the giant blue blossom.",
+    "imagePosition": "9% 74%",
+    "storyIds": ["moonlit"],
+    "established": [
+      "The lavender Melodian appears as one of the three small caretakers who greet the explorers from beneath a giant blue blossom. The collective introduction establishes their role in caring for the Moonlit Blossom Planet.",
+      "The story's greetings and distress belong to the trio without individually assigned lines. The Melodians later dance as the recovered note spreads, and remain on their world as remembered new friends when The Cosmic Wanderer sails away."
+    ],
+    "backstory": [
+      "The lavender caretaker walks the meadow paths and notices where stems lean into a crossing or a small visitor might need room. Knowing how to move gently through a crowded flower world is a practical skill, especially when blossoms can grow wider than a ship.",
+      "The explorers' visit inspires the caretaker to remember good listening places along those paths. A bend near the tall purple flowers offers deep notes, while another crossing catches the lighter whistles. Guiding a guest through the meadow becomes a journey through those changing sounds."
+    ],
+    "relationships": [
+      {"name": "The Eldest Melodian", "detail": "Another member of the illustrated caretaking trio."},
+      {"name": "The Blue Melodian", "detail": "Another member of the illustrated caretaking trio."},
+      {"name": "The Moonlit Blossoms", "detail": "Shares the established caretaking role; tending paths between them is newly authored specialization."},
+      {"name": "Juliet", "detail": "One of the visitors whose shared singing helps the whole meadow."},
+      {"name": "Uni", "detail": "One of the visitors whose shared singing helps the whole meadow."},
+      {"name": "Starbeard", "detail": "One of the visitors whose shared singing helps the whole meadow."}
+    ],
+    "sources": [
+      {"storyId": "moonlit", "location": "Reader pages 8–9, The Melodians and The missing note; index.html #moonlit-page-8-title and #moonlit-page-9-title; assets/moonlit-melodians.png and assets/moonlit-missing-note.png."},
+      {"storyId": "moonlit", "location": "Reader pages 15–16 and 20, the restored song, lullaby, and departing friends."}
+    ],
+    "notes": ["Lavender is an existing visual identifier, not a personal name supplied by the prose.", "No gender or family relationship is established.", "Specific duties and personal history in the backstory are authored additions."]
+  },
+  {
+    "id": "first-flower",
+    "name": "The First Flower",
+    "kind": "being",
+    "role": "Keeper of the missing note",
+    "summary": "Deep in the Singing Forest, a silver-and-gold flower answers a gift that no treasure chest can hold.",
+    "appearance": "An enormous flower with silver-and-gold petals, one glowing inner petal, and tiny lights drifting around it like fireflies. A carved stone stands beneath it.",
+    "image": "assets/moonlit-first-flower-clearing.png",
+    "imageAlt": "Juliet approaches the silver-and-gold First Flower while Uni and Starbeard pause beside its carved stone.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["moonlit"],
+    "established": [
+      "The legendary First Flower stands deep in the Singing Forest, in a clearing where the surrounding bells, humming, and whistles fall quiet. It opens when Juliet approaches, revealing a single glowing petal. Beneath it, a stone explains that the greatest treasure cannot be taken and can only be given.",
+      "Starbeard stops before taking the petal. The three friends listen, and Juliet suggests singing. Her bright voice, Uni's soft clear voice, and Starbeard's deep warm voice join together. The flower glows and releases the perfect note that travels across the planet and completes the Moonlight Song."
+    ],
+    "backstory": [
+      "The First Flower's quiet clearing gives an offered sound room to be heard. Over many evenings, the flower has answered the living voices around it while keeping its inner petal in place. Its gift belongs to a shared moment rather than a possession that someone can carry away.",
+      "The explorers' harmony becomes one such moment in the flower's continuing life. Its silver-and-gold petals remain open to the sounds around the clearing, while the quiet place gives arriving visitors room to listen. The carved stone continues to offer its invitation before anyone reaches for the glowing petal."
+    ],
+    "relationships": [
+      {"name": "The Moonlit Blossoms", "detail": "Its released note enables their song to finish and their sleep to begin."},
+      {"name": "Juliet", "detail": "Joins the shared song to which the flower responds."},
+      {"name": "Uni", "detail": "Joins the shared song to which the flower responds."},
+      {"name": "Starbeard", "detail": "Joins the shared song to which the flower responds."},
+      {"name": "The Eldest Melodian", "detail": "A caretaker whose world depends on the completed Moonlight Song; direct guardianship of the clearing is unestablished."},
+      {"name": "The Blue Melodian", "detail": "A caretaker whose world depends on the completed Moonlight Song; direct guardianship of the clearing is unestablished."},
+      {"name": "The Lavender Melodian", "detail": "A caretaker whose world depends on the completed Moonlight Song; direct guardianship of the clearing is unestablished."}
+    ],
+    "sources": [
+      {"storyId": "moonlit", "location": "Reader page 10, The musical path, identifies the legendary First Flower."},
+      {"storyId": "moonlit", "location": "Reader pages 12–14, The First Flower through One perfect note; index.html #moonlit-page-12-title through #moonlit-page-14-title."}
+    ],
+    "notes": ["The source supplies no creator, exact age, speaking voice, or punishment for visitors.", "The glowing inner petal remains with the flower; the crew does not take it.", "Do not merge this flower with Luma Bloom's humming seed or the starflower planted beside the porch."]
+  },
+  {
+    "id": "moonlit-blossoms",
+    "name": "The Moonlit Blossoms",
+    "kind": "group",
+    "role": "The voices of a flower-covered planet",
+    "summary": "Bells, cellos, flutes, and deep purple notes become the lullaby that lets a whole world sleep.",
+    "appearance": "Flowers ranging from button-small to wider than The Cosmic Wanderer. Blue blossoms chime, golden blossoms hum, pink blossoms whistle, and enormous purple blossoms make deep gentle sounds.",
+    "image": "assets/moonlit-flower-orchestra.png",
+    "imageAlt": "Blue, gold, pink, and enormous purple flowers perform around Juliet, Uni, and Starbeard beneath the three moons.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["moonlit"],
+    "established": [
+      "Flowers cover the Moonlit Blossom Planet, from tiny button-sized plants to blooms wider than a ship. They are closed when the crew arrives and begin opening as three moons rise. Each flower contributes a musical note, with characteristic sounds associated with its color.",
+      "Their nightly Moonlight Song helps them sleep until the following evening. A missing note leaves the song unfinished and the flowers restless. The First Flower's recovered note travels through forests, valleys, mountains, rivers, and fields, drawing millions of blossoms into the melody. The song softens into a lullaby and the flowers close."
+    ],
+    "backstory": [
+      "The planet's living chorus has grown through many different landscapes. A blossom beside a river hears the world differently from one sheltered in the forest, and their voices carry those differences into the evening song. The meadow is only one place to hear a much larger musical home.",
+      "After the travelers' visit, the caretakers remember their friends through the completed song. Local fields keep their familiar combinations of notes: a deep grove here, a whistling hillside there, and small bell sounds beside a path. Those different places all belong to the same great nightly chorus."
+    ],
+    "relationships": [
+      {"name": "The First Flower", "detail": "Releases the missing note that allows their nightly song to finish."},
+      {"name": "The Eldest Melodian", "detail": "A caretaker who seeks help for the restless flowers."},
+      {"name": "The Blue Melodian", "detail": "A caretaker who seeks help for the restless flowers."},
+      {"name": "The Lavender Melodian", "detail": "A caretaker who seeks help for the restless flowers."},
+      {"name": "Juliet", "detail": "Their offered harmony restores the missing note and lets the blossoms sleep."},
+      {"name": "Uni", "detail": "Their offered harmony restores the missing note and lets the blossoms sleep."},
+      {"name": "Starbeard", "detail": "Their offered harmony restores the missing note and lets the blossoms sleep."}
+    ],
+    "sources": [
+      {"storyId": "moonlit", "location": "Reader pages 6–9, Planet of Flowers through The missing note; index.html #moonlit-page-6-title through #moonlit-page-9-title."},
+      {"storyId": "moonlit", "location": "Reader pages 14–18 and 20, the returned note, planetary song, lullaby, and departure."}
+    ],
+    "notes": ["A collective entry preserves the many unnamed blossoms without inventing individual people.", "Keep blue/bells, gold/cellos, pink/flutes, and large purple/deep tones consistent.", "These are distinct from Luma Bloom's bridge-building bell flowers."]
+  },
+  {
+    "id": "vine-door-flowers",
+    "name": "The Five Vine-Door Flowers",
+    "kind": "group",
+    "role": "The Singing Forest's musical doorway",
+    "summary": "Five glowing flowers offer a passage that opens through a tune instead of a shove.",
+    "appearance": "Five glowing flowers on a wall of enormous vines. One is notably the largest and produces the booming note that sends Starbeard's hat flying.",
+    "image": "assets/moonlit-forest.png",
+    "imageAlt": "The friends play the glowing flowers on the vine door as a booming note lifts Starbeard's hat.",
+    "imagePosition": "50% 50%",
+    "storyIds": ["moonlit"],
+    "established": [
+      "Beyond a musical path of silver stones, the explorers meet a wall of enormous vines bearing five glowing flowers. Starbeard's pushing and Uni's magic leave the wall closed. Juliet suggests playing the flowers.",
+      "Touching them produces different notes. Starbeard pokes the largest and an enormous boom sends his hat flying. Together the crew repeats the pattern Ding, Ding, Dong, Ding; the vines lift and the path toward the First Flower opens."
+    ],
+    "backstory": [
+      "The flowers have grown together where the forest narrows into a passage. Their different notes make the doorway part of the same musical landscape as the silver stones leading toward it. A traveler who pays attention along the path arrives already prepared to try listening and playing.",
+      "The largest flower has always made this crossing particularly memorable. Its booming note travels farther than its neighbors' sounds, making the surrounding leaves tremble before the quiet returns. The five blooms continue to grow side by side, each contributing its own part to the doorway's music."
+    ],
+    "relationships": [
+      {"name": "Juliet", "detail": "Recognizes that the flowers may be played."},
+      {"name": "Uni", "detail": "Joins in playing the pattern after magic alone leaves the vines closed."},
+      {"name": "Starbeard", "detail": "Discovers the largest flower's booming note and helps complete the musical pattern."},
+      {"name": "The First Flower", "detail": "Stands farther along the path beyond the opened vines; no personal command relationship is established."}
+    ],
+    "sources": [
+      {"storyId": "moonlit", "location": "Reader pages 10–11, The musical path and The vine door; index.html #moonlit-page-10-title and #moonlit-page-11-title."}
+    ],
+    "notes": ["The source establishes five flowers but does not give every flower an individual identity or note.", "The largest boom-producing flower is retained within this functional ensemble.", "Conscious motives, speech, punitive intent, and an appointed guardian role are unestablished."]
+  }
+]

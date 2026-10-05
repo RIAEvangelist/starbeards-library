@@ -1,4 +1,5 @@
 import arcaneThemeReady from 'arcane-os/modules/ThemeBootstrap.js';
+import { createCharacterDirectory } from './modules/character-directory.js';
 import {
     createJuJuSpeech
 } from './speech-consumer.mjs';
@@ -52,6 +53,7 @@ const BOOKS = {
 };
 
 const pageBody = document.body;
+const characterDirectory = createCharacterDirectory(BOOKS);
 const libraryView = document.querySelector('#library-view');
 const readerView = document.querySelector('#reader-view');
 const storyTrack = document.querySelector('#story-track');
@@ -788,6 +790,10 @@ function openBookById(bookId, sourceButton) {
         return;
     }
 
+    characterDirectory.hide();
+    if (window.location.hash !== '#book/' + bookId) {
+        window.history.pushState(null, '', '#book/' + bookId);
+    }
     moveMusicButton(readerMusicSlot);
     stopNarration();
     lastOpenButton = sourceButton || lastOpenButton;
@@ -813,11 +819,12 @@ function focusLastOpenButton() {
     }
 }
 
-function returnToLibrary() {
+function returnToLibrary(updateLocation = true) {
     if (readerView.hidden) {
         return;
     }
 
+    if (updateLocation) window.history.pushState(null, '', '#library');
     stopNarration();
     cancelCopyDrag();
     moveMusicButton(libraryMusicSlot);
@@ -830,7 +837,7 @@ function returnToLibrary() {
     currentBookId = '';
     currentPageIndex = 0;
     document.title = 'Juliet’s Grand Adventures';
-    window.requestAnimationFrame(focusLastOpenButton);
+    if (updateLocation) window.requestAnimationFrame(focusLastOpenButton);
 }
 
 function handleOpenBookClick(event) {
@@ -1108,6 +1115,24 @@ function handleResize() {
     storyTrack.scrollLeft = storyTrack.clientWidth * currentPageIndex;
 }
 
+function showLibraryRoute() {
+    const hash = window.location.hash;
+    if (hash === '#characters' || hash.startsWith('#character/')) {
+        returnToLibrary(false);
+        libraryView.hidden = true;
+        characterDirectory.show(hash);
+        return;
+    }
+    characterDirectory.hide();
+    if (hash.startsWith('#book/') && BOOKS[hash.substring('#book/'.length)]) {
+        openBookById(hash.substring('#book/'.length));
+        return;
+    }
+    returnToLibrary(false);
+    libraryView.hidden = false;
+    document.title = 'Juliet’s Grand Adventures';
+}
+
 for (let index = 0; index < openBookButtons.length; index += 1) {
     openBookButtons[index].addEventListener('click', handleOpenBookClick);
 }
@@ -1146,3 +1171,5 @@ storyTrack.addEventListener(
 window.addEventListener('keydown', handleKeydown);
 window.addEventListener('resize', handleResize);
 window.addEventListener('pagehide', handlePageHide);
+window.addEventListener('hashchange', showLibraryRoute);
+showLibraryRoute();

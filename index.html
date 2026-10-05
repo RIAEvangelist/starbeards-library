@@ -334,6 +334,7 @@
                     <p class="library-kicker">The little library between stars</p>
                     <h1>Juliet’s<br>Grand Adventures</h1>
                     <p class="library-intro">Choose a shelf, choose a book, cuddle in, and turn the galaxy one illustrated page at a time.</p>
+                    <a class="meet-characters-link" href="#characters">Meet the characters <span aria-hidden="true">↗</span></a>
                     <div class="library-music-slot" id="library-music-slot">
                         <button class="music-button" id="music-button" type="button" aria-label="Play background music" aria-pressed="false" aria-busy="false" aria-describedby="music-status">
                             <span class="music-button-icon" id="music-button-icon" aria-hidden="true">♪</span>
@@ -561,6 +562,43 @@
                 <span aria-hidden="true">✦</span>
                 <p>Made for reading together, wherever the next almost-bedtime adventure begins.</p>
             </footer>
+        </div>
+    </main>
+
+    <main class="character-view" id="character-view" hidden>
+        <header class="character-bar">
+            <a class="character-library-link" href="#library">← <span>Back to the library</span></a>
+            <a class="character-brand" href="#characters">Starbeard’s field guide <span aria-hidden="true">✦</span></a>
+        </header>
+        <div class="character-scroll" id="character-scroll">
+            <section class="character-directory" id="character-directory" aria-labelledby="character-directory-title">
+                <div class="character-hero">
+                    <div class="character-hero-copy">
+                        <p class="character-eyebrow">The people, pigeons &amp; peculiar friends</p>
+                        <h1 id="character-directory-title" tabindex="-1">Every adventure<br>begins with <em>someone.</em></h1>
+                        <p>Meet the brave, the curious, the gloriously troublesome—and the quiet friends who know the way home.</p>
+                        <a class="character-text-link" href="#character/admiral-pigeon">Start with a very small admiral →</a>
+                    </div>
+                    <figure class="character-hero-art">
+                        <img src="./assets/moonlit-meet-the-crew.png" alt="Starbeard, Juliet and Uni together on their warm, quilted starship bridge." loading="lazy">
+                        <figcaption>One galaxy of stories. Room for every kind of friend.</figcaption>
+                    </figure>
+                </div>
+                <form class="character-filters" id="character-filters" role="search">
+                    <label>Find a character<input id="character-search" type="search" placeholder="A name, a role, a curious creature…" autocomplete="off"></label>
+                    <label><span id="character-story-label">In this story</span><select id="character-story" aria-labelledby="character-story-label"><option value="">All ten stories</option></select></label>
+                    <button type="reset">Show everyone</button>
+                </form>
+                <p class="character-count" id="character-count" role="status" aria-live="polite">Opening the field guide…</p>
+                <button class="character-retry" id="character-retry" type="button" hidden>Try opening the guide again</button>
+                <div class="character-grid" id="character-grid"></div>
+                <aside class="character-reading-note">
+                    <h2>A little note from the library</h2>
+                    <p>Profiles include story discoveries and endings. “In the stories” follows the existing books; “Beyond the pages” adds new fictional backstory to this shared world. Unnamed friends keep descriptive labels, and passing crews appear together with their individual roles.</p>
+                    <p>Pigeon’s three origin books come before <em>The Runaway Cup</em>, which takes place long before <em>The Great Galactic Sock Caper</em>. The other adventures keep their own story settings.</p>
+                </aside>
+            </section>
+            <article class="character-profile" id="character-profile" hidden aria-labelledby="character-profile-title"></article>
         </div>
     </main>
 

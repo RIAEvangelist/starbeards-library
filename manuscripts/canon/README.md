@@ -1,10 +1,23 @@
 # Starbeard’s Library — shared canon
 
-This is the shared editorial home for the ten existing stories and their comic adaptations. Original story manuscripts and the complete library templates remain unchanged. Later direct author corrections take precedence over earlier prose drafts or generated art. New profile backstories will be identified separately from events established in those sources.
+This is the shared editorial home for the ten existing stories and their comic adaptations. Original story manuscripts and the complete library templates remain unchanged. Later direct author corrections take precedence over earlier prose drafts or generated art. New profile backstories are identified separately from events established in those sources.
 
-## Initial continuity baseline
+## Character field guide
 
-The full character and world inventory is in progress. Use the following source-grounded baseline immediately; faithful adaptations need not wait for the directory.
+Open the library's **Meet the characters** link, or use `#characters`. Each profile has a stable `#character/<id>` address, established story history, newly created fictional backstory, appearance, relationships, story links and source notes. Search and story filters cover all ten books.
+
+The 69 profiles include named characters, distinct unnamed participants, living plants and celestial beings, and communities. Briefly mentioned background roles appear in collective profiles with their individual source references. Descriptive labels preserve unnamed identities. A group entry never establishes that two uncertain roles are the same person.
+
+- [Core cast](core.json): Juliet, Starbeard, Uni, Admiral Pigeon, Pip and Teacher Mira.
+- [Early supporting cast](early-supporting.json): 20 profiles from Planets, Doughnut, Starwater and Moonlit.
+- [Pigeon origins cast](origins.json): 28 profiles, including nine distinct unnamed participants and three background communities.
+- [Later supporting cast](later-supporting.json): 15 profiles from Sock Caper, Pluto and The Runaway Cup.
+- [Complete coverage and source inventory](coverage.md).
+- [World, chronology and adaptation decisions](world-and-chronology.md).
+
+The JSON records are the website's character content, not generated summaries. `established` follows the source; `backstory` contains the newly authored extension shown under **Beyond the pages**. `appearance` distinguishes written and illustrated evidence. `notes` preserves uncertainties and corrections. Existing scene illustrations support the profiles without claiming that every image is a standalone portrait. An empty image leaves appearance open where the sources do.
+
+## Shared continuity baseline
 
 - Read `../admiral-pigeon-origins/series-notes.md` and its `README.md` with each relevant manuscript. Their chronology is: the three origin books, then **The Runaway Cup**, then a long time later **The Great Galactic Sock Caper**. No exact ages or calendar years are established.
 - Pigeon is an ordinary small gray pigeon with a turquoise-and-violet iridescent neck, natural bird anatomy, a dark charcoal beak and a pale cere. He wears no clothes or hat. Rank insignia belong on perch plates or cabin doors. His conversations are coos interpreted by the narrator or his companions.
@@ -22,4 +35,4 @@ The full character and world inventory is in progress. Use the following source-
 
 The character website task owns this directory and shared website source. Comic tasks own only their assigned ignored `output/comics/<slug>/` folder. Send specific contradictions and proposed additions to the canon owner; do not edit another task’s output. Full comic editions remain local unless separately authorized for publication.
 
-Source references and the full inventory will be recorded here as the complete-story review is reconciled. Absence from this initial list is not permission to invent a previously named character or merge unnamed roles.
+The source inventory records complete-story coverage by the collaborating readers. Before changing an established fact, follow its chapter or page reference. Newly invented history belongs in the separately labeled backstory, and additions must preserve the chronology and design decisions above.

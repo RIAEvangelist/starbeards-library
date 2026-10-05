@@ -16,6 +16,7 @@
       "assets",
       "index.html",
       "manifest.json",
+      "manuscripts/canon",
       "modules",
       "speech-consumer.mjs",
       "styles.css"

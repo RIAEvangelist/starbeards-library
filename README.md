@@ -31,6 +31,14 @@ Only completed books are added to the library. Each finished book belongs to one
 
 Each book opens in the same full-screen horizontal reader with touch swiping, keyboard navigation, page controls, and JuJu’s read-aloud controls and browser voice selection.
 
+## Meet the characters
+
+The library's **Meet the characters** link opens an illustrated field guide with 69 character and community profiles across all ten stories. Search by name or description, filter by story, follow relationships, or open a character's books directly. Each profile has a stable `#character/<id>` address, such as `#character/admiral-pigeon`; the full directory is at `#characters`.
+
+**In the stories** records the established fictional history. **Beyond the pages** supplies new backstory written to extend that history. Unnamed participants retain descriptive labels; passing crews and briefly mentioned neighbors have collective entries preserving their individual source roles. The expandable references record exact pages or chapters and unresolved differences between prose and illustrations. Profiles contain story endings.
+
+The [shared canon](manuscripts/canon/README.md) owns the character records, [source coverage](manuscripts/canon/coverage.md), and [world and chronology guide](manuscripts/canon/world-and-chronology.md). The browser loads its four JSON inventories concurrently on first use. Existing story illustrations supply the profile art; full comic editions and private photographic references are not part of this website update.
+
 The Admiral Pigeon trilogy preserves the [complete reading manuscripts](manuscripts/admiral-pigeon-origins/README.md), including all paragraphs and emphasis. Each chapter occupies one illustrated page with vertically scrolling text. Focus the text area to use Page Up, Page Down, Home, or End within the chapter; left and right arrows still turn pages. Move words and Shrink words remain outside the scrolling text. Its thirty-nine illustrations and scene descriptions are recorded in the [Book One](manuscripts/admiral-pigeon-origins/illustrations/book-1.json), [Book Two](manuscripts/admiral-pigeon-origins/illustrations/book-2.json), and [Book Three](manuscripts/admiral-pigeon-origins/illustrations/book-3.json) art manifests.
 
 The app pins published `arcane-os@0.52.1` and uses its public `createBrowserSpeechSynthesisProvider` and `SpeechPlayback` contracts for the browser's Web Speech API.
