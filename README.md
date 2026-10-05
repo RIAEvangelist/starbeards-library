@@ -41,7 +41,7 @@ The [shared canon](manuscripts/canon/README.md) owns the character records, [sou
 
 The Admiral Pigeon trilogy preserves the [complete reading manuscripts](manuscripts/admiral-pigeon-origins/README.md), including all paragraphs and emphasis. Each chapter occupies one illustrated page with vertically scrolling text. Focus the text area to use Page Up, Page Down, Home, or End within the chapter; left and right arrows still turn pages. Move words and Shrink words remain outside the scrolling text. Its thirty-nine illustrations and scene descriptions are recorded in the [Book One](manuscripts/admiral-pigeon-origins/illustrations/book-1.json), [Book Two](manuscripts/admiral-pigeon-origins/illustrations/book-2.json), and [Book Three](manuscripts/admiral-pigeon-origins/illustrations/book-3.json) art manifests.
 
-The app pins published `arcane-os@0.54.0` and uses its public `createBrowserSpeechSynthesisProvider` and `SpeechPlayback` contracts for the browser's Web Speech API.
+The app tracks the published `arcane-os` `latest` channel during development and uses its public `createBrowserSpeechSynthesisProvider` and `SpeechPlayback` contracts for the browser's Web Speech API. The retained lockfile currently resolves SDK `0.54.1`.
 
 JuJu defaults to **Google US English**, then another available Google English voice, then the browser's default English voice or first English voice. If no English voice is listed, the browser chooses its default. The Voice menu contains the browser's complete current inventory and updates when voices become available. A reader's explicit selection takes precedence and is saved by voice URI under `juju-grand-adventures.web-speech-voice`; the previous Kokoro preference remains untouched.
 
@@ -57,7 +57,20 @@ Every spread has a **Move words** handle. Drag it with a mouse or finger, or foc
 
 ## Standalone application layout
 
-JuJu declares exact `arcane-os@0.54.0` in its own `package.json`; a normal project-root `npm install` resolves the public package into this repository’s own `node_modules`. App source, descriptors, manifest, and `assets/` live at the repository root. The four documented `installed-v1` routes in `arcane-packager.json` serve the actual installed SDK runtime, browser runtime, runtime dependency, and license files. Runtime and packaging no longer use the obsolete root `arcane/` projection. The physical-runtime materializer is retired; there is no global install, symlink, checkout dependency, or update poll. Public `arcane-os` imports resolve through the SDK-generated map using stable resource URLs without SDK-generated cache suffixes. App-owned functional queries and fragments are preserved; existing conditional HTTP requests and application caches remain in use.
+JuJu declares `"arcane-os": "latest"` in its own `package.json`; a normal project-root `npm install` resolves the public package into this repository’s own `node_modules`, using the retained `package-lock.json` resolution where applicable. Pin the SDK only after Roshi explicitly designates JuJu as a production build. App source, descriptors, manifest, and `assets/` live at the repository root. The four documented `installed-v1` routes in `arcane-packager.json` serve the actual installed SDK runtime, browser runtime, runtime dependency, and license files. Runtime and packaging no longer use the obsolete root `arcane/` projection. The physical-runtime materializer is retired; there is no global install, symlink, checkout dependency, or update poll. Public `arcane-os` imports resolve through the SDK-generated map using stable resource URLs without SDK-generated cache suffixes. App-owned functional queries and fragments are preserved; existing conditional HTTP requests and application caches remain in use.
+
+For a development pull/install refresh, coordinate the dependency and Git mutation window with active owners and processes. Remove only this application's disposable root `node_modules` directory, retain `package-lock.json`, and then run:
+
+```powershell
+git pull
+npm i
+npm update arcane-os
+npm view arcane-os@latest version
+```
+
+Before refreshing managed maps or selecting a build, compare that fresh published version with both `node_modules/arcane-os/package.json` and the SDK resolution in `package-lock.json`. If the channel advanced during installation, run the targeted SDK update again. A `latest` declaration or `npm i` against an older lockfile alone does not establish the installed version.
+
+Once those versions agree, run `npm run import-map`. Retain and commit the updated lockfile, review any generated changes, and align the SDK version diagnostic in `speech-consumer.mjs` with the resolved installation. This refresh does not update unrelated dependencies or enable automatic polling.
 
 The workspace uses `appsRoot: "."`. The SDK’s standalone-root flow generates no nested app navigation pages, redirects, or duplicate PWA files, and has no setting to retain them. Roshi explicitly retired both the old `arcane` and `apps` redirect families on September 9, 2026. Keep those redirects, aliases, and copied trees retired; do not restore them through a generator default, host rule, or compatibility file. Open `/` when serving this repository as a host root, or `/starbeards-library/` on the intended GitHub Pages host. The former `/apps/juju-grand-adventures/` entry is retired.
 
